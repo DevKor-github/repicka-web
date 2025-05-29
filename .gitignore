@@ -25,3 +25,8 @@ dist-ssr
 
 # Environment variables
 .env*
+
+# Deploy 관련 파일들
+tsconfig.node.tsbuildinfo
+vite.config.d.ts
+vite.config.js
