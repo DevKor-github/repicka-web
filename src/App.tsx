@@ -1,5 +1,8 @@
-import Home from '@/pages/Home';
+import '@stackflow/plugin-basic-ui/index.css';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import { Stack } from '@/libs/routes/stack';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,7 +20,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Home />
+      <Stack />
     </QueryClientProvider>
   );
 }
