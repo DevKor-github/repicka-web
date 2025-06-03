@@ -1,5 +1,3 @@
-import '@stackflow/plugin-basic-ui/index.css';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { Stack } from '@/libs/routes/stack';

@@ -30,3 +30,7 @@ dist-ssr
 tsconfig.node.tsbuildinfo
 vite.config.d.ts
 vite.config.js
+
+## PandaCSS 관련 파일들
+styled-system
+styled-system-studio
