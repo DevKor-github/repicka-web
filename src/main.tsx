@@ -1,3 +1,6 @@
+import '@stackflow/plugin-basic-ui/index.css';
+import '@/index.css';
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 

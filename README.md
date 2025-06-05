@@ -1,6 +1,6 @@
 ## repicka-web
 
-에프기210도7분 화이띵
+에프기210도7분 화이띵 🔥
 
 ### 커밋 컨벤션
 
@@ -26,3 +26,10 @@
 - feat/#[이슈 번호]/[기능 이름] :: 특정 기능 개발 브랜치
   - feat/[세부 기능] :: 특정 기능 개발 서브 브랜치 (바로 dev ㄴㄴ, 위에 꺼에 머지)
 - fix/#[이슈 번호]/[버그 이름] :: 특정 버그 수정 브랜치
+
+### 사용 스택
+
+- Vite + React + TypeScript
+- Tanstack-Query
+- PandaCSS
+- Stackflow from [Daangn](https://github.com/daangn/stackflow)
