@@ -14,7 +14,6 @@ const AppScreenWithSafeArea = ({ children }: PropsWithChildren) => {
           top: 'calc(env(safe-area-inset-top))',
           left: 'calc(env(safe-area-inset-left))',
           right: 'calc(env(safe-area-inset-right))',
-          bottom: 'calc(env(safe-area-inset-bottom))',
         }}
       >
         {children}
