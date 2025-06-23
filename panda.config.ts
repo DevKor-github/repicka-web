@@ -33,6 +33,24 @@ export default defineConfig({
     },
   },
 
+  // 글꼴 설정
+  globalFontface: {
+    Pretendard: {
+      src: "url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');",
+      fontWeight: '400',
+      fontStyle: 'normal',
+      fontDisplay: 'swap',
+    },
+  },
+
+  // 전역 스타일 설정
+  globalCss: {
+    html: {
+      fontFamily:
+        'Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+    },
+  },
+
   jsxFramework: 'react',
 
   // The output directory for your css system
