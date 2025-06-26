@@ -27,6 +27,43 @@
   - feat/[세부 기능] :: 특정 기능 개발 서브 브랜치 (바로 dev ㄴㄴ, 위에 꺼에 머지)
 - fix/#[이슈 번호]/[버그 이름] :: 특정 버그 수정 브랜치
 
+### 디렉토리 구조
+
+```
+src/
+├── App.tsx
+├── main.tsx
+├── index.css
+├── pages/
+│   ├── [페이지 이름 1]Page.tsx
+│   ├── [페이지 이름 2]Page.tsx
+│   └── index.ts
+├── common/
+│   ├── components/
+│   │   └── [여러 기능에서 공통적으로 사용되는 컴포넌트].tsx
+│   ├── hooks/
+│   │   └── [여러 기능에서 공통적으로 사용되는 훅].tsx
+│   └── utils/
+│       └── [여러 기능에서 공통적으로 사용되는 유틸 함수].tsx
+├── features/
+│   ├── [기능 이름 1]/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── utils/
+│   └── [기능 이름 2]/
+│       ├── components/
+│       └── hooks/
+├── libs/
+│   └── routes/
+│       ├── stack.ts
+│       └── stackConfig.ts
+└── assets/
+    └── images/
+        └── [이미지 파일].png
+    └── icons/
+        └── [아이콘 파일].png
+```
+
 ### 사용 스택
 
 - Vite + React + TypeScript
