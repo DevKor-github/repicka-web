@@ -11,10 +11,11 @@ const HomePage: ActivityComponentType = () => {
   return (
     <AppScreenWithSafeArea>
       <h1 className={s.Title}>리피카 짱</h1>
-      <div className={s.Container}>
+      <h1 className={s.Title}>음 재밋다</h1>
+      <div className={s.LoginBtn}>
         <a href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/kakao`}>카카오톡 로그인</a>
         <a href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google`}>구글 로그인</a>
-        <i>백엔드에몽 로그인 고쳐줘</i>
+        <i className={s.Container}>백엔드에몽 로그인 고쳐줘</i>
         <button onClick={() => push('PostPage', {})}>이동</button>
       </div>
     </AppScreenWithSafeArea>

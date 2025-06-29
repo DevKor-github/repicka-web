@@ -6,4 +6,6 @@ export const Title = css({
   color: 'main',
 });
 
-export const Container = css({ display: 'flex', flexDirection: 'column', gap: '1rem' });
+export const LoginBtn = css({ display: 'flex', flexDirection: 'column', gap: '1rem' });
+
+export const Container = css({ color: 'systemGray', })
