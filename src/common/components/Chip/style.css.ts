@@ -14,15 +14,15 @@ export const Chip = cva({
   },
   variants: {
     color: {
-      gray: {
-        backgroundColor: 'systemGray5',
-        color: '80',
-      },
-      red: {
+      main: {
         backgroundColor: 'main-26',
         border: '1px solid',
         borderColor: 'main-54',
         color: '100',
+      },
+      gray: {
+        backgroundColor: 'systemGray5',
+        color: '80',
       },
     },
   },
