@@ -5,6 +5,7 @@ import type { ActivityComponentType } from '@stackflow/react';
 import * as s from './style.css';
 
 import AppScreenWithSafeArea from '@/common/components/AppScreenWithSafeArea';
+import Chip from '@/common/components/Chip';
 import TestAPIButton from '@/common/components/TestAPIButton';
 
 const HomePage: ActivityComponentType = () => {
@@ -20,6 +21,7 @@ const HomePage: ActivityComponentType = () => {
         <TestAPIButton />
         <button onClick={() => push('PostPage', {})}>이동</button>
       </div>
+      <Chip color="red">축구</Chip>
     </AppScreenWithSafeArea>
   );
 };
