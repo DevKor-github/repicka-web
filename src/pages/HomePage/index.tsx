@@ -6,6 +6,7 @@ import * as s from './style.css';
 
 import AppScreenWithSafeArea from '@/common/components/AppScreenWithSafeArea';
 import Chip from '@/common/components/Chip';
+import Dropdown from '@/common/components/Dropdown';
 import TestAPIButton from '@/common/components/TestAPIButton';
 
 const HomePage: ActivityComponentType = () => {
@@ -22,6 +23,7 @@ const HomePage: ActivityComponentType = () => {
         <button onClick={() => push('PostPage', {})}>이동</button>
       </div>
       <Chip color="main">축구</Chip>
+      <Dropdown color="main">종목</Dropdown>
     </AppScreenWithSafeArea>
   );
 };
