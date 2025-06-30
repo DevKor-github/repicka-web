@@ -6,7 +6,7 @@ const PostItem = () => {
 
   return (
     <div className={s.Container} onClick={() => push('NotFoundPage', {})}>
-      게시물... 
+      게시물...
     </div>
   );
 };

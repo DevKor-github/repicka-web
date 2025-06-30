@@ -11,5 +11,5 @@ import { css } from '@styled-system/css';
 export const Container = css({
   padding: '2rem',
   backgroundColor: 'black',
-  color: 'white'
-})
+  color: 'white',
+});

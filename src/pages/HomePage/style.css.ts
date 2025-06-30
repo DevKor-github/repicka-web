@@ -8,4 +8,4 @@ export const Title = css({
 
 export const LoginBtn = css({ display: 'flex', flexDirection: 'column', gap: '1rem' });
 
-export const Container = css({ color: 'systemGray', })
+export const Container = css({ color: 'systemGray' });
