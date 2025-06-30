@@ -6,7 +6,6 @@ const getIsLogin = async () => {
     const response = await client.get('/api/test/is-login');
     if (response.status === 200) {
       if (response.data.data) return true;
-      return false;
     }
     return false;
   } catch {
