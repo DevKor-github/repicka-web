@@ -5,6 +5,7 @@ import type { ActivityComponentType } from '@stackflow/react';
 import * as s from './style.css';
 
 import AppScreenWithSafeArea from '@/common/components/AppScreenWithSafeArea';
+import TestAPIButton from '@/common/components/TestAPIButton';
 
 const HomePage: ActivityComponentType = () => {
   const { push } = useFlow();
@@ -16,6 +17,7 @@ const HomePage: ActivityComponentType = () => {
         <a href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/kakao`}>카카오톡 로그인</a>
         <a href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google`}>구글 로그인</a>
         <i className={s.Container}>백엔드에몽 로그인 고쳐줘</i>
+        <TestAPIButton />
         <button onClick={() => push('PostPage', {})}>이동</button>
       </div>
     </AppScreenWithSafeArea>
