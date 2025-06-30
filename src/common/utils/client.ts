@@ -19,8 +19,8 @@ const responseErrorHandler = async (error: AxiosError) => {
     try {
       await client.post(REFRESH_URL);
       return client(config);
-    } catch {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
   }
 

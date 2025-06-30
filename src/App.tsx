@@ -10,7 +10,7 @@ const queryClient = new QueryClient({
       refetchOnReconnect: true, // 네트워크 재연결 시 데이터 요청 여부
       refetchOnWindowFocus: true, // 브라우저 포커스 시 데이터 요청 여부
       staleTime: 1000 * 10, // 10초 동안 데이터 살아있삼
-      throwOnError: true, // 에러 발생 시 예외 던지기 여부
+      throwOnError: false, // 에러 발생 시 예외 던지기 여부
     },
   },
 });
