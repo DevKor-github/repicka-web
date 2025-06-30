@@ -1,6 +1,6 @@
 import { cva } from '@styled-system/css';
 
-export const Chip = cva({
+export const Container = cva({
   base: {
     padding: '0.5rem 0.75rem',
     display: 'flex',

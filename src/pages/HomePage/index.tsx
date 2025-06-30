@@ -21,7 +21,7 @@ const HomePage: ActivityComponentType = () => {
         <TestAPIButton />
         <button onClick={() => push('PostPage', {})}>이동</button>
       </div>
-      <Chip color="red">축구</Chip>
+      <Chip color="main">축구</Chip>
     </AppScreenWithSafeArea>
   );
 };
