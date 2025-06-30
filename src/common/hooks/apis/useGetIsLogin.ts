@@ -8,6 +8,7 @@ const getIsLogin = async () => {
       if (response.data.data) return true;
       return false;
     }
+    return false;
   } catch {
     return false;
   }
