@@ -1,6 +1,6 @@
-import { css, cva } from '@styled-system/css';
+import { cva } from '@styled-system/css';
 
-export const Dropdown = cva({
+export const Container = cva({
   base: {
     borderRadius: 'full',
     padding: '0.375rem 0.375rem 0.375rem 0.625rem',
@@ -27,6 +27,18 @@ export const Dropdown = cva({
   },
 });
 
-export const Icon = css({
-  color: '54',
+export const Icon = cva({
+  base: {
+    color: '54',
+  },
+  variants: {
+    direction: {
+      up: {
+        transform: 'rotate(180deg)',
+      },
+      down: {
+        transform: 'rotate(0deg)',
+      },
+    },
+  },
 });

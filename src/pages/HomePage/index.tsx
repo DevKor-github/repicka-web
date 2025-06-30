@@ -1,16 +1,18 @@
-import { useFlow } from '@/libs/routes/stack';
+import { useState } from 'react';
 import type { ActivityComponentType } from '@stackflow/react';
+import { useFlow } from '@/libs/routes/stack';
 
 // CSS 사용하는 컴포넌트에서는 이런 식으로 불러오기
 import * as s from './style.css';
 
 import AppScreenWithSafeArea from '@/common/components/AppScreenWithSafeArea';
 import Chip from '@/common/components/Chip';
-import Dropdown from '@/common/components/Dropdown';
+import SelectButton from '@/common/components/SelectButton';
 import TestAPIButton from '@/common/components/TestAPIButton';
 
 const HomePage: ActivityComponentType = () => {
   const { push } = useFlow();
+  const [active, setActive] = useState(false);
   return (
     <AppScreenWithSafeArea>
       <h1 className={s.Title}>리피카 짱</h1>
@@ -23,7 +25,9 @@ const HomePage: ActivityComponentType = () => {
         <button onClick={() => push('PostPage', {})}>이동</button>
       </div>
       <Chip color="main">축구</Chip>
-      <Dropdown color="main">종목</Dropdown>
+      <SelectButton active={active} onClick={() => setActive(!active)}>
+        종목
+      </SelectButton>
     </AppScreenWithSafeArea>
   );
 };
