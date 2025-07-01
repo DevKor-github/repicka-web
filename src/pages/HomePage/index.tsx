@@ -9,19 +9,26 @@ import AppScreenWithSafeArea from '@/common/components/AppScreenWithSafeArea';
 import Chip from '@/common/components/Chip';
 import SelectButton from '@/common/components/SelectButton';
 import TestAPIButton from '@/common/components/TestAPIButton';
+import useGetIsLogin from '@/common/hooks/apis/useGetIsLogin';
 
 const HomePage: ActivityComponentType = () => {
   const { push } = useFlow();
+  const { data: isLogin } = useGetIsLogin();
   const [active, setActive] = useState(false);
+  
   return (
     <AppScreenWithSafeArea>
-      <h1 className={s.Title}>리피카 짱</h1>
-      <h1 className={s.Title}>음 재밋다</h1>
-      <div className={s.LoginBtn}>
-        <a href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/kakao`}>카카오톡 로그인</a>
-        <a href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google`}>구글 로그인</a>
-        <i className={s.Container}>백엔드에몽 로그인 고쳐줘</i>
-        <TestAPIButton />
+      <div className={s.Wrapper}>
+        <h1 className={s.Title}>리피카 짱</h1>
+        <h1 className={s.Title}>음 재밋다</h1>
+        {isLogin ? (
+          <TestAPIButton />
+        ) : (
+          <div className={s.LoginBtn}>
+            <a href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/kakao`}>카카오톡 로그인</a>
+            <a href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google`}>구글 로그인</a>
+          </div>
+        )}
         <button onClick={() => push('PostPage', {})}>이동</button>
       </div>
       <Chip color="main">축구</Chip>
