@@ -29,6 +29,9 @@ export default defineConfig({
           '80': { value: 'rgba(255, 255, 255, 0.80)' },
           '54': { value: 'rgba(255, 255, 255, 0.54)' },
         },
+        zIndex: {
+          navigator: { value: 500 },
+        },
       },
     },
   },
@@ -48,6 +51,8 @@ export default defineConfig({
     html: {
       fontFamily:
         'Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      backgroundColor: 'systemGray6',
+      color: '100',
     },
   },
 
