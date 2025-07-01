@@ -15,7 +15,7 @@ const HomePage: ActivityComponentType = () => {
   const { push } = useFlow();
   const { data: isLogin } = useGetIsLogin();
   const [active, setActive] = useState(false);
-  
+
   return (
     <AppScreenWithSafeArea>
       <div className={s.Wrapper}>

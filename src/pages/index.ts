@@ -1,5 +1,6 @@
 import HomePage from '@/pages/HomePage';
 import NotFoundPage from '@/pages/NotFoundPage';
+import PickPage from '@/pages/PickPage';
 import PostPage from '@/pages/PostPage';
 
 /**
@@ -18,5 +19,9 @@ export const pagesConfig = {
   NotFoundPage: {
     path: '/404',
     component: NotFoundPage,
+  },
+  PickPage: {
+    path: '/pick',
+    component: PickPage,
   },
 };
