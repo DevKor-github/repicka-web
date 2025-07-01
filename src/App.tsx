@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { Stack } from '@/libs/routes/stack';
+import Navigator from '@/common/components/Navigator';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,6 +20,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Stack />
+      <Navigator />
     </QueryClientProvider>
   );
 }

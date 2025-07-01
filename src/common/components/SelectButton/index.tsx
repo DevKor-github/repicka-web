@@ -1,7 +1,8 @@
 import type { PropsWithChildren } from 'react';
 
 import * as s from './style.css';
-import Arrow from '@/assets/icons/Arrow';
+
+import ArrowIcon from '@/assets/icons/ArrowIcon';
 
 interface Props extends PropsWithChildren {
   active: boolean;
@@ -14,7 +15,7 @@ const SelectButton = ({ children, active, onClick }: Props) => {
     <button className={s.Container({ color: active ? 'main' : 'gray' })} onClick={onClick}>
       {children}
       <div className={s.Icon({ direction: active ? 'up' : 'down' })}>
-        <Arrow />
+        <ArrowIcon />
       </div>
     </button>
   );
