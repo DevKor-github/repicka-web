@@ -11,6 +11,7 @@ export const Container = cva({
     width: 'fit-content',
     fontSize: '0.875rem',
     fontWeight: 400,
+    cursor: 'pointer',
   },
   variants: {
     color: {
