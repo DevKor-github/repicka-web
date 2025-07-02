@@ -46,7 +46,12 @@ export const Menu = cva({
       },
       false: {
         fontWeight: 400,
-        color: '54',
+        '& span': {
+          color: 'systemGray',
+        },
+        '& p': {
+          color: '54',
+        },
       },
     },
   },
