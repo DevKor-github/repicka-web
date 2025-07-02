@@ -1,5 +1,7 @@
 import * as s from './style.css';
 
+const BASE_URL = import.meta.env.VITE_BASE_URL || '';
+
 // 으아 얘는 Stack 밖에 있는 놈이라 path로 처리해야됨
 const MENU_LIST = [
   {
@@ -39,7 +41,7 @@ const Navigator = () => {
       {MENU_LIST.map(({ label, path, selectedClassName, unSelectedClassName }) => {
         const selected = pathname === path;
         return (
-          <a key={path} className={s.Menu({ selected })} href={import.meta.env.VITE_BASE_URL + path}>
+          <a key={path} className={s.Menu({ selected })} href={BASE_URL + path}>
             <span className={selected ? selectedClassName : unSelectedClassName} />
             <p>{label}</p>
           </a>
