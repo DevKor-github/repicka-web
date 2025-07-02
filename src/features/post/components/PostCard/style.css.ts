@@ -62,3 +62,37 @@ export const PriceItem = css({
     letterSpacing: '-0.04rem',
   },
 });
+
+export const Footer = css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+
+export const Tokens = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.25rem',
+});
+
+export const Interactions = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.875rem',
+});
+
+export const InteractionItem = css({
+  display: 'flex',
+  alignItems: 'flex-end',
+  gap: '0.1875rem',
+  color: '54',
+  '& span': {
+    fontSize: '1rem',
+  },
+  '& p': {
+    fontSize: '0.75rem',
+    fontWeight: 400,
+    letterSpacing: '-0.03rem',
+    lineHeight: 1.2,
+  },
+});
