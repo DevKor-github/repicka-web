@@ -37,6 +37,7 @@ export const Menu = cva({
     '& span': {
       fontSize: '1.625rem',
     },
+    transition: 'all 0.3s ease-in-out',
   },
   variants: {
     selected: {

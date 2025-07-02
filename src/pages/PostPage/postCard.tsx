@@ -1,11 +1,12 @@
+import { useNavigate } from 'react-router';
+
 import * as s from './style.css';
-import { useFlow } from '@/libs/routes/stack';
 
 const PostItem = () => {
-  const { push } = useFlow();
+  const navigate = useNavigate();
 
   return (
-    <div className={s.Container} onClick={() => push('NotFoundPage', {})}>
+    <div className={s.Container} onClick={() => navigate(`/post/{id}`)}>
       게시물...
     </div>
   );

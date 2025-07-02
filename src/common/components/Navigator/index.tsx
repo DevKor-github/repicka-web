@@ -1,8 +1,6 @@
+import { Link, useLocation } from 'react-router';
 import * as s from './style.css';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL || '';
-
-// 으아 얘는 Stack 밖에 있는 놈이라 path로 처리해야됨
 const MENU_LIST = [
   {
     selectedClassName: 'mgc_home_1_fill',
@@ -30,21 +28,19 @@ const MENU_LIST = [
   },
 ];
 
-// 하 근데 이거 url 바꾸는거라 자연스럽게 애니메이션 넣고 싶은데 잘 안되네
-// 나중에 react-router도 추가 도입해야될듯...
-// TODO: React-Router 도입 후 Transition Animation 추가
+// TODO: 아이콘에도 Transition Animation 추가
 const Navigator = () => {
-  const pathname = '/' + window.location.pathname.split('/')[2];
+  const { pathname } = useLocation();
 
   return (
     <nav className={s.Container}>
       {MENU_LIST.map(({ label, path, selectedClassName, unSelectedClassName }) => {
         const selected = pathname === path;
         return (
-          <a key={path} className={s.Menu({ selected })} href={BASE_URL + path}>
+          <Link key={path} className={s.Menu({ selected })} to={path}>
             <span className={selected ? selectedClassName : unSelectedClassName} />
             <p>{label}</p>
-          </a>
+          </Link>
         );
       })}
     </nav>

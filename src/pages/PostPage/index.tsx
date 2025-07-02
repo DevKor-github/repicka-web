@@ -1,5 +1,4 @@
-import type { ActivityComponentType } from '@stackflow/react';
-import { useFlow } from '@/libs/routes/stack';
+import { useNavigate } from 'react-router';
 import PostCard from './postCard';
 
 // CSS 사용하는 컴포넌트에서는 이런 식으로 불러오기
@@ -7,21 +6,21 @@ import PostCard from './postCard';
 
 import * as c from '@/utils/commonStyles.css';
 
-import AppScreenWithSafeArea from '@/common/components/AppScreenWithSafeArea';
+import SafeArea from '@/common/components/SafeArea';
 
-const PostPage: ActivityComponentType = () => {
-  const { pop } = useFlow();
+const PostPage = () => {
+  const navigate = useNavigate();
 
   return (
-    <AppScreenWithSafeArea>
-      <button className={c.Button} onClick={pop}>
+    <SafeArea>
+      <button className={c.Button} onClick={() => navigate(-1)}>
         뒤로가기
       </button>
       <div>테스트 테스트 포스트 페이지</div>
       <PostCard />
       <PostCard />
       <PostCard />
-    </AppScreenWithSafeArea>
+    </SafeArea>
   );
 };
 export default PostPage;
