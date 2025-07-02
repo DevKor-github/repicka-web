@@ -2,8 +2,6 @@ import type { PropsWithChildren } from 'react';
 
 import * as s from './style.css';
 
-import ArrowIcon from '@/assets/icons/ArrowIcon';
-
 interface Props extends PropsWithChildren {
   active: boolean;
   onClick?: () => void;
@@ -14,9 +12,7 @@ const SelectButton = ({ children, active, onClick }: Props) => {
   return (
     <button className={s.Container({ color: active ? 'main' : 'gray' })} onClick={onClick}>
       {children}
-      <div className={s.Icon({ direction: active ? 'up' : 'down' })}>
-        <ArrowIcon />
-      </div>
+      <span className={`mgc_down_line ${s.Icon({ direction: active ? 'up' : 'down' })}`} />
     </button>
   );
 };
