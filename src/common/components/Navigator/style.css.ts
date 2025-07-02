@@ -34,6 +34,9 @@ export const Menu = cva({
       lineClamp: 1,
       whiteSpace: 'nowrap',
     },
+    '& span': {
+      fontSize: '1.625rem',
+    },
   },
   variants: {
     selected: {

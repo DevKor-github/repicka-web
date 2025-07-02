@@ -1,29 +1,28 @@
 import * as s from './style.css';
 
-import PickIcon from '@/assets/icons/PickIcon';
-import HomeIcon from '@/assets/icons/HomeIcon';
-import ChatIcon from '@/assets/icons/ChatIcon';
-import UserIcon from '@/assets/icons/UserIcon';
-
 // 으아 얘는 Stack 밖에 있는 놈이라 path로 처리해야됨
 const MENU_LIST = [
   {
-    icon: <HomeIcon />,
+    selectedClassName: 'mgc_home_1_fill',
+    unSelectedClassName: 'mgc_home_1_line',
     label: '홈',
     path: '/',
   },
   {
-    icon: <PickIcon />,
+    selectedClassName: 'mgc_choice_fill',
+    unSelectedClassName: 'mgc_choice_line',
     label: 'PICK',
     path: '/pick',
   },
   {
-    icon: <ChatIcon />,
+    selectedClassName: 'mgc_chat_1_fill',
+    unSelectedClassName: 'mgc_chat_1_line',
     label: '채팅',
     path: '/chat',
   },
   {
-    icon: <UserIcon />,
+    selectedClassName: 'mgc_user_2_fill',
+    unSelectedClassName: 'mgc_user_2_line',
     label: '마이페이지',
     path: '/my',
   },
@@ -37,10 +36,11 @@ const Navigator = () => {
 
   return (
     <nav className={s.Container}>
-      {MENU_LIST.map(({ icon, label, path }) => {
+      {MENU_LIST.map(({ label, path, selectedClassName, unSelectedClassName }) => {
+        const selected = pathname === path;
         return (
-          <a key={path} className={s.Menu({ selected: pathname === path })} href={import.meta.env.VITE_BASE_URL + path}>
-            {icon}
+          <a key={path} className={s.Menu({ selected })} href={import.meta.env.VITE_BASE_URL + path}>
+            <span className={selected ? selectedClassName : unSelectedClassName} />
             <p>{label}</p>
           </a>
         );

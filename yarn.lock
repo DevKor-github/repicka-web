@@ -2816,6 +2816,11 @@ mime-types@^2.1.12:
   dependencies:
     mime-db "1.52.0"
 
+mingcute_icon@^2.9.6:
+  version "2.9.6"
+  resolved "https://registry.yarnpkg.com/mingcute_icon/-/mingcute_icon-2.9.6.tgz#da05a6131248b2f864f8541a2c17fc31a80ae6f2"
+  integrity sha512-BZTrxHZHiRqCmx5Hqs+J2nlgxo4WY4KJRmxD2jzwa/hRPNuuJL8szriT9JjKq4dUcRtk6OmFQ1YZXXuoJHueLw==
+
 minimatch@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
