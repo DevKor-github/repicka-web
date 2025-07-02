@@ -8,6 +8,6 @@ export const Title = css({
   color: 'main',
 });
 
-export const LoginBtn = css({ display: 'flex', flexDirection: 'column', gap: '1rem' });
+export const LoginBtn = css({ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' });
 
 export const Container = css({ color: 'systemGray' });
