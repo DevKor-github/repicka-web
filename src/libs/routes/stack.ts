@@ -12,6 +12,8 @@ export const { Stack, useFlow } = stackflow({
     basicRendererPlugin(),
     basicUIPlugin({
       theme: 'cupertino',
+      backgroundColor: 'transparent',
+      dimBackgroundColor: 'transparent',
     }),
     historySyncPlugin({
       routes,

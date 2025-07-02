@@ -12,17 +12,18 @@ export const Container = cva({
     fontSize: '0.875rem',
     fontWeight: 400,
     cursor: 'pointer',
+    border: '1px solid',
   },
   variants: {
     color: {
       main: {
         backgroundColor: 'main-26',
-        border: '1px solid',
         borderColor: 'main-54',
         color: '100',
       },
       gray: {
         backgroundColor: 'systemGray5',
+        borderColor: 'systemGray5',
         color: '80',
       },
     },

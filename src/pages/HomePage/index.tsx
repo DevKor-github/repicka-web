@@ -17,7 +17,7 @@ const HomePage: ActivityComponentType = () => {
   const { push } = useFlow();
   const { data: isLogin } = useGetIsLogin();
   const [active, setActive] = useState(false);
-  
+
   return (
     <AppScreenWithSafeArea>
       <div className={s.Wrapper}>
@@ -34,7 +34,7 @@ const HomePage: ActivityComponentType = () => {
           </div>
         )}
       </div>
-      <Chip color="main">축구</Chip>
+      <Chip color="gray">축구</Chip>
       <SelectButton active={active} onClick={() => setActive(!active)}>
         종목
       </SelectButton>
