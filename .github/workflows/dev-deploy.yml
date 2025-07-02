@@ -23,6 +23,7 @@ jobs:
         run: |
           touch .env
           echo VITE_API_URL=${{ secrets.VITE_API_URL }} >> .env
+          echo VITE_BASE_URL=${{ secrets.VITE_BASE_URL }} >> .env
 
       - name: 📦 빌드중!
         run: npm run build
