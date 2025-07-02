@@ -12,15 +12,16 @@ export const Container = cva({
     fontWeight: 500,
     cursor: 'pointer',
     color: '100',
+    border: '1px solid',
   },
   variants: {
     color: {
       main: {
-        border: '1px solid',
         borderColor: 'main-54',
         bgColor: 'main-26',
       },
       gray: {
+        borderColor: 'systemGray5',
         bgColor: 'systemGray5',
       },
     },
@@ -30,6 +31,7 @@ export const Container = cva({
 export const Icon = cva({
   base: {
     color: '54',
+    fontSize: '0.75rem',
   },
   variants: {
     direction: {

@@ -31,7 +31,7 @@ const HomePage: ActivityComponentType = () => {
         )}
         <button onClick={() => push('PostPage', {})}>이동</button>
       </div>
-      <Chip color="main">축구</Chip>
+      <Chip color="gray">축구</Chip>
       <SelectButton active={active} onClick={() => setActive(!active)}>
         종목
       </SelectButton>
