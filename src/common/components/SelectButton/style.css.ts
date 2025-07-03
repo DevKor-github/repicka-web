@@ -31,7 +31,7 @@ export const Container = cva({
 export const Icon = cva({
   base: {
     color: '54',
-    fontSize: '0.75rem',
+    fontSize: '0.875rem',
   },
   variants: {
     direction: {
