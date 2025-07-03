@@ -11,6 +11,8 @@ const iconMap: Record<string, string> = {
     기타: 'mgc_coathanger_fill',
     대여: 'mgc_basket_fill',
     판매: 'mgc_wallet_4_fill',
+    직거래: 'mgc_group_fill',
+    택배거래: 'mgc_package_2_fill',
   };
   
   export default iconMap;
