@@ -10,7 +10,7 @@ interface Props {
 const PostCard = ({ data }: Props) => {
   return (
     <div className={s.Container}>
-      <img className={s.Image} src={data.thumbnail} />
+      <img className={s.Image} src={data.thumbnail} aria-hidden />
       <div className={s.Info}>
         <div className={s.Header}>
           <h2 className={s.Title}>{data.title}</h2>
