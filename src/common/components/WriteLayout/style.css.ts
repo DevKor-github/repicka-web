@@ -1,11 +1,10 @@
 import { css } from '@styled-system/css';
 
 export const stepBtn = css({
-  margin: '1rem',
   display: 'flex',
   justifyContent: 'space-evenly',
-  paddingBottom: '1.62rem',
   gap: '1rem',
+  padding: '0rem 1rem 2.625rem 1rem',
 });
 
 export const entireLayout = css({
@@ -34,7 +33,7 @@ export const closeBtn = css({
   color: '80',
   flexShrink: '1',
   aspectRatio: '1/1',
-  fontSize: '20px',
+  fontSize: '1.25rem',
 });
 
 export const headerText = css({
