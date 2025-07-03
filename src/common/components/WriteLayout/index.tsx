@@ -1,12 +1,12 @@
 import SafeArea from '@/common/components/SafeArea';
 import Header from './header';
 import Navigator from './navigator';
-import Step1 from '../stepPages/step1';
-import Step2 from '../stepPages/step2';
-import Step3 from '../stepPages/step3';
-import Step4 from '../stepPages/step4';
-import Step5 from '../stepPages/step5';
-import Step6 from '../stepPages/step6';
+import Step1 from '@/pages/PostPages/stepPages/step1'
+import Step2 from '@/pages/PostPages/stepPages/step2';
+import Step3 from '@/pages/PostPages/stepPages/step3';
+import Step4 from '@/pages/PostPages/stepPages/step4';
+import Step5 from '@/pages/PostPages/stepPages/step5';
+import Step6 from '@/pages/PostPages/stepPages/step6';
 // import StepIndicator from './'   // [TODO] stepindicator 만들어서 추가하기
 import { useState } from 'react';
 
