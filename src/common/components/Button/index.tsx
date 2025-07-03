@@ -4,7 +4,7 @@ import * as s from './style.css';
 interface Props extends PropsWithChildren {
   color?: 'gray' | 'main' | 'softgray' | 'deemedgray';
   onClick?: () => void;
-  style? : HTMLAttributes<HTMLDivElement>['style'];
+  style?: HTMLAttributes<HTMLDivElement>['style'];
 }
 const Btn = ({ children, color = 'softgray', onClick, style }: Props) => {
   return (

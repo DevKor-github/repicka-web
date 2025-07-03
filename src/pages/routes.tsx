@@ -29,7 +29,7 @@ const routes: RouteObject[] = [
       {
         path: '*', // 못 찾았을 때 404 페이지로 이동
         element: <NotFoundPage />,
-      }
+      },
     ],
   },
 ];
