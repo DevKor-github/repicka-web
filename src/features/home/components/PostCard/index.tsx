@@ -1,7 +1,8 @@
-import Token from '@/features/home/components/Token';
 import { TagList, type PostInterface } from '@/libs/types/post';
 
 import * as s from './style.css';
+
+import Token from '@/common/components/Token';
 
 interface Props {
   data: PostInterface;
