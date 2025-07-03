@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router';
 import * as s from './style.css';
+import { NAVIGATOR_HEIGHT_PX } from '@/libs/constants/sizes';
 
 const MENU_LIST = [
   {
@@ -33,7 +34,7 @@ const Navigator = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav className={s.Container}>
+    <nav className={s.Container} style={{ height: `${NAVIGATOR_HEIGHT_PX}px` }}>
       {MENU_LIST.map(({ label, path, selectedClassName, unSelectedClassName }) => {
         const selected = pathname === path;
         return (

@@ -1,7 +1,7 @@
-import Token from '@/features/post/components/Token';
+import Token from '@/features/home/components/Token';
+import type { PostInterface } from '@/libs/types/post';
 
 import * as s from './style.css';
-import type { PostInterface } from '@/libs/types/post';
 
 interface Props {
   data: PostInterface;
