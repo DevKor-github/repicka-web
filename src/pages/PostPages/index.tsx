@@ -1,4 +1,4 @@
-import WriteLayout from '@/common/components/WriteLayout';
+import WriteLayout from './WriteLayout';
 import SafeArea from '@/common/components/SafeArea';
 
 const PostPage = () => {
