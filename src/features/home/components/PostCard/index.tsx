@@ -1,5 +1,5 @@
 import Token from '@/features/home/components/Token';
-import type { PostInterface } from '@/libs/types/post';
+import { TagList, type PostInterface } from '@/libs/types/post';
 
 import * as s from './style.css';
 
@@ -27,7 +27,7 @@ const PostCard = ({ data }: Props) => {
         <div className={s.Footer}>
           <div className={s.Tokens}>
             {data.productTypes.map((type, index) => (
-              <Token key={`${type}-${index}`}>{type}</Token>
+              <Token key={`${type}-${index}`}>{TagList[type]}</Token>
             ))}
           </div>
           <div className={s.Interactions}>
