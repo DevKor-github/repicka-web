@@ -4,6 +4,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/repicka-web/',
+  base: '/repicka-web/', // TODO: BASE_URL 추후 수정
   plugins: [react(), tsconfigPaths()],
 });

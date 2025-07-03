@@ -1,17 +1,16 @@
-import type { ActivityComponentType } from '@stackflow/react';
-
-import AppScreenWithSafeArea from '@/common/components/AppScreenWithSafeArea';
+import { useNavigate } from 'react-router';
 
 import Chip from '@/common/components/Chip';
+import SafeArea from '@/common/components/SafeArea';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL || '';
+const NotFoundPage = () => {
+  const navigate = useNavigate();
 
-const NotFoundPage: ActivityComponentType = () => {
   return (
-    <AppScreenWithSafeArea>
-      <Chip onClick={() => (window.location.href = BASE_URL + '/')}>홈으로 가기</Chip>
+    <SafeArea>
+      <Chip onClick={() => navigate('/')}>홈으로 가기</Chip>
       <h1>페이지를 찾을 수 없어요 . . .</h1>
-    </AppScreenWithSafeArea>
+    </SafeArea>
   );
 };
 export default NotFoundPage;

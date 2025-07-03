@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { Stack } from '@/libs/routes/stack';
-import Navigator from '@/common/components/Navigator';
+import { useRoutes } from 'react-router';
+import routes from '@/pages/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,12 +17,9 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Stack />
-      <Navigator />
-    </QueryClientProvider>
-  );
+  const router = useRoutes(routes);
+
+  return <QueryClientProvider client={queryClient}>{router}</QueryClientProvider>;
 }
 
 export default App;

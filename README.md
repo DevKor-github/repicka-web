@@ -69,4 +69,7 @@ src/
 - Vite + React + TypeScript
 - Tanstack-Query
 - PandaCSS
-- Stackflow from [Daangn](https://github.com/daangn/stackflow)
+- ~~Stackflow from [Daangn](https://github.com/daangn/stackflow)~~
+  - 레퍼런스가 너무 부족... 사용성이 좋지 않음
+  - 여러 스택 간 공유할 수 있는 Layout 기능이 없고, 커스텀 자유도가 너무 낮음
+- React-Router
