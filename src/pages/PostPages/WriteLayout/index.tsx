@@ -33,13 +33,11 @@ const WriteLayout = () => {
   };
 
   return (
-    <SafeArea>
-      <div className={s.entireLayout}>
-        <Header />
-        <div className={s.innerPage}>{renderStep()}</div>
-        <Navigator step={step} setStep={setStep} />
-      </div>
-    </SafeArea>
+    <div className={s.entireLayout}>
+      <Header />
+      <div className={s.innerPage}>{renderStep()}</div>
+      <Navigator step={step} setStep={setStep} />
+    </div>
   );
 };
 

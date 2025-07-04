@@ -10,7 +10,7 @@ export const stepBtn = css({
 export const entireLayout = css({
   display: 'flex',
   flexDirection: 'column',
-  height: '100vh',
+  height: '100%',
 });
 
 export const innerPage = css({
