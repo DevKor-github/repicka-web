@@ -10,14 +10,13 @@ const StepIndicator = ({ currentStep, totalSteps } : StepIndicatorProps ) => {
         <div className={s.Container}>
           {Array.from({ length: totalSteps }, (_, i) => {
             const stepNumber = i + 1;
-            const isActive = stepNumber <= currentStep ? 'main' : 'gray';
-            const isCurrent = stepNumber === currentStep ? '0.875rem' : '0.375rem';
+            const isActive = stepNumber <= currentStep;
+            const isCurrent = stepNumber === currentStep;
 
             return (
               <div
                 key={stepNumber}
-                className={s.progressCircle({color: isActive})}
-                style={{width: isCurrent}}
+                className={s.progressCircle({ isActive, isCurrent })}
               />
             );
           })}
