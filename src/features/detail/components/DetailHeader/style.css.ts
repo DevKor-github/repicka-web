@@ -4,6 +4,7 @@ export const Container = css({
   position: 'absolute',
   right: 0,
   left: 0,
+  top: 'calc(env(safe-area-inset-top))',
   p: '0.625rem 1.25rem',
   d: 'flex',
   justifyContent: 'space-between',
