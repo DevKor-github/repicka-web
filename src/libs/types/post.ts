@@ -29,14 +29,17 @@ export const COLOR_TYPES_MAP = {
 };
 export const TRADE_TYPES_MAP = {
   DIRECT: '직거래',
-  DELIVERY: '택배거래',
+  PARCEL: '택배거래',
+  DIRECT_AND_PARCEL: '직거래 및 택배거래',
 };
+export const SIZE_TYPES_ARRAY = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 export type PostType = keyof typeof POST_TYPES_MAP;
 export type ProductType = keyof typeof PRODUCT_TYPES_MAP;
 export type QualityType = keyof typeof QUALITY_TYPES_MAP;
 export type ColorType = keyof typeof COLOR_TYPES_MAP;
 export type TradeType = keyof typeof TRADE_TYPES_MAP;
+export type SizeType = (typeof SIZE_TYPES_ARRAY)[number];
 export type TagType = PostType | ProductType | QualityType | ColorType | TradeType;
 
 export interface PostInterface {
