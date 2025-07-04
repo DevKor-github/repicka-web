@@ -4,7 +4,7 @@ import type { PropsWithChildren } from 'react';
 import * as s from './style.css';
 import iconMap from '@/libs/constants/iconMap';
 import colorMap from '@/libs/constants/colorMap';
-import { TagIcon } from '@/features/post/components/TagIcon';
+// import { TagIcon } from '@/features/post/components/TagIcon';
 
 interface Props extends PropsWithChildren {
   isSelected?: boolean;
@@ -30,7 +30,7 @@ const TagOptionBtn = ({ children, isSelected = false, variant = 'icon', onClick 
     <button className={s.Container({ isSelected })} onClick={onClick}>
       <div className={s.row}>
         <div className={s.iconLabel}>
-        {isIcon && <TagIcon className={s.leftIcon} type={label as any} />}
+        {isIcon && <span className={`${leftIconClass} ${s.leftIcon}`} />}
         {isColor && <span className={s.colorPalette} style={paletteStyle} />}
           {children}
         </div>
