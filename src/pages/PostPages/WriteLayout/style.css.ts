@@ -42,3 +42,7 @@ export const headerText = css({
   fontSize: '1.25rem',
   fontWeight: '600',
 });
+
+export const halfFlex = css ({
+  flex: '1 1 0'
+})

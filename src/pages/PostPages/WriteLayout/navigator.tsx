@@ -16,9 +16,11 @@ const Navigator = ({ goNext, goPrev, isFirst, isLast }: NavigatorProps) => {
     <footer>
       <div className={s.stepBtn}>
         {!isFirst && (
-          <Btn onClick={goPrev} style={{ flex: '1 1 0' }}>
-            이전
-          </Btn>
+          <div className={s.halfFlex}>
+            <Btn onClick={goPrev}>
+              이전
+            </Btn>
+          </div>
         )}
         <Btn onClick={goNext} color="main" style={isFirst ? { width: '100%' } : { flex: '1 1 0' }}>
           {label}
