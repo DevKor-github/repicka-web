@@ -64,6 +64,8 @@ export const rightIcon = cva({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: '0.05rem 0.05rem 0 0',
+    fontSize: '1.25rem',
   },
   variants: {
     isSelected: {

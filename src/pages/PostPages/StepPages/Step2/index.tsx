@@ -6,7 +6,7 @@ const Step2 = () => {
   return (
     <div className={s.Container}>
       <TagOptionBtn isSelected>축구</TagOptionBtn>
-      <TagOptionBtn>농구</TagOptionBtn>
+      <TagOptionBtn >농구</TagOptionBtn>
       <TagOptionBtn>야구</TagOptionBtn>
       <TagOptionBtn>하키</TagOptionBtn>
       <TagOptionBtn>과잠</TagOptionBtn>

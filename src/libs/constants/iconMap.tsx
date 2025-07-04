@@ -37,3 +37,5 @@ export const ICON_MAP: Record<
   DIRECT: 'mgc_group_fill',
   PARCEL: 'mgc_package_2_fill',
 };
+
+// export default ICON_MAP;
