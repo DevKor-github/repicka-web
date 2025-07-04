@@ -19,7 +19,10 @@ const iconMap: Record<string, string> = {
 
 export default iconMap;
 
-export const ICON_MAP: Record<Exclude<ProductType, 'HOCKEY'> | PostType | TradeType, string> = {
+export const ICON_MAP: Record<
+  Exclude<ProductType, 'HOCKEY'> | PostType | Exclude<TradeType, 'DIRECT_AND_PARCEL'>,
+  string
+> = {
   SOCCER: 'mgc_football_fill',
   BASKETBALL: 'mgc_basketball_fill',
   BASEBALL: 'mgc_baseball_fill',
@@ -32,5 +35,5 @@ export const ICON_MAP: Record<Exclude<ProductType, 'HOCKEY'> | PostType | TradeT
   RENTAL: 'mgc_basket_fill',
   SALE: 'mgc_wallet_4_fill',
   DIRECT: 'mgc_group_fill',
-  DELIVERY: 'mgc_package_2_fill',
+  PARCEL: 'mgc_package_2_fill',
 };

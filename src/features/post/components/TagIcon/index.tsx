@@ -4,7 +4,7 @@ import type { PostType, ProductType, TradeType } from '@/libs/types/post';
 
 interface TagIconProps {
   className?: string;
-  type: ProductType | PostType | TradeType;
+  type: ProductType | PostType | Exclude<TradeType, 'DIRECT_AND_PARCEL'>;
 }
 export const TagIcon = ({ className, type }: TagIconProps) => {
   if (type === 'HOCKEY')
