@@ -1,11 +1,11 @@
 import Header from './header';
 import Navigator from './navigator';
-import Step1 from '@/pages/PostPages/StepPages/Step1';
-import Step2 from '@/pages/PostPages/StepPages/Step2';
-import Step3 from '@/pages/PostPages/StepPages/Step3';
-import Step4 from '@/pages/PostPages/StepPages/Step4';
-import Step5 from '@/pages/PostPages/StepPages/Step5';
-import Step6 from '@/pages/PostPages/StepPages/Step6';
+import Step1 from '@/features/post/components/StepPages/index/step1';
+import Step2 from '@/features/post/components/StepPages/index/step2';
+import Step3 from '@/features/post/components/StepPages/index/step3';
+import Step4 from '@/features/post/components/StepPages/index/step4';
+import Step5 from '@/features/post/components/StepPages/index/step5';
+import Step6 from '@/features/post/components/StepPages/index/step6';
 import { useState } from 'react';
 
 import * as s from './style.css';
