@@ -41,6 +41,7 @@ export const Price = css({
   display: 'flex',
   alignItems: 'center',
   gap: '0.875rem',
+  height: '1.5625rem',
 });
 
 export const PriceItem = css({
