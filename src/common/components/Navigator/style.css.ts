@@ -27,7 +27,7 @@ export const Menu = cva({
     flexShrink: 0,
     textAlign: 'center',
     fontSize: '0.875rem',
-    lineHeight: 'normal',
+    lineHeight: 1.2,
     letterSpacing: '-0.0175rem',
     cursor: 'pointer',
     '& p': {
