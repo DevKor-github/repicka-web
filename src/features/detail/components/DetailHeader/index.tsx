@@ -7,12 +7,7 @@ const DetailHeader = () => {
   const goBack = () => navigate(-1);
   // TODO: Action 추가
   return (
-    <header
-      className={s.Container}
-      style={{
-        top: 'calc(env(safe-area-inset-top))',
-      }}
-    >
+    <header className={s.Container}>
       <button className={`mgc_left_line ${s.BackButton}`} onClick={goBack} aria-label="Go back" />
       <div className={s.RightSide}>
         <button className={`${s.RightButton} mgc_share_3_fill`} />
