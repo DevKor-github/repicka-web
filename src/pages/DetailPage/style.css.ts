@@ -6,12 +6,6 @@ export const Container = css({
   display: 'relative',
 });
 
-export const Header = css({
-  position: 'absolute',
-  right: 0,
-  left: 0,
-});
-
 export const Image = css({
   width: '100%',
   height: '24.375rem',
