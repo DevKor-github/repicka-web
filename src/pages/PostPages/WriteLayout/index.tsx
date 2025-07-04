@@ -6,7 +6,6 @@ import Step3 from '@/pages/PostPages/StepPages/Step3';
 import Step4 from '@/pages/PostPages/StepPages/Step4';
 import Step5 from '@/pages/PostPages/StepPages/Step5';
 import Step6 from '@/pages/PostPages/StepPages/Step6';
-// import StepIndicator from './'   // [TODO] stepindicator 만들어서 추가하기
 import { useState } from 'react';
 
 import * as s from './style.css';
