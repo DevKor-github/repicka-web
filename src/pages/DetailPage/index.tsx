@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import * as s from './style.css';
 
 import useGetPostDetail from '@/features/detail/hooks/apis/useGetPostDetail';
+import DetailHeader from '@/features/detail/components/DetailHeader';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -14,14 +15,7 @@ const DetailPage = () => {
 
   return (
     <div className={s.Container}>
-      <div
-        className={s.Header}
-        style={{
-          top: 'calc(env(safe-area-inset-top))',
-        }}
-      >
-        상단바 상단바 상단바
-      </div>
+      <DetailHeader />
       <img
         className={s.Image}
         src={'https://crimsonstore.co.kr/web/product/tiny/202411/215b536247ca28c1e97dd6a0d0d6d23a.jpg'}
