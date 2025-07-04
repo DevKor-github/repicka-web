@@ -24,7 +24,6 @@ export const Container = cva({
                 bgColor: 'systemGray5',
                 fontWeight: 400,
                 color: '80',
-                fontSize: '0.'
             }
         }
     }
@@ -51,6 +50,10 @@ export const iconLabel = css({
     gap: '0.62rem',
     justifyContent: 'center',
     alignItems: 'center',
+})
+
+export const leftIcon = css({
+    fontSize: '1.25rem',
 })
 
 export const rightIcon = cva({

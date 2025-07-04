@@ -29,7 +29,7 @@ const TagOptionBtn = ({ children, color = 'gray', variant = 'icon', onClick }: P
         <button className={s.Container({ color })} onClick={onClick}>
             <div className={s.row}>
                 <div className={s.iconLabel}>
-                    {isIcon && (<span className={`${leftIconClass}`} />)}
+                    {isIcon && (<span className={`${leftIconClass} ${s.leftIcon}`} />)}
                     {isColor && (<span className={s.colorPalette}
                             style={paletteStyle}/>)}
                     {children}
