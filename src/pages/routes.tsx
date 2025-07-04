@@ -3,7 +3,7 @@ import type { RouteObject } from 'react-router';
 import HomePage from '@/pages/HomePage';
 import Layout from '@/pages/Layout';
 import PickPage from '@/pages/PickPage';
-import PostPage from '@/pages/PostPage';
+import PostPageRoutes from './PostPages';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 /**
@@ -24,7 +24,7 @@ const routes: RouteObject[] = [
       },
       {
         path: '/post',
-        element: <PostPage />,
+        element: <PostPageRoutes />,
       },
       {
         path: '*', // 못 찾았을 때 404 페이지로 이동

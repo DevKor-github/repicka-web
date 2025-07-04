@@ -15,7 +15,7 @@ export const Button = cva({
     fontStyle: 'normal',
     fontWeight: '500',
     lineHeight: 'normal',
-    letterSpacing: '-0.05rem'
+    letterSpacing: '-0.05rem',
   },
   variants: {
     color: {
@@ -25,16 +25,16 @@ export const Button = cva({
       },
       gray: {
         backgroundColor: 'systemGray5',
-        color: '100'
+        color: '100',
       },
       softgray: {
         backgroundColor: 'systemGray5',
-        color: '80'
+        color: '80',
       },
       deemedgray: {
         backgroundColor: 'systemGray5',
-        color: '54'
-      }
-    }
-  }
-})
+        color: '54',
+      },
+    },
+  },
+});
