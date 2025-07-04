@@ -2,8 +2,8 @@
 
 import type { PropsWithChildren } from 'react';
 import * as s from './style.css';
-import iconMap from '@/common/assets/iconMap';
-import colorMap from '@/common/assets/colorMap';
+import iconMap from '@/libs/constants/iconMap';
+import colorMap from '@/libs/constants/colorMap';
 
 interface Props extends PropsWithChildren {
   color?: 'main' | 'gray';
