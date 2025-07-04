@@ -15,6 +15,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.79.0",
     "axios": "^1.9.0",
+    "mingcute_icon": "^2.9.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.3"
@@ -34,7 +35,6 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
-    "mingcute_icon": "^2.9.6",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.30.1",
