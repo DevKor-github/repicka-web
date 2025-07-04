@@ -9,7 +9,6 @@ interface NavigatorProps {
 }
 
 const Navigator = ({ goNext, goPrev, isFirst, isLast }: NavigatorProps) => {
-
   const label = isLast ? '완료' : '다음';
 
   return (
@@ -17,9 +16,7 @@ const Navigator = ({ goNext, goPrev, isFirst, isLast }: NavigatorProps) => {
       <div className={s.stepBtn}>
         {!isFirst && (
           <div className={s.halfFlex}>
-            <Btn onClick={goPrev}>
-              이전
-            </Btn>
+            <Btn onClick={goPrev}>이전</Btn>
           </div>
         )}
         <Btn onClick={goNext} color="main" style={isFirst ? { width: '100%' } : { flex: '1 1 0' }}>

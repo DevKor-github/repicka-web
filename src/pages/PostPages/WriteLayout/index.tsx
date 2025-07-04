@@ -1,11 +1,11 @@
 import Header from './header';
 import Navigator from './navigator';
-import Step1 from '@/pages/PostPages/StepPages/step1';
-import Step2 from '@/pages/PostPages/StepPages/step2';
-import Step3 from '@/pages/PostPages/StepPages/step3';
-import Step4 from '@/pages/PostPages/StepPages/step4';
-import Step5 from '@/pages/PostPages/StepPages/step5';
-import Step6 from '@/pages/PostPages/StepPages/step6';
+import Step1 from '@/pages/PostPages/stepPages/step1';
+import Step2 from '@/pages/PostPages/stepPages/step2';
+import Step3 from '@/pages/PostPages/stepPages/step3';
+import Step4 from '@/pages/PostPages/stepPages/step4';
+import Step5 from '@/pages/PostPages/stepPages/step5';
+import Step6 from '@/pages/PostPages/stepPages/step6';
 // import StepIndicator from './'   // [TODO] stepindicator 만들어서 추가하기
 import { useState } from 'react';
 
@@ -13,25 +13,17 @@ import * as s from './style.css';
 
 const MAX_STEP = 6;
 
-const steps = [
-  <Step1 />,
-  <Step2 />,
-  <Step3 />,
-  <Step4 />,
-  <Step5 />,
-  <Step6 />,
-];
+const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
 
 const WriteLayout = () => {
-
   const [step, setStep] = useState(1);
 
   const isFirst = step === 1;
   const isLast = step === MAX_STEP;
 
   const goPrev = () => {
-    setStep((prev) => Math.max(1, prev - 1));  // 이전 상태 고려 (prev), 최소 1
-  }
+    setStep(prev => Math.max(1, prev - 1)); // 이전 상태 고려 (prev), 최소 1
+  };
 
   const goNext = () => {
     if (step < MAX_STEP) setStep(step + 1);
