@@ -13,7 +13,7 @@ const DetailHeader = () => {
         top: 'calc(env(safe-area-inset-top))',
       }}
     >
-      <button className={`mgc_left_line ${s.BackButton}`} onClick={goBack} />
+      <button className={`mgc_left_line ${s.BackButton}`} onClick={goBack} aria-label="Go back" />
       <div className={s.RightSide}>
         <button className={`${s.RightButton} mgc_share_3_fill`} />
         <button className={`${s.RightButton} mgc_more_2_fill`} />
