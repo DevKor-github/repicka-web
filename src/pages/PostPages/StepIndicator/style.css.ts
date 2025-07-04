@@ -6,16 +6,22 @@ export const progressCircle = cva({
         transition: 'all 0.3s ease-in-out'
     },
     variants: {
-        color: {
-            main: {
-                // width: '0.875rem',
+        isActive: {
+            true: {
                 backgroundColor: 'main',
                 borderRadius: '0.625rem',
             },
-            gray: {
-                // width: '0.375rem',
+            false: {
                 backgroundColor: '54',
                 borderRadius: 'full',
+            }
+        },
+        isCurrent: {
+            true: {
+                width: '0.875rem'
+            },
+            false: {
+                width: '0.375rem'
             }
         }
     }

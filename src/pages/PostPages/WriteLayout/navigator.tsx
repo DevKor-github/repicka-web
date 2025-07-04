@@ -17,7 +17,7 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }:
 
   return (
     <footer>
-      <div><StepIndicator currentStep={currentStep} totalSteps={totalSteps}/></div>
+      <StepIndicator currentStep={currentStep} totalSteps={totalSteps}/>
       <div className={s.stepBtn}>
         {!isFirst && (
           <div className={s.halfFlex}>
