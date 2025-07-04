@@ -3,13 +3,14 @@ import { PRODUCT_TYPES_MAP, type PostInterface } from '@/libs/types/post';
 import * as s from './style.css';
 
 import Token from '@/common/components/Token';
+import { Link } from 'react-router';
 
 interface Props {
   data: PostInterface;
 }
 const PostCard = ({ data }: Props) => {
   return (
-    <div className={s.Container}>
+    <Link className={s.Container} to={`/detail/${data.id}`}>
       <img className={s.Image} src={data.thumbnail} aria-hidden />
       <div className={s.Info}>
         <div className={s.Header}>
@@ -43,7 +44,7 @@ const PostCard = ({ data }: Props) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 export default PostCard;
