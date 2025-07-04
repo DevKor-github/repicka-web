@@ -34,7 +34,7 @@ const WriteLayout = () => {
     <div className={s.entireLayout}>
       <Header />
       <div className={s.innerPage}>{steps[step - 1]}</div>
-      <Navigator goNext={goNext} goPrev={goPrev} isFirst={isFirst} isLast={isLast} />
+      <Navigator totalSteps={MAX_STEP} currentStep={step} goNext={goNext} goPrev={goPrev} isFirst={isFirst} isLast={isLast} />
     </div>
   );
 };
