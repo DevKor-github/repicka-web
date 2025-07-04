@@ -6,8 +6,8 @@ const Step1 = () => {
         flexDirection: 'column',
         height: '100%',
         padding: '1rem',
-        justifyContent: 'center', // 세로 가운데 정렬
-        alignItems: 'center', // 가로 가운데 정렬
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <h1>STEP 1</h1>
