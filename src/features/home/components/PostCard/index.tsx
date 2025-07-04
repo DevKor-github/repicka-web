@@ -1,4 +1,4 @@
-import { TagList, type PostInterface } from '@/libs/types/post';
+import { PRODUCT_TYPES_MAP, type PostInterface } from '@/libs/types/post';
 
 import * as s from './style.css';
 
@@ -17,18 +17,18 @@ const PostCard = ({ data }: Props) => {
           <div className={s.Price}>
             <div className={s.PriceItem}>
               <label>대여료</label>
-              <p>{data.price}원</p>
+              <p>{data.price.toLocaleString()}원</p>
             </div>
             <div className={s.PriceItem}>
               <label>보증금</label>
-              <p>{data.price}원</p>
+              <p>{data.price.toLocaleString()}원</p>
             </div>
           </div>
         </div>
         <div className={s.Footer}>
           <div className={s.Tokens}>
             {data.productTypes.map((type, index) => (
-              <Token key={`${type}-${index}`}>{TagList[type]}</Token>
+              <Token key={`${type}-${index}`}>{PRODUCT_TYPES_MAP[type]}</Token>
             ))}
           </div>
           <div className={s.Interactions}>
