@@ -7,7 +7,7 @@ import WriteButton from '@/features/home/components/WriteButton';
 
 import * as s from './style.css';
 
-import { NAVIGATOR_HEIGHT_PX } from '@/libs/constants/sizes';
+import { HOME_HEADER_HEIGHT_PX, NAVIGATOR_HEIGHT_PX } from '@/libs/constants/sizes';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -17,7 +17,10 @@ const HomePage = () => {
       <MainTopBar />
       <div
         className={s.Container}
-        style={{ height: `calc(100% - ${NAVIGATOR_HEIGHT_PX}px)`, marginBottom: `${NAVIGATOR_HEIGHT_PX}px` }}
+        style={{
+          height: `calc(100% - ${NAVIGATOR_HEIGHT_PX}px - ${HOME_HEADER_HEIGHT_PX}px)`, // 정말 코드 마음에 안드네
+          marginBottom: `${NAVIGATOR_HEIGHT_PX}px`,
+        }}
       >
         <RecentList />
       </div>
