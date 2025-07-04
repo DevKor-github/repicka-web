@@ -1,6 +1,6 @@
 export const PRODUCT_TYPES_MAP = {
   HOCKEY: '아이스하키',
-  BASEKETBALL: '농구',
+  BASKETBALL: '농구',
   BASEBALL: '야구',
   VARSITY_JACKET: '과잠',
   ACCESSORY: '악세사리',
