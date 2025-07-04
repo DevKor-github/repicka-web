@@ -6,18 +6,18 @@ import iconMap from '@/libs/constants/iconMap';
 import colorMap from '@/libs/constants/colorMap';
 
 interface Props extends PropsWithChildren {
-  color?: 'main' | 'gray';
+  isSelected?: boolean;
   variant?: 'icon' | 'color';
   onClick?: () => void;
 }
 
-const TagOptionBtn = ({ children, color = 'gray', variant = 'icon', onClick }: Props) => {
+const TagOptionBtn = ({ children, isSelected = false, variant = 'icon', onClick }: Props) => {
   const label = String(children);
   const leftIconClass = iconMap[label]; // 왼쪽 아이콘 뭐 넣을지
   const isIcon = !!leftIconClass && variant === 'icon'; // 기타 색상인지 아이콘인지 구분하기 위해서 만듦...
   const isColor = !!colorMap[label] || variant === 'color';
 
-  const rightIconClass = color === 'main' ? 'mgc_check_fill' : 'mgc_add_fill';
+  const rightIconClass = isSelected ? 'mgc_check_fill' : 'mgc_add_fill';
 
   const colorValue = colorMap[label];
   const isGradient = label === '기타';
@@ -26,14 +26,14 @@ const TagOptionBtn = ({ children, color = 'gray', variant = 'icon', onClick }: P
     : { backgroundColor: colorValue };
 
   return (
-    <button className={s.Container({ color })} onClick={onClick}>
+    <button className={s.Container({ isSelected })} onClick={onClick}>
       <div className={s.row}>
         <div className={s.iconLabel}>
           {isIcon && <span className={`${leftIconClass} ${s.leftIcon}`} />}
           {isColor && <span className={s.colorPalette} style={paletteStyle} />}
           {children}
         </div>
-        <div className={`${rightIconClass} ${s.rightIcon({ color })}`} />
+        <div className={`${rightIconClass} ${s.rightIcon({ isSelected })}`} />
       </div>
     </button>
   );

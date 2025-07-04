@@ -12,14 +12,14 @@ export const Container = cva({
     border: '1px solid',
   },
   variants: {
-    color: {
-      main: {
+    isSelected: {
+      true: {
         borderColor: 'main-54',
         bgColor: 'main-26',
         fontWeight: 600,
         color: '100',
       },
-      gray: {
+      false: {
         borderColor: 'systemGray5',
         bgColor: 'systemGray5',
         fontWeight: 400,
@@ -66,12 +66,12 @@ export const rightIcon = cva({
     alignItems: 'center',
   },
   variants: {
-    color: {
-      main: {
+    isSelected: {
+      true: {
         color: '80',
         bgColor: 'main',
       },
-      gray: {
+      false: {
         color: '54',
         bgColor: 'systemGray3',
       },
