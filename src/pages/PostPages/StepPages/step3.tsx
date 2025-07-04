@@ -1,4 +1,4 @@
-const Step2 = () => {
+const Step3 = () => {
   return (
     <div
       style={{
@@ -10,9 +10,9 @@ const Step2 = () => {
         alignItems: 'center', // 가로 가운데 정렬
       }}
     >
-      <h1>STEP 2</h1>
+      <h1>STEP 3</h1>
     </div>
   );
 };
 
-export default Step2;
+export default Step3;
