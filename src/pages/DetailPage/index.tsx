@@ -6,6 +6,7 @@ import useGetPostDetail from '@/features/detail/hooks/apis/useGetPostDetail';
 import DetailHeader from '@/features/detail/components/DetailHeader';
 import ImageContainer from '@/features/detail/components/ImageContainer';
 import UserInfo from '@/features/detail/components/UserInfo';
+import PostContent from '@/features/detail/components/PostContent';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -18,8 +19,13 @@ const DetailPage = () => {
   return (
     <div className={s.Container}>
       <DetailHeader />
-      <ImageContainer title={data.itemInfo.title} images={data.images} />
-      <UserInfo userData={data.writer} />
+      <div className={s.ScrollContainer}>
+        <ImageContainer title={data.itemInfo.title} images={data.images} />
+        <div className={s.ContentContainer}>
+          <UserInfo userData={data.writer} />
+          <PostContent itemInfo={data.itemInfo} price={data.price} deposit={data.deposit} />
+        </div>
+      </div>
     </div>
   );
 };
