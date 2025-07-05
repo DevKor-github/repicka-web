@@ -16,12 +16,12 @@ const Step1 = () => {
       <h1 className={s.Head}>거래하실 종류를 선택해 주세요</h1>
       <div className={s.Container}>
         <TypeCard
-          types="대여할래요"
+          types='대여'
           isSelected={selectedTypes.includes('대여')}
           onClick={() => handleSelectType('대여')}
         />
         <TypeCard
-          types="판매할래요"
+          types='판매'
           isSelected={selectedTypes.includes('판매')}
           onClick={() => handleSelectType('판매')}
         />
