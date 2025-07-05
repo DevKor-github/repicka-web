@@ -15,12 +15,12 @@ const Step1 = () => {
       <div className={s.Container}>
         <TypeCard
           types="대여할래요"
-          color={selectedType === '대여' ? 'main' : 'gray'}
+          isSelected={selectedType === '대여'}
           onClick={() => handleSelectType('대여')}
         />
         <TypeCard
           types="판매할래요"
-          color={selectedType === '판매' ? 'main' : 'gray'}
+          isSelected={selectedType === '판매'}
           onClick={() => handleSelectType('판매')}
         />
       </div>

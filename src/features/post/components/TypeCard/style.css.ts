@@ -17,14 +17,15 @@ export const Icon = cva({
         height: '1.52225rem',
         padding: '0.125rem',
         borderRadius: '0.76113rem',
+        transition: 'all 0.3s ease-in-out'
     },
     variants: {
-        color: {
-            main: {
+        isSelected: {
+            true: {
                 backgroundColor: 'main',
                 color: '80'
             },
-            gray: {
+            false: {
                 backgroundColor: 'systemGray3',
                 color: '54'
             }
@@ -47,16 +48,17 @@ export const CardContainer = cva({
         textAlign: 'center',
         lineHeight: 1.4,
         letterSpacing: '-0.045rem',
-        gap: '0.88rem'
+        gap: '0.88rem',
+        transition: 'all 0.3s ease-in-out'
     },
     variants: {
-        color: {
-            main: {
+        isSelected: {
+            true: {
                 backgroundColor: 'main-26',
                 borderColor: 'main-54',
                 fontWeight: 600,
             },
-            gray: {
+            false: {
                 backgroundColor: 'systemGray5',
                 borderColor: 'systemGray5',
                 fontWeight: 400,
