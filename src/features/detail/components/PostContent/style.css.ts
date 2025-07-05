@@ -60,6 +60,47 @@ export const PostInfoContainer = css({
   alignItems: 'center',
   gap: '0.625rem',
   w: 'full',
+  color: '54',
+  fontWeight: 400,
+  '& > p': {
+    fontSize: '0.75rem',
+    lineHeight: 1.4,
+    letterSpacing: '-0.03rem',
+  },
+  '& > span': {
+    width: '0.5px',
+    height: '0.5625rem',
+    bgColor: '54',
+  },
+});
+
+export const InteractionContainer = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5rem',
+});
+
+export const InteractionItem = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.12rem',
+  '& > span': {
+    fontSize: '1rem',
+  },
+  '& p': {
+    fontSize: '0.625rem',
+    lineHeight: 1.2,
+    letterSpacing: '-0.025rem',
+  },
+});
+
+export const TextContent = css({
+  width: 'full',
+  color: '100',
+  fontSize: '0.875rem',
+  fontWeight: 400,
+  lineHeight: 1.4,
+  letterSpacing: '-0.035rem',
 });
 
 export const TokenContainer = css({
