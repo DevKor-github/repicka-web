@@ -1,11 +1,11 @@
 import Header from './header';
 import Navigator from './navigator';
-import Step1 from '@/pages/PostPages/stepPages/step1';
-import Step2 from '@/pages/PostPages/stepPages/step2';
-import Step3 from '@/pages/PostPages/stepPages/step3';
-import Step4 from '@/pages/PostPages/stepPages/step4';
-import Step5 from '@/pages/PostPages/stepPages/step5';
-import Step6 from '@/pages/PostPages/stepPages/step6';
+import Step1 from '@/pages/PostPages/StepPages/Step1';
+import Step2 from '@/pages/PostPages/StepPages/Step2';
+import Step3 from '@/pages/PostPages/StepPages/Step3';
+import Step4 from '@/pages/PostPages/StepPages/Step4';
+import Step5 from '@/pages/PostPages/StepPages/Step5';
+import Step6 from '@/pages/PostPages/StepPages/Step6';
 // import StepIndicator from './'   // [TODO] stepindicator 만들어서 추가하기
 import { useState } from 'react';
 
