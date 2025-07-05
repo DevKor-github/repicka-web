@@ -1,0 +1,83 @@
+import { css } from '@styled-system/css';
+
+export const Container = css({
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.9375rem',
+  alignItems: 'stretch',
+  px: '1rem',
+});
+
+export const Wrapper = css({
+  display: 'flex',
+  flexDir: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+});
+
+export const UserInfo = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.875rem',
+  maxWidth: '85%',
+});
+
+export const ProfileImage = css({
+  w: '2.625rem',
+  h: '2.625rem',
+  rounded: 'full',
+  aspectRatio: '1/1',
+  bgColor: 'systemGray',
+});
+
+export const UserInfoText = css({
+  display: 'flex',
+  flexDir: 'column',
+  height: '2.5rem',
+  justifyContent: 'space-between',
+  width: 'full',
+  overflow: 'hidden',
+  alignItems: 'flex-start',
+  my: '0.06rem',
+  '& > p': {
+    w: 'full',
+    color: '100',
+    fontSize: '1rem',
+    fontWeight: 500,
+    lineHeight: 1.2,
+    letterSpacing: '-0.04rem',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    lineClamp: 1,
+  },
+  '& > span': {
+    padding: '0.1rem 0.275rem',
+    bgColor: 'main-26',
+    rounded: '3.32px',
+    fontSize: '0.625rem',
+    fontWeight: 400,
+    lineHeight: 1.4,
+    letterSpacing: '-0.025rem',
+    color: 'main',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.22rem',
+    '& > p': {
+      color: '100',
+    },
+  },
+});
+
+export const LikeButton = css({
+  cursor: 'pointer',
+  fontSize: '2.25rem',
+  color: 'systemGray',
+});
+
+export const Line = css({
+  height: '0.5px',
+  width: 'full',
+  bgColor: 'systemGray4',
+});

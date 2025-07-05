@@ -5,6 +5,7 @@ interface Props {
   title: string;
 }
 const ImageContainer = ({ title }: Props) => {
+  // TODO: 이미지 여러개 넘길 수 있도록, 확대 기능? 추가
   return (
     <div className={s.Container}>
       <div className={s.Filter} />
