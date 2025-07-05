@@ -5,10 +5,3 @@ export const Container = css({
   height: '100%',
   display: 'relative',
 });
-
-export const Image = css({
-  width: '100%',
-  height: '24.375rem',
-  objectFit: 'cover',
-  objectPosition: 'center',
-});

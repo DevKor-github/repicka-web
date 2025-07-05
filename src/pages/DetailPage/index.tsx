@@ -4,6 +4,7 @@ import * as s from './style.css';
 
 import useGetPostDetail from '@/features/detail/hooks/apis/useGetPostDetail';
 import DetailHeader from '@/features/detail/components/DetailHeader';
+import ImageContainer from '@/features/detail/components/ImageContainer';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -16,11 +17,7 @@ const DetailPage = () => {
   return (
     <div className={s.Container}>
       <DetailHeader />
-      <img
-        className={s.Image}
-        src={'https://crimsonstore.co.kr/web/product/tiny/202411/215b536247ca28c1e97dd6a0d0d6d23a.jpg'}
-        alt={data.itemInfo.title}
-      />
+      <ImageContainer title={data.itemInfo.title} images={data.images} />
     </div>
   );
 };
