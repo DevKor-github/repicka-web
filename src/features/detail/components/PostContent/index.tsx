@@ -32,6 +32,7 @@ const PostContent = ({ itemInfo, price, deposit }: Props) => {
         <div className={s.Header}>
           <h1 className={s.Title}>{itemInfo.title}</h1>
           <div className={s.PriceContainer}>
+            {/* TODO: 판매글인 경우 어캐 보일까 */}
             <div className={s.PriceItem}>
               <label>대여료</label>
               <p>{price.toLocaleString()}원</p>
