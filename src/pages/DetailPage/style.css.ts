@@ -8,6 +8,7 @@ export const Container = css({
 
 export const ScrollContainer = css({
   width: 'full',
+  height: 'full',
   overflowY: 'auto',
 });
 

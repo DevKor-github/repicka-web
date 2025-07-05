@@ -11,12 +11,9 @@ const UserInfo = ({ userData }: Props) => {
     <div className={s.Container}>
       <div className={s.Wrapper}>
         <div className={s.UserInfo}>
-          <img
-            className={s.ProfileImage}
-            src={'https://avatars.githubusercontent.com/u/58812281?v=4'}
-            alt={userData.nickname}
-          />
+          <img className={s.ProfileImage} src={userData.profileImageUrl} alt={userData.nickname} />
           <div className={s.UserInfoText}>
+            {/* TODO: 미인증 상태 대응 */}
             <span>
               <p>학교인증</p>
               <VerifyIcon />

@@ -44,8 +44,26 @@ const PostContent = ({ itemInfo, price, deposit }: Props) => {
             )}
           </div>
         </div>
-        <div></div>
-        <div></div>
+        {/* TODO: API 인터페이스 수정 필요 */}
+        <div className={s.PostInfoContainer}>
+          <p>3일 전</p>
+          <span />
+          <div className={s.InteractionContainer}>
+            <span className={s.InteractionItem}>
+              <span className="mgc_heart_fill" />
+              <p>12</p>
+            </span>
+            <span className={s.InteractionItem}>
+              <span className="mgc_chat_2_fill" />
+              <p>4</p>
+            </span>
+          </div>
+        </div>
+        <div className={s.TextContent}>
+          {itemInfo.description.split('\n').map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
+        </div>
       </div>
       <div className={s.TokenContainer}>
         {itemInfo.productTypes.map(type => (
