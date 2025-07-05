@@ -36,11 +36,11 @@ export const TRADE_TYPES_MAP = {
 export const SIZE_TYPES_ARRAY = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] as const;
 export const SIZE_TYPES_MAP = {
   XS: 'XS',
-  S: 'S', 
-  M: 'M', 
-  L: 'L', 
-  XL: 'XL', 
-  XXL: 'XXL'
+  S: 'S',
+  M: 'M',
+  L: 'L',
+  XL: 'XL',
+  XXL: 'XXL',
 };
 
 export const TAG_TYPES_MAP: Record<TagType, string> = {
@@ -49,8 +49,8 @@ export const TAG_TYPES_MAP: Record<TagType, string> = {
   ...COLOR_TYPES_MAP,
   ...QUALITY_TYPES_MAP,
   ...SIZE_TYPES_MAP,
-  ...TRADE_TYPES_MAP
-}
+  ...TRADE_TYPES_MAP,
+};
 
 export type PostType = keyof typeof POST_TYPES_MAP;
 export type ProductType = keyof typeof PRODUCT_TYPES_MAP;

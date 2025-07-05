@@ -1,6 +1,6 @@
 // 사용할 때 grid로 사용하기
 import * as s from './style.css';
-import colorMap, { COLOR_MAP } from '@/libs/constants/colorMap';
+import { COLOR_MAP } from '@/libs/constants/colorMap';
 import {
   COLOR_TYPES_MAP,
   PRODUCT_TYPES_MAP,
@@ -30,9 +30,7 @@ export function isColorType(type: TagType): type is ColorType {
 
 export function isIconType(type: TagType): type is IconType {
   return (
-    type in PRODUCT_TYPES_MAP ||
-    type in POST_TYPES_MAP ||
-    (type !== 'DIRECT_AND_PARCEL' && type in TRADE_TYPES_MAP)
+    type in PRODUCT_TYPES_MAP || type in POST_TYPES_MAP || (type !== 'DIRECT_AND_PARCEL' && type in TRADE_TYPES_MAP)
   );
 }
 
@@ -45,7 +43,7 @@ const Symbol = ({ type, isColorOther }: { type: TagType; isColorOther: boolean }
   if (isIconType(type) && !isColorOther) return <TagIcon type={type} className={s.leftIcon} />;
 
   // 컬러
-  if (isColorType(type)) { 
+  if (isColorType(type)) {
     const colorValue = COLOR_MAP[type];
     const paletteStyle =
       type === 'OTHER'
