@@ -1,17 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import client from '@/common/utils/client';
 import type { ColorType, PostType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/post';
+import type { UserInterface } from '@/libs/types/user';
 
 export interface PostDetailResponse {
   message: string;
   data: {
     id: number;
-    writer: {
-      id: number;
-      nickname: string;
-      profileImageUrl: string;
-      isKoreanUnivVerified: boolean;
-    };
+    writer: UserInterface;
     itemInfo: {
       productTypes: ProductType[];
       title: string;

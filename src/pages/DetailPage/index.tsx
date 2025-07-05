@@ -5,6 +5,7 @@ import * as s from './style.css';
 import useGetPostDetail from '@/features/detail/hooks/apis/useGetPostDetail';
 import DetailHeader from '@/features/detail/components/DetailHeader';
 import ImageContainer from '@/features/detail/components/ImageContainer';
+import UserInfo from '@/features/detail/components/UserInfo';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -18,6 +19,7 @@ const DetailPage = () => {
     <div className={s.Container}>
       <DetailHeader />
       <ImageContainer title={data.itemInfo.title} images={data.images} />
+      <UserInfo userData={data.writer} />
     </div>
   );
 };
