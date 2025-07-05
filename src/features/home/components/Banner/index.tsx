@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import * as s from './style.css';
 import { useState } from 'react';
 
+// TODO: 실제 API로 교체
 const MOCK_DATA = [
   {
     title: '아 배고프다 육회 먹고 싶다',

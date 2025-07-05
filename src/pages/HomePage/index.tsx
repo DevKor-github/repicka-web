@@ -19,8 +19,7 @@ const HomePage = () => {
       <div
         className={s.Container}
         style={{
-          height: `calc(100% - ${NAVIGATOR_HEIGHT_PX}px - ${HOME_HEADER_HEIGHT_PX}px)`, // 정말 코드 마음에 안드네
-          marginBottom: `${NAVIGATOR_HEIGHT_PX}px`,
+          height: `calc(100% - ${NAVIGATOR_HEIGHT_PX}px - ${HOME_HEADER_HEIGHT_PX}px)`,
         }}
       >
         <Banner />
