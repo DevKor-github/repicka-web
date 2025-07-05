@@ -7,6 +7,7 @@ import DetailHeader from '@/features/detail/components/DetailHeader';
 import ImageContainer from '@/features/detail/components/ImageContainer';
 import UserInfo from '@/features/detail/components/UserInfo';
 import PostContent from '@/features/detail/components/PostContent';
+import { DETAIL_PAGE_NAVIGATOR_HEIGHT_REM } from '@/libs/constants/sizes';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const DetailPage = () => {
   return (
     <div className={s.Container}>
       <DetailHeader />
-      <div className={s.ScrollContainer}>
+      <div className={s.ScrollContainer} style={{ paddingBottom: `${DETAIL_PAGE_NAVIGATOR_HEIGHT_REM}rem` }}>
         <ImageContainer title={data.itemInfo.title} images={data.images} />
         <div className={s.ContentContainer}>
           <UserInfo userData={data.writer} />
