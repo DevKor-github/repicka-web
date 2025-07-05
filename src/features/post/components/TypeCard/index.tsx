@@ -4,7 +4,7 @@ import sale from '@/assets/images/sale.png';
 
 interface TypeCardProps {
     isSelected: boolean,
-    types?: '판매할래요' | '대여할래요',
+    types: '판매할래요' | '대여할래요',
     onClick?: () => void;
 }
 
