@@ -45,9 +45,9 @@ const Banner = () => {
         loop={true}
         autoplay={{ delay: 5000 }}
       >
-        {data.map(item => (
-          <SwiperSlide>
-            <img className={s.Image} src={item.src} />
+        {data.map((item, index) => (
+          <SwiperSlide key={`${item.title}-${index}`}>
+            <img className={s.Image} src={item.src} alt={item.title} />
           </SwiperSlide>
         ))}
       </Swiper>
