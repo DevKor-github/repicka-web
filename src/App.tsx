@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const router = useRoutes(routes);
+  const router = useRoutes(routes)
 
   return <QueryClientProvider client={queryClient}>{router}</QueryClientProvider>;
 }
