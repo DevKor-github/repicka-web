@@ -33,7 +33,7 @@ export const TRADE_TYPES_MAP = {
   DIRECT_AND_PARCEL: '직거래 및 택배거래', // TODO: 이거 왜 분리해뒀지... 머리아프네 따흑
 };
 
-export const SIZE_TYPES_ARRAY = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+export const SIZE_TYPES_ARRAY = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] as const;
 export const SIZE_TYPES_MAP = {
   XS: 'XS',
   S: 'S', 
