@@ -5,6 +5,7 @@ const DetailHeader = () => {
   const navigate = useNavigate();
 
   const goBack = () => navigate(-1);
+
   // TODO: Action 추가
   return (
     <header className={s.Container}>

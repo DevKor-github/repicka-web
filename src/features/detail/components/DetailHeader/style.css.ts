@@ -10,6 +10,7 @@ export const Container = css({
   justifyContent: 'space-between',
   alignItems: 'center',
   color: '100',
+  zIndex: 10,
 });
 
 export const BackButton = css({
