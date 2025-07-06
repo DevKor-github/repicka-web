@@ -9,9 +9,7 @@ const Step2 = () => {
   const [selectedTypes, setSelectedTypes] = useState<ProductType[]>([]);
 
   const handleSelectType = (type: ProductType) => {
-    setSelectedTypes(prev =>
-      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
-    );
+    setSelectedTypes(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
   };
 
   return (

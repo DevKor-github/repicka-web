@@ -10,7 +10,7 @@ export const Container = cva({
     lineHeight: 'normal',
     letterSpacing: '-0.04rem',
     border: '1px solid',
-    transition: 'all 0.3s ease-in-out'
+    transition: 'all 0.3s ease-in-out',
   },
   variants: {
     isSelected: {

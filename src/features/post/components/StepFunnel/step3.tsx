@@ -9,9 +9,7 @@ const Step3 = () => {
   const [selectedTypes, setSelectedTypes] = useState<TradeType[]>([]);
 
   const handleSelectType = (type: TradeType) => {
-    setSelectedTypes(prev =>
-      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
-    );
+    setSelectedTypes(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
   };
 
   return (
@@ -27,11 +25,7 @@ const Step3 = () => {
             {(Object.entries(TRADE_TYPES_MAP) as [TradeType, string][])
               .filter(([key]) => key !== 'DIRECT_AND_PARCEL')
               .map(([key, label]) => (
-                <Chip
-                  key={key}
-                  isSelected={selectedTypes.includes(key)}
-                  onClick={() => handleSelectType(key)}
-                >
+                <Chip key={key} isSelected={selectedTypes.includes(key)} onClick={() => handleSelectType(key)}>
                   {label}
                 </Chip>
               ))}

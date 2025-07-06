@@ -29,12 +29,11 @@ const Rental = () => {
 };
 
 const Sale = () => {
-
   const [canDeal, setCanDeal] = useState(false);
 
   const handleCanDeal = () => {
     setCanDeal(prev => !prev);
-  }
+  };
 
   return (
     <div className={s.PriceContent}>

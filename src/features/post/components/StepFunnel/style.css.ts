@@ -116,5 +116,5 @@ export const CanDeal = css({
   fontWeight: '500',
   lineHeight: '1.4',
   letterSpacing: '-0.035rem',
-  marginBottom: '3.75rem'
+  marginBottom: '3.75rem',
 });

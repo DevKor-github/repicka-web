@@ -9,8 +9,7 @@ const CheckBtn = ({ isSelected = false, onClick }: Props) => {
   const rightIconClass = isSelected ? 'mgc_check_fill' : null;
 
   return (
-    <div
-      className={s.Container({ isSelected })} onClick={onClick}>
+    <div className={s.Container({ isSelected })} onClick={onClick}>
       <div className={`${rightIconClass}`} />
     </div>
   );
