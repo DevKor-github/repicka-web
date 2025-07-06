@@ -8,13 +8,9 @@ interface Props extends PropsWithChildren {
 }
 const Btn = ({ children, color = 'softgray', onClick, style }: Props) => {
   return (
-    <div className={s.Button({ color })
-    } style={style} onClick=
-    {onClick}
-    >
+    <div className={s.Button({ color })} style={style} onClick={onClick}>
       {children}
     </div>
-  )
-  ;
+  );
 };
 export default Btn;
