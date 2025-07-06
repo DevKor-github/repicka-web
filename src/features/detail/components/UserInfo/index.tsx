@@ -12,12 +12,13 @@ const UserInfo = ({ userData }: Props) => {
       <div className={s.Wrapper}>
         <div className={s.UserInfo}>
           <img className={s.ProfileImage} src={userData.profileImageUrl} alt={userData.nickname} />
-          <div className={s.UserInfoText}>
-            {/* TODO: 미인증 상태 대응 */}
-            <span>
-              <p>학교인증</p>
-              <VerifyIcon />
-            </span>
+          <div className={s.UserInfoText({ isVerified: userData.isKoreanUnivVerified })}>
+            {userData.isKoreanUnivVerified && (
+              <span className={s.VerifiedTag}>
+                <p>학교인증</p>
+                <VerifyIcon />
+              </span>
+            )}
             <p>{userData.nickname}</p>
           </div>
         </div>
