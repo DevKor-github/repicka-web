@@ -17,7 +17,9 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const router = useRoutes(routes);
+  const router = useRoutes(routes)
+
+  const variable= "린트에 안맞는 변수"
 
   return <QueryClientProvider client={queryClient}>{router}</QueryClientProvider>;
 }
