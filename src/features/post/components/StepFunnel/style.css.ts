@@ -31,6 +31,7 @@ export const Head = css({
   fontWeight: 600,
   lineHeight: 1.4,
   letterSpacing: '-0.05rem',
+  gap: '0.62rem'
 });
 
 export const Content = css ({
