@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import * as s from '../style.css';
-import TypeCard from '../../TypeCard';
+import * as s from './style.css';
+import TypeCard from '../TypeCard';
+import type { PostType } from '@/libs/types/post';
 
 const Step1 = () => {
   const [selectedTypes, setSelectedTypes] = useState<PostType[]>([]);
@@ -13,8 +14,8 @@ const Step1 = () => {
     <div className={s.Wrapper}>
       <h1 className={s.Head}>거래하실 종류를 선택해 주세요</h1>
       <div className={s.Container}>
-        <TypeCard types="대여" isSelected={selectedTypes.includes('대여')} onClick={() => handleSelectType('대여')} />
-        <TypeCard types="판매" isSelected={selectedTypes.includes('판매')} onClick={() => handleSelectType('판매')} />
+        <TypeCard types="대여" isSelected={selectedTypes.includes('RENTAL')} onClick={() => handleSelectType('RENTAL')} />
+        <TypeCard types="판매" isSelected={selectedTypes.includes('SALE')} onClick={() => handleSelectType('SALE')} />
       </div>
     </div>
   );

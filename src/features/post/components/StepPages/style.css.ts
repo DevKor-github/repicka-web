@@ -15,6 +15,13 @@ export const Container = css({
   alignItems: 'center',
 });
 
+export const Grid = css({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  // padding: '1rem 0 0 0',
+  gap: '0.62rem',
+});
+
 export const Head = css({
   display: 'flex',
   alignItems: 'center', // 가로 가운데 정렬
@@ -25,3 +32,7 @@ export const Head = css({
   lineHeight: 1.4,
   letterSpacing: '-0.05rem',
 });
+
+export const Content = css ({
+  margin: '2.97rem 0 0 0',
+})
