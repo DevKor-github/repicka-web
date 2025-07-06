@@ -4,7 +4,7 @@ import sale from '@/assets/images/sale.png';
 
 interface TypeCardProps {
   isSelected: boolean;
-  types: '판매' | '대여';
+  types: PostType;
   onClick?: () => void;
 }
 
