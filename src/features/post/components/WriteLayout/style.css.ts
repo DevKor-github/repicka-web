@@ -16,6 +16,7 @@ export const entireLayout = css({
 export const innerPage = css({
   flex: 1,
   overflowY: 'auto',
+  padding: '2.34rem 1rem 0 1rem',
 });
 
 export const Container = css({
@@ -43,6 +44,6 @@ export const headerText = css({
   fontWeight: '600',
 });
 
-export const halfFlex = css ({
-  flex: '1 1 0'
-})
+export const halfFlex = css({
+  flex: '1 1 0',
+});
