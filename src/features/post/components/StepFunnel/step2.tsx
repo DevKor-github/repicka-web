@@ -2,8 +2,18 @@ import Token from '@/common/components/Token';
 import * as s from './style.css';
 
 import TagOptionBtn from '@/common/components/TagOptionBtn';
+import { PRODUCT_TYPES_MAP, type ProductType } from '@/libs/types/post';
+import { useState } from 'react';
 
 const Step2 = () => {
+  const [selectedTypes, setSelectedTypes] = useState<ProductType[]>([]);
+
+  const handleSelectType = (type: ProductType) => {
+    setSelectedTypes(prev =>
+      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+    );
+  };
+
   return (
     <div>
       <header className={s.Head}>
@@ -12,16 +22,14 @@ const Step2 = () => {
       </header>
       <div className={s.Content}>
         <div className={s.Grid}>
-          <TagOptionBtn type="SOCCER" />
-          <TagOptionBtn type="BASKETBALL" />
-          <TagOptionBtn type="BASEBALL" />
-          <TagOptionBtn type="HOCKEY" />
-          <TagOptionBtn type="VARSITY_JACKET" />
-          <TagOptionBtn type="SELF_MADE" />
-          <TagOptionBtn type="ACCESSORY" />
-          <TagOptionBtn type="VINTAGE" />
-          <TagOptionBtn type="REFORM" />
-          <TagOptionBtn type="OTHER" />
+          {(Object.keys(PRODUCT_TYPES_MAP) as ProductType[]).map(type => (
+            <TagOptionBtn
+              key={type}
+              type={type}
+              isSelected={selectedTypes.includes(type)}
+              onClick={() => handleSelectType(type)}
+            />
+          ))}
         </div>
       </div>
     </div>

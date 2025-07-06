@@ -3,8 +3,17 @@ import * as s from './style.css';
 import { TRADE_TYPES_MAP, type TradeType } from '@/libs/types/post';
 import Token from '@/common/components/Token';
 import InputField from '../InputField';
+import { useState } from 'react';
 
 const Step3 = () => {
+  const [selectedTypes, setSelectedTypes] = useState<TradeType[]>([]);
+
+  const handleSelectType = (type: TradeType) => {
+    setSelectedTypes(prev =>
+      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+    );
+  };
+
   return (
     <div>
       <header className={s.Head}>거래 방식을 선택해 주세요</header>
@@ -18,7 +27,13 @@ const Step3 = () => {
             {(Object.entries(TRADE_TYPES_MAP) as [TradeType, string][])
               .filter(([key]) => key !== 'DIRECT_AND_PARCEL')
               .map(([key, label]) => (
-                <Chip key={key}>{label}</Chip>
+                <Chip
+                  key={key}
+                  isSelected={selectedTypes.includes(key)}
+                  onClick={() => handleSelectType(key)}
+                >
+                  {label}
+                </Chip>
               ))}
           </div>
         </div>

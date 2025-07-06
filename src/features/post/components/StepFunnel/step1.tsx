@@ -23,7 +23,10 @@ const Step1 = () => {
           isSelected={selectedTypes.includes('RENTAL')}
           onClick={() => handleSelectType('RENTAL')}
         />
-        <TypeCard types="SALE" isSelected={selectedTypes.includes('SALE')} onClick={() => handleSelectType('SALE')} />
+        <TypeCard types="SALE"
+          isSelected={selectedTypes.includes('SALE')}
+          onClick={() => handleSelectType('SALE')}
+        />
       </div>
     </div>
   );

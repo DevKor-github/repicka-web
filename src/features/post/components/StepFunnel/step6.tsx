@@ -4,6 +4,7 @@ import Token from '@/common/components/Token';
 import * as s from './style.css';
 import InputField from '../InputField';
 import CheckBtn from '../CheckBtn';
+import { useState } from 'react';
 
 const Rental = () => {
   return (
@@ -28,6 +29,13 @@ const Rental = () => {
 };
 
 const Sale = () => {
+
+  const [canDeal, setCanDeal] = useState(false);
+
+  const handleCanDeal = () => {
+    setCanDeal(prev => !prev);
+  }
+
   return (
     <div className={s.PriceContent}>
       <div className={s.TokenContainer}>
@@ -39,9 +47,9 @@ const Sale = () => {
           <InputField />원
         </div>
       </div>
-      <span className={s.CanDeal}>
+      <span className={s.CanDeal} onClick={handleCanDeal}>
         네고 제안 받을래요
-        <CheckBtn isSelected />
+        <CheckBtn isSelected={canDeal} />
       </span>
     </div>
   );

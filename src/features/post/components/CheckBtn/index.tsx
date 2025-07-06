@@ -1,14 +1,16 @@
 import * as s from './style.css';
 
 interface Props {
-  isSelected: boolean;
+  isSelected?: boolean;
+  onClick?: () => void;
 }
 
-const CheckBtn = ({ isSelected }: Props) => {
+const CheckBtn = ({ isSelected = false, onClick }: Props) => {
   const rightIconClass = isSelected ? 'mgc_check_fill' : null;
 
   return (
-    <div className={s.Container({ isSelected })}>
+    <div
+      className={s.Container({ isSelected })} onClick={onClick}>
       <div className={`${rightIconClass}`} />
     </div>
   );

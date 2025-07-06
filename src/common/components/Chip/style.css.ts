@@ -15,13 +15,13 @@ export const Container = cva({
     border: '1px solid',
   },
   variants: {
-    color: {
-      main: {
+    isSelected: {
+      true: {
         backgroundColor: 'main-26',
         borderColor: 'main-54',
         color: '100',
       },
-      gray: {
+      false: {
         backgroundColor: 'systemGray5',
         borderColor: 'systemGray5',
         color: '80',

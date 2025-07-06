@@ -10,6 +10,7 @@ export const Container = cva({
     lineHeight: 'normal',
     letterSpacing: '-0.04rem',
     border: '1px solid',
+    transition: 'all 0.3s ease-in-out'
   },
   variants: {
     isSelected: {
@@ -58,14 +59,15 @@ export const leftIcon = css({
 
 export const rightIcon = cva({
   base: {
-    borderRadius: '0.76rem',
-    width: '1.52225rem',
-    height: '1.52225rem',
     display: 'flex',
+    position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '0.05rem 0.05rem 0 0',
-    fontSize: '1.25rem',
+    width: '1.52225rem',
+    height: '1.52225rem',
+    padding: '0.125rem',
+    borderRadius: '0.76113rem',
+    transition: 'all 0.3s ease-in-out',
   },
   variants: {
     isSelected: {
