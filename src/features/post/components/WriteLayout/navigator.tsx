@@ -1,5 +1,5 @@
 import Btn from '@/common/components/Button';
-import StepIndicator from '@/common/StepIndicator';
+import StepIndicator from '@/common/components/StepIndicator';
 import * as s from './style.css';
 
 interface NavigatorProps {
