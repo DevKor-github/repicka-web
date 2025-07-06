@@ -1,10 +1,10 @@
 import Btn from '@/common/components/Button';
-import StepIndicator from '@/pages/PostPages/StepIndicator';
+import StepIndicator from '@/common/components/StepIndicator';
 import * as s from './style.css';
 
 interface NavigatorProps {
-  totalSteps: number,
-  currentStep: number,
+  totalSteps: number;
+  currentStep: number;
   goNext: () => void;
   goPrev: () => void;
   isFirst: boolean;
@@ -12,12 +12,11 @@ interface NavigatorProps {
 }
 
 const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }: NavigatorProps) => {
-
   const label = isLast ? '완료' : '다음';
 
   return (
     <footer>
-      <StepIndicator currentStep={currentStep} totalSteps={totalSteps}/>
+      <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
       <div className={s.stepBtn}>
         {!isFirst && (
           <div className={s.halfFlex}>

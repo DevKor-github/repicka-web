@@ -1,12 +1,11 @@
 import Header from './header';
 import Navigator from './navigator';
-import Step1 from '@/pages/PostPages/StepPages/Step1';
-import Step2 from '@/pages/PostPages/StepPages/Step2';
-import Step3 from '@/pages/PostPages/StepPages/Step3';
-import Step4 from '@/pages/PostPages/StepPages/Step4';
-import Step5 from '@/pages/PostPages/StepPages/Step5';
-import Step6 from '@/pages/PostPages/StepPages/Step6';
-// import StepIndicator from './'   // [TODO] stepindicator 만들어서 추가하기
+import Step1 from '@/features/post/components/StepFunnel/step1';
+import Step2 from '@/features/post/components/StepFunnel/step2';
+import Step3 from '@/features/post/components/StepFunnel/step3';
+import Step4 from '@/features/post/components/StepFunnel/step4';
+import Step5 from '@/features/post/components/StepFunnel/step5';
+import Step6 from '@/features/post/components/StepFunnel/step6';
 import { useState } from 'react';
 
 import * as s from './style.css';
@@ -34,7 +33,14 @@ const WriteLayout = () => {
     <div className={s.entireLayout}>
       <Header />
       <div className={s.innerPage}>{steps[step - 1]}</div>
-      <Navigator totalSteps={MAX_STEP} currentStep={step} goNext={goNext} goPrev={goPrev} isFirst={isFirst} isLast={isLast} />
+      <Navigator
+        totalSteps={MAX_STEP}
+        currentStep={step}
+        goNext={goNext}
+        goPrev={goPrev}
+        isFirst={isFirst}
+        isLast={isLast}
+      />
     </div>
   );
 };
