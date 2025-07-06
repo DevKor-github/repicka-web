@@ -37,7 +37,7 @@ export const Content = css({
   display: 'flex',
   flexDirection: 'column',
   margin: '2.97rem 0 0 0',
-  gap: '2.25rem'
+  gap: '2.25rem',
 });
 
 export const DetailContent = css({
@@ -50,15 +50,15 @@ export const DetailContent = css({
   fontWeight: '500',
   lineHeight: '1.4',
   letterSpacing: '-0.04rem',
-  gap: '0.875rem'
-})
+  gap: '1rem',
+});
 
 export const ContentHeader = css({
   display: 'flex',
   alignItems: 'center',
   alignSelf: 'stretch',
-  gap: '0.38rem'
-})
+  gap: '0.38rem',
+});
 
 export const ChipColumn = css({
   display: 'flex',
@@ -67,21 +67,31 @@ export const ChipColumn = css({
   gap: '0.5625rem 0.5rem',
   alignSelf: 'stretch',
   flexWrap: 'wrap',
-})
+});
 
 export const TokenContainer = css({
-  marginBottom: '0.75rem'
-})
+  marginBottom: '0.75rem',
+});
 
-export const HeaderInputField = css({   // step6에서 
+export const HeaderInputField = css({
+  // step6에서
   display: 'flex',
   flexDirection: 'column',
   margin: '0 0 1.25rem 0',
-  gap: '1rem'
-})
+  gap: '1rem',
+});
+
+export const PriceInputField = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.75rem',
+  alignSelf: 'stretch',
+  color: '80',
+});
 
 export const PriceContent = css({
   display: 'flex',
+  flex: 1,
   flexDirection: 'column',
   alignItems: 'flex-start',
   alignSelf: 'stretch',
@@ -91,15 +101,19 @@ export const PriceContent = css({
   fontStyle: 'normal',
   fontWeight: '500',
   lineHeight: '1.4',
-  letterSpacing: '-0.04rem'
-})
+  letterSpacing: '-0.04rem',
+});
 
 export const CanDeal = css({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '0.62rem',
   color: '80',
   fontFamily: 'Pretendard',
   fontSize: '0.875rem',
   fontStyle: 'normal',
   fontWeight: '500',
   lineHeight: '1.4',
-  letterSpacing: '-0.035rem'
-})
+  letterSpacing: '-0.035rem',
+});
