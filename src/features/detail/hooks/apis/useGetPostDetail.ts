@@ -52,7 +52,11 @@ const MOCK_DATA: PostDetailResponse = {
     },
     price: 10000,
     deposit: 30000,
-    images: ['https://crimsonstore.co.kr/web/product/medium/202412/6a5424bbd03c17f28b375a06a31fd4de.jpg'],
+    images: [
+      'https://crimsonstore.co.kr/web/product/medium/202412/6a5424bbd03c17f28b375a06a31fd4de.jpg',
+      'https://crimsonstore.co.kr/web/product/tiny/202411/6f6c18db6eb66bfa3b10d5fb9ba6e593.jpg',
+      'https://crimsonstore.co.kr/web/product/tiny/202411/215b536247ca28c1e97dd6a0d0d6d23a.jpg',
+    ],
     postType: 'RENTAL',
   },
 };

@@ -1,8 +1,13 @@
 @import 'swiper/css';
+@import 'swiper/css/zoom';
 
 @layer reset, base, tokens, recipes, utilities;
 
 [class^='mgc_']::before,
 [class*=' mgc_']::before {
   color: inherit !important;
+}
+
+.swiper-zoom-container > img {
+  object-fit: cover;
 }
