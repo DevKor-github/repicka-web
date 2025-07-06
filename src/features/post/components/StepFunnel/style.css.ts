@@ -31,9 +31,9 @@ export const Head = css({
   fontWeight: 600,
   lineHeight: 1.4,
   letterSpacing: '-0.05rem',
-  gap: '0.62rem'
+  gap: '0.62rem',
 });
 
-export const Content = css ({
+export const Content = css({
   margin: '2.97rem 0 0 0',
-})
+});

@@ -16,11 +16,14 @@ const Step1 = () => {
       <h1 className={s.Head}>
         거래하실 종류를 선택해 주세요
         <Token>복수 선택 가능</Token>
-        </h1>
+      </h1>
       <div className={s.Container}>
-        <TypeCard types='RENTAL' isSelected={selectedTypes.includes('RENTAL')} onClick={() => handleSelectType('RENTAL')} />
-        <TypeCard types='SALE' isSelected={selectedTypes.includes('SALE')} onClick={() => handleSelectType('SALE')} />
-      
+        <TypeCard
+          types="RENTAL"
+          isSelected={selectedTypes.includes('RENTAL')}
+          onClick={() => handleSelectType('RENTAL')}
+        />
+        <TypeCard types="SALE" isSelected={selectedTypes.includes('SALE')} onClick={() => handleSelectType('SALE')} />
       </div>
     </div>
   );
