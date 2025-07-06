@@ -3,9 +3,9 @@ import * as s from '../style.css';
 import TypeCard from '../../TypeCard';
 
 const Step1 = () => {
-  const [selectedTypes, setSelectedTypes] = useState<('대여' | '판매')[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<PostType[]>([]);
 
-  const handleSelectType = (type: '대여' | '판매') => {
+  const handleSelectType = (type: PostType) => {
     setSelectedTypes(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
   };
 
