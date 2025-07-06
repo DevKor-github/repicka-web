@@ -1,3 +1,5 @@
+import type { ColorType, PostType, ProductType, QualityType, SizeType, TradeType } from "@/libs/types/post";
+
 export interface PostPayload {
   item: {
     productTypes: ProductType[];

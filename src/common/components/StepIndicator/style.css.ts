@@ -31,7 +31,7 @@ export const Container = css({
   display: 'flex',
   position: 'relative',
   flex: '1',
-  gap: '0.38rem',
+  gap: '0.375rem',
   margin: '0 0 1.5rem 0',
   justifyContent: 'center',
   alignItems: 'center',
