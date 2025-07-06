@@ -4,7 +4,7 @@ import * as s from './style.css';
 const Step5 = () => {
   return (
     <div>
-      <header className={s.Head}>상품 소개를 선택해 주세요</header>
+      <header className={s.Head}>상품 소개를 작성해 주세요</header>
       <div className={s.Content}>
         <div className={s.DetailContent}>
           <div className={s.HeaderInputField}>
