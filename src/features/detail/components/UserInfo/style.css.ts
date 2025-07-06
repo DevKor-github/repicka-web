@@ -1,4 +1,4 @@
-import { css } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Container = css({
   width: '100%',
@@ -31,42 +31,54 @@ export const ProfileImage = css({
   bgColor: 'systemGray',
 });
 
-export const UserInfoText = css({
-  display: 'flex',
-  flexDir: 'column',
-  height: '2.5rem',
-  justifyContent: 'space-between',
-  width: 'full',
-  overflow: 'hidden',
-  alignItems: 'flex-start',
-  my: '0.06rem',
-  '& > p': {
-    w: 'full',
-    color: '100',
-    fontSize: '1rem',
-    fontWeight: 500,
-    lineHeight: 1.2,
-    letterSpacing: '-0.04rem',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    lineClamp: 1,
-  },
-  '& > span': {
-    padding: '0.1rem 0.275rem',
-    bgColor: 'main-26',
-    rounded: '3.32px',
-    fontSize: '0.625rem',
-    fontWeight: 400,
-    lineHeight: 1.4,
-    letterSpacing: '-0.025rem',
-    color: 'main',
+export const UserInfoText = cva({
+  base: {
     display: 'flex',
-    alignItems: 'center',
-    gap: '0.22rem',
+    flexDir: 'column',
+    height: '2.5rem',
+    width: 'full',
+    overflow: 'hidden',
+    alignItems: 'flex-start',
+    my: '0.06rem',
     '& > p': {
+      w: 'full',
       color: '100',
+      fontSize: '1rem',
+      fontWeight: 500,
+      lineHeight: 1.2,
+      letterSpacing: '-0.04rem',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      lineClamp: 1,
     },
+  },
+  variants: {
+    isVerified: {
+      true: {
+        justifyContent: 'space-between',
+      },
+      false: {
+        justifyContent: 'center',
+      },
+    },
+  },
+});
+
+export const VerifiedTag = css({
+  padding: '0.1rem 0.275rem',
+  bgColor: 'main-26',
+  rounded: '3.32px',
+  fontSize: '0.625rem',
+  fontWeight: 400,
+  lineHeight: 1.4,
+  letterSpacing: '-0.025rem',
+  color: 'main',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.22rem',
+  '& > p': {
+    color: '100',
   },
 });
 
