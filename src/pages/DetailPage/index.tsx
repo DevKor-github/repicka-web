@@ -21,7 +21,7 @@ const DetailPage = () => {
     <div className={s.Container}>
       <DetailHeader />
       <div className={s.ScrollContainer} style={{ paddingBottom: `${DETAIL_PAGE_NAVIGATOR_HEIGHT_REM}rem` }}>
-        <ImageContainer title={data.itemInfo.title} images={data.images} />
+        <ImageContainer images={data.images} />
         <div className={s.ContentContainer}>
           <UserInfo userData={data.writer} />
           <PostContent itemInfo={data.itemInfo} price={data.price} deposit={data.deposit} />
