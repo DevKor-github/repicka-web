@@ -1,16 +1,16 @@
 export interface PostPayload {
   item: {
-    productTypes: string[];
-    size: string;
-    color: string;
-    quality: string;
+    productTypes: ProductType[];
+    size: SizeType;
+    color: ColorType;
+    quality: QualityType;
     title: string;
     description: string;
     location: string;
-    tradeMethod: 'DIRECT' | 'DELIVERY';
+    tradeMethod: TradeType;
     canDeal: boolean;
   };
-  postTypes: ('RENTAL' | 'SALE')[];
+  postTypes: PostType[];
   rentalFee: number;
   salePrice: number;
   deposit: number;
