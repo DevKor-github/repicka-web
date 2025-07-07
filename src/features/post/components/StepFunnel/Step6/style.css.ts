@@ -1,14 +1,12 @@
 import { css } from '@styled-system/css';
 
 export const PriceTypeContent = css({
-  // step6
   display: 'flex',
   flexDirection: 'column',
   gap: '0.75rem',
 });
 
 export const PriceInputField = css({
-  // step6
   display: 'flex',
   alignItems: 'center',
   gap: '0.75rem',
@@ -17,7 +15,6 @@ export const PriceInputField = css({
 });
 
 export const PriceDesc = css({
-  // step6
   display: 'flex',
   justifyContent: 'start',
   alignItems: 'start',
@@ -27,7 +24,6 @@ export const PriceDesc = css({
 });
 
 export const PriceContent = css({
-  // step6
   display: 'flex',
   flex: 1,
   flexDirection: 'column',
@@ -43,7 +39,6 @@ export const PriceContent = css({
 });
 
 export const CanDeal = css({
-  // step6
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
