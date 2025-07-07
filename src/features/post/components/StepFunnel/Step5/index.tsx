@@ -1,9 +1,10 @@
-import InputField from '../InputField';
-import MultilineInputfield from '../MultilineInputField';
+import InputField from '../../InputField';
+import MultilineInputfield from '../../MultilineInputField';
 import * as s from './style.css';
+import * as c from '../style.css';
 
-import SelectedPhoto from '../uploadedPhoto';
-import UploadPhoto from '../UploadPhoto';
+import SelectedPhoto from '../../uploadedPhoto';
+import UploadFile from '../../UploadFile';
 import { useState } from 'react';
 
 const Step5 = () => {
@@ -28,22 +29,18 @@ const Step5 = () => {
 
   return (
     <div>
-      <header className={s.Head}>상품 소개를 작성해 주세요</header>
-      <div className={s.Content}>
-        <div className={s.DetailContent}>
-          <div className={s.HeaderInputField}>
-            상품명을 입력해 주세요
-            <InputField />
-          </div>
+      <header className={c.Head}>상품 소개를 작성해 주세요</header>
+      <div className={c.Content}>
+        <div className={c.DetailContent}>
+          상품명을 입력해 주세요
+          <InputField />
         </div>
-        <div className={s.DetailContent}>
+        <div className={c.DetailContent}>
+          상품 설명을 입력해 주세요
           <div className={s.ProductDesc}>
-            <div className={s.HeaderInputField}>
-              상품 설명을 입력해 주세요
-              <MultilineInputfield />
-            </div>
+            <MultilineInputfield />
             <div className={s.SelectPhotoContainer}>
-              <UploadPhoto onChange={handleImageUploaded} />
+              <UploadFile onChange={handleImageUploaded} />
               {selectedImages.map((file, index) => (
                 <SelectedPhoto key={index} file={file} onClick={() => removeUploadedImage(index)} />
               ))}

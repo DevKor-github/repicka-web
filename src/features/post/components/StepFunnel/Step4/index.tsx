@@ -1,5 +1,6 @@
 import Chip from '@/common/components/Chip';
-import * as s from './style.css';
+import * as c from '../style.css';
+
 import {
   COLOR_TYPES_MAP,
   QUALITY_TYPES_MAP,
@@ -15,7 +16,7 @@ const renderChipGroup = <T extends string>(
   selected: T | null,
   setSelected: React.Dispatch<React.SetStateAction<T | null>>,
 ) => (
-  <div className={s.ChipColumn}>
+  <div className={c.ChipContainer}>
     {(Object.keys(map) as T[]).map(key => (
       <Chip key={key} isSelected={selected === key} onClick={() => setSelected(selected === key ? null : key)}>
         {map[key]}
@@ -31,17 +32,17 @@ const Step4 = () => {
 
   return (
     <div>
-      <header className={s.Head}>태그를 선택해 주세요</header>
-      <div className={s.Content}>
-        <div className={s.DetailContent}>
+      <header className={c.Head}>태그를 선택해 주세요</header>
+      <div className={c.Content}>
+        <div className={c.DetailContent}>
           사이즈를 선택해 주세요
           {renderChipGroup(SIZE_TYPES_MAP, selectedSizes, setSelectedSizes)}
         </div>
-        <div className={s.DetailContent}>
+        <div className={c.DetailContent}>
           색상을 선택해 주세요
           {renderChipGroup(COLOR_TYPES_MAP, selectedColors, setSelectedColors)}
         </div>
-        <div className={s.DetailContent}>
+        <div className={c.DetailContent}>
           품질을 선택해 주세요
           {renderChipGroup(QUALITY_TYPES_MAP, selectedQualities, setSelectedQualities)}
         </div>

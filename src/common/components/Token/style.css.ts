@@ -1,6 +1,7 @@
 import { css } from '@styled-system/css';
 
 export const Container = css({
+  width: 'fit-content',
   padding: '0.1875rem 0.3125rem',
   borderRadius: '4px',
   bgColor: 'main-26',

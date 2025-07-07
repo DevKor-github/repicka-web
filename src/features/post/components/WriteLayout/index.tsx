@@ -1,11 +1,11 @@
 import Header from './header';
 import Navigator from './navigator';
-import Step1 from '@/features/post/components/StepFunnel/step1';
-import Step2 from '@/features/post/components/StepFunnel/step2';
-import Step3 from '@/features/post/components/StepFunnel/step3';
-import Step4 from '@/features/post/components/StepFunnel/step4';
-import Step5 from '@/features/post/components/StepFunnel/step5';
-import Step6 from '@/features/post/components/StepFunnel/step6';
+import Step1 from '@/features/post/components/StepFunnel/Step1/index';
+import Step2 from '@/features/post/components/StepFunnel/Step2/index';
+import Step3 from '@/features/post/components/StepFunnel/Step3//index';
+import Step4 from '@/features/post/components/StepFunnel/Step4/index';
+import Step5 from '@/features/post/components/StepFunnel/Step5/index';
+import Step6 from '@/features/post/components/StepFunnel/Step6/index';
 import { useState } from 'react';
 
 import * as s from './style.css';

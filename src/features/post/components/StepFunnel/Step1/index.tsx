@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import * as s from './style.css';
-import TypeCard from '../TypeCard';
-import type { TransactionType } from '@/libs/types/item';
+import * as c from '../style.css';
+import TypeCard from '../../TypeCard';
+import type { PostType } from '@/libs/types/post';
 import Token from '@/common/components/Token';
 
 const Step1 = () => {
@@ -13,7 +14,7 @@ const Step1 = () => {
 
   return (
     <div className={s.Wrapper}>
-      <h1 className={s.Head}>
+      <h1 className={c.Head}>
         거래하실 종류를 선택해 주세요
         <Token>복수 선택 가능</Token>
       </h1>

@@ -4,7 +4,7 @@ interface UploadPhotoProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const UploadPhoto = ({ onChange }: UploadPhotoProps) => {
+const UploadFile = ({ onChange }: UploadPhotoProps) => {
   return (
     <label className={s.SelectedPhotoBtn}>
       <input type="file" accept="image/*" multiple onChange={onChange} className={s.Input} />
@@ -13,4 +13,4 @@ const UploadPhoto = ({ onChange }: UploadPhotoProps) => {
   );
 };
 
-export default UploadPhoto;
+export default UploadFile;
