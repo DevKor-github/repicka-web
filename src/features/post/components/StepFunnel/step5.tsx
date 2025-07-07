@@ -3,8 +3,17 @@ import MultilineInputfield from '../MultilineInputField';
 import * as s from './style.css';
 
 import SelectedPhoto from '../SelectedPhoto';
+import UploadPhoto from '../UploadPhoto';
 
 const Step5 = () => {
+  const handleImageUploaded = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length) return;
+
+    console.log('선택된 파일: ', files);
+    // TODO: 선택된 파일 저장해 두기
+  };
+
   return (
     <div>
       <header className={s.Head}>상품 소개를 작성해 주세요</header>
@@ -22,11 +31,9 @@ const Step5 = () => {
               <MultilineInputfield />
             </div>
             <div className={s.SelectPhotoContainer}>
-              <div className={`${'mgc_camera_2_fill'} ${s.SelectedPhotoBtn}`} />
-              {/* TODO: 사진 추가 기능 넣기 */}
-              <SelectedPhoto />
-
+              <UploadPhoto onChange={handleImageUploaded} />
               {/* TODO: 넣은 사진 개수만큼 */}
+              <SelectedPhoto />
             </div>
           </div>
         </div>
