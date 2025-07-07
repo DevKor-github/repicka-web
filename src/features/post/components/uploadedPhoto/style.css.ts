@@ -5,7 +5,7 @@ export const Container = css({
   display: 'inline-block',
 });
 
-export const SelectedPhoto = css({
+export const UploadedPhoto = css({
   width: '4.38rem',
   height: '4.38rem',
   alignItems: 'center',

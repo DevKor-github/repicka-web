@@ -2,16 +2,28 @@ import InputField from '../InputField';
 import MultilineInputfield from '../MultilineInputField';
 import * as s from './style.css';
 
-import SelectedPhoto from '../SelectedPhoto';
+import SelectedPhoto from '../uploadedPhoto';
 import UploadPhoto from '../UploadPhoto';
+import { useState } from 'react';
 
 const Step5 = () => {
+  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+
   const handleImageUploaded = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (!files || files.length) return;
+    if (!files || files.length === 0) {
+      return;
+    }
+
+    const fileArray = Array.from(files);
+    setSelectedImages(prev => [...prev, ...fileArray]);
 
     console.log('선택된 파일: ', files);
-    // TODO: 선택된 파일 저장해 두기
+  };
+
+  const removeUploadedImage = (index: number) => {
+    // 원하는 index를 받아서, 배열에서 해당 아이템 제외
+    setSelectedImages(prev => prev.filter((_, i) => i !== index));
   };
 
   return (
@@ -32,8 +44,9 @@ const Step5 = () => {
             </div>
             <div className={s.SelectPhotoContainer}>
               <UploadPhoto onChange={handleImageUploaded} />
-              {/* TODO: 넣은 사진 개수만큼 */}
-              <SelectedPhoto />
+              {selectedImages.map((file, index) => (
+                <SelectedPhoto key={index} file={file} onClick={() => removeUploadedImage(index)} />
+              ))}
             </div>
           </div>
         </div>
