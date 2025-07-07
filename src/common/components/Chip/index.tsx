@@ -2,12 +2,12 @@ import type { PropsWithChildren } from 'react';
 import * as s from './style.css';
 
 interface Props extends PropsWithChildren {
-  color?: 'gray' | 'main';
+  isSelected?: boolean;
   onClick?: () => void;
 }
-const Chip = ({ children, color = 'gray', onClick }: Props) => {
+const Chip = ({ children, isSelected = false, onClick }: Props) => {
   return (
-    <div className={s.Container({ color })} onClick={onClick}>
+    <div className={s.Container({ isSelected })} onClick={onClick}>
       {children}
     </div>
   );
