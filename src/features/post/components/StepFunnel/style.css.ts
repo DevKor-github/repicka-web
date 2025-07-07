@@ -74,10 +74,9 @@ export const TokenContainer = css({
 });
 
 export const HeaderInputField = css({
-  // step6에서
   display: 'flex',
+  width: '100%',
   flexDirection: 'column',
-  margin: '0 0 1.25rem 0',
   gap: '1rem',
 });
 
@@ -87,6 +86,42 @@ export const PriceInputField = css({
   gap: '0.75rem',
   alignSelf: 'stretch',
   color: '80',
+});
+
+export const ProductDesc = css({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  gap: '1.25rem',
+});
+
+export const PriceDesc = css({
+  display: 'flex',
+  justifyContent: 'start',
+  alignItems: 'start',
+  flexDirection: 'column',
+  width: '100%',
+  gap: '1.25rem',
+});
+
+export const SelectPhotoContainer = css({
+  display: 'flex',
+  gap: '0.625rem',
+  alignItems: 'center',
+  marginBottom: '3.75rem',
+  flexWrap: 'wrap',
+});
+
+export const SelectedPhotoBtn = css({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '4.38rem',
+  height: '4.38rem',
+  borderRadius: '0.5rem',
+  backgroundColor: 'systemGray5',
+  color: '54',
+  fontSize: '1.875rem',
 });
 
 export const PriceContent = css({

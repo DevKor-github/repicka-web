@@ -4,7 +4,6 @@ export const Container = cva({
   base: {
     height: '2.75rem',
     backgroundColor: '#2C2C2E',
-    width: '100%',
     padding: '0rem 1rem',
     borderRadius: '0.375rem',
     color: '100',
