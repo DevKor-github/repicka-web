@@ -3,10 +3,10 @@ export const POST_TYPES_MAP = {
   RENTAL: '대여',
 };
 export const PRODUCT_TYPES_MAP = {
-  HOCKEY: '아이스하키',
   SOCCER: '축구',
   BASKETBALL: '농구',
   BASEBALL: '야구',
+  HOCKEY: '아이스하키',
   VARSITY_JACKET: '과잠',
   ACCESSORY: '악세사리',
   SELF_MADE: '자체제작',

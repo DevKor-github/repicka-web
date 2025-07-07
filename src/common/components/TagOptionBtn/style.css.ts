@@ -66,7 +66,7 @@ export const rightIcon = cva({
     width: '1.52225rem',
     height: '1.52225rem',
     padding: '0.125rem',
-    borderRadius: '0.76113rem',
+    borderRadius: 'full',
     transition: 'all 0.3s ease-in-out',
   },
   variants: {

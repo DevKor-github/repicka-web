@@ -15,13 +15,13 @@ const Rental = () => {
       <div className={s.HeaderInputField}>
         <span>대여료를 입력해 주세요</span>
         <div className={s.PriceInputField}>
-          <InputField />원
+          <InputField isPrice={true} />원
         </div>
       </div>
       <div className={s.HeaderInputField}>
         <span>보증금을 입력해 주세요</span>
         <div className={s.PriceInputField}>
-          <InputField />원
+          <InputField isPrice={true} />원
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@ const Sale = () => {
       <div className={s.HeaderInputField}>
         <span>판매 금액을 입력해 주세요</span>
         <div className={s.PriceInputField}>
-          <InputField />원
+          <InputField isPrice={true}/>원
         </div>
       </div>
       <span className={s.CanDeal} onClick={handleCanDeal}>

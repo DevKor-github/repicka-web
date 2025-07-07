@@ -10,24 +10,24 @@ import {
 } from '@/libs/types/post';
 import { useState } from 'react';
 
+const renderChipGroup = <T extends string>(
+  map: Record<T, string>,
+  selected: T | null,
+  setSelected: React.Dispatch<React.SetStateAction<T | null>>,
+) => (
+  <div className={s.ChipColumn}>
+    {(Object.keys(map) as T[]).map(key => (
+      <Chip key={key} isSelected={selected === key} onClick={() => setSelected(selected === key ? null : key)}>
+        {map[key]}
+      </Chip>
+    ))}
+  </div>
+);
+
 const Step4 = () => {
   const [selectedSizes, setSelectedSizes] = useState<SizeType | null>(null);
   const [selectedColors, setSelectedColors] = useState<ColorType | null>(null);
   const [selectedQualities, setSelectedQualities] = useState<QualityType | null>(null);
-
-  const renderChipGroup = <T extends string>(
-    map: Record<T, string>,
-    selected: T | null,
-    setSelected: React.Dispatch<React.SetStateAction<T | null>>,
-  ) => (
-    <div className={s.ChipColumn}>
-      {(Object.keys(map) as T[]).map(key => (
-        <Chip key={key} isSelected={selected === key} onClick={() => setSelected(selected === key ? null : key)}>
-          {map[key]}
-        </Chip>
-      ))}
-    </div>
-  );
 
   return (
     <div>
