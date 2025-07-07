@@ -7,6 +7,7 @@ import ImageContainer from '@/features/detail/components/ImageContainer';
 import UserInfo from '@/features/detail/components/UserInfo';
 import PostContent from '@/features/detail/components/PostContent';
 import useGetItemDetail from '@/features/detail/apis/useGetItemDetail';
+import BottomActions from '@/features/detail/components/BottomActions';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -26,6 +27,7 @@ const DetailPage = () => {
           <PostContent itemInfo={data.itemInfo} />
         </div>
       </div>
+      <BottomActions />
     </div>
   );
 };
