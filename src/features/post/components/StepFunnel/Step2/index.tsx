@@ -3,14 +3,17 @@ import * as s from './style.css';
 import * as c from '../style.css';
 
 import TagOptionBtn from '@/common/components/TagOptionBtn';
-import { PRODUCT_TYPES_MAP, type ProductType } from '@/libs/types/item';
-import { useState } from 'react';
+import { PRODUCT_TYPES_MAP, type ProductType } from '@/libs/types/post';
+import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const Step2 = () => {
-  const [selectedTypes, setSelectedTypes] = useState<ProductType[]>([]);
+  const store = usePostWriteStore(state => state.item.productTypes);
+  const setter = usePostWriteStore(state => state.setProductTypes);
 
   const handleSelectType = (type: ProductType) => {
-    setSelectedTypes(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
+    const updated = store.includes(type) ? store.filter(t => t !== type) : [...store, type];
+
+    setter(updated);
   };
 
   return (
@@ -25,7 +28,7 @@ const Step2 = () => {
             <TagOptionBtn
               key={type}
               type={type}
-              isSelected={selectedTypes.includes(type)}
+              isSelected={store.includes(type)}
               onClick={() => handleSelectType(type)}
             />
           ))}

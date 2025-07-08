@@ -7,17 +7,15 @@ import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const Step1 = () => {
   // zustand에 저장되어 있는 현재 상태 가져오기
-  const currnetPostTypes = usePostWriteStore(state => state.postTypes);
+  const store = usePostWriteStore(state => state.postTypes);
 
   // setter 함수 가져오기 (zustand 상태 바꾸기)
-  const setPostTypes = usePostWriteStore(state => state.setPostTypes);
+  const setter = usePostWriteStore(state => state.setPostTypes);
 
   const handleSelectType = (type: PostType) => {
-    const updated = currnetPostTypes.includes(type)
-      ? currnetPostTypes.filter(t => t !== type)
-      : [...currnetPostTypes, type];
+    const updated = store.includes(type) ? store.filter(t => t !== type) : [...store, type];
 
-    setPostTypes(updated); // zustand에 저장
+    setter(updated); // zustand에 저장
   };
 
   return (
@@ -27,16 +25,8 @@ const Step1 = () => {
         <Token>복수 선택 가능</Token>
       </h1>
       <div className={s.Container}>
-        <TypeCard
-          types="RENTAL"
-          isSelected={currnetPostTypes.includes('RENTAL')}
-          onClick={() => handleSelectType('RENTAL')}
-        />
-        <TypeCard
-          types="SALE"
-          isSelected={currnetPostTypes.includes('SALE')}
-          onClick={() => handleSelectType('SALE')}
-        />
+        <TypeCard types="RENTAL" isSelected={store.includes('RENTAL')} onClick={() => handleSelectType('RENTAL')} />
+        <TypeCard types="SALE" isSelected={store.includes('SALE')} onClick={() => handleSelectType('SALE')} />
       </div>
     </div>
   );

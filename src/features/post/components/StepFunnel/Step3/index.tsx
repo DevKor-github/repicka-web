@@ -4,6 +4,7 @@ import { TRADE_TYPES_MAP, type TradeType } from '@/libs/types/post';
 import Token from '@/common/components/Token';
 import InputField from '../../InputField';
 import { useState } from 'react';
+import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const Step3 = () => {
   const [selectedTypes, setSelectedTypes] = useState<TradeType[]>([]);
@@ -11,6 +12,23 @@ const Step3 = () => {
   const handleSelectType = (type: TradeType) => {
     setSelectedTypes(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
   };
+
+  // TODO: 배열로 고쳐주면 고칠 거임
+
+  // const tradeMethodStore = usePostWriteStore(state => state.item.tradeMethod);
+  // const tradeMethodSetter = usePostWriteStore(state => state.setTradeMethod);
+
+  // const handleSelectType = (type: TradeType) => {
+  //   const updated = store.includes(type)
+  //     ? store.filter(t => t !== type)
+  //     : [...store, type]
+
+  //     setter(updated);
+  // }
+
+  // 입력값 상태 관리
+  const location = usePostWriteStore(state => state.item.location);
+  const setLocation = usePostWriteStore(state => state.setLocation);
 
   return (
     <div>
@@ -34,7 +52,7 @@ const Step3 = () => {
         <div className={c.DetailContent}>
           <div className={c.DetailContent}>
             <span>직거래 장소를 입력해 주세요</span>
-            <InputField />
+            <InputField value={location} onChange={e => setLocation(e.target.value)} />
           </div>
         </div>
       </div>
