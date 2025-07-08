@@ -5,10 +5,11 @@ import * as c from '../style.css';
 
 import SelectedPhoto from '../../uploadedPhoto';
 import UploadFile from '../../UploadFile';
-import { useState } from 'react';
+import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const Step5 = () => {
-  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const imageStore = usePostWriteStore(state => state.images);
+  const imageSetter = usePostWriteStore(state => state.setImages);
 
   const handleImageUploaded = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -17,14 +18,13 @@ const Step5 = () => {
     }
 
     const fileArray = Array.from(files);
-    setSelectedImages(prev => [...prev, ...fileArray]);
-
-    console.log('선택된 파일: ', files);
+    const imageUrls = fileArray.map(file => URL.createObjectURL(file));
+    imageSetter([...imageStore, ...imageUrls]);
   };
 
   const removeUploadedImage = (index: number) => {
-    // 원하는 index를 받아서, 배열에서 해당 아이템 제외
-    setSelectedImages(prev => prev.filter((_, i) => i !== index));
+    // 원하는 index를 받아서, store에서 해당 아이템 제외
+    imageSetter(imageStore.filter((_, i) => i !== index));
   };
 
   return (
@@ -41,7 +41,7 @@ const Step5 = () => {
             <MultilineInputfield />
             <div className={s.SelectPhotoContainer}>
               <UploadFile onChange={handleImageUploaded} />
-              {selectedImages.map((file, index) => (
+              {imageStore.map((file, index) => (
                 <SelectedPhoto key={index} file={file} onClick={() => removeUploadedImage(index)} />
               ))}
             </div>

@@ -1,12 +1,12 @@
 import * as s from './style.css';
 
 interface SelectedPhotoProps {
-  file: File;
+  file: string;
   onClick?: () => void;
 }
 
 const SelectedPhoto = ({ file, onClick }: SelectedPhotoProps) => {
-  const imageUrl = URL.createObjectURL(file);
+  const imageUrl = file;
 
   return (
     <div className={s.Container}>
