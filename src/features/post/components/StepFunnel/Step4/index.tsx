@@ -14,7 +14,7 @@ import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 const renderChipGroup = <T extends string>(map: Record<T, string>, store: T | null, setter: (type: T) => void) => (
   <div className={c.ChipContainer}>
     {(Object.keys(map) as T[]).map(type => (
-      <Chip key={type} isSelected={store?.includes(type)} onClick={() => setter(type)}>
+      <Chip key={type} isSelected={store === type} onClick={() => setter(type)}>
         {map[type]}
       </Chip>
     ))}

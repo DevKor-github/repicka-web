@@ -6,7 +6,7 @@ import * as s from './style.css';
 import * as c from '../style.css';
 import InputField from '../../InputField';
 import CheckBtn from '../../CheckBtn';
-import { useState } from 'react';
+import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const Rental = () => {
   return (
@@ -33,10 +33,13 @@ const Rental = () => {
 };
 
 const Sale = () => {
-  const [canDeal, setCanDeal] = useState(false);
+  const store = usePostWriteStore(state => state.item.canDeal);
+  const setter = usePostWriteStore(state => state.setCanDeal);
 
   const handleCanDeal = () => {
-    setCanDeal(prev => !prev);
+    const updated = !store;
+
+    setter(updated);
   };
 
   return (
@@ -52,7 +55,7 @@ const Sale = () => {
           </div>
           <span className={s.CanDeal} onClick={handleCanDeal}>
             네고 제안 받을래요
-            <CheckBtn isSelected={canDeal} />
+            <CheckBtn isSelected={store} />
           </span>
         </div>
       </div>
@@ -61,12 +64,20 @@ const Sale = () => {
 };
 
 const Step6 = () => {
+  let isRental;
+  let isSale;
+
+  const store = usePostWriteStore(state => state.postTypes);
+
+  if (store.includes('RENTAL')) isRental = true;
+  if (store.includes('SALE')) isSale = true;
+
   return (
     <div>
       <header className={c.Head}>가격을 설정해 주세요</header>
       <div className={c.Content}>
-        <Rental />
-        <Sale />
+        {isRental && <Rental />}
+        {isSale && <Sale />}
       </div>
     </div>
   );
