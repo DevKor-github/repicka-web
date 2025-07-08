@@ -20,7 +20,7 @@ const InputField = ({ isPrice = false, width = '100%', value, onChange }: InputP
         setPrice(Number(raw).toLocaleString('ko-KR'));
       }
     }
-  });
+  }, [isPrice, value]);
 
   const handleSetPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const raw = event.target.value.replace(/,/g, '');

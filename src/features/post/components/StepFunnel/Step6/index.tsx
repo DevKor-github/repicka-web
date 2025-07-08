@@ -97,8 +97,8 @@ const Sale = () => {
 };
 
 const Step6 = () => {
-  let isRental;
-  let isSale;
+  let isRental = false;
+  let isSale = false;
 
   const store = usePostWriteStore(state => state.postTypes);
 

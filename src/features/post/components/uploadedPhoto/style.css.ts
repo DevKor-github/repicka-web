@@ -13,7 +13,7 @@ export const UploadedPhoto = css({
   backgroundColor: 'systemGray5',
 });
 
-export const CancleBtn = css({
+export const CancelBtn = css({
   top: '-0.24rem',
   right: '-0.24rem',
   position: 'absolute',
