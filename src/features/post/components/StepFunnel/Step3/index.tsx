@@ -26,9 +26,14 @@ const Step3 = () => {
   //     setter(updated);
   // }
 
-  // 입력값 상태 관리
-  const location = usePostWriteStore(state => state.item.location);
-  const setLocation = usePostWriteStore(state => state.setLocation);
+  const locationStore = usePostWriteStore(state => state.item.location);
+  const locationSetter = usePostWriteStore(state => state.setLocation);
+
+  const handleLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updated = e.target.value;
+
+    locationSetter(updated);
+  };
 
   return (
     <div>
@@ -52,7 +57,7 @@ const Step3 = () => {
         <div className={c.DetailContent}>
           <div className={c.DetailContent}>
             <span>직거래 장소를 입력해 주세요</span>
-            <InputField value={location} onChange={e => setLocation(e.target.value)} />
+            <InputField value={locationStore} onChange={handleLocation} />
           </div>
         </div>
       </div>

@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type PropsWithChildren } from 'react';
 import * as s from './style.css';
 
-interface InputProps {
+interface InputProps extends PropsWithChildren {
   isPrice?: boolean;
   width?: string;
 
-  // 외부 상태 연동용
+  // 외부 상태 연동
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -44,10 +44,6 @@ const InputField = ({ isPrice = false, width = '100%', value, onChange }: InputP
         },
       });
     }
-
-    // TODO: 현재 입력값은 string
-    // 백엔드에 보낼 때 number로 재변환하기
-    // const numericPrice = Number(price.replace(/,/g, ''));
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +58,7 @@ const InputField = ({ isPrice = false, width = '100%', value, onChange }: InputP
     <input
       className={s.Container({ isPrice })}
       style={{ width: width }}
-      value={isPrice ? price : undefined}
+      value={isPrice ? price : value}
       onChange={handleChange}
       inputMode={isPrice ? 'numeric' : 'text'}
       pattern={isPrice ? '[0-9]*' : undefined}

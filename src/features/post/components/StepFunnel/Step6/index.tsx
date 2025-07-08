@@ -9,6 +9,24 @@ import CheckBtn from '../../CheckBtn';
 import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const Rental = () => {
+  const rentalFeeStore = usePostWriteStore(state => state.rentalFee);
+  const rentalFeeSetter = usePostWriteStore(state => state.setRentalFee);
+
+  const handleRentalFee = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updated = Number(e.target.value.replace(/,/g, ''));
+
+    rentalFeeSetter(updated);
+  };
+
+  const depositStore = usePostWriteStore(state => state.deposit);
+  const depositSetter = usePostWriteStore(state => state.setDeposit);
+
+  const handleDeposit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updated = Number(e.target.value.replace(/,/g, ''));
+
+    depositSetter(updated);
+  };
+
   return (
     <div className={s.PriceContent}>
       <div className={s.PriceTypeContent}>
@@ -17,13 +35,19 @@ const Rental = () => {
           <div className={c.DetailContent}>
             <span>대여료를 입력해 주세요</span>
             <div className={s.PriceInputField}>
-              <InputField isPrice={true} width="9.375rem" />원
+              <InputField
+                isPrice={true}
+                width="9.375rem"
+                value={rentalFeeStore.toString()}
+                onChange={handleRentalFee}
+              />
+              원
             </div>
           </div>
           <div className={c.DetailContent}>
             <span>보증금을 입력해 주세요</span>
             <div className={s.PriceInputField}>
-              <InputField isPrice={true} width="9.375rem" />원
+              <InputField isPrice={true} width="9.375rem" value={depositStore.toString()} onChange={handleDeposit} />원
             </div>
           </div>
         </div>
@@ -33,13 +57,22 @@ const Rental = () => {
 };
 
 const Sale = () => {
-  const store = usePostWriteStore(state => state.item.canDeal);
-  const setter = usePostWriteStore(state => state.setCanDeal);
+  const canDealStore = usePostWriteStore(state => state.item.canDeal);
+  const canDealSetter = usePostWriteStore(state => state.setCanDeal);
+
+  const priceStore = usePostWriteStore(state => state.salePrice);
+  const priceSetter = usePostWriteStore(state => state.setSalePrice);
 
   const handleCanDeal = () => {
-    const updated = !store;
+    const updated = !canDealStore;
 
-    setter(updated);
+    canDealSetter(updated);
+  };
+
+  const handlePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updated = Number(e.target.value.replace(/,/g, ''));
+
+    priceSetter(updated);
   };
 
   return (
@@ -50,12 +83,12 @@ const Sale = () => {
           <div className={c.DetailContent}>
             <span>판매 금액을 입력해 주세요</span>
             <div className={s.PriceInputField}>
-              <InputField isPrice={true} width="9.375rem" />원
+              <InputField isPrice={true} width="9.375rem" value={priceStore.toString()} onChange={handlePrice} />원
             </div>
           </div>
           <span className={s.CanDeal} onClick={handleCanDeal}>
             네고 제안 받을래요
-            <CheckBtn isSelected={store} />
+            <CheckBtn isSelected={canDealStore} />
           </span>
         </div>
       </div>

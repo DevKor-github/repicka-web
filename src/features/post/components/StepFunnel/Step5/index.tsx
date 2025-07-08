@@ -11,20 +11,50 @@ const Step5 = () => {
   const imageStore = usePostWriteStore(state => state.images);
   const imageSetter = usePostWriteStore(state => state.setImages);
 
+  // onChange에
+  const titleStore = usePostWriteStore(state => state.item.title);
+  const titleSetter = usePostWriteStore(state => state.setTitle);
+
+  const descStore = usePostWriteStore(state => state.item.description);
+  const descSetter = usePostWriteStore(state => state.setDescription);
+
+  // s3로 보내는 건 완료 버튼 눌렀을 때고, zustand에는 미리보기 이미지만 저장해 두기
+  // 근데 그럼 나중에 백엔드로 보낼 때 이미지 부분은 또 따로 로직을 파야겠네 흠
+
   const handleImageUploaded = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (!files || files.length === 0) {
-      return;
-    }
+    if (!files || files.length === 0) return;
 
     const fileArray = Array.from(files);
-    const imageUrls = fileArray.map(file => URL.createObjectURL(file));
-    imageSetter([...imageStore, ...imageUrls]);
+    const previewUrls: string[] = [];
+
+    fileArray.forEach(file => {
+      const previewUrl = URL.createObjectURL(file); // 브라우저 미리보기용 URL
+      previewUrls.push(previewUrl);
+    });
+
+    let updated = [...imageStore];
+
+    previewUrls.forEach(url => {
+      updated = [...updated, url];
+      imageSetter(updated);
+    });
   };
 
   const removeUploadedImage = (index: number) => {
-    // 원하는 index를 받아서, store에서 해당 아이템 제외
     imageSetter(imageStore.filter((_, i) => i !== index));
+  };
+
+  const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updated = e.target.value;
+
+    titleSetter(updated);
+  };
+
+  const handleDesc = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const updated = e.target.value;
+
+    descSetter(updated);
   };
 
   return (
@@ -33,12 +63,12 @@ const Step5 = () => {
       <div className={c.Content}>
         <div className={c.DetailContent}>
           상품명을 입력해 주세요
-          <InputField />
+          <InputField onChange={handleTitle} value={titleStore}></InputField>
         </div>
         <div className={c.DetailContent}>
           상품 설명을 입력해 주세요
           <div className={s.ProductDesc}>
-            <MultilineInputfield />
+            <MultilineInputfield onChange={handleDesc} value={descStore} />
             <div className={s.SelectPhotoContainer}>
               <UploadFile onChange={handleImageUploaded} />
               {imageStore.map((file, index) => (
