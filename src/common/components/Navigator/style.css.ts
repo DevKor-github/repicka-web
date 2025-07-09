@@ -5,6 +5,7 @@ export const Container = css({
   bottom: 0,
   left: 0,
   right: 0,
+  height: 'NAVIGATOR_HEIGHT',
   zIndex: 'navigator', // Token으로 정의해뒀삽니다. 루트의 panda.config.ts 참고. 이거 덮고 싶으면 더 위에 컴포넌트 만들면 됨
   width: 'full', // 100%라는 뜻 (Panda CSS에서만 쓰이는 키워드임)
   display: 'flex',

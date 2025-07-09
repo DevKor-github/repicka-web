@@ -7,7 +7,6 @@ import WriteButton from '@/features/home/components/WriteButton';
 
 import * as s from './style.css';
 
-import { HOME_HEADER_HEIGHT_PX, NAVIGATOR_HEIGHT_PX } from '@/libs/constants/sizes';
 import Banner from '@/features/home/components/Banner';
 
 const HomePage = () => {
@@ -16,16 +15,11 @@ const HomePage = () => {
   return (
     <SafeArea>
       <MainTopBar />
-      <div
-        className={s.Container}
-        style={{
-          height: `calc(100% - ${NAVIGATOR_HEIGHT_PX}px - ${HOME_HEADER_HEIGHT_PX}px)`,
-        }}
-      >
+      <div className={s.Container}>
         <Banner />
         <RecentList />
       </div>
-      <div className={s.WriteButtonContainer} style={{ bottom: `calc(1.06rem + ${NAVIGATOR_HEIGHT_PX}px)` }}>
+      <div className={s.WriteButtonContainer}>
         <WriteButton onClick={() => navigate('/post')} />
       </div>
     </SafeArea>

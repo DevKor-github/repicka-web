@@ -1,3 +1,0 @@
-export const NAVIGATOR_HEIGHT_PX = 97;
-export const HOME_HEADER_HEIGHT_PX = 52;
-export const DETAIL_PAGE_NAVIGATOR_HEIGHT_REM = 6.75;

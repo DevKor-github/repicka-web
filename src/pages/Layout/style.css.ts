@@ -11,5 +11,4 @@ export const FlexContainer = css({
   alignItems: 'stretch',
 });
 
-// TODO: maxW 검토
-export const RelativeContainer = css({ position: 'relative', width: 'full', height: 'full', maxW: '700px' });
+export const RelativeContainer = css({ position: 'relative', width: 'full', height: 'full', maxW: 'MAX_WIDTH' });

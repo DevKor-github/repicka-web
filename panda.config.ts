@@ -1,5 +1,12 @@
 import { defineConfig } from '@pandacss/dev';
 
+const PANDA_CSS_CONSTANTS = {
+  NAVIGATOR_HEIGHT: { value: '97px' },
+  HOME_HEADER_HEIGHT: { value: '52px' },
+  DETAIL_PAGE_NAVIGATOR_HEIGHT: { value: '6.75rem' },
+  MAX_WIDTH: { value: '700px' },
+};
+
 export default defineConfig({
   // Whether to use css reset
   preflight: true,
@@ -29,9 +36,14 @@ export default defineConfig({
           '80': { value: 'rgba(255, 255, 255, 0.80)' },
           '54': { value: 'rgba(255, 255, 255, 0.54)' },
         },
+        lineHeights: {
+          normal: { value: '1.2' },
+        },
         zIndex: {
           navigator: { value: 500 },
         },
+        sizes: PANDA_CSS_CONSTANTS,
+        spacing: PANDA_CSS_CONSTANTS,
       },
     },
   },
