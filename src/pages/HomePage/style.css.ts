@@ -1,6 +1,7 @@
 import { css } from '@styled-system/css';
 
 export const Container = css({
+  height: 'calc(100% - {sizes.NAVIGATOR_HEIGHT} - {sizes.HOME_HEADER_HEIGHT})',
   overflowY: 'auto',
   paddingBottom: '1rem',
   display: 'flex',
@@ -13,4 +14,5 @@ export const Container = css({
 export const WriteButtonContainer = css({
   position: 'absolute',
   right: '0.99rem',
+  bottom: 'calc(1.06rem + {spacing.NAVIGATOR_HEIGHT})',
 });
