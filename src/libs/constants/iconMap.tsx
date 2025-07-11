@@ -1,9 +1,6 @@
-import type { PostType, ProductType, TradeType } from '@/libs/types/post';
+import type { ProductType, TradeType, TransactionType } from '@/libs/types/item';
 
-export const ICON_MAP: Record<
-  Exclude<ProductType, 'HOCKEY'> | PostType | Exclude<TradeType, 'DIRECT_AND_PARCEL'>,
-  string
-> = {
+export const ICON_MAP: Record<Exclude<ProductType, 'HOCKEY'> | TransactionType | TradeType, string> = {
   SOCCER: 'mgc_football_fill',
   BASKETBALL: 'mgc_basketball_fill',
   BASEBALL: 'mgc_baseball_fill',
@@ -12,7 +9,7 @@ export const ICON_MAP: Record<
   ACCESSORY: 'mgc_scarf_fill',
   VINTAGE: 'mgc_beard_fill',
   REFORM: 'mgc_scissors_2_fill',
-  OTHER: 'mgc_coathanger_fill',
+  PRODUCT_OTHER: 'mgc_coathanger_fill',
   RENTAL: 'mgc_basket_fill',
   SALE: 'mgc_wallet_4_fill',
   DIRECT: 'mgc_group_fill',

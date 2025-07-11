@@ -1,15 +1,15 @@
-import PostCard from '@/features/home/components/PostCard';
-import { useGetPostList } from '@/features/home/hooks/apis/useGetPostList';
-
 import * as s from './style.css';
 
+import { useGetItemList } from '@/features/home/hooks/apis/useGetItemList';
+import ItemCard from '@/features/home/components/ItemCard';
+
 const RecentList = () => {
-  const { data: postList } = useGetPostList();
+  const { data: itemList } = useGetItemList();
 
   return (
     <div className={s.Wrapper}>
       <h2 className={s.Title}>최신 상품</h2>
-      <div className={s.PostList}>{postList?.map(post => <PostCard key={post.id} data={post} />)}</div>
+      <div className={s.ItemList}>{itemList?.map(item => <ItemCard key={item.itemId} data={item} />)}</div>
     </div>
   );
 };

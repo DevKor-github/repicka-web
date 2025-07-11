@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import * as s from './style.css';
 import TypeCard from '../TypeCard';
-import type { PostType } from '@/libs/types/post';
+import type { TransactionType } from '@/libs/types/item';
 import Token from '@/common/components/Token';
 
 const Step1 = () => {
-  const [selectedTypes, setSelectedTypes] = useState<PostType[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<TransactionType[]>([]);
 
-  const handleSelectType = (type: PostType) => {
+  const handleSelectType = (type: TransactionType) => {
     setSelectedTypes(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
   };
 

@@ -7,7 +7,7 @@ import {
   type QualityType,
   type SizeType,
   type TradeType,
-} from '@/libs/types/post';
+} from '@/libs/types/item';
 
 interface Props {
   itemInfo: {

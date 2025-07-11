@@ -2,7 +2,7 @@ import Token from '@/common/components/Token';
 import * as s from './style.css';
 
 import TagOptionBtn from '@/common/components/TagOptionBtn';
-import { PRODUCT_TYPES_MAP, type ProductType } from '@/libs/types/post';
+import { PRODUCT_TYPES_MAP, type ProductType } from '@/libs/types/item';
 import { useState } from 'react';
 
 const Step2 = () => {

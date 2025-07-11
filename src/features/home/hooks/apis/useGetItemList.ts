@@ -1,33 +1,37 @@
 import client from '@/common/utils/client';
-import type { PostInterface } from '@/libs/types/post';
+import type { ItemInterface } from '@/features/home/types';
 import { useQuery } from '@tanstack/react-query';
 
-export interface PostListResponse {
+export interface ItemListResponse {
   message: string;
-  data: PostInterface[];
+  data: ItemInterface[];
 }
 
-const MOCK_DATA: PostListResponse = {
+const MOCK_DATA: ItemListResponse = {
   message: 'success',
   data: [
     {
-      id: 1,
+      itemId: 1,
       available: true,
       chatRoomCount: 5,
       likeCount: 12,
-      postType: 'RENTAL',
-      price: 10000,
+      transactionTypes: ['RENTAL'],
+      rentalFee: 10000,
+      salePrice: 10000,
+      deposit: 10000,
       title: '빈티지 야구 레플리카(1920년도)',
       productTypes: ['BASEBALL', 'REFORM'],
       thumbnail: 'https://crimsonstore.co.kr/web/product/medium/202412/6a5424bbd03c17f28b375a06a31fd4de.jpg',
     },
     {
-      id: 2,
+      itemId: 2,
       available: true,
       chatRoomCount: 0,
       likeCount: 18,
-      postType: 'RENTAL',
-      price: 100000,
+      transactionTypes: ['RENTAL'],
+      rentalFee: 100000,
+      salePrice: 100000,
+      deposit: 100000,
       title: '빈티지 야구 레플리카(1950년도)',
       productTypes: ['BASKETBALL', 'REFORM'],
       thumbnail: 'https://crimsonstore.co.kr/web/product/medium/202412/6a5424bbd03c17f28b375a06a31fd4de.jpg',
@@ -35,16 +39,16 @@ const MOCK_DATA: PostListResponse = {
   ],
 };
 
-const getPostList = async () => {
+const getItemList = async () => {
   return MOCK_DATA;
-  const response = await client.get<PostListResponse>('/api/v1/post/search');
+  const response = await client.get<ItemListResponse>('/api/v1/item/search');
   return response.data;
 };
 
-export const useGetPostList = () => {
+export const useGetItemList = () => {
   return useQuery({
-    queryKey: ['post-list'],
-    queryFn: getPostList,
+    queryKey: ['item-list'],
+    queryFn: getItemList,
     select: data => data.data,
   });
 };

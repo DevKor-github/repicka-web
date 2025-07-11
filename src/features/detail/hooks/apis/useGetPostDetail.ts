@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import client from '@/common/utils/client';
-import type { ColorType, PostType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/post';
+import type { ColorType, TransactionType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/item';
 import type { UserInterface } from '@/libs/types/user';
 
 export interface PostDetailResponse {
@@ -20,7 +20,7 @@ export interface PostDetailResponse {
       canDeal: boolean;
       saleDate: null; // TODO: 날짜 타입 어캐 내려오는지 확인 필요
     };
-    postType: PostType;
+    postType: TransactionType;
     price: number;
     deposit: number;
     images: string[];
