@@ -1,9 +1,14 @@
+import { useSearchParams } from 'react-router';
+
+import * as s from './style.css';
+
 import SafeArea from '@/common/components/SafeArea';
 import SearchBox from '@/features/home/components/SearchBox';
+import SearchControls from '@/features/home/components/SearchControls';
 import { useGetItemList } from '@/features/home/hooks/apis/useGetItemList';
 import type { ItemOrderType } from '@/features/home/types';
 import type { ColorType, ProductType, SizeType, TradeType, TransactionType } from '@/libs/types/item';
-import { useSearchParams } from 'react-router';
+import ItemList from '@/features/home/components/ItemList';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -21,9 +26,18 @@ const SearchPage = () => {
   return (
     <>
       <SafeArea>
-        <SearchBox />
+        <div className={s.Container}>
+          <div>
+            <SearchBox />
+            <SearchControls itemCounts={121} /> {/* TODO: 검색결과 개수 받아오기 */}
+          </div>
+          {/* TODO: 길어졌을 때 제대로 스크롤 되는지, 표시되는지 확인 */}
+          <div className={s.ItemListContainer}>
+            <ItemList itemList={searchData || []} />
+          </div>
+        </div>
       </SafeArea>
-      {/* 필터 */}
+      {/* TODO: 필터 */}
     </>
   );
 };
