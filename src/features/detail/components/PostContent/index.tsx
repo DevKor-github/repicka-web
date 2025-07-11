@@ -1,31 +1,12 @@
 import Token from '@/common/components/Token';
 import * as s from './style.css';
-import {
-  PRODUCT_TYPES_MAP,
-  type ColorType,
-  type ProductType,
-  type QualityType,
-  type SizeType,
-  type TradeType,
-} from '@/libs/types/item';
+import { PRODUCT_TYPES_MAP } from '@/libs/types/item';
+import type { ItemInfoInterface } from '@/features/detail/types';
 
 interface Props {
-  itemInfo: {
-    productTypes: ProductType[];
-    title: string;
-    description: string;
-    size: SizeType;
-    color: ColorType;
-    quality: QualityType;
-    location: string;
-    tradeMethod: TradeType;
-    canDeal: boolean;
-    saleDate: null;
-  };
-  price: number;
-  deposit: number;
+  itemInfo: ItemInfoInterface;
 }
-const PostContent = ({ itemInfo, price, deposit }: Props) => {
+const PostContent = ({ itemInfo }: Props) => {
   return (
     <div className={s.Container}>
       <div className={s.TextContainer}>
@@ -35,12 +16,12 @@ const PostContent = ({ itemInfo, price, deposit }: Props) => {
             {/* TODO: 판매글인 경우 어캐 보일까 */}
             <div className={s.PriceItem}>
               <label>대여료</label>
-              <p>{price.toLocaleString()}원</p>
+              <p>{itemInfo.rentalFee.toLocaleString()}원</p>
             </div>
-            {deposit !== 0 && (
+            {itemInfo.deposit !== 0 && (
               <div className={s.PriceItem}>
                 <label>보증금</label>
-                <p>{deposit.toLocaleString()}원</p>
+                <p>{itemInfo.deposit.toLocaleString()}원</p>
               </div>
             )}
           </div>

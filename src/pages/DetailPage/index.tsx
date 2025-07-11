@@ -2,15 +2,15 @@ import { useParams } from 'react-router';
 
 import * as s from './style.css';
 
-import useGetPostDetail from '@/features/detail/hooks/apis/useGetPostDetail';
 import DetailHeader from '@/features/detail/components/DetailHeader';
 import ImageContainer from '@/features/detail/components/ImageContainer';
 import UserInfo from '@/features/detail/components/UserInfo';
 import PostContent from '@/features/detail/components/PostContent';
+import useGetItemDetail from '@/features/detail/hooks/apis/useGetItemDetail';
 
 const DetailPage = () => {
   const { id } = useParams();
-  const { data, isLoading } = useGetPostDetail(Number(id));
+  const { data, isLoading } = useGetItemDetail(Number(id));
 
   // TODO: 더 예쁜 보여주기
   if (isLoading) return <div>Loading...</div>;
@@ -20,10 +20,10 @@ const DetailPage = () => {
     <div className={s.Container}>
       <DetailHeader />
       <div className={s.ScrollContainer}>
-        <ImageContainer images={data.images} />
+        <ImageContainer images={data.itemInfo.images} />
         <div className={s.ContentContainer}>
-          <UserInfo userData={data.writer} />
-          <PostContent itemInfo={data.itemInfo} price={data.price} deposit={data.deposit} />
+          <UserInfo userData={data.owner} />
+          <PostContent itemInfo={data.itemInfo} />
         </div>
       </div>
     </div>
