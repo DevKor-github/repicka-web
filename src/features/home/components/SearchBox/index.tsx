@@ -10,7 +10,12 @@ const SearchBox = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearchParams({ keyword }, { replace: true });
+    if (keyword === '') {
+      searchParams.delete('keyword');
+    } else {
+      searchParams.set('keyword', keyword);
+    }
+    setSearchParams(searchParams, { replace: true });
   };
 
   return (

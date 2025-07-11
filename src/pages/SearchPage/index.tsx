@@ -27,7 +27,7 @@ const SearchPage = () => {
     <>
       <SafeArea>
         <div className={s.Container}>
-          <div>
+          <div className={s.SearchControlsContainer}>
             <SearchBox />
             <SearchControls itemCounts={121} /> {/* TODO: 검색결과 개수 받아오기 */}
           </div>
