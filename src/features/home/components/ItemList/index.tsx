@@ -7,6 +7,12 @@ interface Props {
   itemList: ItemInterface[];
 }
 const ItemList = ({ itemList }: Props) => {
-  return <div className={s.Container}>{itemList?.map(item => <ItemCard key={item.itemId} data={item} />)}</div>;
+  return (
+    <div className={s.Container}>
+      {itemList.map(item => (
+        <ItemCard key={item.itemId} data={item} />
+      ))}
+    </div>
+  );
 };
 export default ItemList;

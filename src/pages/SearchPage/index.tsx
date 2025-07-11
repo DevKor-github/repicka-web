@@ -31,7 +31,6 @@ const SearchPage = () => {
             <SearchBox />
             <SearchControls itemCounts={121} /> {/* TODO: 검색결과 개수 받아오기 */}
           </div>
-          {/* TODO: 길어졌을 때 제대로 스크롤 되는지, 표시되는지 확인 */}
           <div className={s.ItemListContainer}>
             <ItemList itemList={searchData || []} />
           </div>
