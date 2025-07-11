@@ -13,7 +13,7 @@ const MainTopBar = () => {
       </Link>
       <div className={s.Menu}>
         {/* TODO: 링크 연결하기 */}
-        <button className="mgc_search_2_fill" />
+        <Link className="mgc_search_2_fill" to={'/search'} />
         <button className="mgc_chat_3_fill" />
         <button className="mgc_notification_fill" />
       </div>

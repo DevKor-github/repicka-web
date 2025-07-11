@@ -1,21 +1,33 @@
-import client from '@/common/utils/client';
-import type { ItemInterface } from '@/features/home/types';
 import { useQuery } from '@tanstack/react-query';
 
+import client from '@/common/utils/client';
+import type { ItemInterface, ItemOrderType } from '@/features/home/types';
+import type { ColorType, ProductType, SizeType, TradeType, TransactionType } from '@/libs/types/item';
+
+export interface ItemListRequest {
+  keyword?: string;
+  productTypes?: ProductType[];
+  transactionTypes?: TransactionType[];
+  sizes?: SizeType[];
+  colors?: ColorType[];
+  tradeMethods?: TradeType[];
+  date?: string;
+  itemOrder?: ItemOrderType;
+}
 export interface ItemListResponse {
   message: string;
   data: { items: ItemInterface[]; totalCount: number };
 }
 
-const getItemList = async () => {
-  const response = await client.get<ItemListResponse>('/api/v1/item/search');
+const getItemList = async (params?: ItemListRequest) => {
+  const response = await client.get<ItemListResponse>('/api/v1/item/search', { params });
   return response.data;
 };
 
-export const useGetItemList = () => {
+export const useGetItemList = (params?: ItemListRequest) => {
   return useQuery({
-    queryKey: ['item-list'],
-    queryFn: getItemList,
+    queryKey: ['item-list', params],
+    queryFn: () => getItemList(params),
     select: data => data.data,
   });
 };
