@@ -3,7 +3,7 @@ import * as s from './style.css';
 import * as c from '../style.css';
 
 import TagOptionBtn from '@/common/components/TagOptionBtn';
-import { PRODUCT_TYPES_MAP, type ProductType } from '@/libs/types/post';
+import { PRODUCT_TYPES_MAP, type ProductType } from '@/libs/types/item';
 import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const Step2 = () => {

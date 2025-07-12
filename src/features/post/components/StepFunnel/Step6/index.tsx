@@ -94,7 +94,7 @@ const Sale = () => {
 };
 
 const Step6 = () => {
-  const store = usePostWriteStore(state => state.postTypes);
+  const store = usePostWriteStore(state => state.transactionTypes);
   const isRental = store.includes('RENTAL');
   const isSale = store.includes('SALE');
 

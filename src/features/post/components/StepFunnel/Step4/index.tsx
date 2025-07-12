@@ -1,7 +1,7 @@
 import Chip from '@/common/components/Chip';
 import * as c from '../style.css';
 
-import { COLOR_TYPES_MAP, QUALITY_TYPES_MAP, SIZE_TYPES_MAP } from '@/libs/types/post';
+import { COLOR_TYPES_MAP, QUALITY_TYPES_MAP, SIZE_TYPES_MAP } from '@/libs/types/item';
 import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const renderChipGroup = <T extends string>(map: Record<T, string>, store: T | null, setter: (type: T) => void) => (

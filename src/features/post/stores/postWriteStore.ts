@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { PostPayload } from '../types/post';
-import type { ColorType, PostType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/post';
+import type { ColorType, TransactionType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/item';
 
 interface PostWriteStore extends PostPayload {
   setProductTypes: (productTypes: ProductType[]) => void;
@@ -12,7 +12,7 @@ interface PostWriteStore extends PostPayload {
   setLocation: (location: string) => void;
   setTradeMethod: (tradeMethod: TradeType) => void;
   setCanDeal: (canDeal: boolean) => void;
-  setPostTypes: (postTypes: PostType[]) => void;
+  setTransactionTypes: (transactionTypes: TransactionType[]) => void;
   setRentalFee: (rentalFee: number) => void;
   setSalePrice: (salePrice: number) => void;
   setDeposit: (deposit: number) => void;
@@ -34,7 +34,7 @@ export const usePostWriteStore = create<PostWriteStore>((set, get) => ({
     tradeMethod: '' as TradeType,
     canDeal: false,
   },
-  postTypes: [],
+  transactionTypes: [],
   rentalFee: 0,
   salePrice: 0,
   deposit: 0,
@@ -76,15 +76,15 @@ export const usePostWriteStore = create<PostWriteStore>((set, get) => ({
     set(state => ({
       item: { ...state.item, canDeal },
     })),
-  setPostTypes: postTypes => set({ postTypes }),
+  setTransactionTypes: transactionTypes => set({ transactionTypes }),
   setRentalFee: rentalFee => set({ rentalFee }),
   setSalePrice: salePrice => set({ salePrice }),
   setDeposit: deposit => set({ deposit }),
   setImages: images => set({ images }),
 
   getPostPayload: () => {
-    const { item, postTypes, rentalFee, salePrice, deposit, images } = get();
-    return { item, postTypes, rentalFee, salePrice, deposit, images };
+    const { item, transactionTypes, rentalFee, salePrice, deposit, images } = get();
+    return { item, transactionTypes, rentalFee, salePrice, deposit, images };
   },
 
   reset: () =>
@@ -100,7 +100,7 @@ export const usePostWriteStore = create<PostWriteStore>((set, get) => ({
         tradeMethod: '' as TradeType,
         canDeal: false,
       },
-      postTypes: [],
+      transactionTypes: [],
       rentalFee: 0,
       salePrice: 0,
       deposit: 0,
