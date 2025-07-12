@@ -41,4 +41,8 @@ export const SearchInput = css({
   fontWeight: 500,
   lineHeight: 'normal',
   letterSpacing: '-0.035rem',
+  _placeholder: {
+    color: '54',
+    fontWeight: 500,
+  },
 });

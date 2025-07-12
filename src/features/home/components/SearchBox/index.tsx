@@ -23,7 +23,12 @@ const SearchBox = () => {
       <button type="button" className={`mgc_left_line ${s.BackButton}`} onClick={() => navigate(-1)} />
       <div className={s.SearchArea}>
         <span className={`mgc_search_2_fill ${s.SearchIcon}`} />
-        <input className={s.SearchInput} value={keyword} onChange={e => setKeyword(e.target.value)} />
+        <input
+          className={s.SearchInput}
+          value={keyword}
+          onChange={e => setKeyword(e.target.value)}
+          placeholder="상품 및 태그 검색"
+        />
       </div>
     </form>
   );
