@@ -12,6 +12,7 @@ interface RentalStore {
   setDeposit: (deposit: number) => void;
 
   isBtnValid: () => void;
+  reset: () => void;
 }
 
 export const useRentalStore = create<RentalStore>((set, get) => ({
@@ -24,6 +25,13 @@ export const useRentalStore = create<RentalStore>((set, get) => ({
     const { rentalFee, deposit } = get();
     return rentalFee === 0 || deposit === 0;
   },
+
+  reset: () => {
+    set({
+      rentalFee: 0,
+      deposit: 0,
+    });
+  },
 }));
 
 interface SaleStore {
@@ -34,6 +42,7 @@ interface SaleStore {
   setCanDeal: (canDeal: boolean) => void;
 
   isBtnValid: () => void;
+  reset: () => void;
 }
 
 export const useSaleStore = create<SaleStore>((set, get) => ({
@@ -45,5 +54,12 @@ export const useSaleStore = create<SaleStore>((set, get) => ({
   isBtnValid: () => {
     const { salePrice } = get();
     return salePrice !== 0;
+  },
+
+  reset: () => {
+    set({
+      salePrice: 0,
+      canDeal: false,
+    });
   },
 }));

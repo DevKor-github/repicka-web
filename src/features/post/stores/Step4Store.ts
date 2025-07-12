@@ -11,6 +11,7 @@ interface Step4Store {
   setQuality: (quality: Quality) => void;
 
   isBtnValid: () => void;
+  reset: () => void;
 }
 
 export const useStep4Store = create<Step4Store>((set, get) => ({
@@ -25,5 +26,13 @@ export const useStep4Store = create<Step4Store>((set, get) => ({
   isBtnValid: () => {
     const { size, color, quality } = get();
     return size.trim() !== '' && color.trim() !== '' && quality.trim() !== '';
+  },
+
+  reset: () => {
+    set({
+      size: '' as Size,
+      color: '' as Color,
+      quality: '' as Quality,
+    });
   },
 }));

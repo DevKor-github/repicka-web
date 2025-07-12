@@ -5,6 +5,7 @@ const Header = () => {
   const navigator = useNavigate();
 
   const handleClose = () => {
+    // TODO: alert 띄우고, 네, 다음에 다시 쓸게요 버튼 누르면 useStoreReset(); 해주기
     navigator(-1);
   };
 

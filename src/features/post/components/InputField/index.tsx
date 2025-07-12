@@ -1,26 +1,38 @@
 import * as s from './style.css';
+import { useState } from 'react';
 
 interface InputProps<T extends number | string> {
   width?: string;
-
   value: T;
   setValue: (value: T) => void;
 }
 
 const InputField = <T extends number | string>({ value, setValue, width }: InputProps<T>) => {
-  const isNumber = typeof value === 'number'; // 부모애서 정해준 타입이 number일 때
-  const stringValue = isNumber ? (value as number).toLocaleString() : (value as string);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const isNumber = typeof value === 'number';
+  const stringValue =
+    isNumber && value === 0 && isFocused ? '' : isNumber ? (value as number).toLocaleString() : (value as string);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const raw = event.target.value;
     if (isNumber) {
-      console.log('step6이당');
-      const number = Number(raw.replace(/./g, ''));
+      const number = Number(raw.replace(/,/g, ''));
       if (isNaN(number)) return;
       setValue(number as T);
     } else {
-      console.log('step6 아니다');
       setValue(raw as T);
+    }
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    if (isNumber && e.target.value === '') {
+      setValue(0 as T);
     }
   };
 
@@ -29,10 +41,12 @@ const InputField = <T extends number | string>({ value, setValue, width }: Input
       className={s.Container({ isNumber })}
       value={stringValue}
       onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
       inputMode={isNumber ? 'numeric' : 'text'}
       pattern={isNumber ? '[0-9]*' : undefined}
-      style={{ width: width }}
-    ></input>
+      style={{ width }}
+    />
   );
 };
 

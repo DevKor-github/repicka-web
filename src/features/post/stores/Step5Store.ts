@@ -11,6 +11,7 @@ interface Step5Store {
   setImages: (images: string[]) => void;
 
   isBtnValid: () => void;
+  reset: () => void;
 }
 
 export const useStep5Store = create<Step5Store>((set, get) => ({
@@ -25,5 +26,9 @@ export const useStep5Store = create<Step5Store>((set, get) => ({
   isBtnValid: () => {
     const { title, desc, images } = get();
     return title.trim() !== '' && desc.trim() !== '' && images.length !== 0;
+  },
+
+  reset: () => {
+    set({ title: '', desc: '', images: [] });
   },
 }));

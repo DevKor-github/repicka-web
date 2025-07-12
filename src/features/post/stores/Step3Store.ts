@@ -7,6 +7,7 @@ interface Step3Store {
   setTradeMethods: (tradeMethods: TradeMethods[]) => void;
   setLocation: (location: string) => void;
   isBtnValid: () => boolean;
+  reset: () => void;
 }
 
 export const useStep3Store = create<Step3Store>((set, get) => ({
@@ -18,5 +19,9 @@ export const useStep3Store = create<Step3Store>((set, get) => ({
   isBtnValid: () => {
     const { tradeMethods, location } = get();
     return tradeMethods.length !== 0 && location.trim() !== '';
+  },
+
+  reset: () => {
+    set({ tradeMethods: [], location: '' });
   },
 }));
