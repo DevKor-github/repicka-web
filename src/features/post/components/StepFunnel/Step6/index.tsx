@@ -3,11 +3,12 @@ import * as s from './style.css';
 import * as c from '../style.css';
 import InputField from '../../InputField';
 import CheckBtn from '../../CheckBtn';
-import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
+import { useRentalStore, useSaleStore } from '@/features/post/stores/Step6Store';
+import { useStep1Store } from '@/features/post/stores/Step1store';
 
 const Rental = () => {
-  const rentalFeeStore = usePostWriteStore(state => state.rentalFee);
-  const rentalFeeSetter = usePostWriteStore(state => state.setRentalFee);
+  const rentalFeeStore = useRentalStore(state => state.rentalFee);
+  const rentalFeeSetter = useRentalStore(state => state.setRentalFee);
 
   const handleRentalFee = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updated = Number(e.target.value.replace(/,/g, ''));
@@ -15,8 +16,8 @@ const Rental = () => {
     rentalFeeSetter(updated);
   };
 
-  const depositStore = usePostWriteStore(state => state.deposit);
-  const depositSetter = usePostWriteStore(state => state.setDeposit);
+  const depositStore = useRentalStore(state => state.deposit);
+  const depositSetter = useRentalStore(state => state.setDeposit);
 
   const handleDeposit = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updated = Number(e.target.value.replace(/,/g, ''));
@@ -32,19 +33,13 @@ const Rental = () => {
           <div className={c.DetailContent}>
             <span>대여료를 입력해 주세요</span>
             <div className={s.PriceInputField}>
-              <InputField
-                isPrice={true}
-                width="9.375rem"
-                value={rentalFeeStore.toString()}
-                onChange={handleRentalFee}
-              />
-              원
+              <InputField width="9.375rem" value={rentalFeeStore} setValue={rentalFeeSetter} />원
             </div>
           </div>
           <div className={c.DetailContent}>
             <span>보증금을 입력해 주세요</span>
             <div className={s.PriceInputField}>
-              <InputField isPrice={true} width="9.375rem" value={depositStore.toString()} onChange={handleDeposit} />원
+              <InputField width="9.375rem" value={depositStore} setValue={depositSetter} />원
             </div>
           </div>
         </div>
@@ -54,11 +49,11 @@ const Rental = () => {
 };
 
 const Sale = () => {
-  const canDealStore = usePostWriteStore(state => state.item.canDeal);
-  const canDealSetter = usePostWriteStore(state => state.setCanDeal);
+  const canDealStore = useSaleStore(state => state.canDeal);
+  const canDealSetter = useSaleStore(state => state.setCanDeal);
 
-  const priceStore = usePostWriteStore(state => state.salePrice);
-  const priceSetter = usePostWriteStore(state => state.setSalePrice);
+  const priceStore = useSaleStore(state => state.salePrice);
+  const priceSetter = useSaleStore(state => state.setSalePrice);
 
   const handleCanDeal = () => {
     const updated = !canDealStore;
@@ -80,7 +75,7 @@ const Sale = () => {
           <div className={c.DetailContent}>
             <span>판매 금액을 입력해 주세요</span>
             <div className={s.PriceInputField}>
-              <InputField isPrice={true} width="9.375rem" value={priceStore.toString()} onChange={handlePrice} />원
+              <InputField width="9.375rem" value={priceStore} setValue={priceSetter} />원
             </div>
           </div>
           <span className={s.CanDeal} onClick={handleCanDeal}>
@@ -94,7 +89,7 @@ const Sale = () => {
 };
 
 const Step6 = () => {
-  const store = usePostWriteStore(state => state.transactionTypes);
+  const store = useStep1Store(state => state.transactionTypes);
   const isRental = store.includes('RENTAL');
   const isSale = store.includes('SALE');
 

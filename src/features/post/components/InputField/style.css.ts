@@ -15,7 +15,7 @@ export const Container = cva({
     lineHeight: '1.4',
   },
   variants: {
-    isPrice: {
+    isNumber: {
       true: {
         textAlign: 'end',
       },

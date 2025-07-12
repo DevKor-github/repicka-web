@@ -16,8 +16,10 @@ export const Button = cva({
     fontWeight: '500',
     lineHeight: 'normal',
     letterSpacing: '-0.05rem',
+    transition: 'background 0.3s ease-in-out',
   },
   variants: {
+    // TODO: 언제 쓰이는 건지 이름 바꾸기
     color: {
       main: {
         backgroundColor: 'main',

@@ -1,39 +1,30 @@
 import Chip from '@/common/components/Chip';
 import * as c from '../style.css';
-import { TRADE_TYPES_MAP, type TradeType } from '@/libs/types/item';
+import { TRADE_METHODS_MAP, type TradeMethods } from '@/libs/types/item';
 import Token from '@/common/components/Token';
 import InputField from '../../InputField';
-import { useState } from 'react';
-import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
+import { useStep3Store } from '@/features/post/stores/Step3Store';
 
 const Step3 = () => {
-  const [selectedTypes, setSelectedTypes] = useState<TradeType[]>([]);
+  const tradeMethodStore = useStep3Store(state => state.tradeMethods);
+  const tradeMethodSetter = useStep3Store(state => state.setTradeMethods);
 
-  const handleSelectType = (type: TradeType) => {
-    setSelectedTypes(prev => (prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]));
+  const handleSelectType = (type: TradeMethods) => {
+    const updated = tradeMethodStore.includes(type)
+      ? tradeMethodStore.filter(t => t !== type)
+      : [...tradeMethodStore, type];
+
+    tradeMethodSetter(updated);
   };
 
-  // TODO: 배열로 고쳐주면 고칠 거임
+  const locationStore = useStep3Store(state => state.location);
+  const locationSetter = useStep3Store(state => state.setLocation);
 
-  // const tradeMethodStore = usePostWriteStore(state => state.item.tradeMethod);
-  // const tradeMethodSetter = usePostWriteStore(state => state.setTradeMethod);
+  // const handleLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const updated = e.target.value;
 
-  // const handleSelectType = (type: TradeType) => {
-  //   const updated = store.includes(type)
-  //     ? store.filter(t => t !== type)
-  //     : [...store, type]
-
-  //     setter(updated);
-  // }
-
-  const locationStore = usePostWriteStore(state => state.item.location);
-  const locationSetter = usePostWriteStore(state => state.setLocation);
-
-  const handleLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const updated = e.target.value;
-
-    locationSetter(updated);
-  };
+  //   locationSetter(updated);
+  // };
 
   return (
     <div>
@@ -45,9 +36,9 @@ const Step3 = () => {
             <Token>복수 선택 가능</Token>
           </div>
           <div className={c.ChipContainer}>
-            {(Object.keys(TRADE_TYPES_MAP) as TradeType[]).map(key => (
-              <Chip key={key} isSelected={selectedTypes.includes(key)} onClick={() => handleSelectType(key)}>
-                {TRADE_TYPES_MAP[key]}
+            {(Object.keys(TRADE_METHODS_MAP) as TradeMethods[]).map(key => (
+              <Chip key={key} isSelected={tradeMethodStore.includes(key)} onClick={() => handleSelectType(key)}>
+                {TRADE_METHODS_MAP[key]}
               </Chip>
             ))}
           </div>
@@ -55,7 +46,7 @@ const Step3 = () => {
         <div className={c.DetailContent}>
           <div className={c.DetailContent}>
             <span>직거래 장소를 입력해 주세요</span>
-            <InputField value={locationStore} onChange={handleLocation} />
+            <InputField value={locationStore} setValue={locationSetter} />
           </div>
         </div>
       </div>

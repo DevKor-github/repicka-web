@@ -4,11 +4,11 @@ import * as c from '../style.css';
 
 import TagOptionBtn from '@/common/components/TagOptionBtn';
 import { PRODUCT_TYPES_MAP, type ProductType } from '@/libs/types/item';
-import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
+import { useStep2Store } from '@/features/post/stores/Step2Store';
 
 const Step2 = () => {
-  const store = usePostWriteStore(state => state.item.productTypes);
-  const setter = usePostWriteStore(state => state.setProductTypes);
+  const store = useStep2Store(state => state.productTypes);
+  const setter = useStep2Store(state => state.setProductTypes);
 
   const handleSelectType = (type: ProductType) => {
     const updated = store.includes(type) ? store.filter(t => t !== type) : [...store, type];

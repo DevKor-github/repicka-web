@@ -2,15 +2,15 @@ import * as s from './style.css';
 import * as c from '../style.css';
 import TypeCard from '../../TypeCard';
 import Token from '@/common/components/Token';
-import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 import type { TransactionType } from '@/libs/types/item';
+import { useStep1Store } from '@/features/post/stores/Step1store';
 
 const Step1 = () => {
   // zustand에 저장되어 있는 현재 상태 가져오기
-  const store = usePostWriteStore(state => state.transactionTypes);
+  const store = useStep1Store(state => state.transactionTypes);
 
   // setter 함수 가져오기 (zustand 상태 바꾸기)
-  const setter = usePostWriteStore(state => state.setTransactionTypes);
+  const setter = useStep1Store(state => state.setTransactionTypes);
 
   const handleSelectType = (type: TransactionType) => {
     const updated = store.includes(type) ? store.filter(t => t !== type) : [...store, type];

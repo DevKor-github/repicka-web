@@ -1,21 +1,18 @@
-import type { ColorType, TransactionType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/item';
+import type { Color, TransactionType, ProductType, Quality, Size, TradeMethods } from '@/libs/types/item';
 
-// TODO: 바뀐 API Request 형식에 맞춰 수정해야될거임
 export interface PostPayload {
-  item: {
-    productTypes: ProductType[];
-    size: SizeType;
-    color: ColorType;
-    quality: QualityType;
-    title: string;
-    description: string;
-    location: string;
-    tradeMethod: TradeType;
-    canDeal: boolean;
-  };
+  productTypes: ProductType[];
   transactionTypes: TransactionType[];
+  title: string;
+  description: string;
+  color: Color;
+  size: Size;
+  quality: Quality;
+  deposit: number;
   rentalFee: number;
   salePrice: number;
-  deposit: number;
+  location: string;
+  tradeMethods: TradeMethods[];
+  canDeal: boolean;
   images: string[];
 }

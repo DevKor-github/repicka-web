@@ -5,17 +5,17 @@ import * as c from '../style.css';
 
 import SelectedPhoto from '../../uploadedPhoto';
 import UploadFile from '../../UploadFile';
-import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
+import { useStep5Store } from '@/features/post/stores/Step5Store';
 
 const Step5 = () => {
-  const imageStore = usePostWriteStore(state => state.images);
-  const imageSetter = usePostWriteStore(state => state.setImages);
+  const imageStore = useStep5Store(state => state.images);
+  const imageSetter = useStep5Store(state => state.setImages);
 
-  const titleStore = usePostWriteStore(state => state.item.title);
-  const titleSetter = usePostWriteStore(state => state.setTitle);
+  const titleStore = useStep5Store(state => state.title);
+  const titleSetter = useStep5Store(state => state.setTitle);
 
-  const descStore = usePostWriteStore(state => state.item.description);
-  const descSetter = usePostWriteStore(state => state.setDescription);
+  const descStore = useStep5Store(state => state.desc);
+  const descSetter = useStep5Store(state => state.setDesc);
 
   // s3로 보내는 건 완료 버튼 눌렀을 때고, zustand에는 미리보기 이미지만 저장해 두기
   // 근데 그럼 나중에 백엔드로 보낼 때 이미지 부분은 또 따로 로직을 파야겠네 흠
@@ -58,7 +58,7 @@ const Step5 = () => {
       <div className={c.Content}>
         <div className={c.DetailContent}>
           상품명을 입력해 주세요
-          <InputField onChange={handleTitle} value={titleStore}></InputField>
+          <InputField value={titleStore} setValue={titleSetter}></InputField>
         </div>
         <div className={c.DetailContent}>
           상품 설명을 입력해 주세요
