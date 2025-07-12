@@ -1,11 +1,11 @@
 // data로 다 모으기
 
-import { useStep1Store } from '../../stores/Step1Store';
-import { useStep2Store } from '../../stores/Step2Store';
-import { useStep3Store } from '../../stores/Step3Store';
-import { useStep4Store } from '../../stores/Step4Store';
-import { useStep5Store } from '../../stores/Step5Store';
-import { useRentalStore, useSaleStore } from '../../stores/Step6Store';
+import { useStep1Store } from '../stores/Step1Store';
+import { useStep2Store } from '../stores/Step2Store';
+import { useStep3Store } from '../stores/Step3Store';
+import { useStep4Store } from '../stores/Step4Store';
+import { useStep5Store } from '../stores/Step5Store';
+import { useRentalStore, useSaleStore } from '../stores/Step6Store';
 
 export const collectPostDate = (presignedUrls: string[]) => {
   const step1 = useStep1Store.getState();
@@ -30,7 +30,7 @@ export const collectPostDate = (presignedUrls: string[]) => {
     location: step3.location,
     tradeMethods: step3.tradeMethods,
     canDeal: sale.canDeal,
-    images: presignedUrls, // TODO: presigned Url fileKey로 변경
+    images: presignedUrls,
   };
 
   return data;

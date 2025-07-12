@@ -1,5 +1,5 @@
 import client from '@/common/utils/client';
-import { collectPostDate } from './collectPostData';
+import { collectPostDate } from '../collectPostData';
 
 export const postPost = async (presignedUrls: string[]) => {
   const data = collectPostDate(presignedUrls);

@@ -40,7 +40,6 @@ const WriteLayout = () => {
       const presignedUrls = await Promise.all(files.map(file => getPresignedUrl(file)));
 
       postPost(presignedUrls);
-      console.log('api 요청 전송');
     }
   };
 
