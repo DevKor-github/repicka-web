@@ -1,3 +1,5 @@
+// data로 다 모으기
+
 import { useStep1Store } from '../../stores/Step1Store';
 import { useStep2Store } from '../../stores/Step2Store';
 import { useStep3Store } from '../../stores/Step3Store';
