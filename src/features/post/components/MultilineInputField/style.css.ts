@@ -13,4 +13,5 @@ export const Container = css({
   fontStyle: 'normal',
   fontWeight: '400',
   lineHeight: '1.4',
+  resize: 'none',
 });

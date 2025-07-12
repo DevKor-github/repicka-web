@@ -1,11 +1,11 @@
 import Header from './header';
 import Navigator from './navigator';
-import Step1 from '@/features/post/components/StepFunnel/Step1/index';
-import Step2 from '@/features/post/components/StepFunnel/Step2/index';
-import Step3 from '@/features/post/components/StepFunnel/Step3//index';
-import Step4 from '@/features/post/components/StepFunnel/Step4/index';
-import Step5 from '@/features/post/components/StepFunnel/Step5/index';
-import Step6 from '@/features/post/components/StepFunnel/Step6/index';
+import Step1 from '@/features/post/components/StepFunnel/Step1';
+import Step2 from '@/features/post/components/StepFunnel/Step2';
+import Step3 from '@/features/post/components/StepFunnel/Step3';
+import Step4 from '@/features/post/components/StepFunnel/Step4';
+import Step5 from '@/features/post/components/StepFunnel/Step5';
+import Step6 from '@/features/post/components/StepFunnel/Step6';
 import { useState } from 'react';
 
 import * as s from './style.css';
@@ -33,14 +33,16 @@ const WriteLayout = () => {
     <div className={s.entireLayout}>
       <Header />
       <div className={s.innerPage}>{steps[step - 1]}</div>
-      <Navigator
-        totalSteps={MAX_STEP}
-        currentStep={step}
-        goNext={goNext}
-        goPrev={goPrev}
-        isFirst={isFirst}
-        isLast={isLast}
-      />
+      <div className={s.Navigator}>
+        <Navigator
+          totalSteps={MAX_STEP}
+          currentStep={step}
+          goNext={goNext}
+          goPrev={goPrev}
+          isFirst={isFirst}
+          isLast={isLast}
+        />
+      </div>
     </div>
   );
 };

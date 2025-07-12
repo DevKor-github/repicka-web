@@ -1,14 +1,7 @@
 import Chip from '@/common/components/Chip';
 import * as c from '../style.css';
 
-import {
-  COLOR_TYPES_MAP,
-  QUALITY_TYPES_MAP,
-  SIZE_TYPES_MAP,
-  type ColorType,
-  type QualityType,
-  type SizeType,
-} from '@/libs/types/post';
+import { COLOR_TYPES_MAP, QUALITY_TYPES_MAP, SIZE_TYPES_MAP } from '@/libs/types/post';
 import { usePostWriteStore } from '@/features/post/stores/postWriteStore';
 
 const renderChipGroup = <T extends string>(map: Record<T, string>, store: T | null, setter: (type: T) => void) => (
@@ -28,15 +21,15 @@ const handleSelectType = <T extends string>(setter: (value: T) => void) => {
 const Step4 = () => {
   const sizeStore = usePostWriteStore(state => state.item.size);
   const sizeSetter = usePostWriteStore(state => state.setSizeType);
-  const handleSelectSizeType = handleSelectType<SizeType>(sizeSetter);
+  const handleSelectSizeType = handleSelectType(sizeSetter);
 
   const colorStore = usePostWriteStore(state => state.item.color);
   const colorSetter = usePostWriteStore(state => state.setColorType);
-  const handleSelectColorType = handleSelectType<ColorType>(colorSetter);
+  const handleSelectColorType = handleSelectType(colorSetter);
 
   const qualityStore = usePostWriteStore(state => state.item.quality);
   const qualitySetter = usePostWriteStore(state => state.setQuality);
-  const handleSelectQualityType = handleSelectType<QualityType>(qualitySetter);
+  const handleSelectQualityType = handleSelectType(qualitySetter);
 
   return (
     <div>

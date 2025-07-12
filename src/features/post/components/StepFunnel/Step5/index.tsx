@@ -11,7 +11,6 @@ const Step5 = () => {
   const imageStore = usePostWriteStore(state => state.images);
   const imageSetter = usePostWriteStore(state => state.setImages);
 
-  // onChange에
   const titleStore = usePostWriteStore(state => state.item.title);
   const titleSetter = usePostWriteStore(state => state.setTitle);
 
@@ -33,12 +32,8 @@ const Step5 = () => {
       previewUrls.push(previewUrl);
     });
 
-    let updated = [...imageStore];
-
-    previewUrls.forEach(url => {
-      updated = [...updated, url];
-      imageSetter(updated);
-    });
+    const updated = [...imageStore, ...previewUrls];
+    imageSetter(updated);
   };
 
   const removeUploadedImage = (index: number) => {

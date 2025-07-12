@@ -1,6 +1,3 @@
-// TODO: 판매인지, 대여인지, 판매 및 대여인지 구분
-// TODO: 각 인풋에 서로 다른 상태값 부여
-
 import Token from '@/common/components/Token';
 import * as s from './style.css';
 import * as c from '../style.css';
@@ -97,13 +94,9 @@ const Sale = () => {
 };
 
 const Step6 = () => {
-  let isRental = false;
-  let isSale = false;
-
   const store = usePostWriteStore(state => state.postTypes);
-
-  if (store.includes('RENTAL')) isRental = true;
-  if (store.includes('SALE')) isSale = true;
+  const isRental = store.includes('RENTAL');
+  const isSale = store.includes('SALE');
 
   return (
     <div>
