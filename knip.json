@@ -1,0 +1,17 @@
+{
+  "entry": [
+    "src/main.{js,ts,jsx,tsx}",
+    "panda.config.ts"
+  ],
+  "project": [
+    "**/*.{js,ts,jsx,tsx}"
+  ],
+  "paths": {
+    "@/*": [
+      "./src/*"
+    ],
+    "@styled-system/*": [
+      "./styled-system/*"
+    ]
+  }
+}

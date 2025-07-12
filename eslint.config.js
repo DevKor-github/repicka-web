@@ -5,6 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import prettier from 'eslint-plugin-prettier';
+import tanstackPlugin from '@tanstack/eslint-plugin-query';
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -19,6 +20,7 @@ export default tseslint.config(
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      '@tanstack/query': tanstackPlugin,
       prettier,
     },
     rules: {
@@ -37,6 +39,10 @@ export default tseslint.config(
         },
       ],
       eqeqeq: ['error', 'always'],
+      '@tanstack/query/exhaustive-deps': 'warn',
+      '@tanstack/query/stable-query-client': 'warn',
+      '@tanstack/query/no-deprecated-options': 'warn',
+      '@tanstack/query/prefer-query-object-syntax': 'warn',
     },
   },
 );
