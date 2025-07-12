@@ -4,26 +4,18 @@ import * as c from '../style.css';
 import InputField from '../../InputField';
 import CheckBtn from '../../CheckBtn';
 import { useRentalStore, useSaleStore } from '@/features/post/stores/Step6Store';
-import { useStep1Store } from '@/features/post/stores/Step1store';
+
+interface Props {
+  isRental: boolean;
+  isSale: boolean;
+}
 
 const Rental = () => {
   const rentalFeeStore = useRentalStore(state => state.rentalFee);
   const rentalFeeSetter = useRentalStore(state => state.setRentalFee);
 
-  const handleRentalFee = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const updated = Number(e.target.value.replace(/,/g, ''));
-
-    rentalFeeSetter(updated);
-  };
-
   const depositStore = useRentalStore(state => state.deposit);
   const depositSetter = useRentalStore(state => state.setDeposit);
-
-  const handleDeposit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const updated = Number(e.target.value.replace(/,/g, ''));
-
-    depositSetter(updated);
-  };
 
   return (
     <div className={s.PriceContent}>
@@ -61,12 +53,6 @@ const Sale = () => {
     canDealSetter(updated);
   };
 
-  const handlePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const updated = Number(e.target.value.replace(/,/g, ''));
-
-    priceSetter(updated);
-  };
-
   return (
     <div className={s.PriceContent}>
       <div className={s.PriceTypeContent}>
@@ -88,11 +74,7 @@ const Sale = () => {
   );
 };
 
-const Step6 = () => {
-  const store = useStep1Store(state => state.transactionTypes);
-  const isRental = store.includes('RENTAL');
-  const isSale = store.includes('SALE');
-
+const Step6 = ({ isRental, isSale }: Props) => {
   return (
     <div>
       <header className={c.Head}>가격을 설정해 주세요</header>

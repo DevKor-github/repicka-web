@@ -9,13 +9,18 @@ import Step6 from '@/features/post/components/StepFunnel/Step6';
 import { useState } from 'react';
 
 import * as s from './style.css';
+import { useStep1Store } from '../../stores/Step1store';
 
 const MAX_STEP = 6;
 
-const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
-
 const WriteLayout = () => {
   const [step, setStep] = useState(1);
+
+  const store = useStep1Store(state => state.transactionTypes);
+  const isRental = store.includes('RENTAL');
+  const isSale = store.includes('SALE');
+
+  const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 isRental={isRental} isSale={isSale} />];
 
   const isFirst = step === 1;
   const isLast = step === MAX_STEP;
@@ -41,6 +46,8 @@ const WriteLayout = () => {
           goPrev={goPrev}
           isFirst={isFirst}
           isLast={isLast}
+          isRental={isRental}
+          isSale={isSale}
         />
       </div>
     </div>
