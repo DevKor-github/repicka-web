@@ -20,6 +20,7 @@ export default tseslint.config(
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      '@tanstack/query': tanstackPlugin,
       prettier,
     },
     rules: {
@@ -38,6 +39,10 @@ export default tseslint.config(
         },
       ],
       eqeqeq: ['error', 'always'],
+      '@tanstack/query/exhaustive-deps': 'warn',
+      '@tanstack/query/stable-query-client': 'warn',
+      '@tanstack/query/no-deprecated-options': 'warn',
+      '@tanstack/query/prefer-query-object-syntax': 'warn',
     },
   },
 );
