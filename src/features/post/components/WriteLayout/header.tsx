@@ -1,21 +1,33 @@
-import { useNavigate } from 'react-router';
 import * as s from './style.css';
+import CustomAlertExample from '../Alert';
+import { useState } from 'react';
+import { useStep1Store } from '../../stores/Step1Store';
+import { useNavigate } from 'react-router';
 
 const Header = () => {
+  const [showAlert, setShowAlert] = useState(false);
+  const shouldShow = useStep1Store(state => state.isBtnValid)();
   const navigator = useNavigate();
 
   const handleClose = () => {
-    // TODO: alert 띄우고, 네, 다음에 다시 쓸게요 버튼 누르면 useStoreReset(); 해주기
-    navigator(-1);
+    if (shouldShow) setShowAlert(true);
+    else navigator(-1);
+  };
+
+  const onUnshow = () => {
+    setShowAlert(false);
   };
 
   return (
-    <header>
-      <div className={s.Container}>
-        <button className={`mgc_close_line ${s.closeBtn}`} onClick={handleClose}></button>
-        <span className={s.headerText}> 글쓰기 </span>
-      </div>
-    </header>
+    <>
+      <header>
+        <div className={s.Container}>
+          <button className={`mgc_close_line ${s.closeBtn}`} onClick={handleClose}></button>
+          <span className={s.headerText}> 글쓰기 </span>
+        </div>
+      </header>
+      {showAlert && <CustomAlertExample onUnshow={onUnshow} />}
+    </>
   );
 };
 

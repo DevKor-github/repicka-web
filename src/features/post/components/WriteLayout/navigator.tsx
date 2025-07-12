@@ -52,10 +52,12 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast, i
       <div className={s.stepBtn}>
         {!isFirst && (
           <div className={s.halfFlex}>
-            <Btn onClick={goPrev}>이전</Btn>
+            <Btn onClick={goPrev} style={{ flex: '1 1 0' }}>
+              이전
+            </Btn>
           </div>
         )}
-        <Btn onClick={onClick} color={btnActive} style={isFirst ? { width: '100%' } : { flex: '1 1 0' }}>
+        <Btn onClick={onClick} color={btnActive} style={{ flex: '1 1 0' }}>
           {label}
         </Btn>
       </div>
