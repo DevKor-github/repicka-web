@@ -1,10 +1,15 @@
 import SelectButton from '@/common/components/SelectButton';
 import * as s from './style.css';
+import useDrawer from '@/common/hooks/useDrawer';
+import { css } from '@styled-system/css';
+import Drawer from '@/common/components/Drawer';
 
 interface Props {
   itemCounts: number;
 }
 const SearchControls = ({ itemCounts }: Props) => {
+  const { open, drawerState } = useDrawer();
+
   return (
     <div className={s.Container}>
       <div className={s.ResultBar}>
@@ -13,12 +18,22 @@ const SearchControls = ({ itemCounts }: Props) => {
       </div>
       <div className={s.SelectButtonContainer}>
         {/* TODO: 디자인 적용, 필터 로직 추가 */}
-        <SelectButton active={false}>종목</SelectButton>
+        <SelectButton
+          active={false}
+          onClick={() => {
+            open();
+          }}
+        >
+          종목
+        </SelectButton>
         <SelectButton active={false}>사이즈</SelectButton>
         <SelectButton active={false}>대여/판매</SelectButton>
         <SelectButton active={false}>가격순</SelectButton>
         <SelectButton active={false}>색상</SelectButton>
       </div>
+      <Drawer drawerState={drawerState}>
+        <div className={css({ height: '10rem' })}>안녕하세요 호호</div>
+      </Drawer>
     </div>
   );
 };
