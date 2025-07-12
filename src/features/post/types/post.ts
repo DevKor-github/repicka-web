@@ -1,4 +1,4 @@
-import type { ColorType, PostType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/post';
+import type { ColorType, TransactionType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/item';
 
 export interface PostPayload {
   item: {
@@ -12,7 +12,7 @@ export interface PostPayload {
     tradeMethod: TradeType;
     canDeal: boolean;
   };
-  postTypes: PostType[];
+  transactionTypes: TransactionType[];
   rentalFee: number;
   salePrice: number;
   deposit: number;

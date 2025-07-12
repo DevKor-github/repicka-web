@@ -7,7 +7,7 @@ import {
   type ColorType,
   type QualityType,
   type SizeType,
-} from '@/libs/types/post';
+} from '@/libs/types/item';
 import { useState } from 'react';
 
 const renderChipGroup = <T extends string>(

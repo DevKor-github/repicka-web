@@ -16,7 +16,7 @@ export const Title = css({
   fontWeight: 600,
 });
 
-export const PostList = css({
+export const ItemList = css({
   display: 'flex',
   flexDir: 'column',
   gap: '1rem',

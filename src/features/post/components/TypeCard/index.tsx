@@ -1,11 +1,11 @@
 import * as s from './style.css';
 import rental from '@/assets/images/rental.png';
 import sale from '@/assets/images/sale.png';
-import type { PostType } from '@/libs/types/post';
+import type { TransactionType } from '@/libs/types/item';
 
 interface TypeCardProps {
   isSelected: boolean;
-  types: PostType;
+  types: TransactionType;
   onClick?: () => void;
 }
 

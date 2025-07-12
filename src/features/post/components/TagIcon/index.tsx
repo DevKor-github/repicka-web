@@ -1,10 +1,10 @@
 import HockeyIcon from '@/libs/assets/HockeyIcon';
 import { ICON_MAP } from '@/libs/constants/iconMap';
-import type { PostType, ProductType, TradeType } from '@/libs/types/post';
+import type { ProductType, TradeType, TransactionType } from '@/libs/types/item';
 
 interface TagIconProps {
   className?: string;
-  type: ProductType | PostType | Exclude<TradeType, 'DIRECT_AND_PARCEL'>;
+  type: ProductType | TransactionType | TradeType;
 }
 export const TagIcon = ({ className, type }: TagIconProps) => {
   if (type === 'HOCKEY')

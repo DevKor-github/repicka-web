@@ -1,16 +1,17 @@
-import { PRODUCT_TYPES_MAP, type PostInterface } from '@/libs/types/post';
+import { Link } from 'react-router';
 
 import * as s from './style.css';
 
+import { PRODUCT_TYPES_MAP } from '@/libs/types/item';
+import type { ItemInterface } from '@/features/home/types';
 import Token from '@/common/components/Token';
-import { Link } from 'react-router';
 
 interface Props {
-  data: PostInterface;
+  data: ItemInterface;
 }
-const PostCard = ({ data }: Props) => {
+const ItemCard = ({ data }: Props) => {
   return (
-    <Link className={s.Container} to={`/detail/${data.id}`}>
+    <Link className={s.Container} to={`/detail/${data.itemId}`}>
       <img className={s.Image} src={data.thumbnail} aria-hidden />
       <div className={s.Info}>
         <div className={s.Header}>
@@ -18,11 +19,11 @@ const PostCard = ({ data }: Props) => {
           <div className={s.Price}>
             <div className={s.PriceItem}>
               <label>대여료</label>
-              <p>{data.price.toLocaleString()}원</p>
+              <p>{data.rentalFee.toLocaleString()}원</p>
             </div>
             <div className={s.PriceItem}>
               <label>보증금</label>
-              <p>{data.price.toLocaleString()}원</p>
+              <p>{data.deposit.toLocaleString()}원</p>
             </div>
           </div>
         </div>
@@ -47,4 +48,4 @@ const PostCard = ({ data }: Props) => {
     </Link>
   );
 };
-export default PostCard;
+export default ItemCard;

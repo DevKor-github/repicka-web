@@ -1,6 +1,6 @@
 import Chip from '@/common/components/Chip';
 import * as s from './style.css';
-import { TRADE_TYPES_MAP, type TradeType } from '@/libs/types/post';
+import { TRADE_TYPES_MAP, type TradeType } from '@/libs/types/item';
 import Token from '@/common/components/Token';
 import InputField from '../InputField';
 import { useState } from 'react';
@@ -22,13 +22,11 @@ const Step3 = () => {
             <Token>복수 선택 가능</Token>
           </div>
           <div className={s.ChipColumn}>
-            {(Object.entries(TRADE_TYPES_MAP) as [TradeType, string][])
-              .filter(([key]) => key !== 'DIRECT_AND_PARCEL')
-              .map(([key, label]) => (
-                <Chip key={key} isSelected={selectedTypes.includes(key)} onClick={() => handleSelectType(key)}>
-                  {label}
-                </Chip>
-              ))}
+            {(Object.keys(TRADE_TYPES_MAP) as TradeType[]).map(type => (
+              <Chip key={type} isSelected={selectedTypes.includes(type)} onClick={() => handleSelectType(type)}>
+                {TRADE_TYPES_MAP[type]}
+              </Chip>
+            ))}
           </div>
         </div>
         <div className={s.DetailContent}>
