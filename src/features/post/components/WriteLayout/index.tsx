@@ -13,11 +13,13 @@ import { useStep1Store } from '../../stores/Step1Store';
 import { postPost } from '../../hooks/apis/usePostPost';
 import { getPresignedUrl } from '../../hooks/apis/useGetPresignedUrl';
 import { useStep5Store } from '../../stores/Step5Store';
+import { useNavigate } from 'react-router';
 
 const MAX_STEP = 6;
 
 const WriteLayout = () => {
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
 
   const store = useStep1Store(state => state.transactionTypes);
   const isRental = store.includes('RENTAL');
@@ -39,7 +41,12 @@ const WriteLayout = () => {
 
       const presignedUrls = await Promise.all(files.map(file => getPresignedUrl(file)));
 
-      postPost(presignedUrls);
+      const res = await postPost(presignedUrls);
+
+      if (res.status === 201) {
+        const itemId = res.data.data.itemId;
+        navigate(`/detail/${itemId}`);
+      }
     }
   };
 
