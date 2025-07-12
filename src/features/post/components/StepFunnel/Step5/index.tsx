@@ -11,6 +11,9 @@ const Step5 = () => {
   const imageStore = useStep5Store(state => state.images);
   const imageSetter = useStep5Store(state => state.setImages);
 
+  const fileStore = useStep5Store(state => state.files);
+  const fileSetter = useStep5Store(state => state.setFiles);
+
   const titleStore = useStep5Store(state => state.title);
   const titleSetter = useStep5Store(state => state.setTitle);
 
@@ -32,18 +35,15 @@ const Step5 = () => {
       previewUrls.push(previewUrl);
     });
 
-    const updated = [...imageStore, ...previewUrls];
-    imageSetter(updated);
+    const updatedImages = [...imageStore, ...previewUrls];
+    const updatedFiles = [...fileStore, ...fileArray];
+    imageSetter(updatedImages);
+    fileSetter(updatedFiles);
   };
 
   const removeUploadedImage = (index: number) => {
     imageSetter(imageStore.filter((_, i) => i !== index));
-  };
-
-  const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const updated = e.target.value;
-
-    titleSetter(updated);
+    fileSetter(fileStore.filter((_, i) => i !== index));
   };
 
   const handleDesc = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

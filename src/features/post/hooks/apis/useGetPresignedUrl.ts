@@ -3,7 +3,7 @@
 import client from '@/common/utils/client';
 
 export const getPresignedUrl = async (file: File) => {
-  const res = await client.get('/api/v1/post/presigned-url', {
+  const res = await client.get('/api/v1/item/presigned-url', {
     params: {
       fileName: file.name,
       contentType: file.type,
@@ -11,5 +11,5 @@ export const getPresignedUrl = async (file: File) => {
     },
   });
 
-  return res.data.data;
+  return res.data.data.fileKey;
 };

@@ -3,7 +3,7 @@ import * as c from '../style.css';
 import TypeCard from '../../TypeCard';
 import Token from '@/common/components/Token';
 import type { TransactionType } from '@/libs/types/item';
-import { useStep1Store } from '@/features/post/stores/Step1store';
+import { useStep1Store } from '@/features/post/stores/Step1Store';
 
 const Step1 = () => {
   // zustand에 저장되어 있는 현재 상태 가져오기

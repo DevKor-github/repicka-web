@@ -9,7 +9,10 @@ import Step6 from '@/features/post/components/StepFunnel/Step6';
 import { useState } from 'react';
 
 import * as s from './style.css';
-import { useStep1Store } from '../../stores/Step1store';
+import { useStep1Store } from '../../stores/Step1Store';
+import { postPost } from '../../hooks/apis/usePostPost';
+import { getPresignedUrl } from '../../hooks/apis/useGetPresignedUrl';
+import { useStep5Store } from '../../stores/Step5Store';
 
 const MAX_STEP = 6;
 
@@ -29,9 +32,16 @@ const WriteLayout = () => {
     setStep(prev => Math.max(1, prev - 1)); // 이전 상태 고려 (prev), 최소 1
   };
 
-  const goNext = () => {
+  const goNext = async () => {
     if (step < MAX_STEP) setStep(step + 1);
-    else console.log('작성 완료');
+    else {
+      const files = useStep5Store.getState().files;
+
+      const presignedUrls = await Promise.all(files.map(file => getPresignedUrl(file)));
+
+      postPost(presignedUrls);
+      console.log('api 요청 전송');
+    }
   };
 
   return (

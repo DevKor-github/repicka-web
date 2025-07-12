@@ -2,7 +2,7 @@ import Btn from '@/common/components/Button';
 import StepIndicator from '@/common/components/StepIndicator';
 import * as s from './style.css';
 
-import { useStep1Store } from '../../stores/Step1store';
+import { useStep1Store } from '../../stores/Step1Store';
 import { useStep2Store } from '../../stores/Step2Store';
 import { useStep3Store } from '../../stores/Step3Store';
 import { useStep4Store } from '../../stores/Step4Store';
