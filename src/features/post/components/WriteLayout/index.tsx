@@ -14,6 +14,7 @@ import { postPost } from '../../hooks/apis/usePostPost';
 import { getPresignedUrl } from '../../hooks/apis/useGetPresignedUrl';
 import { useStep5Store } from '../../stores/Step5Store';
 import { useNavigate } from 'react-router';
+import { resetAllStores } from '../../stores/StoreReset';
 
 const MAX_STEP = 6;
 
@@ -49,7 +50,8 @@ const WriteLayout = () => {
 
       if (res.status === 201) {
         const itemId = res.data.data.itemId;
-        navigate(`/detail/${itemId}`);
+        resetAllStores();
+        navigate(`/detail/${itemId}`, { replace: true });
       }
     }
   };
