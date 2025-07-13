@@ -47,10 +47,10 @@ const WriteLayout = () => {
 
       const res = await postPost(fileKeys, files, presignedUrls);
 
-      // if (res.status === 201) {
-      //   const itemId = res.data.data.itemId;
-      //   navigate(`/detail/${itemId}`);
-      // }
+      if (res.status === 201) {
+        const itemId = res.data.data.itemId;
+        navigate(`/detail/${itemId}`);
+      }
     }
   };
 

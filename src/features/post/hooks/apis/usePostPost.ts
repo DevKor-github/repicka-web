@@ -9,10 +9,8 @@ import { s3PutImageToUrl } from './usePutPresignedUrl';
 export const postPost = async (fileKeys: string[], files: File[], presignedUrls: string[]) => {
   await Promise.all(presignedUrls.map((url, idx) => s3PutImageToUrl(files[idx], url)));
 
-  // TODO: 글 올리는 거 막아 둠
+  const data = collectPostDate(fileKeys);
+  const res = await client.post('/api/v1/item', data);
 
-  // const data = collectPostDate(fileKeys);
-  // const res = await client.post('/api/v1/item', data);
-
-  // return res;
+  return res;
 };
