@@ -9,7 +9,7 @@ interface RentalStore {
   setRentalFee: (rentalFee: number) => void;
   setDeposit: (deposit: number) => void;
 
-  isBtnValid: () => void;
+  isBtnValid: () => boolean;
   reset: () => void;
 }
 

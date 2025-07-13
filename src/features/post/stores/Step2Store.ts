@@ -4,7 +4,7 @@ import { create } from 'zustand';
 interface Step2Store {
   productTypes: ProductType[];
   setProductTypes: (productTypes: ProductType[]) => void;
-  isBtnValid: () => void;
+  isBtnValid: () => boolean;
   reset: () => void;
 }
 

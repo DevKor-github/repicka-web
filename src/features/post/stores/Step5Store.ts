@@ -12,7 +12,7 @@ interface Step5Store {
   setImages: (images: string[]) => void;
   setFiles: (files: File[]) => void;
 
-  isBtnValid: () => void;
+  isBtnValid: () => boolean;
   reset: () => void;
 }
 

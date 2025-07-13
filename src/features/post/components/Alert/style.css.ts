@@ -11,6 +11,7 @@ export const Filter = css({
   justifyContent: 'center',
   alignItems: 'center',
   zIndex: 1000,
+  backdropFilter: 'blur(2px)',
 });
 
 export const Container = css({

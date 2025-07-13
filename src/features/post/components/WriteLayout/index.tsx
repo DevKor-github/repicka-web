@@ -11,7 +11,7 @@ import { useState } from 'react';
 import * as s from './style.css';
 import { useStep1Store } from '../../stores/Step1Store';
 import { postPost } from '../../hooks/apis/usePostPost';
-import { getPresignedUrl } from '../../hooks/apis/useGetPresignedUrl';
+import { getPresignedUrl } from '../../apis/useGetPresignedUrl';
 import { useStep5Store } from '../../stores/Step5Store';
 import { useNavigate } from 'react-router';
 import { resetAllStores } from '../../stores/StoreReset';

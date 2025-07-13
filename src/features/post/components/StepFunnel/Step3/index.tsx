@@ -20,12 +20,6 @@ const Step3 = () => {
   const locationStore = useStep3Store(state => state.location);
   const locationSetter = useStep3Store(state => state.setLocation);
 
-  // const handleLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const updated = e.target.value;
-
-  //   locationSetter(updated);
-  // };
-
   return (
     <div>
       <header className={c.Head}>거래 방식을 선택해 주세요</header>

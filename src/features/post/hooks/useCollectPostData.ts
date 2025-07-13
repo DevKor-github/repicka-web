@@ -7,7 +7,7 @@ import { useStep4Store } from '../stores/Step4Store';
 import { useStep5Store } from '../stores/Step5Store';
 import { useRentalStore, useSaleStore } from '../stores/Step6Store';
 
-export const collectPostDate = (fileKeys: string[]) => {
+export const collectPostData = (fileKeys: string[]) => {
   const step1 = useStep1Store.getState();
   const step2 = useStep2Store.getState();
   const step3 = useStep3Store.getState();

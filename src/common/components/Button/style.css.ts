@@ -6,6 +6,7 @@ export const Button = cva({
     gap: '0.625rem',
     flexShrink: '0',
     justifyContent: 'center',
+    alignItems: 'center',
     padding: '0.625rem',
     borderRadius: '0.375rem',
     // width: '100%',
