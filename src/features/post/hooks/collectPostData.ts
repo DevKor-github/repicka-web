@@ -7,7 +7,7 @@ import { useStep4Store } from '../stores/Step4Store';
 import { useStep5Store } from '../stores/Step5Store';
 import { useRentalStore, useSaleStore } from '../stores/Step6Store';
 
-export const collectPostDate = (presignedUrls: string[]) => {
+export const collectPostDate = (fileKeys: string[]) => {
   const step1 = useStep1Store.getState();
   const step2 = useStep2Store.getState();
   const step3 = useStep3Store.getState();
@@ -30,7 +30,7 @@ export const collectPostDate = (presignedUrls: string[]) => {
     location: step3.location,
     tradeMethods: step3.tradeMethods,
     canDeal: sale.canDeal,
-    images: presignedUrls,
+    images: fileKeys,
   };
 
   return data;

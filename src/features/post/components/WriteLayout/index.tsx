@@ -39,14 +39,18 @@ const WriteLayout = () => {
     else {
       const files = useStep5Store.getState().files;
 
-      const presignedUrls = await Promise.all(files.map(file => getPresignedUrl(file)));
+      const presignedResults = await Promise.all(files.map(file => getPresignedUrl(file)));
 
-      const res = await postPost(presignedUrls);
+      // fileKeys post로 보내기 (배열)
+      const fileKeys = presignedResults.map(result => result.fileKey);
+      const presignedUrls = presignedResults.map(result => result.presignedUrl);
 
-      if (res.status === 201) {
-        const itemId = res.data.data.itemId;
-        navigate(`/detail/${itemId}`);
-      }
+      const res = await postPost(fileKeys, files, presignedUrls);
+
+      // if (res.status === 201) {
+      //   const itemId = res.data.data.itemId;
+      //   navigate(`/detail/${itemId}`);
+      // }
     }
   };
 
