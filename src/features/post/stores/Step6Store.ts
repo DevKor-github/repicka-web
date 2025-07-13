@@ -23,7 +23,7 @@ export const useRentalStore = create<RentalStore>((set, get) => ({
 
   isBtnValid: () => {
     const { rentalFee, deposit } = get();
-    return rentalFee !== 0 && deposit !== 0;
+    return rentalFee !== 0;
   },
 
   reset: () => {
