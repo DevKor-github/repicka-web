@@ -1,6 +1,4 @@
 // 대여료, 보증금, 판매 금액, canDeal
-// isRental, isSale 여부에 따라 Store가 비어 있어도 되는지 여부가 달라져서 나눔...
-// 하,,, 어떻게 해야 할까...?????... 감자 수난 시대 나누지 말까
 
 import { create } from 'zustand';
 
@@ -22,7 +20,7 @@ export const useRentalStore = create<RentalStore>((set, get) => ({
   setDeposit: deposit => set({ deposit }),
 
   isBtnValid: () => {
-    const { rentalFee, deposit } = get();
+    const { rentalFee } = get();
     return rentalFee !== 0;
   },
 
