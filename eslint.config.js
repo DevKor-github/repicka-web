@@ -10,7 +10,7 @@ import tanstackPlugin from '@tanstack/eslint-plugin-query';
 export default tseslint.config(
   { ignores: ['dist'] },
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended, ...tanstackPlugin.configs['flat/recommended']],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -20,7 +20,6 @@ export default tseslint.config(
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      '@tanstack/query': tanstackPlugin,
       prettier,
     },
     rules: {
@@ -39,10 +38,6 @@ export default tseslint.config(
         },
       ],
       eqeqeq: ['error', 'always'],
-      '@tanstack/query/exhaustive-deps': 'warn',
-      '@tanstack/query/stable-query-client': 'warn',
-      '@tanstack/query/no-deprecated-options': 'warn',
-      '@tanstack/query/prefer-query-object-syntax': 'warn',
     },
   },
 );
