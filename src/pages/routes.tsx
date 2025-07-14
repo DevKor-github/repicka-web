@@ -95,4 +95,7 @@ export const NAVIGATION_MENU_LIST = [
   },
 ] as const;
 
+// 네비게이션 더 보여주고 싶은 페이지 있으면 여기 추가
+export const SHOW_NAV_PATH = [...NAVIGATION_MENU_LIST.map(menu => menu.path), '/search'];
+
 export default routes;

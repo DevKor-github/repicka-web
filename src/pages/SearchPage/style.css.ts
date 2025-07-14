@@ -16,5 +16,6 @@ export const ItemListContainer = css({
   px: '1rem',
   overflowY: 'auto',
   flexGrow: 1,
+  mb: 'NAVIGATOR_HEIGHT',
   pb: '1rem',
 });
