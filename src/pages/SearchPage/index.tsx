@@ -29,10 +29,10 @@ const SearchPage = () => {
         <div className={s.Container}>
           <div className={s.SearchControlsContainer}>
             <SearchBox />
-            <SearchControls itemCounts={121} /> {/* TODO: 검색결과 개수 받아오기 */}
+            <SearchControls itemCounts={searchData?.totalCount || 0} />
           </div>
           <div className={s.ItemListContainer}>
-            <ItemList itemList={searchData || []} />
+            <ItemList itemList={searchData?.items || []} />
           </div>
         </div>
       </SafeArea>
