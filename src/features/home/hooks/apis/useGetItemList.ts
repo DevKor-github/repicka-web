@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export interface ItemListResponse {
   message: string;
-  data: ItemInterface[];
+  data: { items: ItemInterface[]; totalCount: number };
 }
 
 const getItemList = async () => {

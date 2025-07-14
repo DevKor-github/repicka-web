@@ -9,7 +9,7 @@ const RecentList = () => {
   return (
     <div className={s.Wrapper}>
       <h2 className={s.Title}>최신 상품</h2>
-      <div className={s.ItemList}>{itemList?.map(item => <ItemCard key={item.itemId} data={item} />)}</div>
+      <div className={s.ItemList}>{itemList?.items.map(item => <ItemCard key={item.itemId} data={item} />)}</div>
     </div>
   );
 };
