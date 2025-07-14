@@ -1,12 +1,19 @@
 import { useNavigate, useSearchParams } from 'react-router';
 
 import * as s from './style.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const SearchBox = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [keyword, setKeyword] = useState(searchParams.get('keyword') || '');
+  const urlKeyword = searchParams.get('keyword');
+
+  const [keyword, setKeyword] = useState(urlKeyword || '');
+
+  useEffect(() => {
+    // 뒤로가기 시 keyword 동기화
+    setKeyword(urlKeyword || '');
+  }, [urlKeyword]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,7 +22,7 @@ const SearchBox = () => {
     } else {
       searchParams.set('keyword', keyword);
     }
-    setSearchParams(searchParams, { replace: true });
+    setSearchParams(searchParams);
   };
 
   return (
