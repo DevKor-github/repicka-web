@@ -1,10 +1,26 @@
-import GoogleLogo from '@/libs/assets/GoogleLogo';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+
 import * as s from './style.css';
 
 import SafeArea from '@/common/components/SafeArea';
+import useGetIsLogin from '@/common/hooks/apis/useGetIsLogin';
+import GoogleLogo from '@/libs/assets/GoogleLogo';
 import KakaoLogo from '@/libs/assets/KakaoLogo';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { data: isLogin, isLoading } = useGetIsLogin();
+
+  useEffect(() => {
+    // TODO: 원래 있던 페이지로
+    if (isLogin) {
+      navigate(-1);
+    }
+  }, [isLogin, navigate]);
+
+  if (isLoading) return null;
+
   return (
     <SafeArea>
       <div className={s.Container}>
