@@ -42,6 +42,7 @@ const WriteLayout = () => {
         {
           onSuccess: res => {
             const itemId = res.data.itemId;
+            console.log(itemId);
             resetAllStores();
             navigate(`/detail/${itemId}`, { replace: true });
           },

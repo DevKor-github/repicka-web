@@ -13,8 +13,6 @@ export const getPresignedUrl = async (file: File) => {
       },
     });
 
-    console.log(file.size);
-
     return res.data.data;
   } catch (error) {
     console.error(`presigned URL 요청 실패 (${file.name}):`, error);

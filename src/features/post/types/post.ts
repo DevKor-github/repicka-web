@@ -1,7 +1,6 @@
-// 실제 서버에 전달되어야 하는 타입
-
 import type { Color, TransactionType, ProductType, Quality, Size, TradeMethods } from '@/libs/types/item';
 
+// postItem 함수에서 data 받을 때 쓰는 타입
 export interface PostPayload {
   productTypes: ProductType[];
   transactionTypes: TransactionType[];
@@ -18,6 +17,7 @@ export interface PostPayload {
   canDeal: boolean;
 }
 
+// 실제 서버에 전달되어야 하는 타입
 export interface PostItemRequest extends PostPayload {
   images: string[];
 }
