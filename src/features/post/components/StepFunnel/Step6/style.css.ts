@@ -6,6 +6,10 @@ export const PriceTypeContent = css({
   gap: '0.75rem',
 });
 
+export const CustomInputField = css({
+  w: '9.375rem',
+});
+
 export const PriceInputField = css({
   display: 'flex',
   alignItems: 'center',

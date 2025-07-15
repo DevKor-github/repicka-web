@@ -4,12 +4,10 @@ import { create } from 'zustand';
 interface Step5Store {
   title: string;
   desc: string;
-  images: string[];
   files: File[];
 
   setTitle: (title: string) => void;
   setDesc: (desc: string) => void;
-  setImages: (images: string[]) => void;
   setFiles: (files: File[]) => void;
 
   isBtnValid: () => boolean;
@@ -19,20 +17,18 @@ interface Step5Store {
 export const useStep5Store = create<Step5Store>((set, get) => ({
   title: '',
   desc: '',
-  images: [],
   files: [],
 
   setTitle: title => set({ title }),
   setDesc: desc => set({ desc }),
-  setImages: images => set({ images }),
   setFiles: files => set({ files }),
 
   isBtnValid: () => {
-    const { title, desc, images } = get();
-    return title.trim() !== '' && desc.trim() !== '' && images.length !== 0;
+    const { title, desc, files } = get();
+    return title.trim() !== '' && desc.trim() !== '' && files.length !== 0;
   },
 
   reset: () => {
-    set({ title: '', desc: '', images: [], files: [] });
+    set({ title: '', desc: '', files: [] });
   },
 }));

@@ -8,9 +8,6 @@ import UploadFile from '../../UploadFile';
 import { useStep5Store } from '@/features/post/stores/Step5Store';
 
 const Step5 = () => {
-  const imageStore = useStep5Store(state => state.images);
-  const imageSetter = useStep5Store(state => state.setImages);
-
   const fileStore = useStep5Store(state => state.files);
   const fileSetter = useStep5Store(state => state.setFiles);
 
@@ -25,21 +22,12 @@ const Step5 = () => {
     if (!files || files.length === 0) return;
 
     const fileArray = Array.from(files);
-    const previewUrls: string[] = [];
 
-    fileArray.forEach(file => {
-      const previewUrl = URL.createObjectURL(file); // 브라우저 미리보기용 URL
-      previewUrls.push(previewUrl);
-    });
-
-    const updatedImages = [...imageStore, ...previewUrls];
     const updatedFiles = [...fileStore, ...fileArray];
-    imageSetter(updatedImages);
     fileSetter(updatedFiles);
   };
 
   const removeUploadedImage = (index: number) => {
-    imageSetter(imageStore.filter((_, i) => i !== index));
     fileSetter(fileStore.filter((_, i) => i !== index));
   };
 
@@ -48,6 +36,13 @@ const Step5 = () => {
 
     descSetter(updated);
   };
+
+  const images: string[] = [];
+
+  fileStore.forEach(file => {
+    const previewUrl = URL.createObjectURL(file); // 브라우저 미리보기용 URL
+    images.push(previewUrl);
+  });
 
   return (
     <div>
@@ -63,7 +58,7 @@ const Step5 = () => {
             <MultilineInputfield onChange={handleDesc} value={descStore} />
             <div className={s.SelectPhotoContainer}>
               <UploadFile onChange={handleImageUploaded} />
-              {imageStore.map((file, index) => (
+              {images.map((file, index) => (
                 <SelectedPhoto key={index} file={file} onClick={() => removeUploadedImage(index)} />
               ))}
             </div>

@@ -2,12 +2,13 @@ import * as s from './style.css';
 import { useState } from 'react';
 
 interface InputProps<T extends number | string> {
+  className?: string;
   width?: string;
   value: T;
   setValue: (value: T) => void;
 }
 
-const InputField = <T extends number | string>({ value, setValue, width }: InputProps<T>) => {
+const InputField = <T extends number | string>({ className, value, setValue }: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const isNumber = typeof value === 'number';
@@ -24,7 +25,7 @@ const InputField = <T extends number | string>({ value, setValue, width }: Input
       setValue(raw as T);
     }
   };
-  
+
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -38,14 +39,14 @@ const InputField = <T extends number | string>({ value, setValue, width }: Input
 
   return (
     <input
-      className={s.Container({ isNumber })}
+      className={`${s.Container({ isNumber })} ${className}`}
       value={stringValue}
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
       inputMode={isNumber ? 'numeric' : 'text'}
       pattern={isNumber ? '[0-9]*' : undefined}
-      style={{ width }}
+      // style={{ width }}
     />
   );
 };
