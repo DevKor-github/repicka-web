@@ -6,8 +6,9 @@ import { useStep3Store } from '../stores/Step3Store';
 import { useStep4Store } from '../stores/Step4Store';
 import { useStep5Store } from '../stores/Step5Store';
 import { useStep6Store } from '../stores/Step6Store';
+import type { PostPayload } from '../types/post';
 
-export const useCollectPostData = (fileKeys: string[]) => {
+export const useCollectPostData = () => {
   const step1 = useStep1Store();
   const step2 = useStep2Store();
   const step3 = useStep3Store();
@@ -15,7 +16,7 @@ export const useCollectPostData = (fileKeys: string[]) => {
   const step5 = useStep5Store();
   const step6 = useStep6Store();
 
-  const data = {
+  const data: PostPayload = {
     transactionTypes: step1.transactionTypes,
     productTypes: step2.productTypes,
     title: step5.title,
@@ -29,7 +30,6 @@ export const useCollectPostData = (fileKeys: string[]) => {
     location: step3.location,
     tradeMethods: step3.tradeMethods,
     canDeal: step6.canDeal,
-    images: fileKeys,
   };
 
   return data;

@@ -9,15 +9,19 @@ import Step6 from '@/features/post/components/StepFunnel/Step6';
 import { useState } from 'react';
 
 import * as s from './style.css';
-import { usePostPost } from '../../hooks/apis/usePostPost';
-import { getPresignedUrl } from '../../apis/useGetPresignedUrl';
+import { usePostItem } from '../../hooks/apis/usePostItem';
 import { useStep5Store } from '../../stores/Step5Store';
 import { useNavigate } from 'react-router';
 import { resetAllStores } from '../../stores/StoreReset';
+import { useCollectPostData } from '../../hooks/useCollectPostData';
 
 const MAX_STEP = 6;
 
 const WriteLayout = () => {
+  const { mutate: postItem } = usePostItem();
+  const data = useCollectPostData();
+  const files = useStep5Store(state => state.files);
+
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
 
@@ -33,21 +37,16 @@ const WriteLayout = () => {
   const goNext = async () => {
     if (step < MAX_STEP) setStep(step + 1);
     else {
-      const files = useStep5Store.getState().files;
-
-      const presignedResults = await Promise.all(files.map(file => getPresignedUrl(file)));
-
-      // fileKeys post로 보내기 (배열)
-      const fileKeys = presignedResults.map(result => result.fileKey);
-      const presignedUrls = presignedResults.map(result => result.presignedUrl);
-
-      const res = await usePostPost(fileKeys, files, presignedUrls);
-
-      if (res.status === 201) {
-        const itemId = res.data.data.itemId;
-        resetAllStores();
-        navigate(`/detail/${itemId}`, { replace: true });
-      }
+      postItem(
+        { data, files },
+        {
+          onSuccess: res => {
+            const itemId = res.data.itemId;
+            resetAllStores();
+            navigate(`/detail/${itemId}`, { replace: true });
+          },
+        },
+      );
     }
   };
 

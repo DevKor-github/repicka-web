@@ -16,8 +16,7 @@ interface Step6Store {
   reset: () => void;
 }
 
-export const useStep6Store = create<Step6Store>((set) => ({
-
+export const useStep6Store = create<Step6Store>(set => ({
   rentalFee: 0,
   deposit: 0,
   salePrice: 0,
@@ -32,6 +31,8 @@ export const useStep6Store = create<Step6Store>((set) => ({
     set({
       rentalFee: 0,
       deposit: 0,
+      salePrice: 0,
+      canDeal: false,
     });
   },
-}))
+}));

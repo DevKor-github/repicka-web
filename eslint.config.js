@@ -41,8 +41,8 @@ export default tseslint.config(
       eqeqeq: ['error', 'always'],
       '@tanstack/query/exhaustive-deps': 'warn',
       '@tanstack/query/stable-query-client': 'warn',
-      '@tanstack/query/no-deprecated-options': 'warn',
-      '@tanstack/query/prefer-query-object-syntax': 'warn',
+      // '@tanstack/query/no-deprecated-options': 'warn',
+      // '@tanstack/query/prefer-query-object-syntax': 'warn',
     },
   },
 );
