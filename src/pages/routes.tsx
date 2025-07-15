@@ -33,7 +33,7 @@ const routes: RouteObject[] = [
         element: <DetailPage />,
       },
       {
-        path: '/my', // TODO: 임시
+        path: '/login', // TODO: 임시
         element: <LoginPage />,
       },
       {
