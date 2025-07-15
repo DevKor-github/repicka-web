@@ -1,4 +1,4 @@
-import type { ColorType, TransactionType, ProductType, QualityType, SizeType, TradeType } from '@/libs/types/item';
+import type { Color, TransactionType, ProductType, Quality, Size, TradeMethods } from '@/libs/types/item';
 import type { UserInterface } from '@/libs/types/user';
 
 export interface ItemInfoInterface {
@@ -6,14 +6,14 @@ export interface ItemInfoInterface {
   transactionTypes: TransactionType[];
   title: string;
   description: string;
-  color: ColorType;
-  size: SizeType;
-  quality: QualityType;
+  color: Color;
+  size: Size;
+  quality: Quality;
   rentalFee: number;
   salePrice: number;
   deposit: number;
   location: string;
-  tradeMethods: TradeType[];
+  tradeMethods: TradeMethods[];
   canDeal: boolean;
   likeCount: number;
   chatRoomCount: number;
