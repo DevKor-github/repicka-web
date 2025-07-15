@@ -7,7 +7,7 @@ interface Props {
   onUnshow: () => void;
 }
 
-const CustomAlertExample = ({ onUnshow }: Props) => {
+const CustomAlert = ({ onUnshow }: Props) => {
   const navigator = useNavigate();
 
   const onReset = () => {
@@ -35,4 +35,4 @@ const CustomAlertExample = ({ onUnshow }: Props) => {
   );
 };
 
-export default CustomAlertExample;
+export default CustomAlert;

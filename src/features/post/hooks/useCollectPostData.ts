@@ -5,16 +5,15 @@ import { useStep2Store } from '../stores/Step2Store';
 import { useStep3Store } from '../stores/Step3Store';
 import { useStep4Store } from '../stores/Step4Store';
 import { useStep5Store } from '../stores/Step5Store';
-import { useRentalStore, useSaleStore } from '../stores/Step6Store';
+import { useStep6Store } from '../stores/Step6Store';
 
-export const collectPostData = (fileKeys: string[]) => {
-  const step1 = useStep1Store.getState();
-  const step2 = useStep2Store.getState();
-  const step3 = useStep3Store.getState();
-  const step4 = useStep4Store.getState();
-  const step5 = useStep5Store.getState();
-  const rental = useRentalStore.getState();
-  const sale = useSaleStore.getState();
+export const useCollectPostData = (fileKeys: string[]) => {
+  const step1 = useStep1Store();
+  const step2 = useStep2Store();
+  const step3 = useStep3Store();
+  const step4 = useStep4Store();
+  const step5 = useStep5Store();
+  const step6 = useStep6Store();
 
   const data = {
     transactionTypes: step1.transactionTypes,
@@ -24,12 +23,12 @@ export const collectPostData = (fileKeys: string[]) => {
     color: step4.color,
     size: step4.size,
     quality: step4.quality,
-    rentalFee: rental.rentalFee,
-    salePrice: sale.salePrice,
-    deposit: rental.deposit,
+    rentalFee: step6.rentalFee,
+    salePrice: step6.salePrice,
+    deposit: step6.deposit,
     location: step3.location,
     tradeMethods: step3.tradeMethods,
-    canDeal: sale.canDeal,
+    canDeal: step6.canDeal,
     images: fileKeys,
   };
 

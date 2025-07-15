@@ -20,9 +20,6 @@ const Step5 = () => {
   const descStore = useStep5Store(state => state.desc);
   const descSetter = useStep5Store(state => state.setDesc);
 
-  // s3로 보내는 건 완료 버튼 눌렀을 때고, zustand에는 미리보기 이미지만 저장해 두기
-  // 근데 그럼 나중에 백엔드로 보낼 때 이미지 부분은 또 따로 로직을 파야겠네 흠
-
   const handleImageUploaded = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;

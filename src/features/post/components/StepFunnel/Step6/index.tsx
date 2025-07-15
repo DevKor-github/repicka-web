@@ -3,19 +3,15 @@ import * as s from './style.css';
 import * as c from '../style.css';
 import InputField from '../../InputField';
 import CheckBtn from '../../CheckBtn';
-import { useRentalStore, useSaleStore } from '@/features/post/stores/Step6Store';
-
-interface Props {
-  isRental: boolean;
-  isSale: boolean;
-}
+import { useStep6Store } from '@/features/post/stores/Step6Store';
+import { useStep1Store } from '@/features/post/stores/Step1Store';
 
 const Rental = () => {
-  const rentalFeeStore = useRentalStore(state => state.rentalFee);
-  const rentalFeeSetter = useRentalStore(state => state.setRentalFee);
+  const rentalFeeStore = useStep6Store(state => state.rentalFee);
+  const rentalFeeSetter = useStep6Store(state => state.setRentalFee);
 
-  const depositStore = useRentalStore(state => state.deposit);
-  const depositSetter = useRentalStore(state => state.setDeposit);
+  const depositStore = useStep6Store(state => state.deposit);
+  const depositSetter = useStep6Store(state => state.setDeposit);
 
   return (
     <div className={s.PriceContent}>
@@ -41,11 +37,11 @@ const Rental = () => {
 };
 
 const Sale = () => {
-  const canDealStore = useSaleStore(state => state.canDeal);
-  const canDealSetter = useSaleStore(state => state.setCanDeal);
+  const canDealStore = useStep6Store(state => state.canDeal);
+  const canDealSetter = useStep6Store(state => state.setCanDeal);
 
-  const priceStore = useSaleStore(state => state.salePrice);
-  const priceSetter = useSaleStore(state => state.setSalePrice);
+  const priceStore = useStep6Store(state => state.salePrice);
+  const priceSetter = useStep6Store(state => state.setSalePrice);
 
   const handleCanDeal = () => {
     const updated = !canDealStore;
@@ -74,7 +70,11 @@ const Sale = () => {
   );
 };
 
-const Step6 = ({ isRental, isSale }: Props) => {
+const Step6 = () => {
+  const store = useStep1Store(state => state.transactionTypes);
+  const isRental = store.includes('RENTAL');
+  const isSale = store.includes('SALE');
+
   return (
     <div>
       <header className={c.Head}>가격을 설정해 주세요</header>

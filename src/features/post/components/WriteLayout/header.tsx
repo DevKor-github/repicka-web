@@ -1,12 +1,26 @@
 import * as s from './style.css';
-import CustomAlertExample from '../Alert';
+import CustomAlert from '../Alert';
 import { useState } from 'react';
 import { useStep1Store } from '../../stores/Step1Store';
 import { useNavigate } from 'react-router';
+import { useStep2Store } from '../../stores/Step2Store';
+import { useStep3Store } from '../../stores/Step3Store';
+import { useStep4Store } from '../../stores/Step4Store';
 
 const Header = () => {
   const [showAlert, setShowAlert] = useState(false);
-  const shouldShow = useStep1Store(state => state.isBtnValid)();
+
+  const isStep1Empty = useStep1Store(state => state.isEmpty());
+  const isStep2Empty = useStep2Store(state => state.isEmpty());
+  const isStep3Empty = useStep3Store(state => state.isEmpty());
+  const isStep4Empty = useStep4Store(state => state.isEmpty());
+
+  // 모두 다 비워져 있으면 alert를 띄우지 말아야 한다
+  const shouldShow = !(isStep1Empty
+    && isStep2Empty
+    && isStep3Empty
+    && isStep4Empty);
+
   const navigator = useNavigate();
 
   const handleClose = () => {
@@ -26,7 +40,7 @@ const Header = () => {
           <span className={s.headerText}> 글쓰기 </span>
         </div>
       </header>
-      {showAlert && <CustomAlertExample onUnshow={onUnshow} />}
+      {showAlert && <CustomAlert onUnshow={onUnshow} />}
     </>
   );
 };

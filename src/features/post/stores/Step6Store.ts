@@ -2,27 +2,31 @@
 
 import { create } from 'zustand';
 
-interface RentalStore {
+interface Step6Store {
   rentalFee: number;
   deposit: number;
+  salePrice: number;
+  canDeal: boolean;
 
   setRentalFee: (rentalFee: number) => void;
   setDeposit: (deposit: number) => void;
+  setSalePrice: (salePrice: number) => void;
+  setCanDeal: (canDeal: boolean) => void;
 
-  isBtnValid: () => boolean;
   reset: () => void;
 }
 
-export const useRentalStore = create<RentalStore>((set, get) => ({
+export const useStep6Store = create<Step6Store>((set) => ({
+
   rentalFee: 0,
   deposit: 0,
+  salePrice: 0,
+  canDeal: false,
+
   setRentalFee: rentalFee => set({ rentalFee }),
   setDeposit: deposit => set({ deposit }),
-
-  isBtnValid: () => {
-    const { rentalFee } = get();
-    return rentalFee !== 0;
-  },
+  setSalePrice: salePrice => set({ salePrice }),
+  setCanDeal: canDeal => set({ canDeal }),
 
   reset: () => {
     set({
@@ -30,34 +34,4 @@ export const useRentalStore = create<RentalStore>((set, get) => ({
       deposit: 0,
     });
   },
-}));
-
-interface SaleStore {
-  salePrice: number;
-  canDeal: boolean;
-
-  setSalePrice: (salePrice: number) => void;
-  setCanDeal: (canDeal: boolean) => void;
-
-  isBtnValid: () => void;
-  reset: () => void;
-}
-
-export const useSaleStore = create<SaleStore>((set, get) => ({
-  salePrice: 0,
-  canDeal: false,
-  setSalePrice: salePrice => set({ salePrice }),
-  setCanDeal: canDeal => set({ canDeal }),
-
-  isBtnValid: () => {
-    const { salePrice } = get();
-    return salePrice !== 0;
-  },
-
-  reset: () => {
-    set({
-      salePrice: 0,
-      canDeal: false,
-    });
-  },
-}));
+}))

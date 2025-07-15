@@ -7,7 +7,6 @@ import { useStep2Store } from '../../stores/Step2Store';
 import { useStep3Store } from '../../stores/Step3Store';
 import { useStep4Store } from '../../stores/Step4Store';
 import { useStep5Store } from '../../stores/Step5Store';
-import { useRentalStore, useSaleStore } from '../../stores/Step6Store';
 
 interface NavigatorProps {
   totalSteps: number;
@@ -16,18 +15,14 @@ interface NavigatorProps {
   goPrev: () => void;
   isFirst: boolean;
   isLast: boolean;
-  isRental: boolean;
-  isSale: boolean;
 }
 
-const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast, isRental, isSale }: NavigatorProps) => {
+const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }: NavigatorProps) => {
   const isStep1Valid = useStep1Store(state => state.isBtnValid());
   const isStep2Valid = useStep2Store(state => state.isBtnValid());
   const isStep3Valid = useStep3Store(state => state.isBtnValid());
   const isStep4Valid = useStep4Store(state => state.isBtnValid());
   const isStep5Valid = useStep5Store(state => state.isBtnValid());
-  const isRentalValid = useRentalStore(state => state.isBtnValid());
-  const isSaleValid = useSaleStore(state => state.isBtnValid());
 
   const isBtnValids = [
     isStep1Valid,
@@ -35,7 +30,7 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast, i
     isStep3Valid,
     isStep4Valid,
     isStep5Valid,
-    (!isRental || isRentalValid) && (!isSale || isSaleValid),
+    true,
   ];
 
   const label = isLast ? '완료' : '다음';

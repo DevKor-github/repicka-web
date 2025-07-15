@@ -9,8 +9,7 @@ import Step6 from '@/features/post/components/StepFunnel/Step6';
 import { useState } from 'react';
 
 import * as s from './style.css';
-import { useStep1Store } from '../../stores/Step1Store';
-import { postPost } from '../../hooks/apis/usePostPost';
+import { usePostPost } from '../../hooks/apis/usePostPost';
 import { getPresignedUrl } from '../../apis/useGetPresignedUrl';
 import { useStep5Store } from '../../stores/Step5Store';
 import { useNavigate } from 'react-router';
@@ -22,11 +21,7 @@ const WriteLayout = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
 
-  const store = useStep1Store(state => state.transactionTypes);
-  const isRental = store.includes('RENTAL');
-  const isSale = store.includes('SALE');
-
-  const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 isRental={isRental} isSale={isSale} />];
+  const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
 
   const isFirst = step === 1;
   const isLast = step === MAX_STEP;
@@ -46,7 +41,7 @@ const WriteLayout = () => {
       const fileKeys = presignedResults.map(result => result.fileKey);
       const presignedUrls = presignedResults.map(result => result.presignedUrl);
 
-      const res = await postPost(fileKeys, files, presignedUrls);
+      const res = await usePostPost(fileKeys, files, presignedUrls);
 
       if (res.status === 201) {
         const itemId = res.data.data.itemId;
@@ -68,8 +63,6 @@ const WriteLayout = () => {
           goPrev={goPrev}
           isFirst={isFirst}
           isLast={isLast}
-          isRental={isRental}
-          isSale={isSale}
         />
       </div>
     </div>

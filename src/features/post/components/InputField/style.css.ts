@@ -17,7 +17,7 @@ export const Container = cva({
   variants: {
     isNumber: {
       true: {
-        textAlign: 'end',
+        // textAlign: 'end',
       },
       false: {
         textAlign: 'start',

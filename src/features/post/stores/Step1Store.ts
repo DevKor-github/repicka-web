@@ -5,6 +5,7 @@ interface Setp1Store {
   transactionTypes: TransactionType[];
   setTransactionTypes: (transactionTypes: TransactionType[]) => void;
   isBtnValid: () => boolean;
+  isEmpty: () => boolean;
   reset: () => void;
 }
 
@@ -14,6 +15,10 @@ export const useStep1Store = create<Setp1Store>((set, get) => ({
   isBtnValid: () => {
     const { transactionTypes } = get();
     return transactionTypes.length !== 0;
+  },
+  isEmpty: () => {
+    const { transactionTypes } = get();
+    return transactionTypes.length === 0;
   },
   reset: () => {
     set({ transactionTypes: [] });

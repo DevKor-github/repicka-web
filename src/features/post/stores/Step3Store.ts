@@ -7,6 +7,7 @@ interface Step3Store {
   setTradeMethods: (tradeMethods: TradeMethods[]) => void;
   setLocation: (location: string) => void;
   isBtnValid: () => boolean;
+  isEmpty: () => boolean;
   reset: () => void;
 }
 
@@ -18,9 +19,16 @@ export const useStep3Store = create<Step3Store>((set, get) => ({
 
   isBtnValid: () => {
     const { tradeMethods, location } = get();
-    return tradeMethods.length !== 0 && location.trim() !== '';
-  },
+    const isDirect = tradeMethods.includes('DIRECT');
 
+    if (tradeMethods.length === 0) return false;
+
+    return isDirect ? location.trim() !== '' : true;
+  },
+  isEmpty: () => {
+    const { tradeMethods } = get();
+    return tradeMethods.length === 0;
+  },
   reset: () => {
     set({ tradeMethods: [], location: '' });
   },

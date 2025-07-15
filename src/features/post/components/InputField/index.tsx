@@ -24,7 +24,7 @@ const InputField = <T extends number | string>({ value, setValue, width }: Input
       setValue(raw as T);
     }
   };
-
+  
   const handleFocus = () => {
     setIsFocused(true);
   };

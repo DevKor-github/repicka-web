@@ -5,6 +5,7 @@ interface Step2Store {
   productTypes: ProductType[];
   setProductTypes: (productTypes: ProductType[]) => void;
   isBtnValid: () => boolean;
+  isEmpty: () => boolean;
   reset: () => void;
 }
 
@@ -14,6 +15,10 @@ export const useStep2Store = create<Step2Store>((set, get) => ({
   isBtnValid: () => {
     const { productTypes } = get();
     return productTypes.length !== 0;
+  },
+  isEmpty: () => {
+    const { productTypes } = get();
+    return productTypes.length === 0;
   },
   reset: () => {
     set({ productTypes: [] });

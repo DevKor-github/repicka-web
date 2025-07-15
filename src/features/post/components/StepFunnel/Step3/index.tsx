@@ -5,9 +5,26 @@ import Token from '@/common/components/Token';
 import InputField from '../../InputField';
 import { useStep3Store } from '@/features/post/stores/Step3Store';
 
+const Location = () => {
+
+  const locationStore = useStep3Store(state => state.location);
+  const locationSetter = useStep3Store(state => state.setLocation);
+
+  return (
+    <div className={c.DetailContent}>
+      <div className={c.DetailContent}>
+        <span>직거래 장소를 입력해 주세요</span>
+        <InputField value={locationStore} setValue={locationSetter} />
+      </div>
+    </div>
+  );
+}
+
 const Step3 = () => {
   const tradeMethodStore = useStep3Store(state => state.tradeMethods);
   const tradeMethodSetter = useStep3Store(state => state.setTradeMethods);
+
+  const isDirect = tradeMethodStore.includes('DIRECT')
 
   const handleSelectType = (type: TradeMethods) => {
     const updated = tradeMethodStore.includes(type)
@@ -16,9 +33,6 @@ const Step3 = () => {
 
     tradeMethodSetter(updated);
   };
-
-  const locationStore = useStep3Store(state => state.location);
-  const locationSetter = useStep3Store(state => state.setLocation);
 
   return (
     <div>
@@ -37,12 +51,7 @@ const Step3 = () => {
             ))}
           </div>
         </div>
-        <div className={c.DetailContent}>
-          <div className={c.DetailContent}>
-            <span>직거래 장소를 입력해 주세요</span>
-            <InputField value={locationStore} setValue={locationSetter} />
-          </div>
-        </div>
+        {isDirect && <Location />}
       </div>
     </div>
   );
