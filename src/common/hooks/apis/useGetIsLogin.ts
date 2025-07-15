@@ -17,6 +17,7 @@ const useGetIsLogin = () => {
   return useQuery({
     queryKey: ['isLogin'],
     queryFn: getIsLogin,
+    staleTime: 0, // 매번 확인
   });
 };
 
