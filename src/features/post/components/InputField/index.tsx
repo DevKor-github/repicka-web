@@ -46,7 +46,6 @@ const InputField = <T extends number | string>({ className, value, setValue }: I
       onBlur={handleBlur}
       inputMode={isNumber ? 'numeric' : 'text'}
       pattern={isNumber ? '[0-9]*' : undefined}
-      // style={{ width }}
     />
   );
 };
