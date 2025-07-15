@@ -19,7 +19,7 @@ const LoginPage = () => {
     }
   }, [isLogin, navigate]);
 
-  if (isLoading) return null;
+  if (isLoading || isLogin) return null;
 
   return (
     <SafeArea>

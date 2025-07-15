@@ -7,7 +7,7 @@ import { Outlet, useNavigate } from 'react-router';
  */
 const AuthGuard = () => {
   const navigate = useNavigate();
-  const { data: isLogin, isLoading, isSuccess } = useGetIsLogin();
+  const { data: isLogin, isSuccess } = useGetIsLogin();
 
   useEffect(() => {
     if (isSuccess && !isLogin) {
@@ -15,7 +15,7 @@ const AuthGuard = () => {
     }
   }, [isLogin, isSuccess, navigate]);
 
-  if (isLoading) return null;
+  if (!isLogin) return null;
 
   return <Outlet />;
 };
