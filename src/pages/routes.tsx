@@ -14,7 +14,6 @@ import AuthGuard from '@/common/components/AuthGuard';
  */
 const routes: RouteObject[] = [
   {
-    path: '/',
     element: <Layout />,
     children: [
       {
@@ -30,7 +29,6 @@ const routes: RouteObject[] = [
         element: <LoginPage />,
       },
       {
-        path: '/',
         element: <AuthGuard />, // 로그인 해야만 들어갈 수 있는 페이지는 이 아래다가 넣어주셈
         children: [
           {
