@@ -6,7 +6,7 @@ import DetailHeader from '@/features/detail/components/DetailHeader';
 import ImageContainer from '@/features/detail/components/ImageContainer';
 import UserInfo from '@/features/detail/components/UserInfo';
 import PostContent from '@/features/detail/components/PostContent';
-import useGetItemDetail from '@/features/detail/hooks/apis/useGetItemDetail';
+import useGetItemDetail from '@/features/detail/apis/useGetItemDetail';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ const DetailPage = () => {
 
   return (
     <div className={s.Container}>
-      <DetailHeader />
+      <DetailHeader itemId={data.itemId} isMine={data.itemInfo.mine} />
       <div className={s.ScrollContainer}>
         <ImageContainer images={data.itemInfo.images} />
         <div className={s.ContentContainer}>
