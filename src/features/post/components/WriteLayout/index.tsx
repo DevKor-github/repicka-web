@@ -20,8 +20,8 @@ const MAX_STEP = 6;
 const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
 
 const WriteLayout = () => {
-  const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
 
   const { mutate: postItem } = usePostItem();
   const data = useCollectPostData();
