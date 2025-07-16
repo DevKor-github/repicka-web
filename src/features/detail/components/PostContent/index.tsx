@@ -20,7 +20,6 @@ const PostContent = ({ itemInfo }: Props) => {
           <div className={s.PriceContainer}>
             {isRental && (
               <div>
-                {/* TODO: 판매글인 경우 어캐 보일까 */}
                 <div className={s.PriceItem}>
                   <label>대여료</label>
                   <p>{itemInfo.rentalFee.toLocaleString()}원</p>
@@ -41,7 +40,6 @@ const PostContent = ({ itemInfo }: Props) => {
             )}
           </div>
         </div>
-        {/* TODO: API 인터페이스 수정 필요 */}
         <div className={s.PostInfoContainer}>
           <p>{getKoreanRelativeTime(toKST(new Date(itemInfo.repostDate)))}</p>
           <span />
