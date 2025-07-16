@@ -29,7 +29,7 @@ const DetailHeader = ({ itemId, isMine }: Props) => {
       <header className={s.Container}>
         <button className={`mgc_left_line ${s.BackButton}`} onClick={goBack} aria-label="Go back" />
         <div className={s.RightSide}>
-          <button className={`${s.RightButton} mgc_share_3_fill`} />
+          <button className={`${s.RightButton} mgc_share_3_fill`} aria-label="Share item" />
           {isMine && <button className={`${s.RightButton} mgc_more_2_fill`} onClick={handleMoreButtonClick} />}
         </div>
       </header>
