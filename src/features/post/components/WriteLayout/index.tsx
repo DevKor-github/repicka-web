@@ -17,15 +17,15 @@ import { useCollectPostData } from '../../hooks/useCollectPostData';
 
 const MAX_STEP = 6;
 
+const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
+
 const WriteLayout = () => {
+  const navigate = useNavigate();
+  const [step, setStep] = useState(1);
+
   const { mutate: postItem } = usePostItem();
   const data = useCollectPostData();
   const files = useStep5Store(state => state.files);
-
-  const [step, setStep] = useState(1);
-  const navigate = useNavigate();
-
-  const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
 
   const isFirst = step === 1;
   const isLast = step === MAX_STEP;
@@ -34,7 +34,7 @@ const WriteLayout = () => {
     setStep(prev => Math.max(1, prev - 1)); // 이전 상태 고려 (prev), 최소 1
   };
 
-  const goNext = async () => {
+  const goNext = () => {
     if (step < MAX_STEP) setStep(step + 1);
     else {
       postItem(

@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 interface InputProps<T extends number | string> {
   className?: string;
-  width?: string;
   value: T;
   setValue: (value: T) => void;
 }

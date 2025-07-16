@@ -37,12 +37,7 @@ const Step5 = () => {
     descSetter(updated);
   };
 
-  const images: string[] = [];
-
-  fileStore.forEach(file => {
-    const previewUrl = URL.createObjectURL(file); // 브라우저 미리보기용 URL
-    images.push(previewUrl);
-  });
+  const images = fileStore.map(file => URL.createObjectURL(file));
 
   return (
     <div>
