@@ -25,6 +25,7 @@ const UserInfo = ({ userData, itemId, isLiked }: Props) => {
         <button
           className={`${s.LikeButton({ isLiked })} ${isLiked ? 'mgc_heart_fill' : 'mgc_heart_line'}`}
           onClick={() => likeItem(itemId)}
+          aria-label={isLiked ? 'Unlike item' : 'Like item'}
         />
       </div>
       <div className={s.Line} />
