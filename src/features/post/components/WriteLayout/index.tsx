@@ -16,14 +16,12 @@ import { resetAllStores } from '../../stores/StoreReset';
 import { useCollectPostData } from '../../hooks/useCollectPostData';
 
 const MAX_STEP = 6;
-
 const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
 
 const WriteLayout = () => {
   const [step, setStep] = useState(1);
-  const navigate = useNavigate();
-
   const { mutate: postItem } = usePostItem();
+  const navigate = useNavigate();
   const data = useCollectPostData();
   const files = useStep5Store(state => state.files);
 
@@ -42,7 +40,6 @@ const WriteLayout = () => {
         {
           onSuccess: res => {
             const itemId = res.data.itemId;
-            console.log(itemId);
             resetAllStores();
             navigate(`/detail/${itemId}`, { replace: true });
           },

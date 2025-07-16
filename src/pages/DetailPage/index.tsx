@@ -12,8 +12,6 @@ const DetailPage = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetItemDetail(Number(id));
 
-  console.log(data);
-
   // TODO: 더 예쁜 보여주기
   if (isLoading) return <div>Loading...</div>;
   if (data === undefined) return <div>잘못된 접근입니다</div>;
