@@ -39,6 +39,7 @@ export const UserInfoText = cva({
     width: 'full',
     overflow: 'hidden',
     alignItems: 'flex-start',
+    gap: '0.25rem',
     my: '0.06rem',
     '& > p': {
       w: 'full',

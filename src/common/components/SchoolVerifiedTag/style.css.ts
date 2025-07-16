@@ -2,8 +2,6 @@ import { css } from '@styled-system/css';
 
 export const Container = css({
   padding: '0.1rem 0.275rem',
-  bgColor: 'main-26',
-  rounded: '3.32px',
   fontSize: '0.625rem',
   fontWeight: 400,
   lineHeight: 1.4,

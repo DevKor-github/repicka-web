@@ -22,7 +22,6 @@ const UserInfo = ({ userData, itemId, isLiked }: Props) => {
             <p>{userData.nickname}</p>
           </div>
         </div>
-        {/* TODO: 좋아요 누르기 */}
         <button
           className={`${s.LikeButton({ isLiked })} ${isLiked ? 'mgc_heart_fill' : 'mgc_heart_line'}`}
           onClick={() => likeItem(itemId)}
