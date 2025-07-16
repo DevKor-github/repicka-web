@@ -22,7 +22,7 @@ const DetailPage = () => {
       <div className={s.ScrollContainer}>
         <ImageContainer images={data.itemInfo.images} />
         <div className={s.ContentContainer}>
-          <UserInfo userData={data.owner} />
+          <UserInfo userData={data.owner} itemId={data.itemId} isLiked={data.itemInfo.liked} />
           <PostContent itemInfo={data.itemInfo} />
         </div>
       </div>

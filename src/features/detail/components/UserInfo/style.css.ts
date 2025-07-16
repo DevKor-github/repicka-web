@@ -65,10 +65,22 @@ export const UserInfoText = cva({
   },
 });
 
-export const LikeButton = css({
-  cursor: 'pointer',
-  fontSize: '2.25rem',
-  color: 'systemGray',
+export const LikeButton = cva({
+  base: {
+    cursor: 'pointer',
+    fontSize: '2.25rem',
+    transition: 'all 0.2s ease-in-out',
+  },
+  variants: {
+    isLiked: {
+      true: {
+        color: 'main',
+      },
+      false: {
+        color: 'systemGray',
+      },
+    },
+  },
 });
 
 export const Line = css({

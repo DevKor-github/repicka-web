@@ -2,11 +2,16 @@ import type { UserInterface } from '@/libs/types/user';
 
 import * as s from './style.css';
 import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
+import { usePostLike } from '@/features/detail/apis/usePostLike';
 
 interface Props {
   userData: UserInterface;
+  itemId: number;
+  isLiked: boolean;
 }
-const UserInfo = ({ userData }: Props) => {
+const UserInfo = ({ userData, itemId, isLiked }: Props) => {
+  const { mutate: likeItem } = usePostLike();
+
   return (
     <div className={s.Container}>
       <div className={s.Wrapper}>
@@ -18,7 +23,10 @@ const UserInfo = ({ userData }: Props) => {
           </div>
         </div>
         {/* TODO: 좋아요 누르기 */}
-        <button className={`${s.LikeButton} mgc_heart_line`} />
+        <button
+          className={`${s.LikeButton({ isLiked })} ${isLiked ? 'mgc_heart_fill' : 'mgc_heart_line'}`}
+          onClick={() => likeItem(itemId)}
+        />
       </div>
       <div className={s.Line} />
     </div>
