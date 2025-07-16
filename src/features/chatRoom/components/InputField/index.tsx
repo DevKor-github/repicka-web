@@ -1,0 +1,17 @@
+import * as s from './style.css';
+
+// TODO: 멀티라인으로 바꿔야 하나? 그런 것 같다
+export const InputField = () => {
+  const send = () => {
+    console.log('메시지 보내기');
+  };
+
+  return (
+    <div className={s.Container}>
+      <input className={s.Input} placeholder="메시지를 입력해 주세요" />
+      <button className={`${'mgc_send_fill'} ${s.SendIcon}`} onClick={send} />
+    </div>
+  );
+};
+
+export default InputField;
