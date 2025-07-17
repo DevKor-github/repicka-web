@@ -5,6 +5,7 @@ export const Container = css({
   alignItems: 'flex-end',
   alignSelf: 'flex-start',
   gap: '0.5rem',
+  maxW: 'CHAT_MAX_WIDTH',
 });
 
 export const Time = css({
@@ -14,11 +15,11 @@ export const Time = css({
   fontStyle: 'normal',
   fontWeight: '400',
   lineHeight: 'normal',
+  textWrap: 'nowrap',
 });
 
 export const Message = css({
   w: 'fit-content',
-  maxW: 'CHAT_MAX_WIDTH',
   display: 'flex',
   padding: '0.625rem 0.75rem',
   gap: '0.625rem',
