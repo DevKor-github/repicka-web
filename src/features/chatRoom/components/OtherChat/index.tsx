@@ -3,10 +3,16 @@ import * as s from './style.css';
 
 interface Props {
   children: ReactNode;
+  time: string;
 }
 
-export const OtherChat = ({ children }: Props) => {
-  return <div className={s.Container}>{children}</div>;
+export const OtherChat = ({ children, time }: Props) => {
+  return (
+    <div className={s.Container}>
+      <div className={s.Message}>{children}</div>
+      <div className={s.Time}>{time}</div>
+    </div>
+  );
 };
 
 export default OtherChat;
