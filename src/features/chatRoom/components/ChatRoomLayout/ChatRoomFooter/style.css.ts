@@ -3,9 +3,10 @@ import { css } from '@styled-system/css';
 export const Container = css({
   h: 'CHAT_ROOM_FOOTER_HEIGHT',
   display: 'flex',
-  padding: '0rem 1rem 2.125rem 1.5rem',
+  padding: '0rem 1rem 0rem 1rem',
   justifyContent: 'space-between',
-  alignItems: 'center',
+  alignItems: 'start',
+  gap: '1rem',
 });
 
 export const Icon = css({
@@ -16,8 +17,4 @@ export const Icon = css({
   gap: '0.625rem',
   color: '80',
   fontSize: '1.25rem',
-});
-
-export const ChatRoomInputField = css({
-  w: '18.625rem',
 });

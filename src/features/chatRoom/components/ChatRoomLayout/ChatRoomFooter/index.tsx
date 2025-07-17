@@ -6,9 +6,7 @@ export const ChatRoomFooter = () => {
     <footer>
       <div className={s.Container}>
         <div className={`${'mgc_camera_2_fill'} ${s.Icon}`} />
-        <div className={s.ChatRoomInputField}>
-          <InputField />
-        </div>
+        <InputField />
       </div>
     </footer>
   );
