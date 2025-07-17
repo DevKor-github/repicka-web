@@ -10,6 +10,8 @@ export const Container = css({
   display: 'flex',
   alignItems: 'center',
   gap: '0.22rem',
+  borderRadius: '0.25rem',
+  backgroundColor: 'main-26',
   '& > p': {
     color: '100',
   },

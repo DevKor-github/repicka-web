@@ -18,7 +18,7 @@ const UserInfo = ({ userData, itemId, isLiked }: Props) => {
         <div className={s.UserInfo}>
           <img className={s.ProfileImage} src={userData.profileImageUrl} alt={userData.nickname} />
           <div className={s.UserInfoText({ isVerified: userData.isKoreanUnivVerified })}>
-            {userData.isKoreanUnivVerified && <SchoolVerifiedTag />}
+            {<SchoolVerifiedTag />}
             <p>{userData.nickname}</p>
           </div>
         </div>
