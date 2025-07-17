@@ -5,10 +5,11 @@ import VerifyIcon from '@/libs/assets/VerifyIcon';
 export const ChatRoomHeader = () => {
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
+
   return (
     <header>
       <div className={s.Container}>
-        <button className={`mgc_left_line ${s.BackBtn}`} onClick={goBack}></button>
+        <button className={`mgc_left_fill ${s.BackBtn}`} onClick={goBack}></button>
         <div className={s.UserInfo}>
           <div className={s.ProfileCircle} />
           <div className={s.Verified}>

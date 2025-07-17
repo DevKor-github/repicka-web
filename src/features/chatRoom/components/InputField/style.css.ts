@@ -3,11 +3,11 @@ import { css, cva } from '@styled-system/css';
 export const Container = css({
   position: 'relative',
   height: '2.75rem',
-  backgroundColor: '#2C2C2E',
-  width: '100%',
+  backgroundColor: 'systemGray5',
   padding: '0rem 1rem',
   borderRadius: '0.375rem',
   display: 'flex',
+  flex: 1,
   alignItems: 'center',
 });
 
@@ -20,7 +20,7 @@ export const Input = css({
   fontWeight: '500',
   lineHeight: 'normal',
   letterSpacing: '-0.04rem',
-  marginRight: '2rem', // 아이콘 안 겹치게
+  marginRight: '1.03675rem', // 아이콘 안 겹치게
   fontFamily: 'Pretendard',
 });
 

@@ -5,7 +5,7 @@ export const Container = css({
   paddingLeft: '1rem',
   alignItems: 'center',
   height: '4.44rem',
-  gap: '1.25rem',
+  gap: '0.88rem',
   boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
 });
 
@@ -47,9 +47,9 @@ export const ProfileCircle = css({
 });
 
 export const BackBtn = css({
-  fontSize: '2rem',
+  fontSize: '1.625rem',
   cursor: 'pointer',
-  color: '80',
+  color: 'systemGray',
   flexShrink: '0',
   aspectRatio: '1/1',
 });
