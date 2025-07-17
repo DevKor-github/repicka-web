@@ -24,7 +24,7 @@ export const HeadText = css({
 });
 
 export const Image = css({
-  w: '15.25rem',
+  w: '100%',
   h: '8.75406rem',
   flexShrink: 0,
   borderRadius: '0.375rem',
