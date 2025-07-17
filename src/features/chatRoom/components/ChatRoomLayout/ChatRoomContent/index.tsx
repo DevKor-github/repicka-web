@@ -2,6 +2,7 @@ import { parseTime } from '@/common/utils/parseDate';
 import MyChat from '../../MyChat';
 import OtherChat from '../../OtherChat';
 import * as s from './style.css';
+import PickChat from '../../PickChat';
 
 // [ TODO ]
 // 스크롤 맨 아래가 디폴트
@@ -12,8 +13,9 @@ import * as s from './style.css';
 // 픽 확인 컴포넌트 만들기~~~
 
 interface Chat {
-  isMine: boolean;
-  message: string;
+  isMine?: boolean;
+  message?: string;
+  isPick?: boolean;
   date: string;
 }
 
@@ -31,7 +33,10 @@ const dummyData: Chat[] = [
   { isMine: false, message: '부럽지 ㅋㅋ', date: '2025-07-09T16:00:31.591185' },
   { isMine: true, message: '너무 부럽다.', date: '2025-07-09T16:00:31.591185' },
   { isMine: true, message: '집 가야지 하하하 예재무 공부해야지', date: '2025-07-09T16:01:31.591185' },
+  { isPick: true, date: '2025-07-09T16:07:31.591185' },
 ];
+
+// 이전 컴포넌트와 비교해서 isMine이 동일하지 않으면 gap을 2.25rem으로 조정
 
 export const ChatRoomContent = () => {
   return (
@@ -39,7 +44,9 @@ export const ChatRoomContent = () => {
       {dummyData.map((chat, index) => {
         const time = parseTime(chat.date);
 
-        return chat.isMine ? (
+        return chat.isPick ? (
+          <PickChat />
+        ) : chat.isMine ? (
           <MyChat key={index} time={time}>
             {chat.message}
           </MyChat>

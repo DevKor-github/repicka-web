@@ -6,7 +6,7 @@ const PANDA_CSS_CONSTANTS = {
   DETAIL_PAGE_NAVIGATOR_HEIGHT: { value: '6.75rem' },
   MAX_WIDTH: { value: '700px' },
   CHAT_ROOM_FOOTER_HEIGHT: { value: '81px' },
-  CHAT_MAX_WIDTH: { value: '221px' },
+  CHAT_MAX_WIDTH: { value: '270px' },
 };
 
 export default defineConfig({
