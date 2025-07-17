@@ -24,19 +24,12 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }:
   const isStep4Valid = useStep4Store(state => state.isBtnValid());
   const isStep5Valid = useStep5Store(state => state.isBtnValid());
 
-  const isBtnValids = [
-    isStep1Valid,
-    isStep2Valid,
-    isStep3Valid,
-    isStep4Valid,
-    isStep5Valid,
-    true,
-  ];
+  const isBtnValids = [isStep1Valid, isStep2Valid, isStep3Valid, isStep4Valid, isStep5Valid, true];
 
   const label = isLast ? '완료' : '다음';
   const isBtnValid = isBtnValids[currentStep - 1]; // 현재 스텝의 유효성
 
-  const btnActive = isBtnValid ? 'main' : 'gray';
+  const btnActive = isBtnValid ? 'main' : 'unActive';
   const onClick = () => {
     if (isBtnValid) goNext();
   };
@@ -47,12 +40,12 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }:
       <div className={s.stepBtn}>
         {!isFirst && (
           <div className={s.halfFlex}>
-            <Btn onClick={goPrev} style={{ flex: '1 1 0' }}>
+            <Btn mode="back" onClick={goPrev} style={{ flex: '1 1 0' }}>
               이전
             </Btn>
           </div>
         )}
-        <Btn onClick={onClick} color={btnActive} style={{ flex: '1 1 0' }}>
+        <Btn onClick={onClick} mode={btnActive} style={{ flex: '1 1 0' }}>
           {label}
         </Btn>
       </div>

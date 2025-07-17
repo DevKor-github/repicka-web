@@ -10,6 +10,7 @@ export const ChatRoomContent = () => {
   // 내 채팅, 상대 채팅 묶어서 gap 서로 다르게
   // 날짜 그룹핑
   // api 붙이기~~~ camera, send 아이콘 동작 붙이기~~~
+  // 픽 확인 컴포넌트 만들기~~~
 
   return (
     <div className={s.Wrapper}>
