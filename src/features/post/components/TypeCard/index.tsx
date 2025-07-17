@@ -1,6 +1,6 @@
 import * as s from './style.css';
-import rental from '@/assets/images/rental.png';
-import sale from '@/assets/images/sale.png';
+import rental from '@/libs/assets/rental.png';
+import sale from '@/libs/assets/sale.png';
 import type { TransactionType } from '@/libs/types/item';
 
 interface TypeCardProps {

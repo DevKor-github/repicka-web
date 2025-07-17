@@ -20,6 +20,7 @@ export default tseslint.config(
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      '@tanstack/query': tanstackPlugin,
       prettier,
     },
     rules: {
