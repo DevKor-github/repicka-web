@@ -7,7 +7,6 @@ import { useStep3Store } from '@/features/post/stores/Step3Store';
 import { useStep1Store } from '@/features/post/stores/Step1Store';
 
 const Location = () => {
-
   const locationStore = useStep3Store(state => state.location);
   const locationSetter = useStep3Store(state => state.setLocation);
 
@@ -19,7 +18,7 @@ const Location = () => {
       </div>
     </div>
   );
-}
+};
 
 const Address = () => {
   // TODO: 수정하기,,,
@@ -34,14 +33,14 @@ const Address = () => {
       </div>
     </div>
   );
-}
+};
 
 const Step3 = () => {
   const tradeMethodStore = useStep3Store(state => state.tradeMethods);
   const tradeMethodSetter = useStep3Store(state => state.setTradeMethods);
 
-  const isDirect = tradeMethodStore.includes('DIRECT')
-  const isParcel = tradeMethodStore.includes('PARCEL')
+  const isDirect = tradeMethodStore.includes('DIRECT');
+  const isParcel = tradeMethodStore.includes('PARCEL');
   const isRental = useStep1Store(state => state.transactionTypes).includes('RENTAL');
 
   const handleSelectType = (type: TradeMethods) => {
