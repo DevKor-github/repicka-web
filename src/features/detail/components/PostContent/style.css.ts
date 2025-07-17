@@ -27,18 +27,24 @@ export const Title = css({
   fontWeight: 600,
   lineHeight: 1.4,
   letterSpacing: '-0.045rem',
+  lineClamp: 2,
 });
 
 export const PriceContainer = css({
   display: 'flex',
-  gap: '0.875rem',
-  alignItems: 'center',
+  flexDir: 'column',
+  '& > div:first-child': {
+    display: 'flex',
+    gap: '0.875rem',
+    alignItems: 'center',
+  },
 });
 
 export const PriceItem = css({
   display: 'flex',
   alignItems: 'baseline',
   gap: '0.25rem',
+  height: '1.56rem',
   '& label': {
     color: '54',
     fontSize: '1rem',
@@ -101,6 +107,7 @@ export const TextContent = css({
   fontWeight: 400,
   lineHeight: 1.4,
   letterSpacing: '-0.035rem',
+  whiteSpace: 'pre-line',
 });
 
 export const TokenContainer = css({
