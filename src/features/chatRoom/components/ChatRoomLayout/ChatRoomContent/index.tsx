@@ -14,15 +14,15 @@ export const ChatRoomContent = () => {
 
   return (
     <div className={s.Wrapper}>
-      <MyChat>응 어쩔</MyChat>
-      <OtherChat>흠ㅁ...</OtherChat>
-      <OtherChat>노페인 노개인 음악없ㅂ는 세상 ㅇㅇㅡ아아아</OtherChat>
-      <MyChat>소리 지르지 마세요 소리지르는니가 챔피언</MyChat>
-      <OtherChat>스크롤이 잘되는지 확인해보기</OtherChat>
-      <MyChat>으악 채팅 할 거 많다</MyChat>
-      <MyChat>일단 디자인이랑 같은지, 뭐가 더 필요한지 체크하기...</MyChat>
-      <MyChat>망고빙수 먹고 싶당</MyChat>
-      <OtherChat>스크롤 체크</OtherChat>
+      <MyChat time="오후 6:32">응 어쩔</MyChat>
+      <OtherChat time="오후 6:32">흠ㅁ...</OtherChat>
+      <OtherChat time="오후 6:32">노페인 노개인 음악없ㅂ는 세상 ㅇㅇㅡ아아아</OtherChat>
+      <MyChat time="오후 6:32">소리 지르지 마세요 소리지르는니가 챔피언</MyChat>
+      <OtherChat time="오후 6:32">스크롤이 잘되는지 확인해보기</OtherChat>
+      <MyChat time="오후 6:32">으악 채팅 할 거 많다</MyChat>
+      <MyChat time="오후 6:32">일단 디자인이랑 같은지, 뭐가 더 필요한지 체크하기...</MyChat>
+      <MyChat time="오후 6:32">망고빙수 먹고 싶당</MyChat>
+      <OtherChat time="오후 6:32">스크롤 체크</OtherChat>
     </div>
   );
 };

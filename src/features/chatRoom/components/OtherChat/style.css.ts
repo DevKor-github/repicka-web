@@ -1,7 +1,22 @@
 import { css } from '@styled-system/css';
 
 export const Container = css({
+  display: 'inline-flex',
+  alignItems: 'flex-end',
   alignSelf: 'flex-start',
+  gap: '0.5rem',
+});
+
+export const Time = css({
+  color: 'systemGray2',
+  fontFamily: 'Pretendard',
+  fontSize: '0.625rem',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  lineHeight: 'normal',
+});
+
+export const Message = css({
   w: 'fit-content',
   maxW: 'CHAT_MAX_WIDTH',
   display: 'flex',
