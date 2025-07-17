@@ -34,6 +34,7 @@ export const Contents = css({
     fontWeight: '400',
   },
 });
+
 export const VerifiedTag = css({
   padding: '0.1rem 0.275rem',
   bgColor: 'main-26',
@@ -55,12 +56,28 @@ export const UserInfo = css({
   display: 'flex',
   alignItems: 'center',
   gap: '0.375rem',
+  whiteSpace: 'nowrap',
+
+  '& h1': {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '6rem',
+  },
 });
 
 export const Message = css({
   display: 'flex',
   w: '100%',
   justifyContent: 'space-between',
+  alignItems: 'center',
+
+  '& p': {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '15rem',
+  },
 });
 
 export const Count = css({
