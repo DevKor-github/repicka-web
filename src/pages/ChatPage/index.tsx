@@ -43,8 +43,9 @@ const ChatPage = () => {
       <MainTopBar />
       <div className={s.Wrapper}>
         {/* TODO: 불러오기 */}
-        {dummyData.map(data => (
+        {dummyData.map((data, index) => (
           <ChatList
+            key={index}
             count={data.count}
             message={data.message}
             nickName={data.nickName}
