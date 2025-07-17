@@ -13,6 +13,10 @@ interface List {
 
 const dummyData: List[] = [
   { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },
+  { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },
+  { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },
+  { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },
+  { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },
   { nickName: '정원', message: 'ㅎㅇ', count: 2, chatRoomId: 144, isVerified: true },
   { nickName: '예진', message: '안녕 나는 권예진이야', count: 4, chatRoomId: 12, isVerified: true },
   { nickName: '승준', message: '까치가 좋아', count: 7, chatRoomId: 98, isVerified: false },
