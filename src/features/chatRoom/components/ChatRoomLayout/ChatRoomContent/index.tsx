@@ -24,6 +24,12 @@ const dummyData: Chat[] = [
   { isMine: false, message: '요즘 매미가 비가 와도 안 울어', time: '오후 6:34' },
   { isMine: false, message: '어떤 데이터가 올까...?', time: '오후 6:34' },
   { isMine: true, message: 'isMine도 보내주나? 아님 내가 체크해야 하나?', time: '오후 6:33' },
+  { isMine: true, message: '스크롤 체크를 해보아요', time: '오후 6:33' },
+  { isMine: true, message: '그룹핑이 바로 전 거랑 내가 직접 비교하는 수밖에 없나', time: '오후 6:33' },
+  { isMine: false, message: '나 내일 권예진이랑 초밥 먹는당', time: '오후 6:34' },
+  { isMine: false, message: '부럽지 ㅋㅋ', time: '오후 6:34' },
+  { isMine: true, message: '너무 부럽다.', time: '오후 6:33' },
+  { isMine: true, message: '집 가야지 하하하 예재무 공부해야지', time: '오후 6:33' },
 ];
 
 export const ChatRoomContent = () => {
