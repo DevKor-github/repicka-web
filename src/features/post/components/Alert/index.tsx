@@ -26,7 +26,7 @@ const CustomAlert = ({ onUnshow }: Props) => {
           <Btn onClick={onUnshow} style={{ flex: '1' }}>
             아니오
           </Btn>
-          <Btn color="main" onClick={onReset} style={{ width: '13.125rem' }}>
+          <Btn mode="main" onClick={onReset} style={{ width: '13.125rem' }}>
             네, 다음에 다시 쓸게요
           </Btn>
         </div>

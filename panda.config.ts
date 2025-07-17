@@ -37,6 +37,7 @@ export default defineConfig({
           '100': { value: 'rgba(255, 255, 255, 1)' },
           '80': { value: 'rgba(255, 255, 255, 0.80)' },
           '54': { value: 'rgba(255, 255, 255, 0.54)' },
+          '20': { value: 'rgba(255, 255, 255, 0.20)' },
         },
         lineHeights: {
           normal: { value: '1.2' },
