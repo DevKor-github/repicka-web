@@ -45,7 +45,7 @@ export const ChatRoomContent = () => {
         const time = parseTime(chat.date);
 
         return chat.isPick ? (
-          <PickChat />
+          <PickChat key={index} />
         ) : chat.isMine ? (
           <MyChat key={index} time={time}>
             {chat.message}
