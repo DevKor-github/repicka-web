@@ -3,14 +3,13 @@ import MyChat from '../../MyChat';
 import OtherChat from '../../OtherChat';
 import * as s from './style.css';
 import PickChat from '../../PickChat';
+import { useEffect, useRef } from 'react';
 
 // [ TODO ]
-// 스크롤 맨 아래가 디폴트
 // 스크롤 좀 올렸을 때 맨 아래로 가는 버튼도 만들어야 하려나
 // 키보드 올리면 화면 밀려 올라가게
 // isMine, 날짜 그룹핑
 // api 붙이기~~~ camera, send 아이콘 동작 붙이기~~~
-// 픽 확인 컴포넌트 만들기~~~
 
 interface Chat {
   isMine?: boolean;
@@ -39,23 +38,32 @@ const dummyData: Chat[] = [
 // 이전 컴포넌트와 비교해서 isMine이 동일하지 않으면 gap을 2.25rem으로 조정
 
 export const ChatRoomContent = () => {
-  return (
-    <div className={s.Wrapper}>
-      {dummyData.map((chat, index) => {
-        const time = parseTime(chat.date);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-        return chat.isPick ? (
-          <PickChat key={index} />
-        ) : chat.isMine ? (
-          <MyChat key={index} time={time}>
-            {chat.message}
-          </MyChat>
-        ) : (
-          <OtherChat key={index} time={time}>
-            {chat.message}
-          </OtherChat>
-        );
-      })}
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: 'auto' });
+  }, []);
+
+  return (
+    <div>
+      <div className={s.Wrapper}>
+        {dummyData.map((chat, index) => {
+          const time = parseTime(chat.date);
+
+          return chat.isPick ? (
+            <PickChat key={index} />
+          ) : chat.isMine ? (
+            <MyChat key={index} time={time}>
+              {chat.message}
+            </MyChat>
+          ) : (
+            <OtherChat key={index} time={time}>
+              {chat.message}
+            </OtherChat>
+          );
+        })}
+      </div>
+      <div ref={ref} />
     </div>
   );
 };

@@ -36,7 +36,6 @@ export const PickBtn = css({
   padding: '0.5625rem 4.125rem',
   justifyContent: 'center',
   alignItems: 'center',
-  gap: '0.625rem',
   alignSelf: 'stretch',
   borderRadius: '0.375rem',
   backgroundColor: 'main',
