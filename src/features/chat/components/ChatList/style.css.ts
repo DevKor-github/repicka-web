@@ -65,11 +65,15 @@ export const Message = css({
 
 export const Count = css({
   display: 'flex',
+  w: '1.125rem',
+  h: '1.125rem',
   padding: '0.0625rem 0.375rem',
   justifyContent: 'center',
   alignItems: 'center',
   gap: '0.625rem',
   color: 'main',
+  backgroundColor: 'main-26',
+  borderRadius: 'full',
   textAlign: 'center',
   fontFamily: 'Pretendard',
   fontSize: '0.75rem',
