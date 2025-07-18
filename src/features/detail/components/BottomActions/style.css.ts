@@ -48,7 +48,7 @@ export const PickButton = cva({
     height: 'full',
     overflow: 'hidden',
     rounded: '0.375rem',
-    '& > label': {
+    '& > span': {
       color: '80',
       fontSize: '1rem',
       fontWeight: 500,

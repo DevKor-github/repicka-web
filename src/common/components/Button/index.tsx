@@ -1,5 +1,6 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react';
 import * as s from './style.css';
+import { cx } from '@styled-system/css';
 
 interface Props extends PropsWithChildren {
   mode?: 'main' | 'default' | 'back' | 'disabled';

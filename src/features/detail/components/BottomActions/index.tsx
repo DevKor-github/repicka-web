@@ -24,8 +24,8 @@ const PickButton = ({ type, index, salePrice, deposit, rentalFee }: PickButtonPr
   };
 
   return (
-    <button className={s.PickButton({ color })} onClick={handlePickClick}>
-      <label>{label}</label>
+    <button className={s.PickButton({ color })} onClick={handlePickClick} aria-label={`${label}, ${priceText}`}>
+      <span>{label}</span>
       <p>{priceText}</p>
     </button>
   );
