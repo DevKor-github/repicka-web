@@ -1,11 +1,27 @@
-import type { ItemInfoInterface } from '@/features/detail/types';
 import Token from '@/common/components/Token';
-import { TAG_TYPES_MAP, type TagType } from '@/libs/types/item';
+import {
+  TAG_TYPES_MAP,
+  type Color,
+  type ProductType,
+  type Quality,
+  type Size,
+  type TagType,
+  type TradeMethods,
+  type TransactionType,
+} from '@/libs/types/item';
 
 interface Props {
-  itemInfo: ItemInfoInterface;
+  itemInfo: {
+    productTypes: ProductType[];
+    transactionTypes: TransactionType[];
+    color: Color;
+    tradeMethods: TradeMethods[];
+    quality: Quality;
+    size: Size;
+  } & Record<string, unknown>;
+  showAll?: boolean;
 }
-const ItemTokenList = ({ itemInfo }: Props) => {
+const ItemTokenList = ({ itemInfo, showAll = true }: Props) => {
   const tags: TagType[] = [
     ...itemInfo.transactionTypes,
     ...itemInfo.productTypes,
@@ -14,12 +30,15 @@ const ItemTokenList = ({ itemInfo }: Props) => {
     itemInfo.quality,
     itemInfo.size,
   ];
+  const showTags = showAll ? tags : tags.slice(0, 4);
+  const noneShownCount = tags.length - showTags.length;
 
   return (
     <>
-      {tags.map(type => (
+      {showTags.map(type => (
         <Token key={type}>{TAG_TYPES_MAP[type]}</Token>
       ))}
+      {!showAll && noneShownCount > 0 && <Token>+{noneShownCount}</Token>}
     </>
   );
 };

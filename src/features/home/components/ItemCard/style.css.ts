@@ -2,17 +2,18 @@ import { css } from '@styled-system/css';
 
 export const Container = css({
   w: 'full',
-  h: '6.25rem',
+  h: '6.5rem',
   display: 'flex',
   alignItems: 'stretch',
   gap: '1rem',
 });
 
 export const Image = css({
-  w: '6.25rem',
-  h: '6.25rem',
-  borderRadius: '12.5px',
+  w: '6.5rem',
+  h: '6.5rem',
+  borderRadius: '0.78125rem',
   objectFit: 'cover',
+  flexShrink: 0,
 });
 
 export const Info = css({
@@ -20,40 +21,49 @@ export const Info = css({
   display: 'flex',
   flexDir: 'column',
   justifyContent: 'space-between',
-  padding: '0.25rem 0',
+  padding: '0.125rem 0',
+  overflow: 'hidden',
 });
 
 export const Header = css({
   display: 'flex',
   flexDir: 'column',
   gap: '0.25rem',
+  alignItems: 'stretch',
 });
 
 export const Title = css({
   color: '100',
   fontSize: '1rem',
-  fontWeight: 500,
-  lineHeight: 1.2,
+  fontWeight: 400,
+  lineHeight: 'normal',
   letterSpacing: '-0.04rem',
+  lineClamp: 1,
 });
 
 export const Price = css({
   display: 'flex',
-  alignItems: 'center',
-  gap: '0.875rem',
-  height: '1.5625rem',
+  flexDir: 'column',
+  gap: '0.125rem',
 });
 
 export const PriceItem = css({
   display: 'flex',
-  alignItems: 'baseline',
-  gap: '0.25rem',
-  '& label': {
+  alignItems: 'center',
+  gap: '0.375rem',
+  '& > label': {
+    padding: '0.125rem 0.25rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    rounded: '0.25rem',
+    bgColor: 'systemGray4',
     color: '54',
-    fontSize: '0.875rem',
+    fontSize: '0.625rem',
     fontWeight: 500,
     lineHeight: 1.4,
-    letterSpacing: '-0.035rem',
+    letterSpacing: '-0.025rem',
+    flexShrink: 0,
   },
   '& p': {
     color: '100',
@@ -61,6 +71,15 @@ export const PriceItem = css({
     fontWeight: 600,
     lineHeight: 1.4,
     letterSpacing: '-0.04rem',
+    display: 'flex',
+    gap: '0.375rem',
+    alignItems: 'baseline',
+    '& > label': {
+      color: '54',
+      fontSize: '0.875rem',
+      fontWeight: 500,
+      letterSpacing: '-0.035rem',
+    },
   },
 });
 
@@ -68,18 +87,22 @@ export const Footer = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  width: 'full',
+  gap: '0.25rem',
 });
 
 export const Tokens = css({
   display: 'flex',
   alignItems: 'center',
   gap: '0.25rem',
+  overflowX: 'auto',
 });
 
 export const Interactions = css({
   display: 'flex',
   alignItems: 'center',
-  gap: '0.875rem',
+  gap: '0.625rem',
+  flexShrink: 0,
 });
 
 export const InteractionItem = css({

@@ -9,4 +9,5 @@ export const Container = css({
   fontSize: '0.625rem',
   fontWeight: 500,
   letterSpacing: '-0.025rem',
+  flexShrink: 0,
 });
