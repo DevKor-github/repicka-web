@@ -27,7 +27,7 @@ const DetailPage = () => {
           <PostContent itemInfo={data.itemInfo} />
         </div>
       </div>
-      <BottomActions />
+      <BottomActions itemInfo={data.itemInfo} />
     </div>
   );
 };
