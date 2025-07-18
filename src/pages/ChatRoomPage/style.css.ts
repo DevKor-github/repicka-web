@@ -9,5 +9,5 @@ export const entireLayout = css({
 export const innerPage = css({
   flex: 1,
   overflowY: 'auto',
-  padding: '1.56rem 1rem 1.56rem 1rem',
+  padding: '1rem',
 });

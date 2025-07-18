@@ -1,7 +1,42 @@
-import { css } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Wrapper = css({
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.75rem',
+});
+
+export const Date = cva({
+  base: {
+    color: '54',
+    textAlign: 'center',
+    fontSize: '0.625rem',
+    fontFamily: 'Pretendard',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: 'normal',
+    letterSpacing: '-0.025rem',
+  },
+  variants: {
+    isFalse: {
+      true: {
+        marginTop: '0',
+      },
+      false: {
+        marginTop: '2.25rem',
+      },
+    },
+  },
+});
+
+export const MarginTop = cva({
+  variants: {
+    marginTop: {
+      '0.75rem': {
+        marginTop: '0.75rem',
+      },
+      '2.25rem': {
+        marginTop: '2.25rem',
+      },
+    },
+  },
 });
