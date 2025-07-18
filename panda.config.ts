@@ -5,7 +5,7 @@ const PANDA_CSS_CONSTANTS = {
   HOME_HEADER_HEIGHT: { value: '52px' },
   DETAIL_PAGE_NAVIGATOR_HEIGHT: { value: '6.75rem' },
   MAX_WIDTH: { value: '700px' },
-  CHAT_ROOM_FOOTER_HEIGHT: { value: '81px' },
+  CHAT_ROOM_FOOTER_HEIGHT: { value: '102px' },
   CHAT_MAX_WIDTH: { value: '270px' },
 };
 
