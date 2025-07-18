@@ -18,7 +18,7 @@ interface Props {
     tradeMethods: TradeMethods[];
     quality: Quality;
     size: Size;
-  } & Record<string, unknown>;
+  };
   showAll?: boolean;
 }
 const ItemTokenList = ({ itemInfo, showAll = true }: Props) => {
