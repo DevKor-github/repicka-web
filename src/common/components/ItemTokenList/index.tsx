@@ -25,10 +25,10 @@ const ItemTokenList = ({ itemInfo, showAll = true }: Props) => {
   const tags: TagType[] = [
     ...itemInfo.transactionTypes,
     ...itemInfo.productTypes,
+    itemInfo.size,
+    itemInfo.quality,
     itemInfo.color,
     ...itemInfo.tradeMethods,
-    itemInfo.quality,
-    itemInfo.size,
   ];
   const showTags = showAll ? tags : tags.slice(0, 4);
   const noneShownCount = tags.length - showTags.length;

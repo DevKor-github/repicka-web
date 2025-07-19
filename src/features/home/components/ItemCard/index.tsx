@@ -52,7 +52,14 @@ const ItemCard = ({ data }: Props) => {
             {/* TODO: API 수정 요청 */}
             <ItemTokenList
               showAll={false}
-              itemInfo={{ ...data, color: 'COLOR_OTHER', quality: 'BEST', size: 'L', tradeMethods: ['DIRECT'] }}
+              itemInfo={{
+                ...data,
+                color: 'COLOR_OTHER',
+                quality: 'BEST',
+                size: 'L',
+                tradeMethods: ['DIRECT'],
+                transactionTypes: [],
+              }}
             />
           </div>
         </div>
