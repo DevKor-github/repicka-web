@@ -14,26 +14,26 @@ export const PRODUCT_TYPES_MAP = {
   REFORM: '리폼',
   PRODUCT_OTHER: '기타',
 } as const;
-export const QUALITY_TYPES_MAP = {
+export const QUALITY_MAP = {
   BEST: '최상',
   HIGH: '상',
   MIDDLE: '중',
   LOW: '하',
 } as const;
-export const COLOR_TYPES_MAP = {
+export const COLOR_MAP = {
   CRIMSON: 'Crimson',
   WHITE: 'White',
   BLACK: 'Black',
   IVORY: 'Ivory',
   COLOR_OTHER: '기타',
 } as const;
-export const TRADE_TYPES_MAP = {
+export const TRADE_METHODS_MAP = {
   DIRECT: '직거래',
   PARCEL: '택배거래',
 } as const;
 
-export const SIZE_TYPES_ARRAY = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] as const;
-export const SIZE_TYPES_MAP: Record<SizeType, SizeType> = {
+export const SIZE_ARRAY = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] as const;
+export const SIZE_MAP: Record<Size, Size> = {
   XS: 'XS',
   S: 'S',
   M: 'M',
@@ -45,27 +45,27 @@ export const SIZE_TYPES_MAP: Record<SizeType, SizeType> = {
 export const TAG_TYPES_MAP: Record<TagType, string> = {
   ...PRODUCT_TYPES_MAP,
   ...TRANSACTION_TYPES_MAP,
-  ...COLOR_TYPES_MAP,
-  ...QUALITY_TYPES_MAP,
-  ...SIZE_TYPES_MAP,
-  ...TRADE_TYPES_MAP,
+  ...COLOR_MAP,
+  ...QUALITY_MAP,
+  ...SIZE_MAP,
+  ...TRADE_METHODS_MAP,
 } as const;
 
 export type TransactionType = keyof typeof TRANSACTION_TYPES_MAP;
 export type ProductType = keyof typeof PRODUCT_TYPES_MAP;
-export type QualityType = keyof typeof QUALITY_TYPES_MAP;
-export type ColorType = keyof typeof COLOR_TYPES_MAP;
-export type TradeType = keyof typeof TRADE_TYPES_MAP;
-export type SizeType = (typeof SIZE_TYPES_ARRAY)[number];
-export type TagType = TransactionType | ProductType | QualityType | ColorType | TradeType | SizeType;
-export type IconType = ProductType | TransactionType | TradeType;
+export type Quality = keyof typeof QUALITY_MAP;
+export type Color = keyof typeof COLOR_MAP;
+export type TradeMethods = keyof typeof TRADE_METHODS_MAP;
+export type Size = (typeof SIZE_ARRAY)[number];
+export type TagType = TransactionType | ProductType | Quality | Color | TradeMethods | Size;
+export type IconType = ProductType | TransactionType | TradeMethods;
 
 // 타입 체크 함수 필요하면 이 아래에 선언
 
-export function isColorType(type: TagType): type is ColorType {
-  return type in COLOR_TYPES_MAP;
+export function isColorType(type: TagType): type is Color {
+  return type in COLOR_MAP;
 }
 
 export function isIconType(type: TagType): type is IconType {
-  return type in PRODUCT_TYPES_MAP || type in TRANSACTION_TYPES_MAP || type in TRADE_TYPES_MAP;
+  return type in PRODUCT_TYPES_MAP || type in TRANSACTION_TYPES_MAP || type in TRADE_METHODS_MAP;
 }

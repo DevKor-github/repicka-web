@@ -4,6 +4,7 @@ import HomePage from '@/pages/HomePage';
 import Layout from '@/pages/Layout';
 import PickPage from '@/pages/PickPage';
 import PostPage from './PostPages';
+import PostPageRoutes from '@/pages/PostPages';
 import NotFoundPage from '@/pages/NotFoundPage';
 import DetailPage from '@/pages/DetailPage';
 import LoginPage from '@/pages/LoginPage';

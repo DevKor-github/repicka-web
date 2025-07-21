@@ -1,38 +1,52 @@
-import { useState } from 'react';
 import * as s from './style.css';
+import { useState } from 'react';
 
-interface InputProps {
-  isPrice?: boolean;
+interface InputProps<T extends number | string> {
+  className?: string;
+  value: T;
+  setValue: (value: T) => void;
 }
 
-const InputField = ({ isPrice = false }: InputProps) => {
-  const [price, setPrice] = useState('');
+const InputField = <T extends number | string>({ className, value, setValue }: InputProps<T>) => {
+  const [isFocused, setIsFocused] = useState(false);
 
-  const handleSetPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let raw = event.target.value.replace(/,/g, '');
+  const isNumber = typeof value === 'number';
+  const stringValue =
+    isNumber && value === 0 && isFocused ? '' : isNumber ? (value as number).toLocaleString() : (value as string);
 
-    if (!/^\d*$/.test(raw)) return;     // 숫자가 아니면 무시
-
-    const number = Number(raw);
-
-    if (isNaN(number)) {
-      setPrice('');
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = event.target.value;
+    if (isNumber) {
+      const number = Number(raw.replace(/,/g, ''));
+      if (isNaN(number)) return;
+      setValue(number as T);
     } else {
-      setPrice(number.toLocaleString('ko-KR'));
+      setValue(raw as T);
     }
-
-    // TODO: 현재 입력값은 string
-    // 백엔드에 보낼 때 number로 재변환하기
-    // const numericPrice = Number(price.replace(/,/g, ''));
   };
-  
-  return <input 
-  className={s.Container({ isPrice })}
-  value={isPrice ? price : undefined}
-  onChange={isPrice ? handleSetPrice : undefined}
-  inputMode={isPrice ? 'numeric' : 'text'}
-  pattern={isPrice ? '[0-9]*' : undefined}
-  ></input>;
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    if (isNumber && e.target.value === '') {
+      setValue(0 as T);
+    }
+  };
+
+  return (
+    <input
+      className={`${s.Container({ isNumber })} ${className}`}
+      value={stringValue}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      inputMode={isNumber ? 'numeric' : 'text'}
+      pattern={isNumber ? '[0-9]*' : undefined}
+    />
+  );
 };
 
 export default InputField;

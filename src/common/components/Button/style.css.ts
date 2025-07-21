@@ -6,9 +6,10 @@ export const Button = cva({
     gap: '0.625rem',
     flexShrink: '0',
     justifyContent: 'center',
+    alignItems: 'center',
     padding: '0.625rem',
     borderRadius: '0.375rem',
-    width: '100%',
+    // width: '100%',
     height: '3.125rem',
     fontFamily: 'Pretendard',
     fontSize: '1.25rem',
@@ -16,8 +17,11 @@ export const Button = cva({
     fontWeight: '500',
     lineHeight: 'normal',
     letterSpacing: '-0.05rem',
+    transition: 'background 0.3s ease-in-out',
+    cursor: 'pointer',
   },
   variants: {
+    // TODO: 언제 쓰이는 건지 이름 바꾸기
     color: {
       main: {
         backgroundColor: 'main',

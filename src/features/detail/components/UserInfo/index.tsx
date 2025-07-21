@@ -1,29 +1,32 @@
 import type { UserInterface } from '@/libs/types/user';
 
 import * as s from './style.css';
-import VerifyIcon from '@/libs/assets/VerifyIcon';
+import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
+import { usePostLike } from '@/features/detail/apis/usePostLike';
 
 interface Props {
   userData: UserInterface;
+  itemId: number;
+  isLiked: boolean;
 }
-const UserInfo = ({ userData }: Props) => {
+const UserInfo = ({ userData, itemId, isLiked }: Props) => {
+  const { mutate: likeItem } = usePostLike();
+
   return (
     <div className={s.Container}>
       <div className={s.Wrapper}>
         <div className={s.UserInfo}>
           <img className={s.ProfileImage} src={userData.profileImageUrl} alt={userData.nickname} />
           <div className={s.UserInfoText({ isVerified: userData.isKoreanUnivVerified })}>
-            {userData.isKoreanUnivVerified && (
-              <span className={s.VerifiedTag}>
-                <p>학교인증</p>
-                <VerifyIcon />
-              </span>
-            )}
+            {<SchoolVerifiedTag />}
             <p>{userData.nickname}</p>
           </div>
         </div>
-        {/* TODO: 좋아요 누르기 */}
-        <button className={`${s.LikeButton} mgc_heart_line`} />
+        <button
+          className={`${s.LikeButton({ isLiked })} ${isLiked ? 'mgc_heart_fill' : 'mgc_heart_line'}`}
+          onClick={() => likeItem(itemId)}
+          aria-label={isLiked ? 'Unlike item' : 'Like item'}
+        />
       </div>
       <div className={s.Line} />
     </div>

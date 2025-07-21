@@ -1,6 +1,6 @@
-import type { ProductType, TradeType, TransactionType } from '@/libs/types/item';
+import type { ProductType, TradeMethods, TransactionType } from '@/libs/types/item';
 
-export const ICON_MAP: Record<Exclude<ProductType, 'HOCKEY'> | TransactionType | TradeType, string> = {
+export const ICON_MAP: Record<Exclude<ProductType, 'HOCKEY'> | TransactionType | TradeMethods, string> = {
   SOCCER: 'mgc_football_fill',
   BASKETBALL: 'mgc_basketball_fill',
   BASEBALL: 'mgc_baseball_fill',
