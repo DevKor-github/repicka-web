@@ -25,6 +25,7 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }:
   const isStep5Valid = useStep5Store(state => state.isBtnValid());
 
   const isBtnValids = [isStep1Valid, isStep2Valid, isStep3Valid, isStep4Valid, isStep5Valid, true];
+  // const isBtnValids = [true, true, true, true, isStep5Valid, true];
 
   const label = isLast ? '완료' : '다음';
   const isBtnValid = isBtnValids[currentStep - 1]; // 현재 스텝의 유효성

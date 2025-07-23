@@ -13,3 +13,22 @@ export const SelectPhotoContainer = css({
   alignItems: 'center',
   flexWrap: 'wrap',
 });
+
+export const PhotoLimit = css({
+  display: 'flex',
+  flexDir: 'column',
+  gap: '1rem',
+});
+
+export const AlertText = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.25rem',
+  color: '80',
+  fontFamily: 'Pretendard',
+  fontSize: '0.75rem',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  lineHeight: 'normal',
+  letterSpacing: '-0.03rem',
+});

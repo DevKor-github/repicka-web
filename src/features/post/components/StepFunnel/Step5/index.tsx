@@ -51,11 +51,17 @@ const Step5 = () => {
           상품 설명을 입력해 주세요
           <div className={s.ProductDesc}>
             <MultilineInputfield onChange={handleDesc} value={descStore} />
-            <div className={s.SelectPhotoContainer}>
-              <UploadFile onChange={handleImageUploaded} />
-              {images.map((file, index) => (
-                <SelectedPhoto key={index} file={file} onClick={() => removeUploadedImage(index)} />
-              ))}
+            <div className={s.PhotoLimit}>
+              <div className={s.SelectPhotoContainer}>
+                <UploadFile onChange={handleImageUploaded} />
+                {images.map((file, index) => (
+                  <SelectedPhoto key={index} file={file} onClick={() => removeUploadedImage(index)} />
+                ))}
+              </div>
+              <div className={s.AlertText}>
+                <span className="mgc_alert_octagon_fill"></span>
+                사진은 최대 6장까지 등록이 가능해요.
+              </div>
             </div>
           </div>
         </div>
