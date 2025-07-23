@@ -31,6 +31,7 @@ const Step5 = () => {
     const fileArray = Array.from(files);
 
     const validFiles = fileArray.filter(file => {
+      // TODO: alert 어떻게 띄워줄지 디자인 요청
       const ext = file.name.split('.').pop()?.toLowerCase();
       console.log(ext);
       if (!ext || !ALLOWED_EXTENSIONS.includes(ext)) {
