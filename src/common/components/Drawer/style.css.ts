@@ -24,15 +24,36 @@ export const Container = css({
   flexDir: 'column',
   borderTop: '1px solid {colors.systemGray4}',
   boxShadow: '0px 0px 30px 0px rgba(0, 0, 0, 0.25)',
+  pt: '1.5rem',
+  pb: '2.625rem',
 });
 
-export const Handler = css({
-  bgColor: '#9A9A9A',
-  rounded: 'full',
-  height: '4px',
-  width: '3rem',
-  alignSelf: 'center',
-  mt: '0.875rem',
+export const Header = css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  px: '1rem',
+});
+
+export const HeaderTitle = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.625rem',
+  lineHeight: 'normal',
+});
+
+export const Title = css({
+  color: '100',
+  fontSize: '1rem',
+  fontWeight: 500,
+  letterSpacing: '-0.04rem',
+});
+
+export const Description = css({
+  color: '54',
+  fontSize: '0.875rem',
+  fontWeight: 400,
+  letterSpacing: '-0.035rem',
 });
 
 export const Content = css({ w: 'full', h: 'fit-content' });

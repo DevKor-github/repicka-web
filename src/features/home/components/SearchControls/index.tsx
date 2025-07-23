@@ -31,8 +31,8 @@ const SearchControls = ({ itemCounts }: Props) => {
         <SelectButton active={false}>가격순</SelectButton>
         <SelectButton active={false}>색상</SelectButton>
       </div>
-      <Drawer drawerState={drawerState}>
-        <div className={css({ height: '10rem' })}>안녕하세요 호호</div>
+      <Drawer title="필터" description="필터를 선택해주삼" drawerState={drawerState}>
+        <div className={css({ height: '10rem', px: '1rem', pt: '1rem' })}>안녕하세요 호호</div>
       </Drawer>
     </div>
   );

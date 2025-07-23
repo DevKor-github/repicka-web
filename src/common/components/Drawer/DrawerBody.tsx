@@ -1,13 +1,16 @@
-import { motion, type PanInfo } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from 'react';
+import { cx } from '@styled-system/css';
+import { motion, type PanInfo } from 'framer-motion';
 
 import * as s from './style.css';
 
 interface DrawerBodyProps extends PropsWithChildren {
+  title: string;
+  description?: string;
   close: () => void;
 }
 
-const DrawerBody = ({ children, close }: DrawerBodyProps) => {
+const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
 
@@ -41,6 +44,7 @@ const DrawerBody = ({ children, close }: DrawerBodyProps) => {
       className={s.Container}
       drag={'y'}
       dragConstraints={{ top: 0, bottom: 0 }}
+      transition={{ duration: 0.2 }}
       dragElastic={0.4}
       variants={{
         opened: { top: `calc(100dvh - ${height}px)` },
@@ -51,7 +55,13 @@ const DrawerBody = ({ children, close }: DrawerBodyProps) => {
       exit={'closed'}
       onDragEnd={onDragEnd}
     >
-      <div className={s.Handler} />
+      <header className={s.Header}>
+        <div className={s.HeaderTitle}>
+          <span className={s.Title}>{title}</span>
+          {description && <span className={s.Description}>{description}</span>}
+        </div>
+        <button className={cx('mgc_close_line')} onClick={close} />
+      </header>
       <div ref={contentRef} className={s.Content}>
         {children}
       </div>
