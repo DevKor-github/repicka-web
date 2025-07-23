@@ -25,7 +25,7 @@ export const useStep5Store = create<Step5Store>((set, get) => ({
 
   isBtnValid: () => {
     const { title, desc, files } = get();
-    return title.trim() !== '' && desc.trim() !== '' && files.length !== 0;
+    return title.trim() !== '' && desc.trim() !== '' && files.length !== 0 && files.length < 7;
   },
 
   reset: () => {
