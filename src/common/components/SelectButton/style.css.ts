@@ -13,14 +13,15 @@ export const Container = cva({
     cursor: 'pointer',
     color: '100',
     border: '1px solid',
+    lineHeight: '0.87788rem',
   },
   variants: {
-    color: {
-      main: {
+    active: {
+      true: {
         borderColor: 'main-54',
         bgColor: 'main-26',
       },
-      gray: {
+      false: {
         borderColor: 'systemGray5',
         bgColor: 'systemGray5',
       },

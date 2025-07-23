@@ -69,6 +69,9 @@ export default defineConfig({
       backgroundColor: 'systemGray6',
       color: '100',
     },
+    button: {
+      cursor: 'pointer',
+    },
   },
 
   jsxFramework: 'react',

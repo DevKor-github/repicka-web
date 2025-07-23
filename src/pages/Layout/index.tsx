@@ -2,15 +2,15 @@ import Navigator from '@/common/components/Navigator';
 import { Outlet, useLocation } from 'react-router';
 
 import * as s from './style.css';
-import { NAVIGATION_MENU_LIST } from '@/pages/routes';
+import { SHOW_NAV_PATH } from '@/pages/routes';
 
 /**
- * 모든 페이지들이 공유하는 Layout이에요
+ * 모든 페이지들이 공유하는 Layout
  */
 const Layout = () => {
   const { pathname } = useLocation();
 
-  const showNav = NAVIGATION_MENU_LIST.some(menu => menu.path === pathname);
+  const showNav = SHOW_NAV_PATH.includes(pathname);
 
   return (
     <div className={s.FlexContainer}>
