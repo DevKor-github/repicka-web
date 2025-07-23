@@ -38,6 +38,18 @@ const ItemCard = ({ data }: Props) => {
           </div>
         </div>
         <div className={s.Footer}>
+          <div className={s.Tokens}>
+            {/* TODO: API 수정 요청 */}
+            <ItemTokenList
+              showAll={false}
+              itemInfo={{
+                productTypes: data.productTypes,
+                quality: 'BEST',
+                size: 'L',
+                tradeMethods: ['DIRECT'],
+              }}
+            />
+          </div>
           <div className={s.Interactions}>
             <div className={s.InteractionItem}>
               <span className="mgc_heart_fill" />
@@ -47,20 +59,6 @@ const ItemCard = ({ data }: Props) => {
               <span className="mgc_chat_2_fill" />
               <p>{data.chatRoomCount}</p>
             </div>
-          </div>
-          <div className={s.Tokens}>
-            {/* TODO: API 수정 요청 */}
-            <ItemTokenList
-              showAll={false}
-              itemInfo={{
-                ...data,
-                color: 'COLOR_OTHER',
-                quality: 'BEST',
-                size: 'L',
-                tradeMethods: ['DIRECT'],
-                transactionTypes: [],
-              }}
-            />
           </div>
         </div>
       </div>
