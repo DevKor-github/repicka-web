@@ -35,9 +35,12 @@ const ItemTokenList = ({ itemInfo, showAll = true }: Props) => {
 
   return (
     <>
-      {showTags.map(type => (
-        <Token key={type}>{TAG_TYPES_MAP[type]}</Token>
-      ))}
+      {showTags.map(type => {
+        // 기타는 표시 X
+        if (type === 'COLOR_OTHER' || type === 'PRODUCT_OTHER') return null;
+
+        return <Token key={type}>{TAG_TYPES_MAP[type]}</Token>;
+      })}
       {!showAll && noneShownCount > 0 && <Token>+{noneShownCount}</Token>}
     </>
   );
