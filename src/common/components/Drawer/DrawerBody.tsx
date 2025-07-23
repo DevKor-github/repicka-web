@@ -60,7 +60,7 @@ const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) =>
           <span className={s.Title}>{title}</span>
           {description && <span className={s.Description}>{description}</span>}
         </div>
-        <button className={cx('mgc_close_line')} onClick={close} />
+        <button className={cx('mgc_close_line', s.CloseButton)} onClick={close} />
       </header>
       <div ref={contentRef} className={s.Content}>
         {children}

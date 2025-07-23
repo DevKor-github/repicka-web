@@ -56,4 +56,10 @@ export const Description = css({
   letterSpacing: '-0.035rem',
 });
 
+export const CloseButton = css({
+  fontSize: '1rem',
+  color: '80',
+  cursor: 'pointer',
+});
+
 export const Content = css({ w: 'full', h: 'fit-content' });
