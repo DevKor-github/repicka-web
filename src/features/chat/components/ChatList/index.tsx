@@ -13,7 +13,7 @@ interface Props {
 
 const ChatList = ({ nickName, message, count, chatRoomId, isVerified }: Props) => {
   return (
-    <Link className={s.List} to={`/chatRoom/${chatRoomId}`}>
+    <Link className={s.List} to={`/chatroom/${chatRoomId}`}>
       <div className={s.ProfileCircle} />
       <div className={s.Contents}>
         <div className={s.UserInfo}>

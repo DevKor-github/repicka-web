@@ -17,24 +17,11 @@ export const Date = cva({
     letterSpacing: '-0.025rem',
   },
   variants: {
-    isFalse: {
+    isFirst: {
       true: {
         marginTop: '0',
       },
       false: {
-        marginTop: '2.25rem',
-      },
-    },
-  },
-});
-
-export const MarginTop = cva({
-  variants: {
-    marginTop: {
-      '0.75rem': {
-        marginTop: '0.75rem',
-      },
-      '2.25rem': {
         marginTop: '2.25rem',
       },
     },

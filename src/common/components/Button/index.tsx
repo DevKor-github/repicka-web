@@ -2,7 +2,7 @@ import type { HTMLAttributes, PropsWithChildren } from 'react';
 import * as s from './style.css';
 
 interface Props extends PropsWithChildren {
-  mode?: 'main' | 'default' | 'back' | 'unActive';
+  mode?: 'main' | 'default' | 'back' | 'disabled';
   onClick?: () => void;
   style?: HTMLAttributes<HTMLDivElement>['style'];
 }
