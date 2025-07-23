@@ -44,6 +44,8 @@ export default defineConfig({
         },
         zIndex: {
           navigator: { value: 500 },
+          drawerBackLayer: { value: 600 },
+          drawerBody: { value: 700 },
         },
         sizes: PANDA_CSS_CONSTANTS,
         spacing: PANDA_CSS_CONSTANTS,
