@@ -7,6 +7,9 @@ import SelectedPhoto from '../../uploadedPhoto';
 import UploadFile from '../../UploadFile';
 import { useStep5Store } from '@/features/post/stores/Step5Store';
 
+const titleLimit = 64;
+const descLimit = 1000;
+
 const Step5 = () => {
   const fileStore = useStep5Store(state => state.files);
   const fileSetter = useStep5Store(state => state.setFiles);
@@ -44,13 +47,13 @@ const Step5 = () => {
       <header className={c.Head}>상품 소개를 작성해 주세요</header>
       <div className={c.Content}>
         <div className={c.DetailContent}>
-          상품명을 입력해 주세요
-          <InputField value={titleStore} setValue={titleSetter}></InputField>
+          상품명을 입력해 주세요 (최대 {titleLimit}자)
+          <InputField value={titleStore} setValue={titleSetter} maxLength={titleLimit}></InputField>
         </div>
         <div className={c.DetailContent}>
-          상품 설명을 입력해 주세요
+          상품 설명을 입력해 주세요 (최대 {descLimit}자)
           <div className={s.ProductDesc}>
-            <MultilineInputfield onChange={handleDesc} value={descStore} />
+            <MultilineInputfield onChange={handleDesc} value={descStore} maxLength={descLimit} />
             <div className={s.PhotoLimit}>
               <div className={s.SelectPhotoContainer}>
                 <UploadFile onChange={handleImageUploaded} />
