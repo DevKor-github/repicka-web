@@ -10,6 +10,10 @@ import { useStep5Store } from '@/features/post/stores/Step5Store';
 const titleLimit = 64;
 const descLimit = 1000;
 
+const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
+const MAX_SIZE_MB = 5;
+const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+
 const Step5 = () => {
   const fileStore = useStep5Store(state => state.files);
   const fileSetter = useStep5Store(state => state.setFiles);
@@ -26,7 +30,21 @@ const Step5 = () => {
 
     const fileArray = Array.from(files);
 
-    const updatedFiles = [...fileStore, ...fileArray];
+    const validFiles = fileArray.filter(file => {
+      const ext = file.name.split('.').pop()?.toLowerCase();
+      console.log(ext);
+      if (!ext || !ALLOWED_EXTENSIONS.includes(ext)) {
+        alert(`"${file.name}"은(는) 지원하지 않는 확장자입니다.`);
+        return false;
+      }
+      if (file.size > MAX_SIZE_BYTES) {
+        alert(`"${file.name}"은(는) ${MAX_SIZE_MB}MB를 초과합니다.`);
+        return false;
+      }
+      return true;
+    });
+
+    const updatedFiles = [...fileStore, ...validFiles];
     fileSetter(updatedFiles);
   };
 
@@ -47,11 +65,11 @@ const Step5 = () => {
       <header className={c.Head}>상품 소개를 작성해 주세요</header>
       <div className={c.Content}>
         <div className={c.DetailContent}>
-          상품명을 입력해 주세요 (최대 {titleLimit}자)
+          상품명을 입력해 주세요 ({titleStore.length}/{titleLimit})
           <InputField value={titleStore} setValue={titleSetter} maxLength={titleLimit}></InputField>
         </div>
         <div className={c.DetailContent}>
-          상품 설명을 입력해 주세요 (최대 {descLimit}자)
+          상품 설명을 입력해 주세요 ({descStore.length}/{descLimit})
           <div className={s.ProductDesc}>
             <MultilineInputfield onChange={handleDesc} value={descStore} maxLength={descLimit} />
             <div className={s.PhotoLimit}>
