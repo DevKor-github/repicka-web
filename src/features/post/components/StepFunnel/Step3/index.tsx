@@ -6,6 +6,8 @@ import InputField from '../../InputField';
 import { useStep3Store } from '@/features/post/stores/Step3Store';
 import { useStep1Store } from '@/features/post/stores/Step1Store';
 
+const locationLimit = 100;
+
 const Location = () => {
   const locationStore = useStep3Store(state => state.location);
   const locationSetter = useStep3Store(state => state.setLocation);
@@ -14,7 +16,7 @@ const Location = () => {
     <div className={c.DetailContent}>
       <div className={c.DetailContent}>
         <span>직거래 장소를 입력해 주세요</span>
-        <InputField value={locationStore} setValue={locationSetter} />
+        <InputField value={locationStore} setValue={locationSetter} maxLength={locationLimit} />
       </div>
     </div>
   );
