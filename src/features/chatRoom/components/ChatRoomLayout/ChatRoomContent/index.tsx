@@ -63,8 +63,9 @@ export const ChatRoomContent = () => {
           const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
 
           return (
+            // TODO: <React.Fragment key={`${chat.date}-${chat.message || 'no-message'}`}>로 변경 (key를 index 말고 고유할 수 있는 값으로,,,)
             <React.Fragment key={index}>
-              {isNewDate && <div className={s.Date({ isFalse: isFirst })}>{date}</div>}
+              {isNewDate && <div className={s.Date({ isFirst: isFirst })}>{date}</div>}
 
               {chat.isPick ? (
                 <PickChat marginTop={marginTop} isMine={chat.isMine} />

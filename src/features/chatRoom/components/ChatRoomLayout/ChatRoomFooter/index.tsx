@@ -3,7 +3,7 @@ import * as s from './style.css';
 
 export const ChatRoomFooter = () => {
   return (
-    <footer>
+    <footer className={s.Wrapper}>
       <div className={s.Container}>
         <div className={`${'mgc_camera_2_fill'} ${s.Icon}`} />
         <InputField />

@@ -1,3 +1,4 @@
+import { cx } from '@styled-system/css';
 import * as s from './style.css';
 
 // [ TODO ]
@@ -12,7 +13,7 @@ export const InputField = () => {
   return (
     <div className={s.Container}>
       <input className={s.Input} placeholder="메시지를 입력해 주세요" />
-      <button className={`${'mgc_send_fill'} ${s.SendIcon}`} onClick={send} />
+      <button className={cx(s.SendIcon(), 'mgc_send_fill')} onClick={send} />
     </div>
   );
 };

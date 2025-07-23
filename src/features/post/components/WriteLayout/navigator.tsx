@@ -29,7 +29,7 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }:
   const label = isLast ? '완료' : '다음';
   const isBtnValid = isBtnValids[currentStep - 1]; // 현재 스텝의 유효성
 
-  const btnActive = isBtnValid ? 'main' : 'unActive';
+  const isBtnAble = isBtnValid ? 'main' : 'disabled';
   const onClick = () => {
     if (isBtnValid) goNext();
   };
@@ -45,7 +45,7 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }:
             </Btn>
           </div>
         )}
-        <Btn onClick={onClick} mode={btnActive} style={{ flex: '1 1 0' }}>
+        <Btn onClick={onClick} mode={isBtnAble} style={{ flex: '1 1 0' }}>
           {label}
         </Btn>
       </div>

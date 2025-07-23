@@ -33,7 +33,7 @@ export const Button = cva({
         backgroundColor: 'systemGray5',
         color: '54',
       },
-      unActive: {
+      disabled: {
         backgroundColor: 'systemGray5',
         color: '20',
       },
