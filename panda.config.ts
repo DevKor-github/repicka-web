@@ -5,6 +5,8 @@ const PANDA_CSS_CONSTANTS = {
   HOME_HEADER_HEIGHT: { value: '52px' },
   DETAIL_PAGE_NAVIGATOR_HEIGHT: { value: '6.75rem' },
   MAX_WIDTH: { value: '700px' },
+  CHAT_ROOM_FOOTER_HEIGHT: { value: '102px' },
+  CHAT_MAX_WIDTH: { value: '270px' },
 };
 
 export default defineConfig({
@@ -35,6 +37,7 @@ export default defineConfig({
           '100': { value: 'rgba(255, 255, 255, 1)' },
           '80': { value: 'rgba(255, 255, 255, 0.80)' },
           '54': { value: 'rgba(255, 255, 255, 0.54)' },
+          '20': { value: 'rgba(255, 255, 255, 0.20)' },
         },
         lineHeights: {
           normal: { value: '1.2' },

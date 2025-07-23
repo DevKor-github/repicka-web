@@ -15,6 +15,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.79.0",
     "axios": "^1.9.0",
+    "date-fns": "^4.1.0",
     "mingcute_icon": "^2.9.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

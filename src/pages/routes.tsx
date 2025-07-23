@@ -7,6 +7,8 @@ import PostPage from '@/pages/PostPages';
 import NotFoundPage from '@/pages/NotFoundPage';
 import DetailPage from '@/pages/DetailPage';
 import LoginPage from '@/pages/LoginPage';
+import ChatPage from './ChatPage';
+import ChatRoomPage from './ChatRoomPage';
 import AuthGuard from '@/common/components/AuthGuard';
 
 /**
@@ -19,6 +21,10 @@ const routes: RouteObject[] = [
       {
         path: '/',
         element: <HomePage />,
+      },
+      {
+        path: '/pick',
+        element: <PickPage />,
       },
       {
         path: '/detail/:id',
@@ -38,6 +44,14 @@ const routes: RouteObject[] = [
           {
             path: '/post',
             element: <PostPage />,
+          },
+          {
+            path: '/chat',
+            element: <ChatPage />,
+          },
+          {
+            path: '/chatroom/:chatRoomId',
+            element: <ChatRoomPage />,
           },
         ],
       },
