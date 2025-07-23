@@ -32,7 +32,7 @@ export const useStep4Store = create<Step4Store>((set, get) => ({
     const { size, color, quality } = get();
     return size === null && color === null && quality === null;
   },
-    reset: () => {
+  reset: () => {
     set({
       size: null,
       color: null,

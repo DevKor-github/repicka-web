@@ -16,10 +16,7 @@ const Header = () => {
   const isStep4Empty = useStep4Store(state => state.isEmpty());
 
   // 모두 다 비워져 있으면 alert를 띄우지 말아야 한다
-  const shouldShow = !(isStep1Empty
-    && isStep2Empty
-    && isStep3Empty
-    && isStep4Empty);
+  const shouldShow = !(isStep1Empty && isStep2Empty && isStep3Empty && isStep4Empty);
 
   const navigator = useNavigate();
 

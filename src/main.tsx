@@ -10,7 +10,7 @@ import App from '@/App';
 // TODO: BASE_URL 추후 수정
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename={import.meta.env.VITE_BASE_URL || ''}>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>,

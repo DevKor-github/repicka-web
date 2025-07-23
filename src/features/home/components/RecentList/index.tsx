@@ -1,6 +1,6 @@
 import * as s from './style.css';
 
-import { useGetItemList } from '@/features/home/hooks/apis/useGetItemList';
+import { useGetItemList } from '@/features/home/apis/useGetItemList';
 import ItemCard from '@/features/home/components/ItemCard';
 
 const RecentList = () => {

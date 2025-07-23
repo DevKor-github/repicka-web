@@ -39,6 +39,7 @@ export const UserInfoText = cva({
     width: 'full',
     overflow: 'hidden',
     alignItems: 'flex-start',
+    gap: '0.25rem',
     my: '0.06rem',
     '& > p': {
       w: 'full',
@@ -65,27 +66,22 @@ export const UserInfoText = cva({
   },
 });
 
-export const VerifiedTag = css({
-  padding: '0.1rem 0.275rem',
-  bgColor: 'main-26',
-  rounded: '3.32px',
-  fontSize: '0.625rem',
-  fontWeight: 400,
-  lineHeight: 1.4,
-  letterSpacing: '-0.025rem',
-  color: 'main',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.22rem',
-  '& > p': {
-    color: '100',
+export const LikeButton = cva({
+  base: {
+    cursor: 'pointer',
+    fontSize: '2.25rem',
+    transition: 'all 0.2s ease-in-out',
   },
-});
-
-export const LikeButton = css({
-  cursor: 'pointer',
-  fontSize: '2.25rem',
-  color: 'systemGray',
+  variants: {
+    isLiked: {
+      true: {
+        color: 'main',
+      },
+      false: {
+        color: 'systemGray',
+      },
+    },
+  },
 });
 
 export const Line = css({

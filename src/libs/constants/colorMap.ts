@@ -1,6 +1,6 @@
-import type { ColorType } from '@/libs/types/item';
+import type { Color } from '@/libs/types/item';
 
-export const COLOR_MAP: Record<ColorType, string> = {
+export const COLOR_MAP: Record<Color, string> = {
   CRIMSON: '#C30003',
   BLACK: 'black',
   WHITE: '#F2F2F2',
