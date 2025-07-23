@@ -3,14 +3,13 @@ import type { RouteObject } from 'react-router';
 import HomePage from '@/pages/HomePage';
 import Layout from '@/pages/Layout';
 import PickPage from '@/pages/PickPage';
-import PostPageRoutes from '@/pages/PostPages';
+import PostPage from '@/pages/PostPages';
 import NotFoundPage from '@/pages/NotFoundPage';
 import DetailPage from '@/pages/DetailPage';
 import LoginPage from '@/pages/LoginPage';
 import ChatPage from './ChatPage';
 import ChatRoomPage from './ChatRoomPage';
 import AuthGuard from '@/common/components/AuthGuard';
-import PostPage from '@/pages/PostPages';
 
 /**
  * 새로운 페이지 추가하고 싶으면 여기에 추가하면 됩니다
@@ -26,18 +25,6 @@ const routes: RouteObject[] = [
       {
         path: '/pick',
         element: <PickPage />,
-      },
-      {
-        path: '/chat',
-        element: <ChatPage />,
-      },
-      {
-        path: '/chatroom/:chatRoomId',
-        element: <ChatRoomPage />,
-      },
-      {
-        path: '/post',
-        element: <PostPageRoutes />,
       },
       {
         path: '/detail/:id',
@@ -57,6 +44,14 @@ const routes: RouteObject[] = [
           {
             path: '/post',
             element: <PostPage />,
+          },
+          {
+            path: '/chat',
+            element: <ChatPage />,
+          },
+          {
+            path: '/chatroom/:chatRoomId',
+            element: <ChatRoomPage />,
           },
         ],
       },
