@@ -7,7 +7,7 @@ interface UploadPhotoProps {
 const UploadFile = ({ onChange }: UploadPhotoProps) => {
   return (
     <label className={s.SelectedPhotoBtn}>
-      <input type="file" accept="image/*" multiple onChange={onChange} className={s.Input} />
+      <input type="file" accept=".png,.jpg,.jpeg,.webp" multiple onChange={onChange} className={s.Input} />
       <div className="mgc_camera_2_fill" />
     </label>
   );
