@@ -1,3 +1,4 @@
+import { MAX_PRICE } from '@/libs/constants';
 import * as s from './style.css';
 import { useState } from 'react';
 
@@ -20,7 +21,7 @@ const InputField = <T extends number | string>({ className, value, setValue, max
     if (isNumber) {
       const number = Number(raw.replace(/,/g, ''));
       if (isNaN(number)) return;
-      if (number > 999999) return;
+      if (number > MAX_PRICE) return;
       setValue(number as T);
     } else {
       setValue(raw as T);
