@@ -4,6 +4,7 @@ import * as s from './style.css';
 
 import type { ItemInterface } from '@/features/home/types';
 import ItemTokenList from '@/common/components/ItemTokenList';
+import PriceToken from '@/features/home/components/ItemCard/PriceToken';
 
 interface Props {
   data: ItemInterface;
@@ -19,22 +20,8 @@ const ItemCard = ({ data }: Props) => {
         <div className={s.Header}>
           <h2 className={s.Title}>{data.title}</h2>
           <div className={s.Price}>
-            {isRental && (
-              <div className={s.PriceItem}>
-                <label>대여</label>
-                <p>{data.rentalFee.toLocaleString()}원</p>
-                <p>
-                  <label>보증금</label>
-                  {data.deposit.toLocaleString()}원
-                </p>
-              </div>
-            )}
-            {isSale && (
-              <div className={s.PriceItem}>
-                <label>판매</label>
-                <p>{data.salePrice.toLocaleString()}원</p>
-              </div>
-            )}
+            {isRental && <PriceToken price={data.rentalFee} deposit={data.deposit} />}
+            {isSale && <PriceToken price={data.salePrice} />}
           </div>
         </div>
         <div className={s.Footer}>
