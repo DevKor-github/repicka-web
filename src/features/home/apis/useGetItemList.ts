@@ -2,15 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 
 import client from '@/common/utils/client';
 import type { ItemInterface, ItemOrderType } from '@/features/home/types';
-import type { ColorType, ProductType, SizeType, TradeType, TransactionType } from '@/libs/types/item';
+import type { Color, ProductType, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 
 export interface ItemListRequest {
   keyword?: string;
   productTypes?: ProductType[];
   transactionTypes?: TransactionType[];
-  sizes?: SizeType[];
-  colors?: ColorType[];
-  tradeMethods?: TradeType[];
+  sizes?: Size[];
+  colors?: Color[];
+  tradeMethods?: TradeMethods[];
   date?: string;
   itemOrder?: ItemOrderType;
 }

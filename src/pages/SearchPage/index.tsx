@@ -5,9 +5,9 @@ import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import SearchBox from '@/features/home/components/SearchBox';
 import SearchControls from '@/features/home/components/SearchControls';
-import { useGetItemList } from '@/features/home/hooks/apis/useGetItemList';
+import { useGetItemList } from '@/features/home/apis/useGetItemList';
 import type { ItemOrderType } from '@/features/home/types';
-import type { ColorType, ProductType, SizeType, TradeType, TransactionType } from '@/libs/types/item';
+import type { Color, ProductType, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 import ItemList from '@/features/home/components/ItemList';
 
 const SearchPage = () => {
@@ -15,12 +15,12 @@ const SearchPage = () => {
   const { data: searchData } = useGetItemList({
     keyword: searchParams.get('keyword') || undefined,
     productTypes: searchParams.getAll('product-type') as ProductType[],
-    colors: searchParams.getAll('color') as ColorType[],
-    sizes: searchParams.getAll('size') as SizeType[],
+    colors: searchParams.getAll('color') as Color[],
+    sizes: searchParams.getAll('size') as Size[],
     itemOrder: searchParams.get('item-order') as ItemOrderType,
     transactionTypes: searchParams.getAll('transaction-type') as TransactionType[],
     date: searchParams.get('date') || undefined,
-    tradeMethods: searchParams.getAll('trade-method') as TradeType[],
+    tradeMethods: searchParams.getAll('trade-method') as TradeMethods[],
   });
 
   return (
