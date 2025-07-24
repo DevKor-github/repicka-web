@@ -48,6 +48,9 @@ export const ButtonWrapper = css({
   gap: '0.375rem',
   overflowX: 'auto',
   pr: '1.75rem',
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
 });
 
 export const LeftGradient = css({
