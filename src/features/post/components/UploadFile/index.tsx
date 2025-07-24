@@ -1,3 +1,4 @@
+import { ALLOWED_EXTENSIONS } from '@/libs/constants';
 import * as s from './style.css';
 
 interface UploadPhotoProps {
@@ -7,7 +8,13 @@ interface UploadPhotoProps {
 const UploadFile = ({ onChange }: UploadPhotoProps) => {
   return (
     <label className={s.SelectedPhotoBtn}>
-      <input type="file" accept=".png,.jpg,.jpeg,.webp" multiple onChange={onChange} className={s.Input} />
+      <input
+        type="file"
+        accept={ALLOWED_EXTENSIONS.map(val => '.' + val).join()}
+        multiple
+        onChange={onChange}
+        className={s.Input}
+      />
       <div className="mgc_camera_2_fill" />
     </label>
   );
