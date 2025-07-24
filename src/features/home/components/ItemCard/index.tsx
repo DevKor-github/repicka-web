@@ -2,14 +2,17 @@ import { Link } from 'react-router';
 
 import * as s from './style.css';
 
-import { PRODUCT_TYPES_MAP } from '@/libs/types/item';
 import type { ItemInterface } from '@/features/home/types';
-import Token from '@/common/components/Token';
+import ItemTokenList from '@/common/components/ItemTokenList';
+import PriceToken from '@/features/home/components/ItemCard/PriceToken';
 
 interface Props {
   data: ItemInterface;
 }
 const ItemCard = ({ data }: Props) => {
+  const isRental = data.transactionTypes.includes('RENTAL');
+  const isSale = data.transactionTypes.includes('SALE');
+
   return (
     <Link className={s.Container} to={`/detail/${data.itemId}`}>
       <img className={s.Image} src={data.thumbnail} aria-hidden />
@@ -17,21 +20,22 @@ const ItemCard = ({ data }: Props) => {
         <div className={s.Header}>
           <h2 className={s.Title}>{data.title}</h2>
           <div className={s.Price}>
-            <div className={s.PriceItem}>
-              <label>대여료</label>
-              <p>{data.rentalFee.toLocaleString()}원</p>
-            </div>
-            <div className={s.PriceItem}>
-              <label>보증금</label>
-              <p>{data.deposit.toLocaleString()}원</p>
-            </div>
+            {isRental && <PriceToken price={data.rentalFee} deposit={data.deposit} />}
+            {isSale && <PriceToken price={data.salePrice} />}
           </div>
         </div>
         <div className={s.Footer}>
           <div className={s.Tokens}>
-            {data.productTypes.map((type, index) => (
-              <Token key={`${type}-${index}`}>{PRODUCT_TYPES_MAP[type]}</Token>
-            ))}
+            {/* TODO: API 수정 요청 */}
+            <ItemTokenList
+              showAll={false}
+              itemInfo={{
+                productTypes: data.productTypes,
+                quality: 'BEST',
+                size: 'L',
+                tradeMethods: ['DIRECT'],
+              }}
+            />
           </div>
           <div className={s.Interactions}>
             <div className={s.InteractionItem}>
