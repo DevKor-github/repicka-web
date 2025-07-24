@@ -69,6 +69,12 @@ export default defineConfig({
       backgroundColor: 'systemGray6',
       color: '100',
     },
+    body: {
+      WebkitUserSelect: 'none',
+      MozUserSelect: 'none',
+      msUserSelect: 'none',
+      userSelect: 'none',
+    },
     button: {
       cursor: 'pointer',
     },
