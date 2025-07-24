@@ -2,7 +2,7 @@ import { css } from '@styled-system/css';
 
 export const Head = css({
   display: 'flex',
-  flexDir: 'column',
+  alignItems: 'center',
   color: 'white',
   fontFamily: 'Pretendard',
   fontSize: '1.25rem',

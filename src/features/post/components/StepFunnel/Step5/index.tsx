@@ -1,5 +1,7 @@
 import InputField from '../../InputField';
 import MultilineInputfield from '../../MultilineInputField';
+import TextareaAutosize from 'react-textarea-autosize';
+
 import * as s from './style.css';
 import * as c from '../style.css';
 
@@ -70,7 +72,7 @@ const Step5 = () => {
           ></InputField>
         </div>
         <div className={c.DetailContent}>
-          상품 설명을 입력해 주세요 ({descStore.length}/{MAX_DESC})
+          상품 설명을 입력해 주세요
           <div className={s.ProductDesc}>
             <MultilineInputfield
               onChange={handleDesc}
