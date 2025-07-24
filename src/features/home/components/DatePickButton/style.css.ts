@@ -16,3 +16,12 @@ export const Container = css({
 export const Icon = css({
   fontSize: '1rem',
 });
+
+export const DatePickerContainer = css({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.5rem',
+  alignItems: 'center',
+  px: '1rem',
+  pt: '1.875rem',
+});
