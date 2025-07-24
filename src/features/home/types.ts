@@ -27,3 +27,24 @@ export const ItemOrderMap: Record<ItemOrderType, string> = {
   RENTAL_FEE: '가격순', // TODO: 흠...
   // SALE_PRICE: '가격순',
 };
+
+// TODO: quality, price는 백엔드 api가 없음
+export const FilterTypeArray = [
+  'transaction-type',
+  'product-type',
+  'size',
+  'color',
+  'price',
+  'quality',
+  'trade-method',
+] as const;
+export type FilterType = (typeof FilterTypeArray)[number];
+export const FilterTypeMap: Record<FilterType, string> = {
+  'product-type': '종목',
+  'transaction-type': '대여/판매',
+  size: '사이즈',
+  color: '색상',
+  price: '가격',
+  quality: '품질',
+  'trade-method': '거래방식',
+};
