@@ -44,7 +44,7 @@ const BottomActions = ({ itemInfo }: Props) => {
 
   return (
     <div className={s.Container}>
-      <Btn color="softgray" className={s.ChatButton({ isMine: mine })} onClick={handleChatClick}>
+      <Btn className={s.ChatButton({ isMine: mine })} onClick={handleChatClick}>
         <span className="mgc_chat_2_fill" />
         {mine && <p>채팅</p>}
       </Btn>
