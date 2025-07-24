@@ -1,19 +1,27 @@
-import Drawer from '@/common/components/Drawer';
+import { useState } from 'react';
+import { cx } from '@styled-system/css';
+
 import * as s from './style.css';
 
+import Drawer from '@/common/components/Drawer';
 import SelectButton from '@/common/components/SelectButton';
 import useDrawer from '@/common/hooks/useDrawer';
 import DatePickButton from '@/features/home/components/DatePickButton';
 import SortTriggerButton from '@/features/home/components/SortControl';
 import Filter from '@/features/home/components/Filter';
-import { FilterTypeArray, FilterTypeMap } from '@/features/home/types';
-import { cx } from '@styled-system/css';
+import { FilterTypeArray, FilterTypeMap, type FilterType } from '@/features/home/types';
 
 interface Props {
   itemCounts: number;
 }
 const SearchControls = ({ itemCounts }: Props) => {
+  const [state, setState] = useState<FilterType>('product-type');
   const { open, drawerState } = useDrawer();
+
+  const handleFilterClick = (filter: FilterType) => {
+    setState(filter);
+    open();
+  };
 
   return (
     <>
@@ -32,17 +40,20 @@ const SearchControls = ({ itemCounts }: Props) => {
           {/* TODO: 디자인 적용, 필터 로직 추가 */}
           <div className={s.ButtonWrapper}>
             {FilterTypeArray.map(filter => (
-              <SelectButton active={false} onClick={open}>
+              <SelectButton active={false} onClick={() => handleFilterClick(filter)}>
                 {FilterTypeMap[filter]}
               </SelectButton>
             ))}
           </div>
           <div className={s.LeftGradient} />
-          <button className={cx(s.FilterButton, 'mgc_settings_6_line')} onClick={open} />
+          <button
+            className={cx(s.FilterButton, 'mgc_settings_6_line')}
+            onClick={() => handleFilterClick('transaction-type')}
+          />
         </div>
       </div>
       <Drawer title="필터" drawerState={drawerState}>
-        <Filter />
+        <Filter state={state} setState={setState} />
       </Drawer>
     </>
   );
