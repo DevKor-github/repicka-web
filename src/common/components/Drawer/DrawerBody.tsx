@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from 'react';
 import { cx } from '@styled-system/css';
-import { motion, type PanInfo } from 'framer-motion';
+import { motion, type PanInfo } from 'motion/react';
 
 import * as s from './style.css';
 
