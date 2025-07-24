@@ -10,6 +10,7 @@ import LoginPage from '@/pages/LoginPage';
 import ChatPage from './ChatPage';
 import ChatRoomPage from './ChatRoomPage';
 import AuthGuard from '@/common/components/AuthGuard';
+import SearchPage from '@/pages/SearchPage';
 
 /**
  * 새로운 페이지 추가하고 싶으면 여기에 추가하면 됩니다
@@ -33,6 +34,10 @@ const routes: RouteObject[] = [
       {
         path: '/login', // TODO: 임시
         element: <LoginPage />,
+      },
+      {
+        path: '/search',
+        element: <SearchPage />,
       },
       {
         element: <AuthGuard />, // 로그인 해야만 들어갈 수 있는 페이지는 이 아래다가 넣어주셈
@@ -89,5 +94,8 @@ export const NAVIGATION_MENU_LIST = [
     path: '/my',
   },
 ] as const;
+
+// 네비게이션 더 보여주고 싶은 페이지 있으면 여기 추가
+export const SHOW_NAV_PATH = [...NAVIGATION_MENU_LIST.map(menu => menu.path), '/search'];
 
 export default routes;

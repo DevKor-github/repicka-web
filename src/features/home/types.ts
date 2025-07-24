@@ -13,3 +13,5 @@ export interface ItemInterface {
   chatRoomCount: number;
   available: boolean;
 }
+
+export type ItemOrderType = 'RECENT' | 'LIKE' | 'RENTAL_FEE' | 'SALE_PRICE';

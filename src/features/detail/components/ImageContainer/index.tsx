@@ -31,9 +31,11 @@ const ImageContainer = ({ images }: Props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={s.StepIndicator}>
-        <StepIndicator currentIndex={currentIndex} totalLength={totalIndex} />
-      </div>
+      {totalIndex > 1 && (
+        <div className={s.StepIndicator}>
+          <StepIndicator currentIndex={currentIndex} totalLength={totalIndex} />
+        </div>
+      )}
     </div>
   );
 };

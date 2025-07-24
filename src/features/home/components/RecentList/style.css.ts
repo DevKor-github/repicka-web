@@ -15,9 +15,3 @@ export const Title = css({
   letterSpacing: '-0.0255rem',
   fontWeight: 600,
 });
-
-export const ItemList = css({
-  display: 'flex',
-  flexDir: 'column',
-  gap: '1rem',
-});
