@@ -48,3 +48,12 @@ export const FilterTypeMap: Record<FilterType, string> = {
   quality: '품질',
   'trade-method': '거래방식',
 };
+export const FilterTypeToIndexMap: Record<FilterType, number> = {
+  'transaction-type': 0,
+  'product-type': 1,
+  size: 2,
+  color: 3,
+  price: 4,
+  quality: 5,
+  'trade-method': 6,
+};

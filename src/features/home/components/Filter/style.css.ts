@@ -2,17 +2,23 @@ import { css, cva } from '@styled-system/css';
 
 export const Container = css({
   mt: '1.3125rem',
-  gap: '1.3125rem',
 });
 
 export const Wrapper = css({
   width: 'full',
-  height: '22.9375rem',
+  height: '25rem',
   display: 'flex',
   flexDir: 'column',
   justifyContent: 'space-between',
   alignItems: 'stretch',
   px: '1rem',
+});
+
+export const SwiperWrapper = css({
+  flexGrow: 1,
+  '& > div': {
+    height: 'full',
+  },
 });
 
 export const ViewButton = css({
