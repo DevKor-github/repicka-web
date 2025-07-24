@@ -6,11 +6,23 @@ export const Container = css({
   gap: '1rem',
 });
 
-export const ResultBar = css({
+export const TopContainer = css({
   display: 'flex',
   px: '1.25rem',
   h: '1.4375rem',
   w: 'full',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+
+export const TopRightControl = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.75rem',
+});
+
+export const ResultBar = css({
+  display: 'flex',
   gap: '0.25rem',
   alignItems: 'center',
   color: '100',
