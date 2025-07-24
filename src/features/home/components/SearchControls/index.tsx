@@ -16,7 +16,7 @@ interface Props {
 }
 const SearchControls = ({ itemCounts }: Props) => {
   const [state, setState] = useState<FilterType>('product-type');
-  const { open, drawerState } = useDrawer();
+  const { open, drawerState, close } = useDrawer();
 
   const handleFilterClick = (filter: FilterType) => {
     setState(filter);
@@ -53,7 +53,7 @@ const SearchControls = ({ itemCounts }: Props) => {
         </div>
       </div>
       <Drawer title="필터" drawerState={drawerState}>
-        <Filter state={state} setState={setState} />
+        <Filter state={state} setState={setState} itemCounts={itemCounts} close={close} />
       </Drawer>
     </>
   );

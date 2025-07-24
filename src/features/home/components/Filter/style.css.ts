@@ -2,6 +2,32 @@ import { css, cva } from '@styled-system/css';
 
 export const Container = css({
   mt: '1.3125rem',
+  gap: '1.3125rem',
+});
+
+export const Wrapper = css({
+  width: 'full',
+  height: '22.9375rem',
+  display: 'flex',
+  flexDir: 'column',
+  justifyContent: 'space-between',
+  alignItems: 'stretch',
+  px: '1rem',
+});
+
+export const ViewButton = css({
+  height: '3.125rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  rounded: '0.375rem',
+  bgColor: 'main',
+  color: '100',
+  fontSize: '1.25rem',
+  fontWeight: 500,
+  lineHeight: 'normal',
+  letterSpacing: '-0.05rem',
 });
 
 export const NavigatorContainer = css({
