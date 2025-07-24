@@ -1,3 +1,4 @@
+import { MAX_FILE_LENGTH } from '@/libs/constants';
 import { create } from 'zustand';
 
 // 상품명, 상품설명, 사진
@@ -25,7 +26,7 @@ export const useStep5Store = create<Step5Store>((set, get) => ({
 
   isBtnValid: () => {
     const { title, desc, files } = get();
-    return title.trim() !== '' && desc.trim() !== '' && files.length !== 0;
+    return title.trim() !== '' && desc.trim() !== '' && files.length !== 0 && files.length <= MAX_FILE_LENGTH;
   },
 
   reset: () => {

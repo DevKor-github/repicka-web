@@ -5,6 +5,7 @@ import Token from '@/common/components/Token';
 import InputField from '../../InputField';
 import { useStep3Store } from '@/features/post/stores/Step3Store';
 import { useStep1Store } from '@/features/post/stores/Step1Store';
+import { MAX_LOCATION } from '@/libs/constants';
 
 const Location = () => {
   const locationStore = useStep3Store(state => state.location);
@@ -14,7 +15,7 @@ const Location = () => {
     <div className={c.DetailContent}>
       <div className={c.DetailContent}>
         <span>직거래 장소를 입력해 주세요</span>
-        <InputField value={locationStore} setValue={locationSetter} />
+        <InputField value={locationStore} setValue={locationSetter} maxLength={MAX_LOCATION} />
       </div>
     </div>
   );

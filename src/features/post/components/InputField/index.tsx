@@ -1,3 +1,4 @@
+import { MAX_PRICE } from '@/libs/constants';
 import * as s from './style.css';
 import { useState } from 'react';
 
@@ -5,9 +6,10 @@ interface InputProps<T extends number | string> {
   className?: string;
   value: T;
   setValue: (value: T) => void;
+  maxLength?: number;
 }
 
-const InputField = <T extends number | string>({ className, value, setValue }: InputProps<T>) => {
+const InputField = <T extends number | string>({ className, value, setValue, maxLength }: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const isNumber = typeof value === 'number';
@@ -19,6 +21,7 @@ const InputField = <T extends number | string>({ className, value, setValue }: I
     if (isNumber) {
       const number = Number(raw.replace(/,/g, ''));
       if (isNaN(number)) return;
+      if (number > MAX_PRICE) return;
       setValue(number as T);
     } else {
       setValue(raw as T);
@@ -45,6 +48,7 @@ const InputField = <T extends number | string>({ className, value, setValue }: I
       onBlur={handleBlur}
       inputMode={isNumber ? 'numeric' : 'text'}
       pattern={isNumber ? '[0-9]*' : undefined}
+      maxLength={maxLength}
     />
   );
 };
