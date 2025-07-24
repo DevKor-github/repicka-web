@@ -24,6 +24,10 @@ export const Container = css({
   flexDir: 'column',
   borderTop: '1px solid {colors.systemGray4}',
   boxShadow: '0px 0px 30px 0px rgba(0, 0, 0, 0.25)',
+});
+
+export const Wrapper = css({
+  w: 'full',
   pt: '1.5rem',
   pb: '2.625rem',
 });

@@ -55,15 +55,15 @@ const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) =>
       exit={'closed'}
       onDragEnd={onDragEnd}
     >
-      <header className={s.Header}>
-        <div className={s.HeaderTitle}>
-          <span className={s.Title}>{title}</span>
-          {description && <span className={s.Description}>{description}</span>}
-        </div>
-        <button className={cx('mgc_close_line', s.CloseButton)} onClick={close} />
-      </header>
-      <div ref={contentRef} className={s.Content}>
-        {children}
+      <div ref={contentRef} className={s.Wrapper}>
+        <header className={s.Header}>
+          <div className={s.HeaderTitle}>
+            <span className={s.Title}>{title}</span>
+            {description && <span className={s.Description}>{description}</span>}
+          </div>
+          <button className={cx('mgc_close_line', s.CloseButton)} onClick={close} />
+        </header>
+        <div className={s.Content}>{children}</div>
       </div>
     </motion.div>
   );
