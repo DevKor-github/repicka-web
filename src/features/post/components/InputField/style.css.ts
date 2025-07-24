@@ -1,4 +1,4 @@
-import { cva } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Container = cva({
   base: {
@@ -23,5 +23,11 @@ export const Container = cva({
         textAlign: 'start',
       },
     },
+  },
+});
+
+export const ContainerWithPlaceholder = css({
+  _placeholder: {
+    color: '54',
   },
 });

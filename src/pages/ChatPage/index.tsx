@@ -12,7 +12,7 @@ interface List {
 }
 
 const dummyData: List[] = [
-  { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },
+  { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 1, isVerified: false },
   { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },
   { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },
   { nickName: '며나', message: '안녕하세용 직거래 가능할까요??', count: 3, chatRoomId: 123, isVerified: false },

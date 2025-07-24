@@ -14,4 +14,7 @@ export const Container = css({
   fontWeight: '400',
   lineHeight: '1.4',
   resize: 'none',
+  '&::placeholder': {
+    color: '54',
+  },
 });

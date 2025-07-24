@@ -7,9 +7,16 @@ interface InputProps<T extends number | string> {
   value: T;
   setValue: (value: T) => void;
   maxLength?: number;
+  placeholder?: string;
 }
 
-const InputField = <T extends number | string>({ className, value, setValue, maxLength }: InputProps<T>) => {
+const InputField = <T extends number | string>({
+  className,
+  value,
+  setValue,
+  maxLength,
+  placeholder,
+}: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const isNumber = typeof value === 'number';
@@ -41,7 +48,7 @@ const InputField = <T extends number | string>({ className, value, setValue, max
 
   return (
     <input
-      className={`${s.Container({ isNumber })} ${className}`}
+      className={`${s.Container({ isNumber })} ${className} ${s.ContainerWithPlaceholder}`}
       value={stringValue}
       onChange={handleChange}
       onFocus={handleFocus}
@@ -49,6 +56,7 @@ const InputField = <T extends number | string>({ className, value, setValue, max
       inputMode={isNumber ? 'numeric' : 'text'}
       pattern={isNumber ? '[0-9]*' : undefined}
       maxLength={maxLength}
+      placeholder={placeholder}
     />
   );
 };

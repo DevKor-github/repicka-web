@@ -2,14 +2,14 @@ import { css } from '@styled-system/css';
 
 export const Head = css({
   display: 'flex',
-  alignItems: 'center', // 가로 가운데 정렬
+  flexDir: 'column',
   color: 'white',
   fontFamily: 'Pretendard',
   fontSize: '1.25rem',
   fontWeight: 600,
   lineHeight: 1.4,
   letterSpacing: '-0.05rem',
-  gap: '0.62rem',
+  gap: '0.5rem',
 });
 
 export const ContentHead = css({
@@ -21,6 +21,7 @@ export const ContentHead = css({
 
 export const Content = css({
   display: 'flex',
+  alignItems: 'start',
   flexDirection: 'column',
   margin: '2.97rem 0 3.75rem 0',
   gap: '2.25rem',
