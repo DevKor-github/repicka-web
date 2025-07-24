@@ -40,3 +40,9 @@ export const CanDeal = css({
   lineHeight: '1.4',
   letterSpacing: '-0.035rem',
 });
+
+export const Alert = css({
+  display: 'flex',
+  flexDir: 'column',
+  gap: '0.5rem',
+});

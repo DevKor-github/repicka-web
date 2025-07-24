@@ -69,14 +69,13 @@ const Step6 = () => {
 
   return (
     <div>
-      <header className={c.Head}>
-        가격을 설정해 주세요
-        <AlertText>가격은 최대 100만 원 미만으로 설정해 주세요</AlertText>
-      </header>
+      <div className={s.Alert}>
+        <header className={c.Head}>가격을 설정해 주세요</header>
+        <AlertText>가격은 최대 100만 원 미만으로 설정해 주세요.</AlertText>
+      </div>
       <div className={c.Content}>
         {isRental && <Rental />}
-        {/* {isSale && <Sale />} */}
-        <Sale />
+        {isSale && <Sale />}
         <span className={s.CanDeal} onClick={handleCanDeal}>
           네고 제안 받을래요
           <CheckBtn isSelected={canDealStore} />

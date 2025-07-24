@@ -3,7 +3,7 @@ import * as s from './style.css';
 
 interface Props {
   children: ReactNode;
-  isIcon: boolean;
+  isIcon?: boolean;
 }
 
 const AlertText = ({ children, isIcon }: Props) => {
