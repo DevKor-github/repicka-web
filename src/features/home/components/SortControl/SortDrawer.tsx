@@ -1,15 +1,34 @@
+import { useSearchParams } from 'react-router';
 import * as s from './style.css';
+import { ItemOrderArray, ItemOrderMap, type ItemOrderType } from '@/features/home/types';
 
-const SortDrawer = () => {
+interface Props {
+  close: () => void;
+}
+const SortDrawer = ({ close }: Props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const itemOrder = searchParams.get('sort') as ItemOrderType | null;
+
+  const handleSort = (sort: ItemOrderType) => {
+    if (itemOrder === sort) {
+      searchParams.delete('sort');
+    } else {
+      searchParams.set('sort', sort);
+    }
+    setSearchParams(searchParams);
+    // TODO: 바로 닫히게 하는게 좋으려나 고민이 되네연
+    close();
+  };
+
   return (
     <div className={s.ButtonWrapper}>
-      <button className={s.Button}>
-        추천순
-        <span className={'mgc_check_fill'} />
-      </button>
-      <button className={s.Button}>최신순</button>
-      <button className={s.Button}>가격순</button>
-      <button className={s.Button}>좋아요순</button>
+      {ItemOrderArray.map(order => (
+        <button className={s.Button} onClick={() => handleSort(order)}>
+          {ItemOrderMap[order]}
+          {order === itemOrder && <span className={'mgc_check_fill'} />}
+        </button>
+      ))}
     </div>
   );
 };

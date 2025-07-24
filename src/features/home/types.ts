@@ -14,4 +14,16 @@ export interface ItemInterface {
   available: boolean;
 }
 
-export type ItemOrderType = 'RECENT' | 'LIKE' | 'RENTAL_FEE' | 'SALE_PRICE';
+export const ItemOrderArray = [
+  'RECENT',
+  'LIKE',
+  'RENTAL_FEE',
+  // 'SALE_PRICE'
+] as const;
+export type ItemOrderType = (typeof ItemOrderArray)[number];
+export const ItemOrderMap: Record<ItemOrderType, string> = {
+  RECENT: '최신순',
+  LIKE: '좋아요순',
+  RENTAL_FEE: '가격순', // TODO: 흠...
+  // SALE_PRICE: '가격순',
+};
