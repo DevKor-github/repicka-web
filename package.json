@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "lint-staged": "lint-staged",
-    "knip": "knip"
+    "knip": "knip",
+    "type": "tsc -b --noEmit",
+    "check-project": "yarn type && yarn lint"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.79.0",
