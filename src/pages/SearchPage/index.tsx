@@ -19,7 +19,7 @@ const SearchPage = () => {
     productTypes: searchParams.getAll('product-type') as ProductType[],
     colors: searchParams.getAll('color') as Color[],
     sizes: searchParams.getAll('size') as Size[],
-    itemOrder: searchParams.get('sort') as ItemOrderType,
+    itemOrder: (searchParams.get('sort') as ItemOrderType) || undefined,
     transactionTypes: searchParams.getAll('transaction-type') as TransactionType[],
     tradeMethods: searchParams.getAll('trade-method') as TradeMethods[],
     // date: searchParams.get('date') || undefined,
