@@ -1,4 +1,4 @@
-import useGetIsLogin from '@/common/hooks/apis/useGetIsLogin';
+import useGetIsLogin from '@/common/apis/useGetIsLogin';
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
 

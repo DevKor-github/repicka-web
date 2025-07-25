@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import * as s from './style.css';
 
 import SafeArea from '@/common/components/SafeArea';
-import useGetIsLogin from '@/common/hooks/apis/useGetIsLogin';
+import useGetIsLogin from '@/common/apis/useGetIsLogin';
 import GoogleLogo from '@/libs/assets/GoogleLogo';
 import KakaoLogo from '@/libs/assets/KakaoLogo';
 
