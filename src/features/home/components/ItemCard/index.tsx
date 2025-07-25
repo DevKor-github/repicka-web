@@ -5,6 +5,7 @@ import * as s from './style.css';
 import type { ItemInterface } from '@/features/home/types';
 import ItemTokenList from '@/common/components/ItemTokenList';
 import PriceToken from '@/features/home/components/ItemCard/PriceToken';
+import getImageUrl from '@/common/utils/getImageUrl';
 
 interface Props {
   data: ItemInterface;
@@ -15,7 +16,7 @@ const ItemCard = ({ data }: Props) => {
 
   return (
     <Link className={s.Container} to={`/detail/${data.itemId}`}>
-      <img className={s.Image} src={data.thumbnail} aria-hidden />
+      <img className={s.Image} src={getImageUrl(data.thumbnail)} aria-hidden />
       <div className={s.Info}>
         <div className={s.Header}>
           <h2 className={s.Title}>{data.title}</h2>

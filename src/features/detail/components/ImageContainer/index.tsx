@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import * as s from './style.css';
 import { Zoom } from 'swiper/modules';
 import StepIndicator from '@/features/detail/components/StepIndicator';
+import getImageUrl from '@/common/utils/getImageUrl';
 
 interface Props {
   images: string[];
@@ -26,7 +27,7 @@ const ImageContainer = ({ images }: Props) => {
         {images.map((image, index) => (
           <SwiperSlide key={`${image}-${index}`}>
             <div className="swiper-zoom-container">
-              <img className={s.Image} src={image} aria-hidden />
+              <img className={s.Image} src={getImageUrl(image)} aria-hidden />
             </div>
           </SwiperSlide>
         ))}
