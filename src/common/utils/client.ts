@@ -1,3 +1,4 @@
+import qs from 'qs';
 import axios, { AxiosError } from 'axios';
 
 const client = axios.create({
@@ -6,6 +7,7 @@ const client = axios.create({
     'Content-Type': 'application/json',
   },
   withCredentials: true,
+  paramsSerializer: params => qs.stringify(params),
 });
 
 const REFRESH_URL = '/api/v1/refresh-token';
