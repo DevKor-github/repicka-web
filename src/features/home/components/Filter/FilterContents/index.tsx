@@ -30,6 +30,7 @@ const FilterContents = ({ type }: Props) => {
   const sizes = searchParams.getAll('size') as Size[];
   const colors = searchParams.getAll('color') as Color[];
   const tradeMethods = searchParams.getAll('trade-method') as TradeMethods[];
+  const quality = searchParams.getAll('quality') as Quality[];
 
   const handleTOBClick = (t: TagType, isSelected: boolean) => {
     if (isSelected) {
@@ -113,12 +114,20 @@ const FilterContents = ({ type }: Props) => {
         // TODO: 가격 필터 추가
         return <div>아 만들기 개귀찮네</div>;
       case 'quality':
-        // TODO: 품질 필터 추가
         return (
           <div className={s.TagOptionButtonWrapper}>
-            {Object.keys(QUALITY_MAP).map(key => (
-              <TagOptionBtn key={key} type={key as Quality} />
-            ))}
+            {Object.keys(QUALITY_MAP).map(key => {
+              const q = key as Quality;
+              const isSelected = quality.includes(q);
+              return (
+                <TagOptionBtn
+                  key={key}
+                  type={q}
+                  isSelected={isSelected}
+                  onClick={() => handleTOBClick(q, isSelected)}
+                />
+              );
+            })}
           </div>
         );
       case 'trade-method':

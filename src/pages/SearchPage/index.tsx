@@ -23,6 +23,8 @@ const SearchPage = () => {
     transactionTypes: searchParams.getAll('transaction-type') as TransactionType[],
     tradeMethods: searchParams.getAll('trade-method') as TradeMethods[],
     // date: searchParams.get('date') || undefined,
+    // TODO: 품질 필터 추가
+    // quality: searchParams.getAll('quality') as Quality[];
   });
 
   return (
