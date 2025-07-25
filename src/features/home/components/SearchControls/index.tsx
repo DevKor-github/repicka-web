@@ -40,7 +40,7 @@ const SearchControls = ({ itemCounts }: Props) => {
           {/* TODO: 디자인 적용, 필터 로직 추가 */}
           <div className={s.ButtonWrapper}>
             {FilterTypeArray.map(filter => (
-              <SelectButton active={false} onClick={() => handleFilterClick(filter)}>
+              <SelectButton key={filter} active={false} onClick={() => handleFilterClick(filter)}>
                 {FilterTypeMap[filter]}
               </SelectButton>
             ))}

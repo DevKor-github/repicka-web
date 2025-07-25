@@ -24,7 +24,7 @@ const SortDrawer = ({ close }: Props) => {
   return (
     <div className={s.ButtonWrapper}>
       {ItemOrderArray.map(order => (
-        <button className={s.Button} onClick={() => handleSort(order)}>
+        <button key={order} className={s.Button} onClick={() => handleSort(order)}>
           {ItemOrderMap[order]}
           {order === itemOrder && <span className={'mgc_check_fill'} />}
         </button>
