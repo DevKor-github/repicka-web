@@ -1,17 +1,46 @@
 import { css } from '@styled-system/css';
 
 export const Container = css({
-  height: '8.625rem',
-  backgroundColor: '#2C2C2E',
-  width: '100%',
   padding: '1rem',
+  backgroundColor: 'systemGray5',
+  width: '100%',
   borderRadius: '0.375rem',
+  display: 'flex',
+  flexDir: 'column',
+  gap: '1.5rem',
+});
+
+export const InputField = css({
+  w: '100%',
+  h: '3.75rem',
   color: '100',
-  opacity: '0.9',
   fontFamily: 'Pretendard',
   fontSize: '1rem',
   fontStyle: 'normal',
   fontWeight: '400',
   lineHeight: '1.4',
   resize: 'none',
+  '&::placeholder': {
+    color: '54',
+  },
 });
+
+export const MaxLength = css({
+  display: 'flex',
+  justifyContent: 'end',
+  fontSize: '0.6875rem',
+  fontFamily: 'Pretendard',
+  color: '80',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  lineHeight: '1.4',
+  letterSpacing: '-0.0275rem',
+});
+
+// color: var(--80, rgba(255, 255, 255, 0.80));
+// font-family: Pretendard;
+// font-size: 0.6875rem;
+// font-style: normal;
+// font-weight: 400;
+// line-height: 140%; /* 0.9625rem */
+// letter-spacing: -0.0275rem;

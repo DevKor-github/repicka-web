@@ -9,7 +9,7 @@ import Step6 from '@/features/post/components/StepFunnel/Step6';
 import { useState } from 'react';
 
 import * as s from './style.css';
-import { usePostItem } from '../../hooks/apis/usePostItem';
+import { usePostItem } from '../../apis/usePostItem';
 import { useStep5Store } from '../../stores/Step5Store';
 import { useNavigate } from 'react-router';
 import { resetAllStores } from '../../stores/StoreReset';

@@ -1,7 +1,7 @@
 import client from '@/common/utils/client';
-import { getPresignedUrl } from '../../apis/useGetPresignedUrl';
-import { s3PutImageToUrl } from '../../apis/usePutPresignedUrl';
-import type { PostItemRequest, PostPayload } from '../../types/post';
+import { getPresignedUrl } from './useGetPresignedUrl';
+import { s3PutImageToUrl } from './usePutPresignedUrl';
+import type { PostItemRequest, PostPayload } from '../types/post';
 import type { ItemDetailResponse } from '@/features/detail/types';
 import { useMutation } from '@tanstack/react-query';
 
