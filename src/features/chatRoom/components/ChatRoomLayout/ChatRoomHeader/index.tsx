@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router';
 import * as s from './style.css';
-import VerifyIcon from '@/libs/assets/VerifyIcon';
 
 export const ChatRoomHeader = () => {
   const navigate = useNavigate();
@@ -13,10 +12,6 @@ export const ChatRoomHeader = () => {
         <div className={s.UserInfo}>
           <div className={s.ProfileCircle} />
           <div className={s.Verified}>
-            <span className={s.VerifiedTag}>
-              <p>학교인증</p>
-              <VerifyIcon />
-            </span>
             <span>며나</span>
           </div>
         </div>

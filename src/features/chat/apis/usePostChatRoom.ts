@@ -7,9 +7,7 @@ const postChatRoom = async ({ chatRoomId }: { chatRoomId: number }) => {
     params: { pageSize: 5 },
   });
 
-  console.log(res.data.message);
-
-  return res;
+  return res.data;
 };
 
 export const usePostChatRoom = () =>

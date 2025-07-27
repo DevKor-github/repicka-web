@@ -20,14 +20,12 @@ export const ChatRoomPage = () => {
     mutate({ chatRoomId: Number(chatRoomId) });
   }, [chatRoomId]);
 
-  console.log(data);
-
   return (
     <SafeArea>
       <div className={s.entireLayout}>
         <ChatRoomHeader />
         <div className={s.innerPage}>
-          <ChatRoomContent />
+          <ChatRoomContent data={data?.data.data} />
         </div>
         <ChatRoomFooter />
       </div>
