@@ -7,7 +7,7 @@ export const Container = css({
   borderRadius: '0.375rem',
   display: 'flex',
   flexDir: 'column',
-  gap: '1.5rem',
+  gap: '0.625rem',
 });
 
 export const InputField = css({
@@ -36,11 +36,3 @@ export const MaxLength = css({
   lineHeight: '1.4',
   letterSpacing: '-0.0275rem',
 });
-
-// color: var(--80, rgba(255, 255, 255, 0.80));
-// font-family: Pretendard;
-// font-size: 0.6875rem;
-// font-style: normal;
-// font-weight: 400;
-// line-height: 140%; /* 0.9625rem */
-// letter-spacing: -0.0275rem;
