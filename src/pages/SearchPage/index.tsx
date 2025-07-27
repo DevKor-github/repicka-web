@@ -9,18 +9,20 @@ import { useGetItemList } from '@/features/home/apis/useGetItemList';
 import type { ItemOrderType } from '@/features/home/types';
 import type { Color, ProductType, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 import ItemList from '@/features/home/components/ItemList';
+import { ITEM_PAGING_SIZE } from '@/libs/constants';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const { data: searchData } = useGetItemList({
+    pageSize: ITEM_PAGING_SIZE,
     keyword: searchParams.get('keyword') || undefined,
     productTypes: searchParams.getAll('product-type') as ProductType[],
     colors: searchParams.getAll('color') as Color[],
     sizes: searchParams.getAll('size') as Size[],
     itemOrder: searchParams.get('item-order') as ItemOrderType,
     transactionTypes: searchParams.getAll('transaction-type') as TransactionType[],
-    date: searchParams.get('date') || undefined,
     tradeMethods: searchParams.getAll('trade-method') as TradeMethods[],
+    // date: searchParams.get('date') || undefined,
   });
 
   return (
