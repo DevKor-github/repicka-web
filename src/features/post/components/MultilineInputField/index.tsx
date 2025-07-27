@@ -6,7 +6,7 @@ const MultilineInputfield = (props: TextareaHTMLAttributes<HTMLTextAreaElement>)
   return (
     <div className={s.Container}>
       <TextareaAutosize
-        minRows={3}
+        minRows={2}
         onChange={props.onChange}
         maxLength={props.maxLength}
         value={props.value}

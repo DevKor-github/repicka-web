@@ -61,6 +61,8 @@ const Step6 = () => {
   const canDealStore = useStep6Store(state => state.canDeal);
   const canDealSetter = useStep6Store(state => state.setCanDeal);
 
+  const priceType = isSale && isRental ? '대여료/보증금/판매금액' : isSale ? '판매금액' : '대여료/보증금';
+
   const handleCanDeal = () => {
     const updated = !canDealStore;
 
@@ -71,7 +73,7 @@ const Step6 = () => {
     <div>
       <div className={s.Alert}>
         <header className={c.Head}>가격을 설정해 주세요</header>
-        <AlertText>가격은 최대 100만 원 미만으로 설정해 주세요.</AlertText>
+        <AlertText>{priceType}은 최대 100만 원 미만으로 설정 가능합니다.</AlertText>
       </div>
       <div className={c.Content}>
         {isRental && <Rental />}
