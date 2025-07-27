@@ -1,6 +1,5 @@
 import InputField from '../../InputField';
 import MultilineInputfield from '../../MultilineInputField';
-import TextareaAutosize from 'react-textarea-autosize';
 
 import * as s from './style.css';
 import * as c from '../style.css';
