@@ -1,15 +1,17 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react';
-import * as s from './style.css';
 import { cx } from '@styled-system/css';
+
+import * as s from './style.css';
 
 interface Props extends PropsWithChildren {
   mode?: 'main' | 'default' | 'back' | 'disabled';
   onClick?: () => void;
   style?: HTMLAttributes<HTMLDivElement>['style'];
+  className?: string;
 }
-const Btn = ({ children, mode = 'default', onClick, style }: Props) => {
+const Btn = ({ children, mode = 'default', onClick, style, className }: Props) => {
   return (
-    <div className={s.Button({ mode })} style={style} onClick={onClick}>
+    <div className={cx(s.Button({ mode }), className)} style={style} onClick={onClick}>
       {children}
     </div>
   );
