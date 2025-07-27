@@ -1,6 +1,7 @@
 import { MAX_PRICE } from '@/libs/constants';
 import * as s from './style.css';
 import { useState } from 'react';
+import { cx } from '@styled-system/css';
 
 interface InputProps<T extends number | string> {
   className?: string;
@@ -48,7 +49,7 @@ const InputField = <T extends number | string>({
 
   return (
     <input
-      className={`${s.Container({ isNumber })} ${className} ${s.ContainerWithPlaceholder}`}
+      className={cx(s.Container({ isNumber }), className, s.ContainerWithPlaceholder)}
       value={stringValue}
       onChange={handleChange}
       onFocus={handleFocus}

@@ -68,7 +68,7 @@ const Step5 = () => {
             setValue={titleSetter}
             maxLength={MAX_TITLE}
             placeholder="최대 64자까지 입력이 가능해요."
-          ></InputField>
+          />
         </div>
         <div className={c.DetailContent}>
           상품 설명을 입력해 주세요
