@@ -19,6 +19,7 @@
     "axios": "^1.9.0",
     "date-fns": "^4.1.0",
     "mingcute_icon": "^2.9.6",
+    "motion": "^12.23.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.3",
