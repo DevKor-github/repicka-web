@@ -27,14 +27,14 @@ const ItemCard = ({ data }: Props) => {
         </div>
         <div className={s.Footer}>
           <div className={s.Tokens}>
-            {/* TODO: API 수정 요청 */}
             <ItemTokenList
               showAll={false}
               itemInfo={{
                 productTypes: data.productTypes,
-                quality: 'BEST',
-                size: 'L',
-                tradeMethods: ['DIRECT'],
+                quality: data.quality,
+                size: data.size,
+                color: data.color,
+                tradeMethods: data.tradeMethods,
               }}
             />
           </div>
