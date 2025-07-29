@@ -28,7 +28,7 @@ const ItemCard = ({ data }: Props) => {
         <div className={s.Footer}>
           <div className={s.Tokens}>
             <ItemTokenList
-              showAll={false}
+              showCount={3}
               itemInfo={{
                 productTypes: data.productTypes,
                 quality: data.quality,
