@@ -8,7 +8,7 @@ interface Props {
 const SortDrawer = ({ close }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const itemOrder = searchParams.get('sort') as ItemOrderType | null;
+  const itemOrder = (searchParams.get('sort') || 'RECENT') as ItemOrderType;
 
   const handleSort = (sort: ItemOrderType) => {
     if (itemOrder === sort) {
