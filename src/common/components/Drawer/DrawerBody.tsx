@@ -44,7 +44,7 @@ const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) =>
       className={s.Container}
       drag={'y'}
       dragConstraints={{ top: 0, bottom: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.35 }}
       dragElastic={0.4}
       variants={{
         opened: { top: `calc(100dvh - ${height}px)` },
