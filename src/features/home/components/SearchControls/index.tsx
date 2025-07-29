@@ -38,6 +38,7 @@ const SearchControls = ({ itemCounts }: Props) => {
         </div>
         <div className={s.SelectButtonContainer}>
           {/* TODO: 디자인 적용, 필터 로직 추가 */}
+          <div className={s.Gradient({ position: 'left' })} />
           <div className={s.ButtonWrapper}>
             {FilterTypeArray.map(filter => (
               <SelectButton key={filter} active={false} onClick={() => handleFilterClick(filter)}>
@@ -45,7 +46,7 @@ const SearchControls = ({ itemCounts }: Props) => {
               </SelectButton>
             ))}
           </div>
-          <div className={s.LeftGradient} />
+          <div className={s.Gradient({ position: 'right' })} />
           <button
             className={cx(s.FilterButton, 'mgc_settings_6_line')}
             onClick={() => handleFilterClick('transaction-type')}
