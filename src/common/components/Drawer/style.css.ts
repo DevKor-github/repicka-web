@@ -11,7 +11,7 @@ export const BackLayerStyle = css({
 });
 
 export const Container = css({
-  pos: 'fixed',
+  pos: 'absolute',
   top: '100dvh',
   left: 0,
   w: 'full',
