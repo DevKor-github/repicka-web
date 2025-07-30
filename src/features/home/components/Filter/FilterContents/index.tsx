@@ -14,7 +14,6 @@ import {
   type ProductType,
   type Quality,
   type Size,
-  type TagType,
   type TradeMethods,
   type TransactionType,
 } from '@/libs/types/item';
@@ -24,7 +23,7 @@ interface Props {
   type: FilterType;
 }
 const FilterContents = ({ type }: Props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const transactionTypes = searchParams.getAll('transaction-type') as TransactionType[];
   const productTypes = searchParams.getAll('product-type') as ProductType[];
   const sizes = searchParams.getAll('size') as Size[];
@@ -32,40 +31,31 @@ const FilterContents = ({ type }: Props) => {
   const tradeMethods = searchParams.getAll('trade-method') as TradeMethods[];
   const quality = searchParams.getAll('quality') as Quality[];
 
-  const handleTOBClick = (t: TagType, isSelected: boolean) => {
-    if (isSelected) {
-      searchParams.delete(type, t);
-    } else {
-      searchParams.append(type, t);
-    }
-    setSearchParams(searchParams);
-  };
-
   const contents = () => {
     switch (type) {
       case 'transaction-type':
         return (
           // TODO: TagOptionButtonWrapper는 price인 경우 빼곤 다 똑같으니까 얘도 간소화 하기
           <div className={s.TagOptionButtonWrapper}>
-            <TagOptions map={TRANSACTION_TYPES_MAP} selected={transactionTypes} onClick={handleTOBClick} />
+            <TagOptions map={TRANSACTION_TYPES_MAP} selected={transactionTypes} type={type} />
           </div>
         );
       case 'product-type':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            <TagOptions map={PRODUCT_TYPES_MAP} selected={productTypes} onClick={handleTOBClick} />
+            <TagOptions map={PRODUCT_TYPES_MAP} selected={productTypes} type={type} />
           </div>
         );
       case 'size':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            <TagOptions array={SIZE_ARRAY as unknown as Size[]} selected={sizes} onClick={handleTOBClick} />
+            <TagOptions array={SIZE_ARRAY as unknown as Size[]} selected={sizes} type={type} />
           </div>
         );
       case 'color':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            <TagOptions map={COLOR_MAP} selected={colors} onClick={handleTOBClick} />
+            <TagOptions map={COLOR_MAP} selected={colors} type={type} />
           </div>
         );
       case 'price':
@@ -74,13 +64,13 @@ const FilterContents = ({ type }: Props) => {
       case 'quality':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            <TagOptions map={QUALITY_MAP} selected={quality} onClick={handleTOBClick} />
+            <TagOptions map={QUALITY_MAP} selected={quality} type={type} />
           </div>
         );
       case 'trade-method':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            <TagOptions map={TRADE_METHODS_MAP} selected={tradeMethods} onClick={handleTOBClick} />
+            <TagOptions map={TRADE_METHODS_MAP} selected={tradeMethods} type={type} />
           </div>
         );
     }
