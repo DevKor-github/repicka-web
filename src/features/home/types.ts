@@ -1,4 +1,4 @@
-import type { ProductType, TransactionType } from '@/libs/types/item';
+import type { Color, ProductType, Quality, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 
 export interface ItemInterface {
   itemId: number;
@@ -12,6 +12,10 @@ export interface ItemInterface {
   likeCount: number;
   chatRoomCount: number;
   available: boolean;
+  quality: Quality;
+  size: Size;
+  color: Color;
+  tradeMethods: TradeMethods[];
 }
 
 export type ItemOrderType = 'RECENT' | 'LIKE' | 'RENTAL_FEE' | 'SALE_PRICE';
