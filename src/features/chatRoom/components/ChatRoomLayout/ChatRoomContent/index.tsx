@@ -5,7 +5,7 @@ import * as s from './style.css';
 import PickChat from '../../PickChat';
 import { useEffect, useRef } from 'react';
 import React from 'react';
-import type { ChatRoomResponse } from '@/features/chatRoom/types';
+import type { ChatRoomResponse, Message } from '@/features/chatRoom/types';
 
 // [ TODO ]
 // 스크롤 좀 올렸을 때 맨 아래로 가는 버튼도 만들어야 하려나
@@ -14,16 +14,16 @@ import type { ChatRoomResponse } from '@/features/chatRoom/types';
 
 export interface Props {
   data: ChatRoomResponse;
+  messages: Message[];
 }
 
-export const ChatRoomContent = ({ data }: Props) => {
+export const ChatRoomContent = ({ data, messages }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: 'auto' });
   }, []);
 
-  const messages = data.chat.messages;
   const myUserId = data.chatRoom.myUserId;
 
   console.log(data);

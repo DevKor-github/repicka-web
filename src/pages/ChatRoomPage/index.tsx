@@ -11,31 +11,55 @@ import SafeArea from '@/common/components/SafeArea';
 import { useParams } from 'react-router';
 // import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
 import { usePostChatList } from '@/features/chatRoom/api/usePostChatList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import type { Message } from '@stomp/stompjs';
+// import wsClient from '@/common/utils/wsClient';
 
 export const ChatRoomPage = () => {
   const { chatRoomId } = useParams();
   const chatRoomIdNumber = Number(chatRoomId);
+  // TODO: POST -> GET으로 메소드 변경
   // const { data } = useGetChatRoom(chatRoomIdNumber);
 
   const { mutate, data } = usePostChatList();
+  const [messages, setMessages] = useState<Message[]>([]);
 
+  // REST API 붙이기
   useEffect(() => {
     if (!isNaN(chatRoomIdNumber)) {
       mutate(chatRoomIdNumber);
     }
   }, [chatRoomIdNumber, mutate]);
 
-  // if (isLoading) return <div>Loading...</div>;
+  // REST API로 받아온 메시지 저장해 두기
+  useEffect(() => {
+    if (data?.data?.chat?.messages) {
+      setMessages(data.data.chat.messages);
+    }
+  }, [data]);
+
+  // Socket 연결해서 구독하고, REST API로 저장해 둔 메시지에 붙이기
+  // useEffect(() => {
+  //   if (!chatRoomIdNumber || !wsClient.connected) return;
+
+  //   const subscription = wsClient.subscribe(
+  //     `/sub/chatroom/${chatRoomIdNumber}`,
+  //     (message) => {
+  //       const msgData: Message = JSON.parse(message.body);
+  //       setMessages((prev) => [...prev, msgData]);
+  //     }
+  //   );
+
+  //   return () => subscription.unsubscribe();
+  // }, [chatRoomIdNumber, wsClient.connected]);
+
   if (data === undefined) return <div>잘못된 접근입니다</div>;
 
   return (
     <SafeArea>
       <div className={s.entireLayout}>
         <ChatRoomHeader data={data?.data} />
-        <div className={s.innerPage}>
-          <ChatRoomContent data={data?.data} />
-        </div>
+        <div className={s.innerPage}>{/* <ChatRoomContent data={data?.data} messages={messages}/> */}</div>
         <ChatRoomFooter />
       </div>
     </SafeArea>

@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useRoutes } from 'react-router';
 import routes from '@/pages/routes';
 import { useEffect } from 'react';
-import wsClient from './common/utils/wsClient';
+import { connectSocket } from './common/utils/wsClient';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +20,13 @@ const queryClient = new QueryClient({
 
 function App() {
   useEffect(() => {
-    wsClient.activate(); // 소켓 연결 시작... 앱 시작할 때 처음 한 번만 하는 거임
+    connectSocket()
+      .then(() => {
+        console.log('앱 시작할 때 WebSocket 연결 완료');
+      })
+      .catch(err => {
+        console.error('WebSocket 연결 실패:', err);
+      });
   }, []);
 
   const router = useRoutes(routes);
