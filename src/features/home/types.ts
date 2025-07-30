@@ -1,4 +1,18 @@
-import type { ProductType, TransactionType } from '@/libs/types/item';
+import {
+  COLOR_MAP,
+  PRODUCT_TYPES_MAP,
+  QUALITY_MAP,
+  SIZE_ARRAY,
+  TRADE_METHODS_MAP,
+  TRANSACTION_TYPES_MAP,
+  type Color,
+  type ProductType,
+  type Quality,
+  type Size,
+  type TagType,
+  type TradeMethods,
+  type TransactionType,
+} from '@/libs/types/item';
 
 export interface ItemInterface {
   itemId: number;
@@ -56,4 +70,12 @@ export const FilterTypeToIndexMap: Record<FilterType, number> = {
   price: 4,
   quality: 5,
   'trade-method': 6,
+};
+export const FilterTypeToList: Record<Exclude<FilterType, 'price'>, TagType[]> = {
+  'transaction-type': Object.keys(TRANSACTION_TYPES_MAP) as TransactionType[],
+  'product-type': Object.keys(PRODUCT_TYPES_MAP) as ProductType[],
+  size: SIZE_ARRAY as unknown as Size[],
+  color: Object.keys(COLOR_MAP) as Color[],
+  quality: Object.keys(QUALITY_MAP) as Quality[],
+  'trade-method': Object.keys(TRADE_METHODS_MAP) as TradeMethods[],
 };
