@@ -14,7 +14,6 @@ import { usePostChatList } from '@/features/chatRoom/api/usePostChatList';
 import { useEffect, useState } from 'react';
 import type { Message } from '@/features/chatRoom/types';
 import { stompClient } from '@/common/utils/wsClient';
-// import wsClient from '@/common/utils/wsClient';
 
 export const ChatRoomPage = () => {
   const { chatRoomId } = useParams();

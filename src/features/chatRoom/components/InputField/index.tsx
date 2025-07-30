@@ -1,7 +1,7 @@
 import { cx } from '@styled-system/css';
 import * as s from './style.css';
 import { useState } from 'react';
-import { stompClient } from '@/common/utils/wsClient'; // 너가 export한 stompClient 경로
+import { stompClient } from '@/common/utils/wsClient';
 
 export const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
   const [message, setMessage] = useState('');
