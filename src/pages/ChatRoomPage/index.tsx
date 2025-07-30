@@ -9,19 +9,32 @@ import ChatRoomHeader from '@/features/chatRoom/components/ChatRoomLayout/ChatRo
 import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import { useParams } from 'react-router';
-import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
+// import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
+import { usePostChatList } from '@/features/chatRoom/api/usePostChatList';
+import { useEffect } from 'react';
 
 export const ChatRoomPage = () => {
   const { chatRoomId } = useParams();
   const chatRoomIdNumber = Number(chatRoomId);
-  const { data } = useGetChatRoom(chatRoomIdNumber);
+  // const { data } = useGetChatRoom(chatRoomIdNumber);
+
+  const { mutate, data } = usePostChatList();
+
+  useEffect(() => {
+    if (!isNaN(chatRoomIdNumber)) {
+      mutate(chatRoomIdNumber);
+    }
+  }, [chatRoomIdNumber, mutate]);
+
+  // if (isLoading) return <div>Loading...</div>;
+  if (data === undefined) return <div>잘못된 접근입니다</div>;
 
   return (
     <SafeArea>
       <div className={s.entireLayout}>
-        <ChatRoomHeader />
+        <ChatRoomHeader data={data?.data} />
         <div className={s.innerPage}>
-          <ChatRoomContent data={data?.data.data} />
+          <ChatRoomContent data={data?.data} />
         </div>
         <ChatRoomFooter />
       </div>
