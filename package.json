@@ -15,6 +15,7 @@
     "check-project": "yarn type && yarn lint"
   },
   "dependencies": {
+    "@stomp/stompjs": "^7.1.1",
     "@tanstack/react-query": "^5.79.0",
     "axios": "^1.9.0",
     "date-fns": "^4.1.0",
@@ -24,6 +25,7 @@
     "react-dom": "^19.1.0",
     "react-router": "^7.6.3",
     "react-textarea-autosize": "^8.5.9",
+    "sockjs-client": "^1.6.1",
     "swiper": "^11.2.10",
     "zustand": "^5.0.6"
   },
@@ -34,6 +36,7 @@
     "@types/node": "^24.0.13",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "@types/sockjs-client": "^1.5.4",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-config-prettier": "^10.1.5",
