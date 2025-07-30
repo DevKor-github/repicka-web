@@ -9,7 +9,7 @@ import ChatRoomHeader from '@/features/chatRoom/components/ChatRoomLayout/ChatRo
 import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import { useParams } from 'react-router';
-import useGetChatRoom from '@/features/chat/apis/useGetChatRoom';
+import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
 
 export const ChatRoomPage = () => {
   const { chatRoomId } = useParams();

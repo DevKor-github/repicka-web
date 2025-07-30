@@ -21,6 +21,8 @@ export interface Message {
   chatId: ChatId;
   userId: number;
   content: string;
+  isPick: boolean;
+  createdAt: string;
 }
 
 export interface Chat {
