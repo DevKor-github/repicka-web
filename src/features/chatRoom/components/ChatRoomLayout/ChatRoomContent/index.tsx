@@ -20,8 +20,8 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: 'auto' });
-  }, []);
+    ref.current?.scrollIntoView({ behavior: 'smooth' }); // 처음엔 auto, 이후엔 smooth 써도 됨
+  }, [messages]);
 
   const myUserId = data.chatRoom.myUserId;
 
