@@ -9,16 +9,12 @@ import ChatRoomHeader from '@/features/chatRoom/components/ChatRoomLayout/ChatRo
 import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import { useParams } from 'react-router';
-import { usePostChatRoom } from '@/features/chat/apis/usePostChatRoom';
-import { useEffect } from 'react';
+import useGetChatRoom from '@/features/chat/apis/useGetChatRoom';
 
 export const ChatRoomPage = () => {
   const { chatRoomId } = useParams();
-  const { mutate, data } = usePostChatRoom();
-
-  useEffect(() => {
-    mutate({ chatRoomId: Number(chatRoomId) });
-  }, [chatRoomId]);
+  const chatRoomIdNumber = Number(chatRoomId);
+  const { data } = useGetChatRoom(chatRoomIdNumber);
 
   return (
     <SafeArea>
