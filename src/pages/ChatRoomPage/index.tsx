@@ -12,7 +12,8 @@ import { useParams } from 'react-router';
 // import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
 import { usePostChatList } from '@/features/chatRoom/api/usePostChatList';
 import { useEffect, useState } from 'react';
-import type { Message } from '@stomp/stompjs';
+import type { Message } from '@/features/chatRoom/types';
+import { stompClient } from '@/common/utils/wsClient';
 // import wsClient from '@/common/utils/wsClient';
 
 export const ChatRoomPage = () => {
@@ -34,24 +35,22 @@ export const ChatRoomPage = () => {
   // REST API로 받아온 메시지 저장해 두기
   useEffect(() => {
     if (data?.data?.chat?.messages) {
-      setMessages(data.data.chat.messages);
+      setMessages(data.data.chat.messages.slice().reverse());
     }
   }, [data]);
 
   // Socket 연결해서 구독하고, REST API로 저장해 둔 메시지에 붙이기
-  // useEffect(() => {
-  //   if (!chatRoomIdNumber || !wsClient.connected) return;
+  useEffect(() => {
+    const subscription = stompClient.subscribe('/sub/chatroom/1', message => {
+      const data = JSON.parse(message.body);
 
-  //   const subscription = wsClient.subscribe(
-  //     `/sub/chatroom/${chatRoomIdNumber}`,
-  //     (message) => {
-  //       const msgData: Message = JSON.parse(message.body);
-  //       setMessages((prev) => [...prev, msgData]);
-  //     }
-  //   );
+      setMessages(prev => [...prev, data]);
+    });
 
-  //   return () => subscription.unsubscribe();
-  // }, [chatRoomIdNumber, wsClient.connected]);
+    return () => {
+      subscription.unsubscribe(); // 컴포넌트 언마운트 시 구독 해제
+    };
+  }, []);
 
   if (data === undefined) return <div>잘못된 접근입니다</div>;
 
@@ -59,8 +58,10 @@ export const ChatRoomPage = () => {
     <SafeArea>
       <div className={s.entireLayout}>
         <ChatRoomHeader data={data?.data} />
-        <div className={s.innerPage}>{/* <ChatRoomContent data={data?.data} messages={messages}/> */}</div>
-        <ChatRoomFooter />
+        <div className={s.innerPage}>
+          <ChatRoomContent data={data?.data} messages={messages} />
+        </div>
+        <ChatRoomFooter chatRoomId={data?.data.chatRoom.chatRoomId} />
       </div>
     </SafeArea>
   );
