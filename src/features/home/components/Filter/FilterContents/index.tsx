@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router';
 import * as s from './style.css';
 
 import type { FilterType } from '@/features/home/types';
-import TagOptionBtn from '@/common/components/TagOptionBtn';
 import {
   COLOR_MAP,
   PRODUCT_TYPES_MAP,
@@ -19,6 +18,7 @@ import {
   type TradeMethods,
   type TransactionType,
 } from '@/libs/types/item';
+import TagOptions from '@/features/home/components/Filter/FilterContents/TagOptions';
 
 interface Props {
   type: FilterType;
@@ -45,69 +45,27 @@ const FilterContents = ({ type }: Props) => {
     switch (type) {
       case 'transaction-type':
         return (
+          // TODO: TagOptionButtonWrapper는 price인 경우 빼곤 다 똑같으니까 얘도 간소화 하기
           <div className={s.TagOptionButtonWrapper}>
-            {Object.keys(TRANSACTION_TYPES_MAP).map(key => {
-              const t = key as TransactionType;
-              const isSelected = transactionTypes.includes(t);
-              return (
-                <TagOptionBtn
-                  key={key}
-                  type={t}
-                  isSelected={isSelected}
-                  onClick={() => handleTOBClick(t, isSelected)}
-                />
-              );
-            })}
+            <TagOptions map={TRANSACTION_TYPES_MAP} selected={transactionTypes} onClick={handleTOBClick} />
           </div>
         );
       case 'product-type':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            {Object.keys(PRODUCT_TYPES_MAP).map(key => {
-              const t = key as ProductType;
-              const isSelected = productTypes.includes(t);
-              return (
-                <TagOptionBtn
-                  key={key}
-                  type={t}
-                  isSelected={isSelected}
-                  onClick={() => handleTOBClick(t, isSelected)}
-                />
-              );
-            })}
+            <TagOptions map={PRODUCT_TYPES_MAP} selected={productTypes} onClick={handleTOBClick} />
           </div>
         );
       case 'size':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            {SIZE_ARRAY.map(size => {
-              const isSelected = sizes.includes(size);
-              return (
-                <TagOptionBtn
-                  key={size}
-                  type={size}
-                  isSelected={isSelected}
-                  onClick={() => handleTOBClick(size, isSelected)}
-                />
-              );
-            })}
+            <TagOptions array={SIZE_ARRAY as unknown as Size[]} selected={sizes} onClick={handleTOBClick} />
           </div>
         );
       case 'color':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            {Object.keys(COLOR_MAP).map(key => {
-              const c = key as Color;
-              const isSelected = colors.includes(c);
-              return (
-                <TagOptionBtn
-                  key={key}
-                  type={c}
-                  isSelected={isSelected}
-                  onClick={() => handleTOBClick(c, isSelected)}
-                />
-              );
-            })}
+            <TagOptions map={COLOR_MAP} selected={colors} onClick={handleTOBClick} />
           </div>
         );
       case 'price':
@@ -116,35 +74,13 @@ const FilterContents = ({ type }: Props) => {
       case 'quality':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            {Object.keys(QUALITY_MAP).map(key => {
-              const q = key as Quality;
-              const isSelected = quality.includes(q);
-              return (
-                <TagOptionBtn
-                  key={key}
-                  type={q}
-                  isSelected={isSelected}
-                  onClick={() => handleTOBClick(q, isSelected)}
-                />
-              );
-            })}
+            <TagOptions map={QUALITY_MAP} selected={quality} onClick={handleTOBClick} />
           </div>
         );
       case 'trade-method':
         return (
           <div className={s.TagOptionButtonWrapper}>
-            {Object.keys(TRADE_METHODS_MAP).map(key => {
-              const t = key as TradeMethods;
-              const isSelected = tradeMethods.includes(t);
-              return (
-                <TagOptionBtn
-                  key={key}
-                  type={t}
-                  isSelected={isSelected}
-                  onClick={() => handleTOBClick(t, isSelected)}
-                />
-              );
-            })}
+            <TagOptions map={TRADE_METHODS_MAP} selected={tradeMethods} onClick={handleTOBClick} />
           </div>
         );
     }
@@ -152,4 +88,5 @@ const FilterContents = ({ type }: Props) => {
 
   return <div className={s.Container}>{contents()}</div>;
 };
+
 export default FilterContents;
