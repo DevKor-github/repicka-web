@@ -4,14 +4,17 @@ import ChatRoomHeader from '@/features/chatRoom/components/ChatRoomLayout/ChatRo
 
 import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 // import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
 import { usePostChatList } from '@/features/chatRoom/api/usePostChatList';
 import { useEffect, useState } from 'react';
 import type { Message } from '@/features/chatRoom/types';
 import { stompClient } from '@/common/utils/wsClient';
+import Chip from '@/common/components/Chip';
 
 export const ChatRoomPage = () => {
+  const navigate = useNavigate();
+
   const { chatRoomId } = useParams();
   const chatRoomIdNumber = Number(chatRoomId);
   // TODO: POST -> GET으로 메소드 변경
@@ -49,7 +52,13 @@ export const ChatRoomPage = () => {
     }
   }, [chatRoomIdNumber]);
 
-  if (data === undefined) return <div>잘못된 접근입니다</div>;
+  if (data === undefined)
+    return (
+      <>
+        <Chip onClick={() => navigate('/')}>홈으로 가기</Chip>
+        <div>잘못된 접근입니다</div>
+      </>
+    );
 
   return (
     <SafeArea>

@@ -44,8 +44,7 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
           const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
 
           return (
-            // <React.Fragment key={`${chat.date}-${chat.message || 'no-message'}`}>
-            <React.Fragment key={chat.chatId.timestamp}>
+            <React.Fragment key={`${chat.chatId.timestamp}-${index}`}>
               {isNewDate && <div className={s.Date({ isFirst: isFirst })}>{date}</div>}
               {chat.isPick ? (
                 <PickChat marginTop={marginTop} isMine={isMine} />
