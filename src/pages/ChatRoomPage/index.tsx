@@ -36,16 +36,18 @@ export const ChatRoomPage = () => {
 
   // Socket 연결해서 구독하고, REST API로 저장해 둔 메시지에 붙이기
   useEffect(() => {
-    const subscription = stompClient.subscribe('/sub/chatroom/1', message => {
-      const data = JSON.parse(message.body);
+    if (!isNaN(chatRoomIdNumber)) {
+      const subscription = stompClient.subscribe(`/sub/chatroom/${chatRoomIdNumber}`, message => {
+        const data = JSON.parse(message.body);
 
-      setMessages(prev => [...prev, data]);
-    });
+        setMessages(prev => [...prev, data]);
+      });
 
-    return () => {
-      subscription.unsubscribe(); // 컴포넌트 언마운트 시 구독 해제
-    };
-  }, []);
+      return () => {
+        subscription.unsubscribe(); // 컴포넌트 언마운트 시 구독 해제
+      };
+    }
+  }, [chatRoomIdNumber]);
 
   if (data === undefined) return <div>잘못된 접근입니다</div>;
 
