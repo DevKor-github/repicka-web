@@ -18,9 +18,15 @@ export interface Props {
 
 export const ChatRoomContent = ({ data, messages }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' }); // 처음엔 auto, 이후엔 smooth 써도 됨
+    if (messages.length > 0 && isFirstRender.current) {
+      ref.current?.scrollIntoView({ behavior: 'instant' });
+      isFirstRender.current = false;
+    } else {
+      ref.current?.scrollIntoView({ behavior: 'smooth' }); // 처음엔 auto, 이후엔 smooth 써도 됨
+    }
   }, [messages]);
 
   const myUserId = data.chatRoom.myUserId;
