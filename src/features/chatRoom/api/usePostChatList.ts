@@ -15,8 +15,8 @@ export const usePostChatList = () => {
 
   return useMutation({
     mutationFn: (chatRoomId: number) => postChatList(chatRoomId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['chat-list'] });
+    onSuccess: (_data, chatRoomId) => {
+      queryClient.invalidateQueries({ queryKey: ['chat-list', chatRoomId] });
     },
   });
 };
