@@ -11,24 +11,22 @@ import { useEffect, useState } from 'react';
 import type { Message } from '@/features/chatRoom/types';
 import { stompClient } from '@/common/utils/wsClient';
 import Chip from '@/common/components/Chip';
+import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
 
 export const ChatRoomPage = () => {
   const navigate = useNavigate();
-
-  const { chatRoomId } = useParams();
-  const chatRoomIdNumber = Number(chatRoomId);
-  // TODO: POST -> GET으로 메소드 변경
-  // const { data } = useGetChatRoom(chatRoomIdNumber);
-
-  const { mutate, data } = usePostChatList();
   const [messages, setMessages] = useState<Message[]>([]);
+  const { chatRoomId } = useParams();
+
+  const chatRoomIdNumber = Number(chatRoomId);
+  const { data } = useGetChatRoom(chatRoomIdNumber);
 
   // REST API 붙이기
-  useEffect(() => {
-    if (!isNaN(chatRoomIdNumber)) {
-      mutate(chatRoomIdNumber);
-    }
-  }, [chatRoomIdNumber, mutate]);
+  // useEffect(() => {
+  //   if (!isNaN(chatRoomIdNumber)) {
+  //     mutate(chatRoomIdNumber);
+  //   }
+  // }, [chatRoomIdNumber, mutate]);
 
   // REST API로 받아온 메시지 저장해 두기
   useEffect(() => {

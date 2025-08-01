@@ -35,12 +35,12 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
     <div>
       <div className={s.Wrapper}>
         {messages.map((chat, index) => {
-          const time = parseTime(chat.chatId.date);
-          const date = parseDate(chat.chatId.date);
+          const time = parseTime(chat.createdAt);
+          const date = parseDate(chat.createdAt);
 
           const isMine = chat.userId === myUserId;
 
-          const prevDate = index > 0 ? parseDate(messages[index - 1].chatId.date) : null;
+          const prevDate = index > 0 ? parseDate(messages[index - 1].createdAt) : null;
           const prevIsMine = index > 0 ? messages[index - 1].userId === myUserId : null;
 
           const isNewDate = date !== prevDate;
@@ -50,7 +50,7 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
           const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
 
           return (
-            <React.Fragment key={`${chat.chatId.timestamp}-${index}`}>
+            <React.Fragment key={`${chat.createdAt}-${index}`}>
               {isNewDate && <div className={s.Date({ isFirst: isFirst })}>{date}</div>}
               {chat.isPick ? (
                 <PickChat marginTop={marginTop} isMine={isMine} />

@@ -3,22 +3,14 @@ export interface ChatRoom {
   myUserId: number;
   opponentUserId: number;
   opponentNickname: string;
+  opponentProfileImageUrl: string | null;
   isOpponentKorean: boolean;
   isFinished: boolean;
-}
-
-export interface ChatId {
-  timestamp: number;
-  date: string;
-}
-
-export interface CursorId {
-  timestamp: number;
-  date: string;
+  mostRecentChat: string | null;
 }
 
 export interface Message {
-  chatId: ChatId;
+  chatId: string | null;
   userId: number;
   content: string;
   isPick: boolean;
@@ -27,7 +19,7 @@ export interface Message {
 
 export interface Chat {
   messages: Message[];
-  cursorId?: CursorId | null;
+  cursorId?: string | null;
   hasNext: boolean;
 }
 
