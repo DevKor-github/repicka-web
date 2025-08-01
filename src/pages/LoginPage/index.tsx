@@ -11,6 +11,7 @@ import KakaoLogo from '@/libs/assets/KakaoLogo';
 const LoginPage = () => {
   const navigate = useNavigate();
   const { data: isLogin, isLoading } = useGetIsLogin();
+  const redirectionUrl = encodeURIComponent(window.location.origin + '/');
 
   useEffect(() => {
     // TODO: 원래 있던 페이지로
@@ -29,14 +30,14 @@ const LoginPage = () => {
           {/* TODO: 애플 로그인 추가 */}
           <a
             className={s.LoginButton({ src: 'google' })}
-            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google`}
+            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google?redirectURI=${redirectionUrl}`}
           >
             <GoogleLogo />
             Google로 로그인
           </a>
           <a
             className={s.LoginButton({ src: 'kakao' })}
-            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/kakao`}
+            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/kakao?redirectURI=${redirectionUrl}`}
           >
             <KakaoLogo />
             카카오톡으로 로그인
