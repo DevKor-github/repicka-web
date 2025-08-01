@@ -17,7 +17,6 @@ const SortDrawer = ({ close }: Props) => {
       searchParams.set('sort', sort);
     }
     setSearchParams(searchParams);
-    // TODO: 바로 닫히게 하는게 좋으려나 고민이 되네연
     close();
   };
 
