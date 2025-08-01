@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router';
 import * as s from './style.css';
-import type { ChatRoomResponse } from '@/features/chatRoom/types';
+import type { ChatRoomResponseData } from '@/features/chatRoom/types';
+import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 
 export interface Props {
-  data: ChatRoomResponse;
+  data: ChatRoomResponseData;
 }
 
 export const ChatRoomHeader = ({ data }: Props) => {
@@ -11,6 +12,9 @@ export const ChatRoomHeader = ({ data }: Props) => {
   const goBack = () => navigate(-1);
 
   const nickname = data.chatRoom.opponentNickname;
+  const isOpponentKorean = data.chatRoom.isOpponentKorean;
+  // TODO: profile image 불러오기
+  // const profileImage = data.chatRoom.opponentProfileImageUrl;
 
   return (
     <header>
@@ -19,6 +23,7 @@ export const ChatRoomHeader = ({ data }: Props) => {
         <div className={s.UserInfo}>
           <div className={s.ProfileCircle} />
           <span>{nickname}</span>
+          {isOpponentKorean && <SchoolVerifiedTag />}
         </div>
       </div>
     </header>

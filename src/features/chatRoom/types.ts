@@ -23,7 +23,7 @@ export interface Chat {
   hasNext: boolean;
 }
 
-export interface ChatRoomResponse {
+export interface ChatRoomResponseData {
   chatRoom: ChatRoom;
   chat: Chat;
 }

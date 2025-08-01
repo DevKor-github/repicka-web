@@ -5,13 +5,15 @@ import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 // TODO: 나중에 수정하기~~~
 interface Props {
   nickName: string;
-  message: string;
+  recentChat: string | null;
   count: number;
   chatRoomId: number;
   isVerified: boolean;
 }
 
-const ChatList = ({ nickName, message, count, chatRoomId, isVerified }: Props) => {
+const ChatList = ({ nickName, recentChat, count, chatRoomId, isVerified }: Props) => {
+  const message = recentChat ? recentChat : '대화를 시작해 보세요!';
+
   return (
     <Link className={s.List} to={`/chatroom/${chatRoomId}`}>
       <div className={s.ProfileCircle} />
