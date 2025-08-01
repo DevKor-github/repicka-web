@@ -17,21 +17,21 @@ export const ChatRoomPage = () => {
   const { chatRoomId } = useParams();
 
   const chatRoomIdNumber = Number(chatRoomId);
-  const { data } = useGetChatRoom(chatRoomIdNumber);
+  const { data, isError, isSuccess, isLoading } = useGetChatRoom(chatRoomIdNumber);
 
   // REST API로 받아온 메시지 저장해 두기
   useEffect(() => {
-    if (data?.data?.chat?.messages) {
+    if (isSuccess && data?.data?.chat?.messages) {
       setMessages(data.data.chat.messages.slice().reverse());
     }
-  }, [data]);
+  }, [isSuccess, data]);
 
   // 구독 후, REST API로 저장해 둔 메시지에 붙이기
   useEffect(() => {
     let unsubscribe: (() => void) | undefined;
 
     connectSocket().then(() => {
-      if (!isNaN(chatRoomIdNumber)) {
+      if (isSuccess && !isNaN(chatRoomIdNumber)) {
         unsubscribe = subSocket(chatRoomIdNumber, data => {
           setMessages(prev => [...prev, data]);
         });
@@ -42,12 +42,12 @@ export const ChatRoomPage = () => {
       // 언마운트 시 구독 해제
       unsubscribe?.();
     };
-  }, [chatRoomIdNumber]);
+  }, [isSuccess, chatRoomIdNumber]);
 
   if (data === undefined)
     return (
       <>
-        <Chip onClick={() => navigate('/')}>홈으로 가기</Chip>
+        <Chip onClick={() => navigate(-1)}>이전으로</Chip>
         <div>잘못된 접근입니다</div>
       </>
     );

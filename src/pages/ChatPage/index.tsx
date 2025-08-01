@@ -34,6 +34,22 @@ const ChatPage = () => {
             profileImageUrl={data.opponentProdileImageUrl}
           />
         ))}
+        <ChatList
+          chatRoomId={123}
+          count={0}
+          isVerified={true}
+          nickName="404 에러"
+          profileImageUrl={undefined}
+          recentChat=""
+        />
+        <ChatList
+          chatRoomId={2}
+          count={0}
+          isVerified={true}
+          nickName="내 거 아니다 403 에러"
+          profileImageUrl={undefined}
+          recentChat=""
+        />{' '}
       </div>
     </SafeArea>
   );
