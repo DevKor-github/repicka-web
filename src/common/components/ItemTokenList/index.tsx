@@ -19,9 +19,9 @@ interface Props {
     quality?: Quality;
     size: Size;
   };
-  showAll?: boolean;
+  showCount?: number;
 }
-const ItemTokenList = ({ itemInfo, showAll = true }: Props) => {
+const ItemTokenList = ({ itemInfo, showCount }: Props) => {
   const tags: TagType[] = [
     ...(itemInfo.transactionTypes || []),
     ...(itemInfo.productTypes || []),
@@ -30,7 +30,8 @@ const ItemTokenList = ({ itemInfo, showAll = true }: Props) => {
     ...(itemInfo.color ? [itemInfo.color] : []),
     ...(itemInfo.tradeMethods || []),
   ];
-  const showTags = showAll ? tags : tags.slice(0, 4);
+  const showAll = showCount === undefined;
+  const showTags = showAll ? tags : tags.slice(0, showCount);
   const noneShownCount = tags.length - showTags.length;
 
   return (

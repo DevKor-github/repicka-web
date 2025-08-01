@@ -7,14 +7,16 @@ interface Props {
 const PriceToken = ({ price, deposit }: Props) => {
   const isRental = deposit !== undefined;
   return (
-    <div className={s.PriceItem}>
-      <label>{isRental ? '대여' : '판매'}</label>
-      <p>{price.toLocaleString()}원</p>
+    <div className={s.Wrapper}>
+      <div className={s.PriceItem}>
+        <label>{isRental ? '대여료' : '판매가'}</label>
+        <p>{price.toLocaleString()}원</p>
+      </div>
       {isRental && (
-        <p>
+        <div className={s.PriceItem}>
           <label>보증금</label>
-          {deposit.toLocaleString()}원
-        </p>
+          <p>{deposit.toLocaleString()}원</p>
+        </div>
       )}
     </div>
   );

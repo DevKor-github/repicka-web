@@ -22,13 +22,6 @@ export const PhotoLimit = css({
 
 export const AlertText = css({
   display: 'flex',
-  alignItems: 'center',
-  gap: '0.25rem',
-  color: '80',
-  fontFamily: 'Pretendard',
-  fontSize: '0.75rem',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  lineHeight: 'normal',
-  letterSpacing: '-0.03rem',
+  flexDir: 'column',
+  gap: '0.375rem',
 });

@@ -26,6 +26,10 @@ export interface ItemInterface {
   likeCount: number;
   chatRoomCount: number;
   available: boolean;
+  quality: Quality;
+  size: Size;
+  color: Color;
+  tradeMethods: TradeMethods[];
 }
 
 export const ItemOrderArray = [

@@ -1,13 +1,12 @@
-import { cva } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Container = cva({
   base: {
     height: '2.75rem',
-    backgroundColor: '#2C2C2E',
+    backgroundColor: 'systemGray5',
     padding: '0rem 1rem',
     borderRadius: '0.375rem',
     color: '100',
-    opacity: '0.9',
     fontFamily: 'Pretendard',
     fontSize: '1rem',
     fontStyle: 'normal',
@@ -23,5 +22,11 @@ export const Container = cva({
         textAlign: 'start',
       },
     },
+  },
+});
+
+export const ContainerWithPlaceholder = css({
+  _placeholder: {
+    color: '54',
   },
 });

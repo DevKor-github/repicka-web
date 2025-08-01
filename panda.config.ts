@@ -3,7 +3,7 @@ import { defineConfig } from '@pandacss/dev';
 const PANDA_CSS_CONSTANTS = {
   NAVIGATOR_HEIGHT: { value: '97px' },
   HOME_HEADER_HEIGHT: { value: '52px' },
-  DETAIL_PAGE_NAVIGATOR_HEIGHT: { value: '6.75rem' },
+  DETAIL_PAGE_NAVIGATOR_HEIGHT: { value: '6.375rem' },
   MAX_WIDTH: { value: '700px' },
   CHAT_ROOM_FOOTER_HEIGHT: { value: '102px' },
   CHAT_MAX_WIDTH: { value: '270px' },

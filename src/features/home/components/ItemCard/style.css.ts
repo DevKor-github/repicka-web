@@ -35,7 +35,7 @@ export const Header = css({
 export const Title = css({
   color: '100',
   fontSize: '1rem',
-  fontWeight: 400,
+  fontWeight: 500,
   lineHeight: 'normal',
   letterSpacing: '-0.04rem',
   lineClamp: 1,
@@ -44,7 +44,6 @@ export const Title = css({
 export const Price = css({
   display: 'flex',
   flexDir: 'column',
-  gap: '0.125rem',
 });
 
 export const Footer = css({
