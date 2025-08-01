@@ -3,7 +3,7 @@ export interface ChatRoom {
   myUserId: number;
   opponentUserId: number;
   opponentNickname: string;
-  opponentProdileImageUrl: string | null;
+  opponentProdileImageUrl: string | undefined;
   isOpponentKorean: boolean;
   isFinished: boolean;
   mostRecentChat: string | null;

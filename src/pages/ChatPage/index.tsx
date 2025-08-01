@@ -31,6 +31,7 @@ const ChatPage = () => {
             nickName={data.opponentNickname}
             chatRoomId={data.chatRoomId}
             isVerified={data.isOpponentKorean}
+            profileImageUrl={data.opponentProdileImageUrl}
           />
         ))}
       </div>
