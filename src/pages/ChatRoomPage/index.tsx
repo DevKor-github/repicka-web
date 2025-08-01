@@ -6,7 +6,6 @@ import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import { useNavigate, useParams } from 'react-router';
 // import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
-import { usePostChatList } from '@/features/chatRoom/api/usePostChatList';
 import { useEffect, useState } from 'react';
 import type { Message } from '@/features/chatRoom/types';
 import { stompClient } from '@/common/utils/wsClient';
