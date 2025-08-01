@@ -17,7 +17,7 @@ export const ChatRoomPage = () => {
   const { chatRoomId } = useParams();
 
   const chatRoomIdNumber = Number(chatRoomId);
-  const { data, isError, isSuccess, isLoading } = useGetChatRoom(chatRoomIdNumber);
+  const { data, isSuccess } = useGetChatRoom(chatRoomIdNumber);
 
   // REST API로 받아온 메시지 저장해 두기
   useEffect(() => {
