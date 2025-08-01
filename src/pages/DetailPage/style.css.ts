@@ -8,9 +8,9 @@ export const Container = css({
 
 export const ScrollContainer = css({
   width: 'full',
-  height: 'full',
+  height: 'calc(100% - {sizes.DETAIL_PAGE_NAVIGATOR_HEIGHT})',
   overflowY: 'auto',
-  paddingBottom: 'DETAIL_PAGE_NAVIGATOR_HEIGHT',
+  paddingBottom: '1rem',
 });
 
 export const ContentContainer = css({
