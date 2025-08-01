@@ -17,7 +17,7 @@ export const ChatRoomPage = () => {
   const { chatRoomId } = useParams();
 
   const chatRoomIdNumber = Number(chatRoomId);
-  const { data, isSuccess } = useGetChatRoom(chatRoomIdNumber);
+  const { data, error, isSuccess } = useGetChatRoom(chatRoomIdNumber);
 
   // REST API로 받아온 메시지 저장해 두기
   useEffect(() => {
@@ -48,7 +48,7 @@ export const ChatRoomPage = () => {
     return (
       <>
         <Chip onClick={() => navigate(-1)}>이전으로</Chip>
-        <div>잘못된 접근입니다</div>
+        <div>{error?.message}</div>
       </>
     );
 
