@@ -30,6 +30,15 @@ export const connectSocket = () => {
   });
 };
 
+// 소켓 연결 해제 함수
+export const disconnectSocket = () => {
+  if (stompClient && stompClient.connected) {
+    stompClient.disconnect(() => {
+      console.log('🛑 WebSocket 연결 해제 완료');
+    });
+  }
+};
+
 // Socket 연결 끊어졌을 때 호출되는 함수
 stompClient.onWebSocketClose = (event: CloseEvent) => {
   isConnected = false;
