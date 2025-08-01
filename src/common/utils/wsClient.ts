@@ -2,14 +2,13 @@ import type { Message } from '@/features/chatRoom/types';
 import { Stomp, type Frame, type IFrame, type StompSubscription } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
-const socket = new SockJS(import.meta.env.VITE_WS_URL);
+const wsUrl = import.meta.env.VITE_WS_URL || '';
+const socket = new SockJS(wsUrl);
 const stompClient = Stomp.over(socket);
-
-let isConnected = false;
 
 export const connectSocket = () => {
   return new Promise((resolve, reject) => {
-    if (isConnected) {
+    if (stompClient.connected) {
       resolve(true);
       return;
     }
@@ -19,7 +18,6 @@ export const connectSocket = () => {
       {},
       (frame: IFrame) => {
         console.log('WebSocket 연결 완료', frame);
-        isConnected = true;
         resolve(true);
       },
       (error: Frame | CloseEvent) => {
@@ -41,14 +39,14 @@ export const disconnectSocket = () => {
 
 // Socket 연결 끊어졌을 때 호출되는 함수
 stompClient.onWebSocketClose = (event: CloseEvent) => {
-  isConnected = false;
-  console.warn('💥 WebSocket 연결 끊김:', event, isConnected);
+  // isConnected = false;
+  console.warn('💥 WebSocket 연결 끊김:', event);
 };
 
 const subscriptions = new Map<number, StompSubscription>();
 
 export const subSocket = (chatRoomId: number, callback: (data: Message) => void) => {
-  if (!isConnected) return;
+  if (!stompClient.connected) return;
 
   // 이전 구독이 있다면 해제 (중복 구독 방지)
   const prev = subscriptions.get(chatRoomId);
