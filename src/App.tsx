@@ -4,6 +4,7 @@ import { useRoutes } from 'react-router';
 import routes from '@/pages/routes';
 import { useEffect } from 'react';
 import { connectSocket } from './common/utils/wsClient';
+import SocketProvider from './common/components/SocketProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,7 +32,11 @@ function App() {
 
   const router = useRoutes(routes);
 
-  return <QueryClientProvider client={queryClient}>{router}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <SocketProvider>{router}</SocketProvider>
+    </QueryClientProvider>
+  );
 }
 
 export default App;

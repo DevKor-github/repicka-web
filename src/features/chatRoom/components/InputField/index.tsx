@@ -21,6 +21,7 @@ export const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
     setMessage('');
   };
 
+  // TODO: 한글 입력 시 마지막 글자 중복으로 보내지는 버그 있음
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') send();
   };

@@ -50,7 +50,7 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
           const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
 
           return (
-            <React.Fragment key={`${chat.createdAt}-${index}`}>
+            <React.Fragment key={`${chat.chatId}`}>
               {isNewDate && <div className={s.Date({ isFirst: isFirst })}>{date}</div>}
               {chat.isPick ? (
                 <PickChat marginTop={marginTop} isMine={isMine} />
