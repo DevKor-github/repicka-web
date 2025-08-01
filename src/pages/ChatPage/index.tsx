@@ -1,10 +1,10 @@
 import SafeArea from '@/common/components/SafeArea';
 import * as s from './style.css';
-import ChatList from '@/features/chat/components/ChatList';
+import ChatList from '@/features/chatList/components/ChatList';
 import MainTopBar from '@/common/components/MainTopBar';
 import { useEffect, useState } from 'react';
-import useGetChatList from '@/features/chat/api/useGetChatList';
-import type { ChatRoom } from '@/features/chat/types';
+import useGetChatList from '@/features/chatList/api/useGetChatList';
+import type { ChatRoom } from '@/features/chatList/types';
 
 const ChatPage = () => {
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
