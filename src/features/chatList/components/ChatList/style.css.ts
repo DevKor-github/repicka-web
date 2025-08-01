@@ -6,14 +6,6 @@ export const List = css({
   gap: '0.87rem',
 });
 
-export const ProfileCircle = css({
-  width: '2.625rem',
-  height: '2.625rem',
-  borderRadius: 'full',
-  backgroundColor: 'systemGray',
-  flexShrink: 0,
-});
-
 export const Contents = css({
   display: 'flex',
   flex: 1,
