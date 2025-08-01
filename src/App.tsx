@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     connectSocket()
       .then(() => {
-        console.log('앱 시작할 때 WebSocket 연결 완료');
+        console.log('앱 시작 시 WebSocket 연결 완료');
       })
       .catch(err => {
         console.error('WebSocket 연결 실패:', err);

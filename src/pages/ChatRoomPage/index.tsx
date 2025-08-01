@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router';
 // import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
 import { useEffect, useState } from 'react';
 import type { Message } from '@/features/chatRoom/types';
-import { stompClient } from '@/common/utils/wsClient';
+import { connectSocket, subSocket } from '@/common/utils/wsClient';
 import Chip from '@/common/components/Chip';
 import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
 
@@ -20,13 +20,6 @@ export const ChatRoomPage = () => {
   const chatRoomIdNumber = Number(chatRoomId);
   const { data } = useGetChatRoom(chatRoomIdNumber);
 
-  // REST API 붙이기
-  // useEffect(() => {
-  //   if (!isNaN(chatRoomIdNumber)) {
-  //     mutate(chatRoomIdNumber);
-  //   }
-  // }, [chatRoomIdNumber, mutate]);
-
   // REST API로 받아온 메시지 저장해 두기
   useEffect(() => {
     if (data?.data?.chat?.messages) {
@@ -34,19 +27,22 @@ export const ChatRoomPage = () => {
     }
   }, [data]);
 
-  // Socket 연결해서 구독하고, REST API로 저장해 둔 메시지에 붙이기
+  // 구독 후, REST API로 저장해 둔 메시지에 붙이기
   useEffect(() => {
-    if (!isNaN(chatRoomIdNumber)) {
-      const subscription = stompClient.subscribe(`/sub/chatroom/${chatRoomIdNumber}`, message => {
-        const data = JSON.parse(message.body);
+    let unsubscribe: (() => void) | undefined;
 
-        setMessages(prev => [...prev, data]);
-      });
+    connectSocket().then(() => {
+      if (!isNaN(chatRoomIdNumber)) {
+        unsubscribe = subSocket(chatRoomIdNumber, data => {
+          setMessages(prev => [...prev, data]);
+        });
+      }
+    });
 
-      return () => {
-        subscription.unsubscribe(); // 컴포넌트 언마운트 시 구독 해제
-      };
-    }
+    return () => {
+      // 언마운트 시 구독 해제
+      unsubscribe?.();
+    };
   }, [chatRoomIdNumber]);
 
   if (data === undefined)

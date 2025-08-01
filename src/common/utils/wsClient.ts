@@ -1,4 +1,5 @@
-import { Stomp, type Frame, type IFrame } from '@stomp/stompjs';
+import type { Message } from '@/features/chatRoom/types';
+import { Stomp, type Frame, type IFrame, type StompSubscription } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
 const socket = new SockJS(import.meta.env.VITE_WS_URL);
@@ -13,6 +14,7 @@ export const connectSocket = () => {
       return;
     }
 
+    // 소켓 연결이 안 되어 있다면 연결 시도
     stompClient.connect(
       {},
       (frame: IFrame) => {
@@ -26,6 +28,35 @@ export const connectSocket = () => {
       },
     );
   });
+};
+
+// Socket 연결 끊어졌을 때 호출되는 함수
+stompClient.onWebSocketClose = (event: CloseEvent) => {
+  isConnected = false;
+  console.warn('💥 WebSocket 연결 끊김:', event, isConnected);
+};
+
+const subscriptions = new Map<number, StompSubscription>();
+
+export const subSocket = (chatRoomId: number, callback: (data: Message) => void) => {
+  if (!isConnected) return;
+
+  // 이전 구독이 있다면 해제 (중복 구독 방지)
+  const prev = subscriptions.get(chatRoomId);
+  prev?.unsubscribe();
+
+  const subscription = stompClient.subscribe(`/sub/chatroom/${chatRoomId}`, message => {
+    const data = JSON.parse(message.body);
+    callback(data);
+  });
+
+  subscriptions.set(chatRoomId, subscription);
+
+  return () => {
+    subscription.unsubscribe();
+    subscriptions.delete(chatRoomId);
+    console.log('언마운트된 채팅방 구독 해제');
+  };
 };
 
 export { stompClient };
