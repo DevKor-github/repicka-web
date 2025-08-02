@@ -28,7 +28,7 @@ const ChatList = ({ nickName, profileImageUrl, recentChat, count, chatRoomId, is
             <h1>{nickName}</h1>
             {isVerified && <SchoolVerifiedTag />}
           </div>
-          {lastChatAt && <div className={s.Time}>{getKoreanRelativeTime(toKST(new Date(lastChatAt)))}</div>}{' '}
+          {lastChatAt && <div className={s.Time}>{getKoreanRelativeTime(toKST(new Date(lastChatAt)))}</div>}
         </div>
         <div className={s.MessageInfo}>
           <p className={s.Message}>{message}</p>
