@@ -41,10 +41,13 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
           const isMine = chat.userId === myUserId;
 
           const prevDate = index > 0 ? parseDate(messages[index - 1].createdAt) : null;
+          const nextTime = index < messages.length - 1 ? parseTime(messages[index + 1].createdAt) : null;
           const prevIsMine = index > 0 ? messages[index - 1].userId === myUserId : null;
 
           const isNewDate = date !== prevDate;
+          const isLastTime = time !== nextTime;
           const isNewIsMine = isMine !== prevIsMine;
+
           const isFirst = index === 0;
 
           const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
@@ -55,11 +58,11 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
               {chat.isPick ? (
                 <PickChat marginTop={marginTop} isMine={isMine} />
               ) : isMine ? (
-                <MyChat marginTop={marginTop} time={time}>
+                <MyChat marginTop={marginTop} time={isLastTime ? time : undefined}>
                   {chat.content}
                 </MyChat>
               ) : (
-                <OtherChat marginTop={marginTop} time={time}>
+                <OtherChat marginTop={marginTop} time={isLastTime ? time : undefined}>
                   {chat.content}
                 </OtherChat>
               )}
