@@ -28,6 +28,26 @@ export const Contents = css({
   },
 });
 
+export const TimeInfo = css({
+  display: 'flex',
+  w: '100%',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+});
+
+export const Time = css({
+  display: 'flex',
+  whiteSpace: 'nowrap',
+  color: '54',
+  textAlign: 'center',
+  fontFamily: 'Pretendard',
+  fontSize: '0.75rem',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  lineHeight: 1.4,
+  letterSpacing: '-0.03rem',
+});
+
 export const UserInfo = css({
   display: 'flex',
   alignItems: 'center',

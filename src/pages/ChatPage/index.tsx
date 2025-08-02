@@ -32,6 +32,7 @@ const ChatPage = () => {
             chatRoomId={data.chatRoomId}
             isVerified={data.isOpponentKorean}
             profileImageUrl={data.opponentProdileImageUrl}
+            lastChatAt={data.lastChatAt}
           />
         ))}
         <ChatList
@@ -41,6 +42,7 @@ const ChatPage = () => {
           nickName="404 에러"
           profileImageUrl={undefined}
           recentChat=""
+          lastChatAt=""
         />
         <ChatList
           chatRoomId={2}
@@ -49,7 +51,8 @@ const ChatPage = () => {
           nickName="내 거 아니다 403 에러"
           profileImageUrl={undefined}
           recentChat=""
-        />{' '}
+          lastChatAt=""
+        />
       </div>
     </SafeArea>
   );

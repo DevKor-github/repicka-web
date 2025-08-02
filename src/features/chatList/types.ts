@@ -7,6 +7,7 @@ export interface ChatRoom {
   isOpponentKorean: boolean;
   isFinished: boolean;
   mostRecentChat: string | null;
+  lastChatAt: string | null;
 }
 
 export interface ChatResponseData {
