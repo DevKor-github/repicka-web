@@ -7,7 +7,7 @@ export const Container = css({
   alignItems: 'center',
 });
 
-export const AlertIcon = css({
+export const Icon = css({
   fontSize: '3rem',
   color: 'main',
 });
