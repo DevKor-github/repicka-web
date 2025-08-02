@@ -1,15 +1,21 @@
 import { useNavigate } from 'react-router';
 
-import Chip from '@/common/components/Chip';
 import SafeArea from '@/common/components/SafeArea';
+import NoResult from '@/common/components/NoResult';
+import Btn from '@/common/components/Button';
+import * as s from './style.css';
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
 
   return (
     <SafeArea>
-      <Chip onClick={() => navigate('/')}>홈으로 가기</Chip>
-      <h1>페이지를 찾을 수 없어요 . . .</h1>
+      <div className={s.Container}>
+        <NoResult type="404" />
+        <Btn mode="main" className={s.Button} onClick={() => navigate('/')}>
+          홈으로 돌아가기
+        </Btn>
+      </div>
     </SafeArea>
   );
 };
