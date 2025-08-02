@@ -39,18 +39,20 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
           const date = parseDate(chat.createdAt);
 
           const isMine = chat.userId === myUserId;
+          const prevChat = messages[index - 1];
+          const nextChat = messages[index + 1];
 
-          const prevDate = index > 0 ? parseDate(messages[index - 1].createdAt) : null;
-          const nextTime = index < messages.length - 1 ? parseTime(messages[index + 1].createdAt) : null;
-          const prevIsMine = index > 0 ? messages[index - 1].userId === myUserId : null;
+          const prevDate = index > 0 ? parseDate(prevChat.createdAt) : null;
+          const prevIsMine = index > 0 ? prevChat.userId === myUserId : null;
 
           const isNewDate = date !== prevDate;
-          const isLastTime = time !== nextTime;
           const isNewIsMine = isMine !== prevIsMine;
-
           const isFirst = index === 0;
-
           const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
+
+          const isNextSameUser = nextChat && chat.userId === nextChat.userId;
+          const isNextSameTime = nextChat && parseTime(chat.createdAt) === parseTime(nextChat.createdAt);
+          const isShowTime = !isNextSameUser || !isNextSameTime;
 
           return (
             <React.Fragment key={`${chat.createdAt}-${index}`}>
@@ -58,11 +60,11 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
               {chat.isPick ? (
                 <PickChat marginTop={marginTop} isMine={isMine} />
               ) : isMine ? (
-                <MyChat marginTop={marginTop} time={isLastTime ? time : undefined}>
+                <MyChat marginTop={marginTop} time={isShowTime ? time : undefined}>
                   {chat.content}
                 </MyChat>
               ) : (
-                <OtherChat marginTop={marginTop} time={isLastTime ? time : undefined}>
+                <OtherChat marginTop={marginTop} time={isShowTime ? time : undefined}>
                   {chat.content}
                 </OtherChat>
               )}
