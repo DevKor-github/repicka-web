@@ -26,7 +26,7 @@ const ChatList = ({ nickName, profileImageUrl, recentChat, count, chatRoomId, is
         </div>
         <div className={s.MessageInfo}>
           <p className={s.Message}>{message}</p>
-          <div className={s.Count}>{count}</div>
+          {count !== 0 && <div className={s.Count}>{count}</div>}{' '}
         </div>
       </div>
     </Link>
