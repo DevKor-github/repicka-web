@@ -2,8 +2,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { useRoutes } from 'react-router';
 import routes from '@/pages/routes';
-import { useEffect } from 'react';
-import { connectSocket } from './common/utils/wsClient';
 import SocketProvider from './common/components/SocketProvider';
 
 const queryClient = new QueryClient({
@@ -20,16 +18,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  useEffect(() => {
-    connectSocket()
-      .then(() => {
-        console.log('앱 시작 시 WebSocket 연결 완료');
-      })
-      .catch(err => {
-        console.error('WebSocket 연결 실패:', err);
-      });
-  }, []);
-
   const router = useRoutes(routes);
 
   return (

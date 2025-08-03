@@ -5,7 +5,7 @@ import ChatRoomHeader from '@/features/chatRoom/components/ChatRoomLayout/ChatRo
 import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import { useNavigate, useParams } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { Message } from '@/features/chatRoom/types';
 import { connectSocket, subSocket } from '@/common/utils/wsClient';
 import Chip from '@/common/components/Chip';
@@ -13,27 +13,21 @@ import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
 
 export const ChatRoomPage = () => {
   const navigate = useNavigate();
-  const [messages, setMessages] = useState<Message[]>([]);
+  // const [messages, setMessages] = useState<Message[]>([]);
+  const [newMessages, setNewMessages] = useState<Message[]>([]);
   const { chatRoomId } = useParams();
 
   const chatRoomIdNumber = Number(chatRoomId);
   const { data } = useGetChatRoom(chatRoomIdNumber);
 
-  // REST API로 받아온 메시지 저장해 두기
-  useEffect(() => {
-    if (data?.data?.chat?.messages) {
-      setMessages(data.data.chat.messages.slice().reverse());
-    }
-  }, [data]);
-
-  // 구독 후, REST API로 저장해 둔 메시지에 붙이기
+  // 구독 후, newMessage 배열에 넣기
   useEffect(() => {
     let unsubscribe: (() => void) | undefined;
 
     connectSocket().then(() => {
       if (!isNaN(chatRoomIdNumber)) {
         unsubscribe = subSocket(chatRoomIdNumber, data => {
-          setMessages(prev => [...prev, data]);
+          setNewMessages(prev => [...prev, data]);
         });
       }
     });
@@ -43,6 +37,12 @@ export const ChatRoomPage = () => {
       unsubscribe?.();
     };
   }, [chatRoomIdNumber]);
+
+  // REST API로 받아온 메시지 + 소켓으로 받은 메시지
+  const messages = useMemo(() => {
+    const base = data?.data?.chat?.messages?.slice().reverse() ?? [];
+    return [...base, ...newMessages];
+  }, [data, newMessages]);
 
   if (data === undefined)
     return (
