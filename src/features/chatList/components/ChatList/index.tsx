@@ -11,8 +11,6 @@ export interface Props {
 }
 
 const ChatList = ({ data }: Props) => {
-  console.log(data);
-
   const message = data.mostRecentChatIsPick
     ? 'PICK을 확인해 보세요!'
     : data.mostRecentChatContent

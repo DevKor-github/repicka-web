@@ -1,20 +1,11 @@
-export interface ChatRoom {
-  chatRoomId: number;
-  myUserId: number;
-  opponentUserId: number;
-  opponentNickname: string;
-  opponentProfileImageUrl: string | undefined;
-  isOpponentKorean: boolean;
-  isFinished: boolean;
-  mostRecentChat: string | null;
-  lastChatAt: string | null;
-}
+import type { ChatRoom } from '@/features/chatList/types';
 
 export interface Message {
   chatId: string | null;
   userId: number;
   content: string;
   isPick: boolean;
+  isRead: boolean;
   createdAt: string;
 }
 
@@ -25,7 +16,6 @@ export interface Chat {
 }
 
 export interface ChatRoomResponseData {
-  mostRecentChatIsPick: boolean;
   chatRoom: ChatRoom;
   chat: Chat;
 }
