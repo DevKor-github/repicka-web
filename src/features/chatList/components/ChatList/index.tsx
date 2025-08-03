@@ -4,48 +4,36 @@ import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
 import { toKST } from '@/common/utils/toKST';
 import { getKoreanRelativeTime } from '@/common/utils/getKoreanRelativeTime';
+import type { ChatRoom } from '@/features/chatList/types';
 
-interface Props {
-  nickName: string;
-  profileImageUrl: string | undefined;
-  mostRecentChatIsPick: boolean | null;
-  mostRecentChatContent: string | null;
-  count: number;
-  chatRoomId: number;
-  isVerified: boolean;
-  lastChatAt: string | null;
+export interface Props {
+  data: ChatRoom;
 }
 
-const ChatList = ({
-  nickName,
-  profileImageUrl,
-  mostRecentChatContent,
-  mostRecentChatIsPick,
-  count,
-  chatRoomId,
-  isVerified,
-  lastChatAt,
-}: Props) => {
-  const message = mostRecentChatIsPick
+const ChatList = ({ data }: Props) => {
+  console.log(data);
+
+  const message = data.mostRecentChatIsPick
     ? 'PICK을 확인해 보세요!'
-    : mostRecentChatContent
-      ? mostRecentChatContent
+    : data.mostRecentChatContent
+      ? data.mostRecentChatContent
       : '대화를 시작해 보세요!';
 
   return (
-    <Link className={s.List} to={`/chatroom/${chatRoomId}`}>
-      <UserProfileImage nickname={nickName} profileImageUrl={profileImageUrl} />
+    <Link className={s.List} to={`/chatroom/${data.chatRoomId}`}>
+      <UserProfileImage nickname={data.opponentNickname} profileImageUrl={data.opponentProfileImageUrl} />
       <div className={s.Contents}>
         <div className={s.TimeInfo}>
           <div className={s.UserInfo}>
-            <h1>{nickName}</h1>
-            {isVerified && <SchoolVerifiedTag />}
+            <h1>{data.opponentNickname}</h1>
+            {data.isOpponentKorean && <SchoolVerifiedTag />}
           </div>
-          {lastChatAt && <div className={s.Time}>{getKoreanRelativeTime(toKST(new Date(lastChatAt)))}</div>}
+          {data.lastChatAt && <div className={s.Time}>{getKoreanRelativeTime(toKST(new Date(data.lastChatAt)))}</div>}
         </div>
         <div className={s.MessageInfo}>
           <p className={s.Message}>{message}</p>
-          {count !== 0 && <div className={s.Count}>{count}</div>}{' '}
+          {data.unreadChatCount !== undefined && <div className={s.Count}>{data.unreadChatCount}</div>}
+          {/* {data.unreadChatCount !== 0  && <div className={s.Count}>{data.unreadChatCount}</div>} */}
         </div>
       </div>
     </Link>

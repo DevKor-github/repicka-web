@@ -3,12 +3,13 @@ export interface ChatRoom {
   myUserId: number;
   opponentUserId: number;
   opponentNickname: string;
-  opponentProdileImageUrl: string | undefined;
+  opponentProfileImageUrl: string | undefined;
   isOpponentKorean: boolean;
   isFinished: boolean;
   mostRecentChatContent: string | null;
   mostRecentChatIsPick: boolean | null;
   lastChatAt: string | null;
+  unreadChatCount: number;
 }
 
 export interface ChatResponseData {

@@ -22,40 +22,9 @@ const ChatPage = () => {
     <SafeArea>
       <MainTopBar />
       <div className={s.Wrapper}>
-        {/* TODO: 불러오기 */}
-        {chatRooms.map((data, index) => (
-          <ChatList
-            key={index}
-            count={0}
-            mostRecentChatContent={data.mostRecentChatContent}
-            mostRecentChatIsPick={data.mostRecentChatIsPick}
-            nickName={data.opponentNickname}
-            chatRoomId={data.chatRoomId}
-            isVerified={data.isOpponentKorean}
-            profileImageUrl={data.opponentProdileImageUrl}
-            lastChatAt={data.lastChatAt}
-          />
+        {chatRooms.map(data => (
+          <ChatList data={data} />
         ))}
-        <ChatList
-          chatRoomId={123}
-          count={0}
-          isVerified={true}
-          nickName="404 에러"
-          profileImageUrl={undefined}
-          mostRecentChatContent=""
-          mostRecentChatIsPick={true}
-          lastChatAt=""
-        />
-        <ChatList
-          chatRoomId={2}
-          count={0}
-          isVerified={true}
-          nickName="내 거 아니다 403 에러"
-          profileImageUrl={undefined}
-          mostRecentChatContent=""
-          mostRecentChatIsPick={false}
-          lastChatAt=""
-        />
       </div>
     </SafeArea>
   );

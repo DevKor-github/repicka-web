@@ -25,6 +25,7 @@ export interface Chat {
 }
 
 export interface ChatRoomResponseData {
+  mostRecentChatIsPick: boolean;
   chatRoom: ChatRoom;
   chat: Chat;
 }
