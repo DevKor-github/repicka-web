@@ -6,7 +6,8 @@ export interface ChatRoom {
   opponentProdileImageUrl: string | undefined;
   isOpponentKorean: boolean;
   isFinished: boolean;
-  mostRecentChat: string | null;
+  mostRecentChatContent: string | null;
+  mostRecentChatIsPick: boolean | null;
   lastChatAt: string | null;
 }
 

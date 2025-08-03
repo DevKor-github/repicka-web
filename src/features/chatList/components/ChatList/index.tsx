@@ -5,19 +5,32 @@ import { UserProfileImage } from '@/common/components/UserProfileImage';
 import { toKST } from '@/common/utils/toKST';
 import { getKoreanRelativeTime } from '@/common/utils/getKoreanRelativeTime';
 
-// TODO: 나중에 수정하기~~~
 interface Props {
   nickName: string;
   profileImageUrl: string | undefined;
-  recentChat: string | null;
+  mostRecentChatIsPick: boolean | null;
+  mostRecentChatContent: string | null;
   count: number;
   chatRoomId: number;
   isVerified: boolean;
   lastChatAt: string | null;
 }
 
-const ChatList = ({ nickName, profileImageUrl, recentChat, count, chatRoomId, isVerified, lastChatAt }: Props) => {
-  const message = recentChat ? recentChat : '대화를 시작해 보세요!';
+const ChatList = ({
+  nickName,
+  profileImageUrl,
+  mostRecentChatContent,
+  mostRecentChatIsPick,
+  count,
+  chatRoomId,
+  isVerified,
+  lastChatAt,
+}: Props) => {
+  const message = mostRecentChatIsPick
+    ? 'PICK을 확인해 보세요!'
+    : mostRecentChatContent
+      ? mostRecentChatContent
+      : '대화를 시작해 보세요!';
 
   return (
     <Link className={s.List} to={`/chatroom/${chatRoomId}`}>

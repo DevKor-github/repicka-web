@@ -27,7 +27,8 @@ const ChatPage = () => {
           <ChatList
             key={index}
             count={0}
-            recentChat={data.mostRecentChat}
+            mostRecentChatContent={data.mostRecentChatContent}
+            mostRecentChatIsPick={data.mostRecentChatIsPick}
             nickName={data.opponentNickname}
             chatRoomId={data.chatRoomId}
             isVerified={data.isOpponentKorean}
@@ -41,7 +42,8 @@ const ChatPage = () => {
           isVerified={true}
           nickName="404 에러"
           profileImageUrl={undefined}
-          recentChat=""
+          mostRecentChatContent=""
+          mostRecentChatIsPick={true}
           lastChatAt=""
         />
         <ChatList
@@ -50,7 +52,8 @@ const ChatPage = () => {
           isVerified={true}
           nickName="내 거 아니다 403 에러"
           profileImageUrl={undefined}
-          recentChat=""
+          mostRecentChatContent=""
+          mostRecentChatIsPick={false}
           lastChatAt=""
         />
       </div>
