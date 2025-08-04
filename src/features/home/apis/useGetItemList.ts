@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import client from '@/common/utils/client';
 import type { ItemInterface, ItemOrderType } from '@/features/home/types';
@@ -8,8 +8,6 @@ export interface GetItemListRequest extends ItemListRequest {
   pageSize: number;
   itemOrder?: ItemOrderType;
   cursorId?: number;
-  cursorValue?: number;
-  cursorDate?: string;
 }
 export interface ItemListResponse {
   message: string;
@@ -21,10 +19,12 @@ const getItemList = async (params: GetItemListRequest) => {
   return response.data;
 };
 
-export const useGetItemList = (params: GetItemListRequest) => {
-  return useQuery({
+export const useGetItemList = (params: Exclude<GetItemListRequest, 'cursorId'>) => {
+  return useInfiniteQuery({
     queryKey: ['item-list', params],
-    queryFn: () => getItemList(params),
-    select: data => data.data,
+    queryFn: ({ pageParam: cursorId }) => getItemList({ ...params, cursorId }),
+    getNextPageParam: lastPage => (lastPage.data.hasNext ? lastPage.data.cursorId : undefined),
+    initialPageParam: 0,
+    select: data => data.pages.flatMap(page => page.data.items),
   });
 };
