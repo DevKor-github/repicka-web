@@ -9,13 +9,21 @@ import { LoadingSpinner } from '@/common/components/Spinner';
 type Props<T> = {
   items: T[];
   render: (item: T, index: number) => ReactNode;
-  hasNextPage?: boolean;
-  isFetchingNextPage?: boolean;
   fetchNextPage: () => void;
+  hasNextPage?: boolean; // 옵션 값이지만 웬만하면 넣어주삼
+  isFetchingNextPage?: boolean; // 옵션 값이지만 웬만하면 넣어주삼
+  direction?: 'normal' | 'reverse';
 };
 
-// TODO: 스타일 변경
-const Pagination = <T,>({ items, render, hasNextPage, isFetchingNextPage, fetchNextPage }: Props<T>) => {
+const Pagination = <T,>({
+  items,
+  render,
+  hasNextPage,
+  isFetchingNextPage,
+  fetchNextPage,
+  direction = 'normal',
+}: Props<T>) => {
+  const isReverse = direction === 'reverse';
   const fetchNextRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
     if (hasNextPage && !isFetchingNextPage) throttle(() => fetchNextPage(), 200)();
@@ -36,8 +44,17 @@ const Pagination = <T,>({ items, render, hasNextPage, isFetchingNextPage, fetchN
 
   return (
     <>
-      <>{items.map(render)}</>
-      <Loader />
+      {isReverse ? (
+        <>
+          <Loader />
+          {items.map(render)}
+        </>
+      ) : (
+        <>
+          {items.map(render)}
+          <Loader />
+        </>
+      )}
     </>
   );
 };
