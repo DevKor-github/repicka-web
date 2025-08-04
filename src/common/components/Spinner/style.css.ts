@@ -7,7 +7,7 @@ export const SpinnerContainer = css({
   width: '40px',
   height: '40px',
   border: '4px solid #f3f3f3',
-  borderTop: '4px solid {colors.red.2}',
+  borderTop: '4px solid {colors.main}',
   borderRadius: '50%',
   animation: 'spin 0.5s linear infinite',
 });
