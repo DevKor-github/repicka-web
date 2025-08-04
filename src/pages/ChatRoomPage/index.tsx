@@ -19,28 +19,22 @@ export const ChatRoomPage = () => {
   const { data } = useGetChatRoom(chatRoomIdNumber);
   const [newMessages, setNewMessages] = useState<Message[]>([]);
 
-  const unsubscribeRef = useRef<(() => void) | null | undefined>(null);
+  // const unsubscribeRef = useRef<(() => void) | null | undefined>(null);
 
   useEffect(() => {
-    // 먼저 이전 구독이 있다면 정리
-    unsubscribeRef.current?.();
-    unsubscribeRef.current = null;
+    let unsubscribe: (() => void) | undefined;
 
-    // 소켓 연결 + 구독
     connectSocket().then(() => {
       if (!isNaN(chatRoomIdNumber)) {
-        const unsubscribe = subSocket(chatRoomIdNumber, msg => {
-          setNewMessages(prev => [...prev, msg]);
+        unsubscribe = subSocket(chatRoomIdNumber, data => {
+          setNewMessages(prev => [...prev, data]);
         });
-
-        unsubscribeRef.current = unsubscribe;
       }
     });
 
     return () => {
-      // 언마운트 or chatRoomId 변경 시 구독 해제
-      unsubscribeRef.current?.();
-      unsubscribeRef.current = null;
+      // 언마운트 시 구독 해제
+      unsubscribe?.();
     };
   }, [chatRoomIdNumber]);
 
