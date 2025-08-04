@@ -5,7 +5,7 @@ import ChatRoomHeader from '@/features/chatRoom/components/ChatRoomLayout/ChatRo
 import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import { useNavigate, useParams } from 'react-router';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { Message } from '@/features/chatRoom/types';
 import { connectSocket, subSocket } from '@/common/utils/wsClient';
 import Chip from '@/common/components/Chip';
