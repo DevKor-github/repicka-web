@@ -13,7 +13,7 @@ import { ITEM_PAGING_SIZE } from '@/libs/constants';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
-  const { data: searchData } = useGetItemList({
+  const { data: searchData, isSuccess } = useGetItemList({
     pageSize: ITEM_PAGING_SIZE,
     keyword: searchParams.get('keyword') || undefined,
     productTypes: searchParams.getAll('product-type') as ProductType[],
@@ -36,11 +36,10 @@ const SearchPage = () => {
             <SearchControls itemCounts={searchData?.totalCount || 0} />
           </div>
           <div className={s.ItemListContainer}>
-            <ItemList itemList={searchData?.items || []} />
+            <ItemList itemList={searchData?.items || []} isSuccess={isSuccess} />
           </div>
         </div>
       </SafeArea>
-      {/* TODO: 필터 */}
     </>
   );
 };
