@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router';
 import * as s from './style.css';
-import type { ChatRoomResponseData } from '@/features/chatRoom/types';
+import type { ChatRoomResponse } from '@/features/chatRoom/types';
 import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
 
 export interface Props {
-  data: ChatRoomResponseData;
+  data: ChatRoomResponse;
 }
 
 export const ChatRoomHeader = ({ data }: Props) => {

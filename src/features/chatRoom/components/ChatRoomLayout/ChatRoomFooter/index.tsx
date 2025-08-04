@@ -1,9 +1,9 @@
-import type { ChatRoomResponseData } from '@/features/chatRoom/types';
+import type { ChatRoomResponse } from '@/features/chatRoom/types';
 import InputField from '../../InputField';
 import * as s from './style.css';
 
 interface Props {
-  data: ChatRoomResponseData;
+  data: ChatRoomResponse;
 }
 
 export const ChatRoomFooter = ({ data }: Props) => {

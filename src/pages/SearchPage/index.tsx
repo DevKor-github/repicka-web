@@ -13,16 +13,18 @@ import { ITEM_PAGING_SIZE } from '@/libs/constants';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
-  const { data: searchData } = useGetItemList({
+  const { data: searchData, isSuccess } = useGetItemList({
     pageSize: ITEM_PAGING_SIZE,
     keyword: searchParams.get('keyword') || undefined,
     productTypes: searchParams.getAll('product-type') as ProductType[],
     colors: searchParams.getAll('color') as Color[],
     sizes: searchParams.getAll('size') as Size[],
-    itemOrder: searchParams.get('item-order') as ItemOrderType,
+    itemOrder: (searchParams.get('sort') as ItemOrderType) || undefined,
     transactionTypes: searchParams.getAll('transaction-type') as TransactionType[],
     tradeMethods: searchParams.getAll('trade-method') as TradeMethods[],
     // date: searchParams.get('date') || undefined,
+    // TODO: 품질 필터 추가
+    // quality: searchParams.getAll('quality') as Quality[];
   });
 
   return (
@@ -34,11 +36,10 @@ const SearchPage = () => {
             <SearchControls itemCounts={searchData?.totalCount || 0} />
           </div>
           <div className={s.ItemListContainer}>
-            <ItemList itemList={searchData?.items || []} />
+            <ItemList itemList={searchData?.items || []} isSuccess={isSuccess} />
           </div>
         </div>
       </SafeArea>
-      {/* TODO: 필터 */}
     </>
   );
 };

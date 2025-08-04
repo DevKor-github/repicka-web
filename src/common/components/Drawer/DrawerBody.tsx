@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from 'react';
 import { cx } from '@styled-system/css';
-import { motion, type PanInfo } from 'framer-motion';
+import { motion, type PanInfo } from 'motion/react';
 
 import * as s from './style.css';
 
@@ -44,7 +44,7 @@ const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) =>
       className={s.Container}
       drag={'y'}
       dragConstraints={{ top: 0, bottom: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.35 }}
       dragElastic={0.4}
       variants={{
         opened: { top: `calc(100dvh - ${height}px)` },
@@ -55,15 +55,15 @@ const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) =>
       exit={'closed'}
       onDragEnd={onDragEnd}
     >
-      <header className={s.Header}>
-        <div className={s.HeaderTitle}>
-          <span className={s.Title}>{title}</span>
-          {description && <span className={s.Description}>{description}</span>}
-        </div>
-        <button className={cx('mgc_close_line', s.CloseButton)} onClick={close} />
-      </header>
-      <div ref={contentRef} className={s.Content}>
-        {children}
+      <div ref={contentRef} className={s.Wrapper}>
+        <header className={s.Header}>
+          <div className={s.HeaderTitle}>
+            <span className={s.Title}>{title}</span>
+            {description && <span className={s.Description}>{description}</span>}
+          </div>
+          <button className={cx('mgc_close_line', s.CloseButton)} onClick={close} />
+        </header>
+        <div className={s.Content}>{children}</div>
       </div>
     </motion.div>
   );

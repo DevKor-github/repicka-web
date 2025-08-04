@@ -2,9 +2,10 @@
 import client from '@/common/utils/client';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
 import { useQuery } from '@tanstack/react-query';
+import type { GetChatRoomResponse } from '../types';
 
 const getChatRoom = async ({ chatRoomId }: { chatRoomId: number }) => {
-  const res = await client.get(`/api/v1/chatroom/${chatRoomId}/enter`, {
+  const res = await client.get<GetChatRoomResponse>(`/api/v1/chatroom/${chatRoomId}/enter`, {
     params: { pageSize: CHAT_PAGING_SIZE },
   });
 
@@ -16,6 +17,7 @@ const useGetChatRoom = (chatRoomId: number) => {
     queryKey: ['chatRoom', chatRoomId],
     queryFn: () => getChatRoom({ chatRoomId }),
     staleTime: 0,
+    select: response => response.data,
   });
 };
 
