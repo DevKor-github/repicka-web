@@ -24,10 +24,6 @@ const routes: RouteObject[] = [
         element: <HomePage />,
       },
       {
-        path: '/pick',
-        element: <PickPage />,
-      },
-      {
         path: '/detail/:id',
         element: <DetailPage />,
       },

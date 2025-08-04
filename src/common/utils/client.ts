@@ -1,3 +1,4 @@
+import qs from 'qs';
 import axios, { AxiosError } from 'axios';
 
 const client = axios.create({
@@ -6,6 +7,8 @@ const client = axios.create({
     'Content-Type': 'application/json',
   },
   withCredentials: true,
+  // 같은 쿼리 파라미터를 배열로 감싸 중복해서 보내기위해서 qs 사용
+  paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' }),
 });
 
 const REFRESH_URL = '/api/v1/refresh-token';

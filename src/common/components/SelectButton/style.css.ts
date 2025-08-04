@@ -14,6 +14,7 @@ export const Container = cva({
     color: '100',
     border: '1px solid',
     lineHeight: '0.87788rem',
+    flexShrink: 0,
   },
   variants: {
     active: {
