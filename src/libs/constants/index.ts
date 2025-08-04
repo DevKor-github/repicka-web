@@ -7,4 +7,4 @@ export const MAX_SIZE_MB = 5;
 export const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 export const MAX_FILE_LENGTH = 6;
 
-export const ITEM_PAGING_SIZE = 20;
+export const ITEM_PAGING_SIZE = 10;
