@@ -2,36 +2,26 @@ import { useQuery } from '@tanstack/react-query';
 
 import client from '@/common/utils/client';
 import type { ItemInterface, ItemOrderType } from '@/features/home/types';
-import type { Color, ProductType, Size, TradeMethods, TransactionType } from '@/libs/types/item';
+import type { ItemListRequest } from '@/features/home/apis/useGetItemCount';
 
-export interface ItemListRequest {
+export interface GetItemListRequest extends ItemListRequest {
   pageSize: number;
   itemOrder?: ItemOrderType;
-  startDate?: string;
-  endDate?: string;
-  startPrice?: number;
-  endPrice?: number;
   cursorId?: number;
   cursorValue?: number;
   cursorDate?: string;
-  keyword?: string;
-  productTypes?: ProductType[];
-  transactionTypes?: TransactionType[];
-  sizes?: Size[];
-  colors?: Color[];
-  tradeMethods?: TradeMethods[];
 }
 export interface ItemListResponse {
   message: string;
-  data: { items: ItemInterface[]; totalCount: number };
+  data: { items: ItemInterface[]; hasNext: boolean; cursorId: number };
 }
 
-const getItemList = async (params: ItemListRequest) => {
+const getItemList = async (params: GetItemListRequest) => {
   const response = await client.get<ItemListResponse>('/api/v1/item/search', { params });
   return response.data;
 };
 
-export const useGetItemList = (params: ItemListRequest) => {
+export const useGetItemList = (params: GetItemListRequest) => {
   return useQuery({
     queryKey: ['item-list', params],
     queryFn: () => getItemList(params),
