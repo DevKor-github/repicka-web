@@ -12,10 +12,10 @@ type Props<T> = {
   hasNextPage?: boolean;
   isFetchingNextPage?: boolean;
   fetchNextPage: () => void;
-} & Omit<React.HTMLProps<HTMLUListElement>, 'children'>;
+};
 
 // TODO: 스타일 변경
-const Pagination = <T,>({ items, render, hasNextPage, isFetchingNextPage, fetchNextPage, ...props }: Props<T>) => {
+const Pagination = <T,>({ items, render, hasNextPage, isFetchingNextPage, fetchNextPage }: Props<T>) => {
   const fetchNextRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
     if (hasNextPage && !isFetchingNextPage) throttle(() => fetchNextPage(), 200)();
@@ -36,7 +36,7 @@ const Pagination = <T,>({ items, render, hasNextPage, isFetchingNextPage, fetchN
 
   return (
     <>
-      <ul {...props}>{items.map(render)}</ul>
+      <>{items.map(render)}</>
       <Loader />
     </>
   );
