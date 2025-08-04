@@ -5,11 +5,8 @@ import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import SearchBox from '@/features/home/components/SearchBox';
 import SearchControls from '@/features/home/components/SearchControls';
-import { useGetItemList } from '@/features/home/apis/useGetItemList';
-import type { ItemOrderType } from '@/features/home/types';
 import type { Color, ProductType, Quality, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 import ItemList from '@/features/home/components/ItemList';
-import { ITEM_PAGING_SIZE } from '@/libs/constants';
 import { useGetItemCount, type ItemListRequest } from '@/features/home/apis/useGetItemCount';
 
 const SearchPage = () => {
@@ -25,11 +22,6 @@ const SearchPage = () => {
     // date: searchParams.get('date') || undefined,
   };
   const { data: totalCount } = useGetItemCount(searchFilters);
-  const { data: searchData, isSuccess } = useGetItemList({
-    ...searchFilters,
-    pageSize: ITEM_PAGING_SIZE,
-    itemOrder: (searchParams.get('sort') as ItemOrderType) || undefined,
-  });
 
   return (
     <>
@@ -40,7 +32,7 @@ const SearchPage = () => {
             <SearchControls itemCounts={totalCount || 0} />
           </div>
           <div className={s.ItemListContainer}>
-            <ItemList itemList={searchData?.items || []} isSuccess={isSuccess} />
+            <ItemList searchFilters={searchFilters} />
           </div>
         </div>
       </SafeArea>
