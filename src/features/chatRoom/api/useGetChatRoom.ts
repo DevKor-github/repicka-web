@@ -17,6 +17,7 @@ const useGetChatRoom = (chatRoomId: number) => {
     queryKey: ['chatRoom', chatRoomId],
     queryFn: () => getChatRoom({ chatRoomId }),
     staleTime: 0,
+    select: response => response.data,
   });
 };
 

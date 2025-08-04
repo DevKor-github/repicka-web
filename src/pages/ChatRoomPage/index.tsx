@@ -46,7 +46,7 @@ export const ChatRoomPage = () => {
 
   // REST API + 소켓 메시지 합치기
   const messages = useMemo(() => {
-    const base = data?.data?.chat?.messages?.slice().reverse() ?? [];
+    const base = data?.chat?.messages?.slice().reverse() ?? [];
     return [...base, ...newMessages];
   }, [data, newMessages]);
 
@@ -63,11 +63,11 @@ export const ChatRoomPage = () => {
   return (
     <SafeArea>
       <div className={s.entireLayout}>
-        <ChatRoomHeader data={data.data} />
+        <ChatRoomHeader data={data} />
         <div className={s.innerPage}>
-          <ChatRoomContent data={data.data} messages={messages} />
+          <ChatRoomContent data={data} messages={messages} />
         </div>
-        <ChatRoomFooter chatRoomId={data.data.chatRoom.chatRoomId} />
+        <ChatRoomFooter chatRoomId={data.chatRoom.chatRoomId} />
       </div>
     </SafeArea>
   );
