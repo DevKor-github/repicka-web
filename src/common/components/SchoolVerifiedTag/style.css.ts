@@ -12,6 +12,8 @@ export const Container = css({
   gap: '0.22rem',
   borderRadius: '0.25rem',
   backgroundColor: 'main-26',
+  flexShrink: 0,
+  width: 'fit-content',
   '& > p': {
     color: '100',
   },

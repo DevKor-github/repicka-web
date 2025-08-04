@@ -22,6 +22,10 @@ export const Input = css({
   letterSpacing: '-0.04rem',
   marginRight: '1.03675rem', // 아이콘 안 겹치게
   fontFamily: 'Pretendard',
+
+  _focus: {
+    outline: 'none',
+  },
 });
 
 export const SendIcon = cva({
