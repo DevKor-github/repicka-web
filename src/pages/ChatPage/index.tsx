@@ -2,29 +2,36 @@ import SafeArea from '@/common/components/SafeArea';
 import * as s from './style.css';
 import ChatList from '@/features/chatList/components/ChatList';
 import MainTopBar from '@/common/components/MainTopBar';
-import { useEffect, useState } from 'react';
 import useGetChatList from '@/features/chatList/api/useGetChatList';
-import type { ChatRoom } from '@/features/chatList/types';
+import Pagination from '@/common/components/Pagination';
+import { CHAT_PAGING_SIZE } from '@/libs/constants';
 
 const ChatPage = () => {
-  const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
+  const {
+    data: rooms = [],
+    isSuccess,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useGetChatList({
+    pageSize: CHAT_PAGING_SIZE,
+  });
 
-  const { data } = useGetChatList();
-
-  // REST API로 받아온 채팅 리스트 저장해 두기
-  useEffect(() => {
-    if (data?.data?.chatRooms) {
-      setChatRooms(data.data.chatRooms);
-    }
-  }, [data]);
+  const isEmpty = isSuccess && rooms.length === 0;
 
   return (
     <SafeArea>
       <MainTopBar />
       <div className={s.Wrapper}>
-        {chatRooms.map(data => (
-          <ChatList data={data} />
-        ))}
+        {!isEmpty && (
+          <Pagination
+            fetchNextPage={fetchNextPage}
+            items={rooms}
+            render={item => <ChatList data={item} />}
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+          />
+        )}
       </div>
     </SafeArea>
   );

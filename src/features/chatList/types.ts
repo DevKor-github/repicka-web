@@ -1,4 +1,4 @@
-export interface ChatRoom {
+export interface ChatRoomInterface {
   chatRoomId: number;
   myUserId: number;
   opponentUserId: number;
@@ -10,11 +10,4 @@ export interface ChatRoom {
   mostRecentChatIsPick: boolean | null;
   lastChatAt: string | null;
   unreadChatCount: number;
-}
-
-export interface ChatResponseData {
-  ChatRooms: ChatRoom[];
-  hasNext: boolean;
-  cursorCreatedAt: string | null;
-  cursorId: string | null;
 }
