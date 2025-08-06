@@ -11,6 +11,7 @@ const ChatPage = () => {
 
   const { data } = useGetChatList();
 
+  console.log(data);
   // REST API로 받아온 채팅 리스트 저장해 두기
   useEffect(() => {
     if (data?.data?.chatRooms) {

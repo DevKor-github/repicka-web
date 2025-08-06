@@ -39,11 +39,11 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
           const date = parseDate(chat.createdAt);
 
           const isMine = chat.userId === myUserId;
-          const prevChat = messages[index - 1];
-          const nextChat = messages[index + 1];
+          const prevChat = index > 0 ? messages[index - 1] : null;
+          const nextChat = index < messages.length - 1 ? messages[index + 1] : null;
 
-          const prevDate = index > 0 ? parseDate(prevChat.createdAt) : null;
-          const prevIsMine = index > 0 ? prevChat.userId === myUserId : null;
+          const prevDate = prevChat ? parseDate(prevChat.createdAt) : null;
+          const prevIsMine = prevChat ? prevChat.userId === myUserId : null;
 
           const isNewDate = date !== prevDate;
           const isNewIsMine = isMine !== prevIsMine;
