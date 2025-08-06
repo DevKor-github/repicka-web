@@ -1,10 +1,16 @@
 import { useNavigate } from 'react-router';
 import * as s from './style.css';
-import VerifyIcon from '@/libs/assets/VerifyIcon';
+import type { ChatRoomResponse } from '@/features/chatRoom/types';
 
-export const ChatRoomHeader = () => {
+export interface Props {
+  data: ChatRoomResponse;
+}
+
+export const ChatRoomHeader = ({ data }: Props) => {
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
+
+  const nickname = data.chatRoom.opponentNickname;
 
   return (
     <header>
@@ -12,13 +18,7 @@ export const ChatRoomHeader = () => {
         <button className={`mgc_left_fill ${s.BackBtn}`} onClick={goBack}></button>
         <div className={s.UserInfo}>
           <div className={s.ProfileCircle} />
-          <div className={s.Verified}>
-            <span className={s.VerifiedTag}>
-              <p>학교인증</p>
-              <VerifyIcon />
-            </span>
-            <span>며나</span>
-          </div>
+          <span>{nickname}</span>
         </div>
       </div>
     </header>

@@ -16,34 +16,13 @@ export const UserInfo = css({
   alignItems: 'center',
 });
 
-export const Verified = css({
-  display: 'flex',
-  flexDir: 'column',
-  justifyContent: 'center',
-});
-
-export const VerifiedTag = css({
-  padding: '0.1rem 0.275rem',
-  bgColor: 'main-26',
-  rounded: '3.32px',
-  fontSize: '0.625rem',
-  fontWeight: 400,
-  lineHeight: 1.4,
-  letterSpacing: '-0.025rem',
-  color: 'main',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.22rem',
-  '& > p': {
-    color: '100',
-  },
-});
-
 export const ProfileCircle = css({
+  display: 'flex',
   width: '2.625rem',
   height: '2.625rem',
   borderRadius: 'full',
   backgroundColor: 'systemGray',
+  flexShrink: 0,
 });
 
 export const BackBtn = css({

@@ -11,6 +11,7 @@ export const ProfileCircle = css({
   height: '2.625rem',
   borderRadius: 'full',
   backgroundColor: 'systemGray',
+  flexShrink: 0,
 });
 
 export const Contents = css({
@@ -35,49 +36,29 @@ export const Contents = css({
   },
 });
 
-export const VerifiedTag = css({
-  padding: '0.1rem 0.275rem',
-  bgColor: 'main-26',
-  rounded: '3.32px',
-  fontSize: '0.625rem',
-  fontWeight: 400,
-  lineHeight: 1.4,
-  letterSpacing: '-0.025rem',
-  color: 'main',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.22rem',
-  '& > p': {
-    color: '100',
-  },
-});
-
 export const UserInfo = css({
   display: 'flex',
   alignItems: 'center',
   gap: '0.375rem',
-  whiteSpace: 'nowrap',
-
+  width: '100%',
   '& h1': {
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    maxWidth: '6rem',
+    lineClamp: 1,
+    flexShrink: 1,
   },
+});
+
+export const MessageInfo = css({
+  display: 'flex',
+  w: '100%',
+  alignItems: 'center',
+  overflow: 'hidden',
+  justifyContent: 'space-between',
 });
 
 export const Message = css({
   display: 'flex',
   w: '100%',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-
-  '& p': {
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    maxWidth: '15rem',
-  },
+  lineClamp: 1,
 });
 
 export const Count = css({
@@ -87,7 +68,7 @@ export const Count = css({
   padding: '0.0625rem 0.375rem',
   justifyContent: 'center',
   alignItems: 'center',
-  gap: '0.625rem',
+
   color: 'main',
   backgroundColor: 'main-26',
   borderRadius: 'full',
