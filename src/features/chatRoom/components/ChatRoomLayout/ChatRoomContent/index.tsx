@@ -39,15 +39,20 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
           const date = parseDate(chat.createdAt);
 
           const isMine = chat.userId === myUserId;
+          const prevChat = index > 0 ? messages[index - 1] : null;
+          const nextChat = index < messages.length - 1 ? messages[index + 1] : null;
 
-          const prevDate = index > 0 ? parseDate(messages[index - 1].createdAt) : null;
-          const prevIsMine = index > 0 ? messages[index - 1].userId === myUserId : null;
+          const prevDate = prevChat ? parseDate(prevChat.createdAt) : null;
+          const prevIsMine = prevChat ? prevChat.userId === myUserId : null;
 
           const isNewDate = date !== prevDate;
           const isNewIsMine = isMine !== prevIsMine;
           const isFirst = index === 0;
-
           const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
+
+          const isNextSameUser = nextChat && chat.userId === nextChat.userId;
+          const isNextSameTime = nextChat && parseTime(chat.createdAt) === parseTime(nextChat.createdAt);
+          const showTime = !isNextSameUser || !isNextSameTime;
 
           return (
             <React.Fragment key={`${chat.chatId}`}>
@@ -55,11 +60,11 @@ export const ChatRoomContent = ({ data, messages }: Props) => {
               {chat.isPick ? (
                 <PickChat marginTop={marginTop} isMine={isMine} />
               ) : isMine ? (
-                <MyChat marginTop={marginTop} time={time}>
+                <MyChat marginTop={marginTop} time={showTime ? time : undefined}>
                   {chat.content}
                 </MyChat>
               ) : (
-                <OtherChat marginTop={marginTop} time={time}>
+                <OtherChat marginTop={marginTop} time={showTime ? time : undefined}>
                   {chat.content}
                 </OtherChat>
               )}
