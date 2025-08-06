@@ -3,7 +3,7 @@ import * as s from './style.css';
 
 interface Props {
   children: ReactNode;
-  time: string;
+  time?: string;
   marginTop: string;
 }
 

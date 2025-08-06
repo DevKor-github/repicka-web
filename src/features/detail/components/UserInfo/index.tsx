@@ -3,6 +3,7 @@ import type { UserInterface } from '@/libs/types/user';
 import * as s from './style.css';
 import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { usePostLike } from '@/features/detail/apis/usePostLike';
+import { UserProfileImage } from '@/common/components/UserProfileImage';
 
 interface Props {
   userData: UserInterface;
@@ -16,7 +17,7 @@ const UserInfo = ({ userData, itemId, isLiked }: Props) => {
     <div className={s.Container}>
       <div className={s.Wrapper}>
         <div className={s.UserInfo}>
-          <img className={s.ProfileImage} src={userData.profileImageUrl} alt={userData.nickname} />
+          <UserProfileImage nickname={userData.nickname} profileImageUrl={userData.profileImageUrl} />
           <div className={s.UserInfoText({ isVerified: userData.isKoreanUnivVerified })}>
             {<SchoolVerifiedTag />}
             <p>{userData.nickname}</p>

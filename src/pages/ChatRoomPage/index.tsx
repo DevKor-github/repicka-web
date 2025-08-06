@@ -61,7 +61,7 @@ export const ChatRoomPage = () => {
         <div className={s.innerPage}>
           <ChatRoomContent data={data} messages={messages} />
         </div>
-        <ChatRoomFooter chatRoomId={data.chatRoom.chatRoomId} />
+        <ChatRoomFooter data={data} />
       </div>
     </SafeArea>
   );

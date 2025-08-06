@@ -6,14 +6,6 @@ export const List = css({
   gap: '0.87rem',
 });
 
-export const ProfileCircle = css({
-  width: '2.625rem',
-  height: '2.625rem',
-  borderRadius: 'full',
-  backgroundColor: 'systemGray',
-  flexShrink: 0,
-});
-
 export const Contents = css({
   display: 'flex',
   flex: 1,
@@ -34,6 +26,26 @@ export const Contents = css({
     color: '80',
     fontWeight: '400',
   },
+});
+
+export const TimeInfo = css({
+  display: 'flex',
+  w: '100%',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+});
+
+export const Time = css({
+  display: 'flex',
+  whiteSpace: 'nowrap',
+  color: '54',
+  textAlign: 'center',
+  fontFamily: 'Pretendard',
+  fontSize: '0.75rem',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  lineHeight: 1.4,
+  letterSpacing: '-0.03rem',
 });
 
 export const UserInfo = css({
@@ -63,14 +75,14 @@ export const Message = css({
 
 export const Count = css({
   display: 'flex',
-  w: '1.125rem',
+  w: 'fit-content',
   h: '1.125rem',
   padding: '0.0625rem 0.375rem',
   justifyContent: 'center',
   alignItems: 'center',
 
-  color: 'main',
-  backgroundColor: 'main-26',
+  color: '100',
+  backgroundColor: 'main',
   borderRadius: 'full',
   textAlign: 'center',
   fontFamily: 'Pretendard',

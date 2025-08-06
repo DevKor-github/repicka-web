@@ -16,15 +16,6 @@ export const UserInfo = css({
   alignItems: 'center',
 });
 
-export const ProfileCircle = css({
-  display: 'flex',
-  width: '2.625rem',
-  height: '2.625rem',
-  borderRadius: 'full',
-  backgroundColor: 'systemGray',
-  flexShrink: 0,
-});
-
 export const BackBtn = css({
   fontSize: '1.625rem',
   cursor: 'pointer',
