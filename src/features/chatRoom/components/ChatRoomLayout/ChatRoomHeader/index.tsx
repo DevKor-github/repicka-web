@@ -1,29 +1,26 @@
 import { useNavigate } from 'react-router';
 import * as s from './style.css';
-import type { ChatRoomResponse } from '@/features/chatRoom/types';
 import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
+import type { ChatRoomInterface } from '@/features/chatRoom/types';
 
 export interface Props {
-  data: ChatRoomResponse;
+  data: ChatRoomInterface;
 }
 
 export const ChatRoomHeader = ({ data }: Props) => {
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
 
-  const nickname = data.chatRoom.opponentNickname;
-  const isOpponentKorean = data.chatRoom.isOpponentKorean;
+  const nickname = data.opponentNickname;
+  const isOpponentKorean = data.isOpponentKorean;
 
   return (
     <header>
       <div className={s.Container}>
         <button className={`mgc_left_fill ${s.BackBtn}`} onClick={goBack}></button>
         <div className={s.UserInfo}>
-          <UserProfileImage
-            nickname={data.chatRoom.opponentNickname}
-            profileImageUrl={data.chatRoom.opponentProfileImageUrl}
-          />
+          <UserProfileImage nickname={data.opponentNickname} profileImageUrl={data.opponentProfileImageUrl} />
           <span>{nickname}</span>
           {isOpponentKorean && <SchoolVerifiedTag />}
         </div>

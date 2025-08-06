@@ -1,76 +1,72 @@
-import { parseDate, parseTime } from '@/common/utils/parseDate';
-import MyChat from '../../MyChat';
-import OtherChat from '../../OtherChat';
 import * as s from './style.css';
-import PickChat from '../../PickChat';
-import { useEffect, useRef } from 'react';
-import React from 'react';
-import type { ChatRoomResponse, Message } from '@/features/chatRoom/types';
-
-// [ TODO ]
-// 스크롤 좀 올렸을 때 맨 아래로 가는 버튼도 만들어야 하려나
-// 키보드 올리면 화면 밀려 올라가게
+import { useEffect, useMemo, useRef, useState } from 'react';
+import type { ChatRoomInterface, MessageInterface } from '@/features/chatRoom/types';
+import { connectSocket, subSocket } from '@/common/utils/wsClient';
+import ChatMessageContents from '../../ChatMessageContents';
+import Pagination from '@/common/components/Pagination';
+import { useGetLoadChat } from '@/features/chatRoom/api/useGetLoadChat';
 
 export interface Props {
-  data: ChatRoomResponse;
-  messages: Message[];
+  data: ChatRoomInterface;
 }
 
-export const ChatRoomContent = ({ data, messages }: Props) => {
+export const ChatRoomContent = ({ data }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const isFirstRender = useRef(true);
 
+  const [newMessages, setNewMessages] = useState<MessageInterface[]>([]);
+
+  const myUserId = data.myUserId;
+  const chatRoomId = data.chatRoomId;
+
+  const { data: chats = [], hasNextPage, isFetchingNextPage, fetchNextPage } = useGetLoadChat(chatRoomId);
+
+  // 소켓 구독하기
+  useEffect(() => {
+    let unsubscribe: (() => void) | undefined;
+
+    connectSocket().then(() => {
+      if (!isNaN(chatRoomId)) {
+        unsubscribe = subSocket(chatRoomId, data => {
+          setNewMessages(prev => [...prev, data]);
+        });
+      }
+    });
+
+    return () => {
+      unsubscribe?.();
+    };
+  }, [chatRoomId]);
+
+  // 메시지 합치기
+  const messages = useMemo(() => {
+    const base: MessageInterface[] = chats?.slice()?.reverse() ?? [];
+    return [...base, ...newMessages];
+  }, [chats, newMessages]);
+
+  // 스크롤 관리
   useEffect(() => {
     if (messages.length > 0 && isFirstRender.current) {
       ref.current?.scrollIntoView({ behavior: 'instant' });
       isFirstRender.current = false;
     } else {
-      ref.current?.scrollIntoView({ behavior: 'smooth' }); // 처음엔 auto, 이후엔 smooth 써도 됨
+      ref.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
-
-  const myUserId = data.chatRoom.myUserId;
 
   return (
     <div>
       <div className={s.Wrapper}>
-        {messages.map((chat, index) => {
-          const time = parseTime(chat.createdAt);
-          const date = parseDate(chat.createdAt);
-
-          const isMine = chat.userId === myUserId;
-          const prevChat = messages[index - 1];
-          const nextChat = messages[index + 1];
-
-          const prevDate = index > 0 ? parseDate(prevChat.createdAt) : null;
-          const prevIsMine = index > 0 ? prevChat.userId === myUserId : null;
-
-          const isNewDate = date !== prevDate;
-          const isNewIsMine = isMine !== prevIsMine;
-          const isFirst = index === 0;
-          const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
-
-          const isNextSameUser = nextChat && chat.userId === nextChat.userId;
-          const isNextSameTime = nextChat && parseTime(chat.createdAt) === parseTime(nextChat.createdAt);
-          const showTime = !isNextSameUser || !isNextSameTime;
-
-          return (
-            <React.Fragment key={`${chat.chatId}`}>
-              {isNewDate && <div className={s.Date({ isFirst: isFirst })}>{date}</div>}
-              {chat.isPick ? (
-                <PickChat marginTop={marginTop} isMine={isMine} />
-              ) : isMine ? (
-                <MyChat marginTop={marginTop} time={showTime ? time : undefined}>
-                  {chat.content}
-                </MyChat>
-              ) : (
-                <OtherChat marginTop={marginTop} time={showTime ? time : undefined}>
-                  {chat.content}
-                </OtherChat>
-              )}
-            </React.Fragment>
-          );
-        })}
+        <Pagination<MessageInterface>
+          items={messages}
+          render={(message, index) => (
+            <ChatMessageContents chat={message} index={index} messages={messages} myUserId={myUserId} />
+          )}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+          direction="reverse"
+        />
       </div>
       <div ref={ref} />
     </div>

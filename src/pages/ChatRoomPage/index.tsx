@@ -1,51 +1,42 @@
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
+
+import ChatRoomHeader from '@/features/chatRoom/components/ChatRoomLayout/ChatRoomHeader';
 import ChatRoomContent from '@/features/chatRoom/components/ChatRoomLayout/ChatRoomContent';
 import ChatRoomFooter from '@/features/chatRoom/components/ChatRoomLayout/ChatRoomFooter';
-import ChatRoomHeader from '@/features/chatRoom/components/ChatRoomLayout/ChatRoomHeader';
 
 import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
-import { useNavigate, useParams } from 'react-router';
-import { useEffect, useMemo, useState } from 'react';
-import type { Message } from '@/features/chatRoom/types';
-import { connectSocket, subSocket } from '@/common/utils/wsClient';
 import Chip from '@/common/components/Chip';
-import useGetChatRoom from '@/features/chatRoom/api/useGetChatRoom';
+import { getChatRoom } from '@/features/chatRoom/api/useGetChatRoom';
 
-export const ChatRoomPage = () => {
+const ChatRoomPage = () => {
   const navigate = useNavigate();
   const { chatRoomId } = useParams();
   const chatRoomIdNumber = Number(chatRoomId);
 
-  const { data } = useGetChatRoom(chatRoomIdNumber);
-  const [newMessages, setNewMessages] = useState<Message[]>([]);
-
-  // const unsubscribeRef = useRef<(() => void) | null | undefined>(null);
+  const [data, setData] = useState<Awaited<ReturnType<typeof getChatRoom>> | null>(null);
+  const [error, setError] = useState<unknown>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let unsubscribe: (() => void) | undefined;
-
-    connectSocket().then(() => {
-      if (!isNaN(chatRoomIdNumber)) {
-        unsubscribe = subSocket(chatRoomIdNumber, data => {
-          setNewMessages(prev => [...prev, data]);
-        });
+    const fetchChatRoom = async () => {
+      try {
+        setIsLoading(true);
+        const res = await getChatRoom(chatRoomIdNumber);
+        setData(res);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoading(false);
       }
-    });
-
-    return () => {
-      // 언마운트 시 구독 해제
-      unsubscribe?.();
     };
+
+    fetchChatRoom();
   }, [chatRoomIdNumber]);
 
-  // REST API + 소켓 메시지 합치기
-  const messages = useMemo(() => {
-    const base = data?.chat?.messages?.slice().reverse() ?? [];
-    return [...base, ...newMessages];
-  }, [data, newMessages]);
-
-  // 잘못된 접근 처리
-  if (data === undefined) {
+  if (isLoading) return <div>로딩 중...</div>;
+  if (error || !data) {
     return (
       <>
         <Chip onClick={() => navigate('/')}>홈으로 가기</Chip>
@@ -57,11 +48,11 @@ export const ChatRoomPage = () => {
   return (
     <SafeArea>
       <div className={s.entireLayout}>
-        <ChatRoomHeader data={data} />
+        <ChatRoomHeader data={data.chatRoom} />
         <div className={s.innerPage}>
-          <ChatRoomContent data={data} messages={messages} />
+          <ChatRoomContent data={data.chatRoom} />
         </div>
-        <ChatRoomFooter data={data} />
+        <ChatRoomFooter data={data.chatRoom} />
       </div>
     </SafeArea>
   );
