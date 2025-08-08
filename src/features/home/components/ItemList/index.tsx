@@ -1,18 +1,46 @@
 import NoResult from '@/common/components/NoResult';
 import ItemCard from '@/features/home/components/ItemCard';
-import type { ItemInterface } from '@/features/home/types';
 
 import * as s from './style.css';
+import Pagination from '@/common/components/Pagination';
+import { useGetItemList } from '@/features/home/apis/useGetItemList';
+import { ITEM_PAGING_SIZE } from '@/libs/constants';
+import type { ItemListRequest } from '@/features/home/apis/useGetItemCount';
+import { useSearchParams } from 'react-router';
+import type { ItemOrderType } from '@/features/home/types';
 
 interface Props {
-  itemList: ItemInterface[];
-  isSuccess: boolean;
+  searchFilters?: ItemListRequest;
 }
-const ItemList = ({ itemList, isSuccess }: Props) => {
-  const isEmpty = isSuccess && itemList.length === 0;
+const ItemList = ({ searchFilters = {} }: Props) => {
+  const [searchParams] = useSearchParams();
+  const {
+    data: items = [],
+    isSuccess,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useGetItemList({
+    ...searchFilters,
+    pageSize: ITEM_PAGING_SIZE,
+    itemOrder: (searchParams.get('sort') as ItemOrderType) || undefined,
+  });
+
+  const isEmpty = isSuccess && items.length === 0;
+
   return (
     <div className={s.Container({ isEmpty })}>
-      {isEmpty ? <NoResult type="search" /> : itemList.map(item => <ItemCard key={item.itemId} data={item} />)}
+      {isEmpty ? (
+        <NoResult type="search" />
+      ) : (
+        <Pagination
+          items={items}
+          render={item => <ItemCard key={item.itemId} data={item} />}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+        />
+      )}
     </div>
   );
 };

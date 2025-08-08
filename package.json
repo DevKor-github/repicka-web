@@ -19,6 +19,7 @@
     "@tanstack/react-query": "^5.79.0",
     "axios": "^1.9.0",
     "date-fns": "^4.1.0",
+    "es-toolkit": "^1.39.8",
     "mingcute_icon": "^2.9.6",
     "motion": "^12.23.3",
     "qs": "^6.14.0",
