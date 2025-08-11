@@ -1,24 +1,37 @@
 // 채팅방 들어갔을 때 오는 값
 import client from '@/common/utils/client';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
-import { useQuery } from '@tanstack/react-query';
-import type { GetChatRoomResponse } from '../types';
+// import { useQuery } from '@tanstack/react-query';
+import type { ChatRoomInterface, CurrentAppointmentInterface, ItemInterface, MessageInterface } from '../types';
 
-const getChatRoom = async ({ chatRoomId }: { chatRoomId: number }) => {
-  const res = await client.get<GetChatRoomResponse>(`/api/v1/chatroom/${chatRoomId}/enter`, {
+export interface ChatRoomResponse {
+  message: string;
+  data: {
+    chatRoom: ChatRoomInterface;
+    chat: {
+      messages: MessageInterface[];
+      cursorId?: string | null;
+      hasNext: boolean;
+    };
+    item: ItemInterface;
+    currentAppointment: CurrentAppointmentInterface;
+  };
+}
+
+export const getChatRoom = async (chatRoomId: number) => {
+  const res = await client.get<ChatRoomResponse>(`/api/v1/chatroom/${chatRoomId}/enter`, {
     params: { pageSize: CHAT_PAGING_SIZE },
   });
 
-  return res.data;
+  return res.data.data;
 };
 
-const useGetChatRoom = (chatRoomId: number) => {
-  return useQuery({
-    queryKey: ['chatRoom', chatRoomId],
-    queryFn: () => getChatRoom({ chatRoomId }),
-    staleTime: 0,
-    select: response => response.data,
-  });
-};
-
-export default useGetChatRoom;
+// chatRoom, item, currentAppointment 단일 fetch (채팅방 meta data, 고정 데이터)
+// export const useGetChatRoom = (chatRoomId: number) => {
+//   return useQuery({
+//     queryKey: ['chatRoom', chatRoomId],
+//     queryFn: () => getChatRoom({ chatRoomId }),
+//     staleTime: 0,
+//     select: response => response.data,
+//   });
+// };

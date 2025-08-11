@@ -1,0 +1,56 @@
+import React from 'react';
+import { parseDate, parseTime } from '@/common/utils/parseDate';
+import * as s from './style.css';
+
+import type { MessageInterface } from '@/features/chatRoom/types';
+import PickChat from '../PickChat';
+import MyChat from '../MyChat';
+import OtherChat from '../OtherChat';
+
+interface Props {
+  chat: MessageInterface;
+  index: number;
+  messages: MessageInterface[];
+  myUserId: number;
+}
+
+const ChatMessageContents = ({ chat, index, messages, myUserId }: Props) => {
+  const time = parseTime(chat.createdAt);
+  const date = parseDate(chat.createdAt);
+  const isMine = chat.userId === myUserId;
+
+  const prevChat = messages[index - 1];
+  const nextChat = messages[index + 1];
+
+  const prevDate = prevChat ? parseDate(prevChat.createdAt) : null;
+  const prevIsMine = prevChat ? prevChat.userId === myUserId : null;
+
+  const isNewDate = date !== prevDate;
+  const isNewIsMine = isMine !== prevIsMine;
+  const isFirst = index === 0;
+  const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
+
+  const isNextSameUser = nextChat && nextChat.userId === chat.userId;
+  const isNextSameTime = nextChat && parseTime(nextChat.createdAt) === time;
+  const showTime = !isNextSameUser || !isNextSameTime;
+
+  return (
+    <React.Fragment key={chat.chatId}>
+      {isNewDate && <div className={s.Date({ isFirst })}>{date}</div>}
+
+      {chat.isPick ? (
+        <PickChat marginTop={marginTop} isMine={isMine} />
+      ) : isMine ? (
+        <MyChat marginTop={marginTop} time={showTime ? time : undefined}>
+          {chat.content}
+        </MyChat>
+      ) : (
+        <OtherChat marginTop={marginTop} time={showTime ? time : undefined}>
+          {chat.content}
+        </OtherChat>
+      )}
+    </React.Fragment>
+  );
+};
+
+export default ChatMessageContents;

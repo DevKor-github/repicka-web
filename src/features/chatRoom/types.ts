@@ -1,6 +1,6 @@
 import type { Color, ProductType, Quality, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 
-export interface ChatRoom {
+export interface ChatRoomInterface {
   chatRoomId: number;
   myUserId: number;
   opponentUserId: number;
@@ -11,7 +11,7 @@ export interface ChatRoom {
   mostRecentChat: string | null;
 }
 
-export interface Message {
+export interface MessageInterface {
   chatId: string;
   userId: number;
   content: string;
@@ -20,13 +20,7 @@ export interface Message {
   createdAt: string;
 }
 
-export interface Chat {
-  messages: Message[];
-  cursorId: string | null;
-  hasNext: boolean;
-}
-
-export interface Item {
+export interface ItemInterface {
   itemId: number;
   productTypes: ProductType[];
   transactionTypes: TransactionType[];
@@ -44,13 +38,20 @@ export interface Item {
   repostDate: string;
 }
 
-export interface ChatRoomResponse {
-  chatRoom: ChatRoom;
-  chat: Chat;
-  item: Item;
-}
-
-export interface GetChatRoomResponse {
-  message: string;
-  data: ChatRoomResponse;
+export interface CurrentAppointmentInterface {
+  isPresent: boolean;
+  chatRoomId: null; // 무조건 null
+  appointment: {
+    appointmentId: number;
+    itemId: null; // 무조건 null
+    ownerId: null; // 무조건 null
+    borrowerId: null; // 무조건 null
+    type: TransactionType | null;
+    rentalDate: string;
+    returnDate: string;
+    rentalLocation: string;
+    returnLocation: string;
+    price: number;
+    deposit: number;
+  };
 }
