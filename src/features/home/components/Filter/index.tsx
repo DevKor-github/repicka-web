@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
-import { Swiper, SwiperSlide, type SwiperRef } from 'swiper/react';
+import { useMemo } from 'react';
 import { cx } from '@styled-system/css';
 import { useSearchParams } from 'react-router';
 
@@ -7,7 +6,7 @@ import * as s from './style.css';
 
 import FilterNavigator from '@/features/home/components/Filter/FilterNavigator';
 import FilterContents from '@/features/home/components/Filter/FilterContents';
-import { FilterTypeArray, FilterTypeToIndexMap, type FilterType } from '@/features/home/types';
+import { FilterTypeArray, type FilterType } from '@/features/home/types';
 import { useGetItemCount } from '@/features/home/apis/useGetItemCount';
 
 interface Props {
@@ -18,7 +17,6 @@ interface Props {
 }
 const Filter = ({ state, setState, itemCounts, close }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const swiperRef = useRef<SwiperRef>(null);
 
   const selected = useMemo(() => FilterTypeArray.some(type => searchParams.getAll(type).length > 0), [searchParams]);
 
@@ -26,29 +24,11 @@ const Filter = ({ state, setState, itemCounts, close }: Props) => {
 
   const resetFilter = () => setSearchParams({});
 
-  useEffect(() => {
-    // 스와이퍼와 state 동기화
-    swiperRef.current?.swiper.slideTo(FilterTypeToIndexMap[state]);
-  }, [state]);
-
   return (
     <div className={s.Container}>
       <FilterNavigator state={state} setState={setState} />
       <div className={s.Wrapper}>
-        <div className={s.SwiperWrapper}>
-          <Swiper
-            ref={swiperRef}
-            slidesPerView={1}
-            spaceBetween={16}
-            onSlideChange={swiper => setState(FilterTypeArray[swiper.realIndex])}
-          >
-            {FilterTypeArray.map(type => (
-              <SwiperSlide key={type}>
-                <FilterContents type={type} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <FilterContents type={state} />
         <button className={s.ResetButton({ visible: selected })} onClick={resetFilter}>
           <span className={cx('mgc_refresh_1_fill')} />
           <p>

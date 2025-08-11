@@ -11,13 +11,8 @@ export const Wrapper = css({
   justifyContent: 'space-between',
   alignItems: 'stretch',
   px: '1rem',
-});
-
-export const SwiperWrapper = css({
+  height: 'full',
   flexGrow: 1,
-  '& > div': {
-    height: 'full',
-  },
 });
 
 export const ResetButton = cva({
