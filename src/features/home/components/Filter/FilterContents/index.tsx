@@ -5,6 +5,7 @@ import * as s from './style.css';
 import { FilterTypeToList, type FilterType } from '@/features/home/types';
 import { type TagType } from '@/libs/types/item';
 import TagOptionBtn from '@/common/components/TagOptionBtn';
+import PriceFilter from '@/features/home/components/Filter/FilterContents/PriceFilter';
 
 interface Props {
   type: FilterType;
@@ -25,7 +26,7 @@ const FilterContents = ({ type }: Props) => {
   return (
     <div className={s.Container}>
       {type === 'price' ? (
-        <div>아 만들기 개귀찮네</div>
+        <PriceFilter />
       ) : (
         <div key={type} className={s.TagOptionButtonWrapper}>
           {FilterTypeToList[type].map(t => {

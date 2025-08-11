@@ -18,7 +18,13 @@ interface Props {
 const Filter = ({ state, setState, itemCounts, close }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const selected = useMemo(() => FilterTypeArray.some(type => searchParams.getAll(type).length > 0), [searchParams]);
+  const selected = useMemo(() => {
+    return (
+      FilterTypeArray.some(type => searchParams.getAll(type).length > 0) ||
+      searchParams.get('start-price') !== null ||
+      searchParams.get('end-price') !== null
+    );
+  }, [searchParams]);
 
   const { data: totalCount } = useGetItemCount({});
 
