@@ -12,7 +12,7 @@ export interface Props {
 
 const ChatList = ({ data }: Props) => {
   const message = data.mostRecentChatIsPick
-    ? 'PICK을 확인해 보세요!'
+    ? `${data.mostRecentChatNickname}님께서 설정하신 대여 정보가 도착했어요`
     : data.mostRecentChatContent
       ? data.mostRecentChatContent
       : '대화를 시작해 보세요!';

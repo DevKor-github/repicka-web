@@ -7,6 +7,7 @@ export interface ChatRoomInterface {
   isOpponentKorean: boolean;
   isFinished: boolean;
   mostRecentChatContent: string | null;
+  mostRecentChatNickname: string | null;
   mostRecentChatIsPick: boolean | null;
   lastChatAt: string | null;
   unreadChatCount: number;
