@@ -8,7 +8,7 @@ import type { ChatRoomInterface } from '../../types';
 import { useLongPress } from 'use-long-press';
 import Drawer from '@/common/components/Drawer';
 import useDrawer from '@/common/hooks/useDrawer';
-import LeaveDrawer from '../LeaveDrawer';
+import ChatDrawer from '../ChatDrawer';
 import { useState } from 'react';
 import CustomAlert from '@/features/post/components/Alert';
 
@@ -18,19 +18,28 @@ export interface Props {
 
 const ChatList = ({ data }: Props) => {
   const { open, drawerState, close } = useDrawer();
-  const [showAlert, setShowAlert] = useState(false);
+  const [showLeaveAlert, setShowLeaveAlert] = useState(false);
 
-  const onUnshow = () => {
-    setShowAlert(false);
+  const onUnshowAlert = () => {
+    setShowLeaveAlert(false);
   };
 
-  const onShow = () => {
-    setShowAlert(true);
+  const onLeave = () => {
+    setShowLeaveAlert(true);
+  };
+
+  const onReport = () => {
+    console.log('신고하기');
+  };
+
+  const onRead = () => {
+    console.log('읽음 처리');
+    close();
   };
 
   const leaveChat = () => {
     console.log('채팅방 퇴장');
-    setShowAlert(false);
+    setShowLeaveAlert(false);
     close();
   };
 
@@ -64,14 +73,14 @@ const ChatList = ({ data }: Props) => {
         </div>
       </Link>
       <Drawer drawerState={drawerState} title={data.opponentNickname}>
-        <LeaveDrawer onShow={onShow} />
+        <ChatDrawer onLeave={onLeave} onRead={onRead} onReport={onReport} />
       </Drawer>
-      {showAlert && (
+      {showLeaveAlert && (
         <CustomAlert
           Title="대화방을 나가면 대화 내용이 모두 삭제돼요."
           subTitle="정말 퇴장하실 건가요?"
           yesBtn="네, 퇴장할래요"
-          onUnshow={onUnshow}
+          onUnshow={onUnshowAlert}
           onYes={leaveChat}
         />
       )}
