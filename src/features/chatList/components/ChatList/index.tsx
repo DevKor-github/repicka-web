@@ -30,8 +30,7 @@ const ChatList = ({ data }: Props) => {
         </div>
         <div className={s.MessageInfo}>
           <p className={s.Message}>{message}</p>
-          {data.unreadChatCount !== undefined && <div className={s.Count}>{data.unreadChatCount}</div>}
-          {/* {data.unreadChatCount !== 0  && <div className={s.Count}>{data.unreadChatCount}</div>} */}
+          {data.unreadChatCount !== 0 && <div className={s.Count}>{data.unreadChatCount}</div>}
         </div>
       </div>
     </Link>
