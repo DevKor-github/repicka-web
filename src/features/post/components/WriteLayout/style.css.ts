@@ -25,10 +25,9 @@ export const Navigator = css({
 
 export const Container = css({
   display: 'flex',
-  alignItems: 'flex-end',
+  alignItems: 'center',
   position: 'relative',
   height: 'HEADER_HEIGHT',
-  p: '0rem 1.25rem 0.875rem 1rem',
   boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
 });
 
