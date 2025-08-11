@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import { useStep2Store } from '../../stores/Step2Store';
 import { useStep3Store } from '../../stores/Step3Store';
 import { useStep4Store } from '../../stores/Step4Store';
+import { resetAllStores } from '../../stores/StoreReset';
 
 const Header = () => {
   const [showAlert, setShowAlert] = useState(false);
@@ -15,7 +16,6 @@ const Header = () => {
   const isStep3Empty = useStep3Store(state => state.isEmpty());
   const isStep4Empty = useStep4Store(state => state.isEmpty());
 
-  // 모두 다 비워져 있으면 alert를 띄우지 말아야 한다
   const shouldShow = !(isStep1Empty && isStep2Empty && isStep3Empty && isStep4Empty);
 
   const navigator = useNavigate();
@@ -29,6 +29,11 @@ const Header = () => {
     setShowAlert(false);
   };
 
+  const onReset = () => {
+    resetAllStores();
+    navigator(-1);
+  };
+
   return (
     <>
       <header>
@@ -37,7 +42,15 @@ const Header = () => {
           <span className={s.headerText}> 글쓰기 </span>
         </div>
       </header>
-      {showAlert && <CustomAlert onUnshow={onUnshow} />}
+      {showAlert && (
+        <CustomAlert
+          onUnshow={onUnshow}
+          Title="지금 그만두면 진행상황이 저장되지 않아요!"
+          subTitle="정말 글 작성을 그만두실 건가요?"
+          yesBtn="네, 다음에 다시 쓸게요"
+          onYes={onReset}
+        />
+      )}
     </>
   );
 };

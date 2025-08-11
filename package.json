@@ -29,6 +29,7 @@
     "react-textarea-autosize": "^8.5.9",
     "sockjs-client": "^1.6.1",
     "swiper": "^11.2.10",
+    "use-long-press": "^3.3.0",
     "zustand": "^5.0.6"
   },
   "devDependencies": {
