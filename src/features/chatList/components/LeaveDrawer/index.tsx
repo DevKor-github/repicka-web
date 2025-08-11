@@ -5,7 +5,7 @@ interface Props {
   onShow: () => void;
 }
 
-const LeaveDrawer = ({ onShow }: Props) => {
+const ChatDrawer = ({ onShow }: Props) => {
   return (
     <div className={s.ButtonWrapper}>
       <div className={s.Button}>
@@ -24,4 +24,4 @@ const LeaveDrawer = ({ onShow }: Props) => {
   );
 };
 
-export default LeaveDrawer;
+export default ChatDrawer;
