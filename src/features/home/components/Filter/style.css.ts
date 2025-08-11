@@ -6,7 +6,6 @@ export const Container = css({
 
 export const Wrapper = css({
   width: 'full',
-  height: '25rem',
   display: 'flex',
   flexDir: 'column',
   justifyContent: 'space-between',
@@ -18,6 +17,38 @@ export const SwiperWrapper = css({
   flexGrow: 1,
   '& > div': {
     height: 'full',
+  },
+});
+
+export const ResetButton = cva({
+  base: {
+    display: 'flex',
+    height: '3.125rem',
+    p: '0.625rem 0.5rem',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '0.625rem',
+    width: 'full',
+    flexShrink: 0,
+    color: '80',
+    fontSize: '1rem',
+    fontWeight: 400,
+    lineHeight: 1.2,
+    letterSpacing: '-0.04rem',
+    '& strong': {
+      color: '100',
+      fontWeight: 700,
+    },
+  },
+  variants: {
+    visible: {
+      true: {
+        visibility: 'visible',
+      },
+      false: {
+        visibility: 'hidden',
+      },
+    },
   },
 });
 
