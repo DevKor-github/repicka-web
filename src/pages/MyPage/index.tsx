@@ -3,17 +3,26 @@ import * as s from './style.css';
 import Profile from '@/features/my/components/Profile';
 import MyTrade from '@/features/my/components/MyTrade';
 import { useGetUser } from '@/features/my/apis/useGetUser';
+import NotFoundPage from '../NotFoundPage';
 
 const MyPage = () => {
-  const { data, isLoading } = useGetUser();
+  const { data, isLoading, isError } = useGetUser();
+
+  if (isLoading) return null;
 
   return (
     <>
       <MainTopBar />
-      <div className={s.Content}>
-        {isLoading ? null : data && <Profile data={data} />}
-        <MyTrade />
-      </div>
+      {isError ? (
+        <NotFoundPage />
+      ) : (
+        data && (
+          <div className={s.Content}>
+            <Profile data={data} />
+            <MyTrade />
+          </div>
+        )
+      )}
     </>
   );
 };
