@@ -1,9 +1,9 @@
-import type { ChatRoomResponse } from '@/features/chatRoom/types';
 import InputField from '../../InputField';
 import * as s from './style.css';
+import type { ChatRoomInterface } from '@/features/chatRoom/types';
 
 interface Props {
-  data: ChatRoomResponse;
+  data: ChatRoomInterface;
 }
 
 export const ChatRoomFooter = ({ data }: Props) => {
@@ -11,7 +11,7 @@ export const ChatRoomFooter = ({ data }: Props) => {
     <footer className={s.Wrapper}>
       <div className={s.Container}>
         <div className={`${'mgc_camera_2_fill'} ${s.Icon}`} />
-        <InputField chatRoomId={data.chatRoom.chatRoomId} />
+        <InputField chatRoomId={data.chatRoomId} />
       </div>
     </footer>
   );

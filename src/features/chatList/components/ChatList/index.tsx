@@ -4,10 +4,10 @@ import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
 import { toKST } from '@/common/utils/toKST';
 import { getKoreanRelativeTime } from '@/common/utils/getKoreanRelativeTime';
-import type { ChatRoom } from '@/features/chatList/types';
+import type { ChatRoomInterface } from '../../types';
 
 export interface Props {
-  data: ChatRoom;
+  data: ChatRoomInterface;
 }
 
 const ChatList = ({ data }: Props) => {

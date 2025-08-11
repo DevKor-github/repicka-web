@@ -1,40 +1,53 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import client from '@/common/utils/client';
 import type { ItemInterface, ItemOrderType } from '@/features/home/types';
-import type { Color, ProductType, Size, TradeMethods, TransactionType } from '@/libs/types/item';
+import type { ItemListRequest } from '@/features/home/apis/useGetItemCount';
 
-export interface ItemListRequest {
+export interface GetItemListRequest extends ItemListRequest {
   pageSize: number;
   itemOrder?: ItemOrderType;
-  startDate?: string;
-  endDate?: string;
-  startPrice?: number;
-  endPrice?: number;
-  cursorId?: number;
-  cursorValue?: number;
-  cursorDate?: string;
-  keyword?: string;
-  productTypes?: ProductType[];
-  transactionTypes?: TransactionType[];
-  sizes?: Size[];
-  colors?: Color[];
-  tradeMethods?: TradeMethods[];
+  cursorId?: number | null;
+  cursorLike?: number | null;
+  cursorDate?: string | null;
 }
 export interface ItemListResponse {
   message: string;
-  data: { items: ItemInterface[]; totalCount: number };
+  data: {
+    items: ItemInterface[];
+    hasNext: boolean;
+    cursorId: number | null;
+    cursorLike: number | null;
+    cursorDate: string | null;
+  };
 }
 
-const getItemList = async (params: ItemListRequest) => {
+interface PageParam {
+  cursorId?: number | null;
+  cursorLike?: number | null;
+  cursorDate?: string | null;
+}
+
+const getItemList = async (params: GetItemListRequest) => {
   const response = await client.get<ItemListResponse>('/api/v1/item/search', { params });
   return response.data;
 };
 
-export const useGetItemList = (params: ItemListRequest) => {
-  return useQuery({
+export const useGetItemList = (params: Omit<GetItemListRequest, 'cursorId' | 'cursorLike' | 'cursorDate'>) => {
+  const initialPageParam: PageParam = {};
+
+  return useInfiniteQuery({
     queryKey: ['item-list', params],
-    queryFn: () => getItemList(params),
-    select: data => data.data,
+    queryFn: ({ pageParam }) => getItemList({ ...params, ...pageParam }),
+    getNextPageParam: lastPage =>
+      lastPage.data.hasNext
+        ? {
+            cursorId: lastPage.data.cursorId,
+            cursorLike: lastPage.data.cursorLike,
+            cursorDate: lastPage.data.cursorDate,
+          }
+        : undefined,
+    initialPageParam,
+    select: data => data.pages.flatMap(page => page.data.items),
   });
 };
