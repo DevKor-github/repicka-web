@@ -1,4 +1,4 @@
-import { cva } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Container = cva({
   base: {
@@ -17,7 +17,7 @@ export const Container = cva({
     flexShrink: 0,
   },
   variants: {
-    active: {
+    isSelected: {
       true: {
         borderColor: 'main-54',
         bgColor: 'main-26',
@@ -30,19 +30,20 @@ export const Container = cva({
   },
 });
 
-export const Icon = cva({
-  base: {
-    color: '54',
-    fontSize: '0.875rem',
-  },
-  variants: {
-    direction: {
-      up: {
-        transform: 'rotate(180deg)',
-      },
-      down: {
-        transform: 'rotate(0deg)',
-      },
-    },
-  },
+export const Icon = css({
+  color: '54',
+  fontSize: '0.875rem',
+});
+
+export const SelectedIconContainer = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.125rem',
+});
+
+export const SelectedIcon = css({
+  fontSize: '0.75rem',
+  w: '0.75rem',
+  h: '0.75rem',
+  color: 'main',
 });
