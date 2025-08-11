@@ -1,7 +1,7 @@
 import { css } from '@styled-system/css';
 
 export const Container = css({
-  height: 'calc(100% - {sizes.NAVIGATOR_HEIGHT} - {sizes.HOME_HEADER_HEIGHT})',
+  height: 'calc(100% - {sizes.NAVIGATOR_HEIGHT} - {sizes.HEADER_HEIGHT})',
   overflowY: 'auto',
   paddingBottom: '1rem',
   display: 'flex',
