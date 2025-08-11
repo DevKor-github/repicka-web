@@ -10,7 +10,7 @@ import Drawer from '@/common/components/Drawer';
 import useDrawer from '@/common/hooks/useDrawer';
 import ChatDrawer from '../ChatDrawer';
 import { useState } from 'react';
-import CustomAlert from '@/features/post/components/Alert';
+import CustomAlert from '@/common/components/CustomAlert';
 
 export interface Props {
   data: ChatRoomInterface;

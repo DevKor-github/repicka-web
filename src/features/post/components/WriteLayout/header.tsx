@@ -1,5 +1,5 @@
 import * as s from './style.css';
-import CustomAlert from '../Alert';
+import CustomAlert from '../../../../common/components/CustomAlert';
 import { useState } from 'react';
 import { useStep1Store } from '../../stores/Step1Store';
 import { useNavigate } from 'react-router';
