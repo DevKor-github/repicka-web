@@ -6,5 +6,5 @@ export const Wrapper = css({
   padding: '1.25rem 1rem',
   gap: '2.25rem',
   overflowY: 'auto',
-  height: 'calc(100% - {sizes.NAVIGATOR_HEIGHT} - {sizes.HOME_HEADER_HEIGHT})',
+  height: 'calc(100% - {sizes.NAVIGATOR_HEIGHT} - {sizes.HEADER_HEIGHT})',
 });

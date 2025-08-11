@@ -1,8 +1,8 @@
 import SafeArea from '@/common/components/SafeArea';
 import * as s from './style.css';
 import ChatList from '@/features/chatList/components/ChatList';
-import MainTopBar from '@/common/components/MainTopBar';
 import useGetChatList from '@/features/chatList/api/useGetChatList';
+import ChatTopBar from '@/features/chatList/components/ChatTopBar';
 import Pagination from '@/common/components/Pagination';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
 
@@ -21,7 +21,7 @@ const ChatPage = () => {
 
   return (
     <SafeArea>
-      <MainTopBar />
+      <ChatTopBar />
       <div className={s.Wrapper}>
         {!isEmpty && (
           <Pagination
