@@ -1,10 +1,11 @@
 import SafeArea from '@/common/components/SafeArea';
 import * as s from './style.css';
 import ChatList from '@/features/chatList/components/ChatList';
-import MainTopBar from '@/common/components/MainTopBar';
 import { useEffect, useState } from 'react';
 import useGetChatList from '@/features/chatList/api/useGetChatList';
 import type { ChatRoom } from '@/features/chatList/types';
+import ChatTopBar from '@/features/chatList/components/ChatTopBar';
+// import { ChatTopBar } from '@/features/chatList/components/ChatTopBar';
 
 const ChatPage = () => {
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
@@ -21,7 +22,7 @@ const ChatPage = () => {
 
   return (
     <SafeArea>
-      <MainTopBar />
+      <ChatTopBar />
       <div className={s.Wrapper}>
         {chatRooms.map(data => (
           <ChatList data={data} />

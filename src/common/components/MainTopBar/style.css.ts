@@ -2,10 +2,11 @@ import { css } from '@styled-system/css';
 
 export const Wrapper = css({
   w: 'full',
+  h: 'HEADER_HEIGHT',
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '0.875rem 1.25rem 0.875rem 1rem',
+  alignItems: 'flex-end',
+  padding: '1.5rem 1.25rem 1.5rem 1rem',
 });
 
 export const Title = css({

@@ -34,7 +34,7 @@ const Header = () => {
       <header>
         <div className={s.Container}>
           <button className={`mgc_close_line ${s.closeBtn}`} onClick={handleClose}></button>
-          <span className={s.headerText}> 글쓰기 </span>
+          <span className={s.headerText}> 상품 등록 </span>
         </div>
       </header>
       {showAlert && <CustomAlert onUnshow={onUnshow} />}
