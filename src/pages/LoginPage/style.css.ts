@@ -9,6 +9,26 @@ export const Container = css({
   pb: '3.75rem',
   px: '1rem',
   gap: '1.875rem',
+  position: 'relative',
+});
+
+export const Header = css({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  p: '0.625rem 1.25rem',
+  d: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  zIndex: 10,
+  pointerEvents: 'none',
+  '& button': {
+    color: '100',
+    fontSize: '2.25rem',
+    cursor: 'pointer',
+    pointerEvents: 'auto',
+  },
 });
 
 export const Label = css({

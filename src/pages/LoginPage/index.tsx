@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { cx } from '@styled-system/css';
 
 import * as s from './style.css';
 
@@ -25,6 +26,9 @@ const LoginPage = () => {
   return (
     <SafeArea>
       <div className={s.Container}>
+        <div className={s.Header}>
+          <button className={cx('mgc_left_line')} onClick={() => navigate(-1)} />
+        </div>
         <p className={s.Label}>SNS 계정으로 로그인하기</p>
         <div className={s.ButtonContainer}>
           {/* TODO: 애플 로그인 추가 */}
