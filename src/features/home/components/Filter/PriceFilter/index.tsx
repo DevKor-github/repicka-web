@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router';
 
 import * as s from './style.css';
 import { useMemo } from 'react';
+import PriceButton from '@/features/home/components/Filter/PriceFilter/PriceButton';
+import CustomPriceInput from '@/features/home/components/Filter/PriceFilter/CustomPriceInput';
 
 const PriceOptions = [
   {
@@ -11,43 +13,27 @@ const PriceOptions = [
     end: 9999,
   },
   {
-    label: '1만원-2만원',
+    label: '1만원 - 2만원',
     start: 10000,
     end: 19999,
   },
   {
-    label: '2만원-3만원',
+    label: '2만원 - 3만원',
     start: 20000,
     end: 29999,
   },
   {
-    label: '3만원-4만원',
+    label: '3만원 - 4만원',
     start: 30000,
     end: 39999,
   },
   {
-    label: '4만원-5만원',
+    label: '4만원 - 5만원',
     start: 40000,
     end: 49999,
   },
   { label: '5만원 이상', start: 50000, end: MAX_PRICE },
 ];
-
-interface PriceButtonProps {
-  isSelected: boolean;
-  onClick: () => void;
-  label: string;
-}
-const PriceButton = ({ isSelected, onClick, label }: PriceButtonProps) => {
-  return (
-    <button className={s.PriceTagButton({ isSelected })} onClick={onClick}>
-      {label}
-      <div className={s.RightIcon({ isSelected })}>
-        <div />
-      </div>
-    </button>
-  );
-};
 
 const PriceFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -79,7 +65,7 @@ const PriceFilter = () => {
   }, [searchParams, startPrice, endPrice]);
 
   return (
-    <div>
+    <div className={s.Container}>
       <div className={s.PriceWrapper}>
         {PriceOptions.map(option => {
           const isSelected = option.start === startPrice && option.end === endPrice;
@@ -110,6 +96,7 @@ const PriceFilter = () => {
           label="직접 입력"
         />
       </div>
+      <CustomPriceInput active={isCustomPrice} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import * as s from './style.css';
 import { FilterTypeToList, type FilterType } from '@/features/home/types';
 import { type TagType } from '@/libs/types/item';
 import TagOptionBtn from '@/common/components/TagOptionBtn';
-import PriceFilter from '@/features/home/components/Filter/FilterContents/PriceFilter';
+import PriceFilter from '@/features/home/components/Filter/PriceFilter';
 
 interface Props {
   type: FilterType;

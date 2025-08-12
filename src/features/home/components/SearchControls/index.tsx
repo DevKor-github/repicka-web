@@ -44,7 +44,16 @@ const SearchControls = ({ itemCounts }: Props) => {
           <div className={s.Gradient({ position: 'left' })} />
           <div className={s.ButtonWrapper}>
             {FilterTypeArray.map(filter => {
-              const selected = searchParams.getAll(filter) as TagType[];
+              const selected = (() => {
+                if (filter === 'price') {
+                  if (searchParams.get('start-price') !== null && searchParams.get('end-price') !== null) {
+                    return [searchParams.get('start-price') as TagType, searchParams.get('end-price') as TagType];
+                  }
+                  return [];
+                }
+                return searchParams.getAll(filter) as TagType[];
+              })();
+
               return (
                 <SelectButton key={filter} onClick={() => handleFilterClick(filter)} selected={selected}>
                   {FilterTypeMap[filter]}
