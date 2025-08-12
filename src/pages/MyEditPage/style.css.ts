@@ -1,7 +1,14 @@
 import { css } from '@styled-system/css';
 
-export const Wrapper = css({
+export const EntireLayout = css({
+  display: 'flex',
+  flex: 1,
+  h: '100%',
+  flexDir: 'column',
   p: '1rem',
+});
+
+export const Wrapper = css({
   flex: 1,
   display: 'flex',
   flexDir: 'column',
@@ -9,15 +16,40 @@ export const Wrapper = css({
   justifyContent: 'center',
 });
 
+export const EditImage = css({
+  position: 'relative',
+  display: 'inline-block',
+  m: '3.44rem 0 3.13rem 0',
+});
+
 export const ProfileImage = css({
   borderRadius: 'full',
-  display: 'flex',
+  display: 'block',
   w: '7.5rem',
   h: '7.5rem',
   flexShrink: 0,
   aspectRatio: '1/1',
   bg: 'systemGray4',
-  m: '3.44rem 0 3.13rem 0',
+});
+
+export const SelectPhoto = css({
+  position: 'absolute',
+  bottom: 0,
+  right: 0,
+  display: 'flex',
+
+  padding: '0.375rem',
+  alignItems: 'center',
+  justifyContent: 'center',
+  w: '1.75rem',
+  h: '1.75rem',
+
+  rounded: 'full',
+  border: '1px solid var(--systemGray5, #2C2C2E)',
+  bg: 'systemGray6',
+
+  fontSize: '1rem',
+  color: 'systemGray',
 });
 
 export const Content = css({
@@ -32,7 +64,7 @@ export const Content = css({
     fontFamily: 'Pretendard',
     fontSize: '1rem',
     fontStyle: 'normal',
-    fontWeight: 500,
+    fontWeight: 600,
     lineHeight: 'normal',
     letterSpacing: '-0.04rem',
   },
