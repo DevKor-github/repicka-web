@@ -5,11 +5,11 @@ export const EntireLayout = css({
   flex: 1,
   h: '100%',
   flexDir: 'column',
-  p: '1rem',
 });
 
 export const Wrapper = css({
   flex: 1,
+  p: '1rem',
   display: 'flex',
   flexDir: 'column',
   alignItems: 'center',
@@ -68,4 +68,8 @@ export const Content = css({
     lineHeight: 'normal',
     letterSpacing: '-0.04rem',
   },
+});
+
+export const Footer = css({
+  p: '1rem',
 });

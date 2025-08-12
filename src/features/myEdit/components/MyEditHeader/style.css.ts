@@ -10,6 +10,7 @@ export const Container = css({
 
 export const backBtn = css({
   position: 'absolute',
+  left: '1rem',
   cursor: 'pointer',
   color: '80',
   flexShrink: '1',

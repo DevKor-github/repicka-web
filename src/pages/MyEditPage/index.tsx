@@ -60,9 +60,11 @@ const MyEditPage = () => {
           <InputField setValue={setNickname} value={nickname} maxLength={10} isEdited={isEdited} />
         </div>
       </div>
-      <Btn mode={isEdited} onClick={onSave}>
-        저장하기
-      </Btn>
+      <div className={s.Footer}>
+        <Btn mode={isEdited} onClick={onSave}>
+          저장하기
+        </Btn>
+      </div>
     </div>
   );
 };
