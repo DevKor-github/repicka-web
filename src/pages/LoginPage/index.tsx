@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { cx } from '@styled-system/css';
 
 import * as s from './style.css';
 
