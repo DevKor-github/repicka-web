@@ -71,5 +71,5 @@ export const Content = css({
 });
 
 export const Footer = css({
-  p: '1rem',
+  padding: '0rem 1rem 2.625rem 1rem',
 });
