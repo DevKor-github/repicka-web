@@ -1,6 +1,6 @@
 import type { Color, ProductType, Quality, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 
-export type SubInterface =
+export type SubChatRoomInterface =
   | {
       type: 'CHAT';
       message: ChatInterface;

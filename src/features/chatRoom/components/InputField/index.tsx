@@ -29,7 +29,14 @@ export const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
 
   // TODO: 한글 입력 시 마지막 글자 중복으로 보내지는 버그 있음
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter') send();
+    if (e.key === 'Enter') {
+      if (e.nativeEvent.isComposing) return;
+
+      if (!e.shiftKey) {
+        e.preventDefault(); // ✅ 기본 줄바꿈 막기
+        send();
+      }
+    }
   };
 
   return (

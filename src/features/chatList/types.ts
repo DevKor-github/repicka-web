@@ -1,4 +1,4 @@
-export interface ChatRoomInterface {
+export interface ChatListInterface {
   chatRoomId: number;
   myUserId: number;
   opponentUserId: number;
@@ -13,4 +13,14 @@ export interface ChatRoomInterface {
   mostRecentChatIsPick: boolean | null;
   lastChatAt: string | null;
   unreadChatCount: number;
+}
+
+export interface SubChatListInterface {
+  chatRoomId: number;
+  chatId: string;
+  userId: number;
+  content: string | null;
+  isPick: boolean;
+  isRead: boolean;
+  createdAt: string;
 }

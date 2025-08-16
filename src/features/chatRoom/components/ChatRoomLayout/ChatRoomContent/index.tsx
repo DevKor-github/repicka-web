@@ -1,7 +1,7 @@
 import * as s from './style.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ChatInterface, ChatRoomInterface } from '@/features/chatRoom/types';
-import { connectSocket, subSocket } from '@/common/utils/wsClient';
+import { connectSocket, subChatRoomSocket } from '@/common/utils/wsClient';
 import ChatMessageContents from '../../ChatMessageContents';
 import Pagination from '@/common/components/Pagination';
 import { useGetLoadChat } from '@/features/chatRoom/api/useGetLoadChat';
@@ -27,7 +27,7 @@ export const ChatRoomContent = ({ data }: Props) => {
 
     connectSocket().then(() => {
       if (!isNaN(chatRoomId)) {
-        unsubscribe = subSocket(chatRoomId, data => {
+        unsubscribe = subChatRoomSocket(chatRoomId, data => {
           if (data.type === 'CHAT') {
             setNewMessages(prev => [...prev, data.message]);
           }
