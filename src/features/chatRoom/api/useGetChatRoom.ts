@@ -1,15 +1,14 @@
 // 채팅방 들어갔을 때 오는 값
 import client from '@/common/utils/client';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
-// import { useQuery } from '@tanstack/react-query';
-import type { ChatRoomInterface, CurrentAppointmentInterface, ItemInterface, MessageInterface } from '../types';
+import type { ChatRoomInterface, CurrentAppointmentInterface, ItemInterface, ChatInterface } from '../types';
 
 export interface ChatRoomResponse {
   message: string;
   data: {
     chatRoom: ChatRoomInterface;
     chat: {
-      messages: MessageInterface[];
+      messages: ChatInterface[];
       cursorId?: string | null;
       hasNext: boolean;
     };

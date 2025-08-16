@@ -8,7 +8,18 @@ export const Container = css({
   maxW: 'CHAT_MAX_WIDTH',
 });
 
-export const Time = css({
+export const Info = css({
+  display: 'flex',
+  flexDir: 'column',
+  alignItems: 'flex-end',
+  gap: '0.12rem',
+
+  '& p': {
+    color: '80',
+  },
+  '& span': {
+    color: 'systemGray2',
+  },
   color: 'systemGray2',
   fontFamily: 'Pretendard',
   fontSize: '0.625rem',

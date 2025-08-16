@@ -1,4 +1,4 @@
-import type { MessageInterface } from '@/features/chatRoom/types';
+import type { SubInterface } from '@/features/chatRoom/types';
 import { Stomp, type Frame, type IFrame, type StompSubscription } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
@@ -45,7 +45,7 @@ stompClient.onWebSocketClose = (event: CloseEvent) => {
 
 const subscriptions = new Map<number, StompSubscription>();
 
-export const subSocket = (chatRoomId: number, callback: (data: MessageInterface) => void) => {
+export const subSocket = (chatRoomId: number, callback: (data: SubInterface) => void) => {
   if (!stompClient.connected) return;
 
   // 이전 구독이 있다면 해제 (중복 구독 방지)
@@ -54,6 +54,7 @@ export const subSocket = (chatRoomId: number, callback: (data: MessageInterface)
 
   const subscription = stompClient.subscribe(`/sub/chatroom/${chatRoomId}`, message => {
     const data = JSON.parse(message.body);
+
     callback(data);
   });
 
