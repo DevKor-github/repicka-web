@@ -1,16 +1,12 @@
 import { cx } from '@styled-system/css';
 import * as s from './style.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { stompClient } from '@/common/utils/wsClient';
 import TextareaAutosize from 'react-textarea-autosize';
 
 export const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
   const [message, setMessage] = useState('');
-  const [canSend, setCanSend] = useState(false);
-
-  useEffect(() => {
-    setCanSend(message.trim().length > 0);
-  }, [message]);
+  const canSend = message.trim().length > 0;
 
   const send = () => {
     if (!message.trim()) return;

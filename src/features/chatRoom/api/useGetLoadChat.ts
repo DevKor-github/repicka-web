@@ -48,5 +48,7 @@ export const useGetLoadChat = (chatRoomId: number) => {
         : undefined,
     initialPageParam,
     select: response => response.pages.flatMap(page => page.data.messages),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 };
