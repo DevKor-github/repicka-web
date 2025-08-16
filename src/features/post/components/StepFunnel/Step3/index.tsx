@@ -70,7 +70,7 @@ const Step3 = () => {
           </div>
         </div>
         {isDirect && <Location />}
-        {isRental && isParcel && <Address />}
+        {/* {isRental && isParcel && <Address />} */}
       </div>
     </div>
   );
