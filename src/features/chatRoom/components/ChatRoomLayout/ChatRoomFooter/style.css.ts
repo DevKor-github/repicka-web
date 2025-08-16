@@ -1,9 +1,9 @@
 import { css } from '@styled-system/css';
 
 export const Wrapper = css({
-  h: 'CHAT_ROOM_FOOTER_HEIGHT',
+  // h: 'CHAT_ROOM_FOOTER_HEIGHT',
   display: 'flex',
-  padding: '0.625rem 1rem 0rem 1rem',
+  padding: '0.625rem 1rem 2.62rem 1rem',
   alignItems: 'flex-start',
 });
 
