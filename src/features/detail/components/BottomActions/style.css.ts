@@ -43,6 +43,9 @@ export const PickButton = cva({
   base: {
     flexGrow: 1,
     flexBasis: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     flexDir: 'column',
     gap: '0.25rem',
     height: 'full',
