@@ -1,5 +1,5 @@
 import * as s from './style.css';
-import MyEditHeader from '@/features/myEdit/components/MyEditHeader';
+import MyHeader from '@/common/components/MyHeader';
 import { useNavigate, useLocation } from 'react-router';
 import Btn from '@/common/components/Button';
 import { usePutUser } from '@/features/myEdit/apis/usePutUser';
@@ -33,7 +33,7 @@ const MyEditPage = () => {
 
   return (
     <div className={s.EntireLayout}>
-      <MyEditHeader />
+      <MyHeader title="프로필 수정하기" />
       <MyEditContent
         nickname={nickname}
         setNickname={setNickname}
