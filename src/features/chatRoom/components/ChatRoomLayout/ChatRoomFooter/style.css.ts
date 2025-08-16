@@ -19,3 +19,7 @@ export const Icon = css({
   color: '80',
   fontSize: '1.25rem',
 });
+
+export const Input = css({
+  display: 'none',
+});

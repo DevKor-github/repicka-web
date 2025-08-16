@@ -62,7 +62,7 @@ export interface PickInfoInterface {
   ownerId: number;
   creatorId: number;
   type: TransactionType;
-  state: string; // TODO: 어떤 거 들어가는지 확인
+  state: 'PENDING' | 'CONFIRMED' | 'IN_PROGRESS'; // TODO: 어떤 거 들어가는지 확인
   rentalDate: string;
   returnDate: string;
   rentalLocation: string;
