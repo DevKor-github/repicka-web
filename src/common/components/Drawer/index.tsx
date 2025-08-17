@@ -6,7 +6,7 @@ import DrawerBody from '@/common/components/Drawer/DrawerBody';
 import type { DrawerState } from '@/common/hooks/useDrawer';
 
 interface DrawerProps {
-  title: string;
+  title?: string;
   description?: string;
   drawerState: DrawerState;
   children: ReactNode;
