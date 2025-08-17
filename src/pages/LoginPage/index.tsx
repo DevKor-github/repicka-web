@@ -25,6 +25,9 @@ const LoginPage = () => {
   return (
     <SafeArea>
       <div className={s.Container}>
+        <div className={s.Header}>
+          <button className="mgc_left_line" onClick={() => navigate(-1)} aria-label="뒤로가기" />
+        </div>
         <p className={s.Label}>SNS 계정으로 로그인하기</p>
         <div className={s.ButtonContainer}>
           {/* TODO: 애플 로그인 추가 */}

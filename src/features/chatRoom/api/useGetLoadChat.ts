@@ -1,7 +1,7 @@
 import client from '@/common/utils/client';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import type { MessageInterface } from '../types';
+import type { ChatInterface } from '../types';
 
 export interface GetLoatChatRequest {
   pageSize: number;
@@ -12,7 +12,7 @@ export interface LoadChatResponse {
   message: string;
   data: {
     // 페이지네이션 대상 데이터
-    messages: MessageInterface[];
+    messages: ChatInterface[];
     cursorId?: string | null;
     hasNext: boolean;
   };
@@ -37,8 +37,6 @@ const getLoadChat = async ({ chatRoomId, cursorId }: { chatRoomId: number; curso
 export const useGetLoadChat = (chatRoomId: number) => {
   const initialPageParam: PageParam = {};
 
-  console.log(initialPageParam.cursorId);
-
   return useInfiniteQuery({
     queryKey: ['chat-room', chatRoomId],
     queryFn: ({ pageParam }) => getLoadChat({ chatRoomId, ...pageParam }),
@@ -50,5 +48,7 @@ export const useGetLoadChat = (chatRoomId: number) => {
         : undefined,
     initialPageParam,
     select: response => response.pages.flatMap(page => page.data.messages),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 };

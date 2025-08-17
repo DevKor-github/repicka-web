@@ -1,15 +1,14 @@
 // 채팅방 들어갔을 때 오는 값
 import client from '@/common/utils/client';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
-// import { useQuery } from '@tanstack/react-query';
-import type { ChatRoomInterface, CurrentAppointmentInterface, ItemInterface, MessageInterface } from '../types';
+import type { ChatRoomInterface, CurrentAppointmentInterface, ItemInterface, ChatInterface } from '../types';
 
 export interface ChatRoomResponse {
   message: string;
   data: {
     chatRoom: ChatRoomInterface;
     chat: {
-      messages: MessageInterface[];
+      messages: ChatInterface[];
       cursorId?: string | null;
       hasNext: boolean;
     };
@@ -25,13 +24,3 @@ export const getChatRoom = async (chatRoomId: number) => {
 
   return res.data.data;
 };
-
-// chatRoom, item, currentAppointment 단일 fetch (채팅방 meta data, 고정 데이터)
-// export const useGetChatRoom = (chatRoomId: number) => {
-//   return useQuery({
-//     queryKey: ['chatRoom', chatRoomId],
-//     queryFn: () => getChatRoom({ chatRoomId }),
-//     staleTime: 0,
-//     select: response => response.data,
-//   });
-// };

@@ -2,15 +2,15 @@ import React from 'react';
 import { parseDate, parseTime } from '@/common/utils/parseDate';
 import * as s from './style.css';
 
-import type { MessageInterface } from '@/features/chatRoom/types';
+import type { ChatInterface } from '@/features/chatRoom/types';
 import PickChat from '../PickChat';
 import MyChat from '../MyChat';
 import OtherChat from '../OtherChat';
 
 interface Props {
-  chat: MessageInterface;
+  chat: ChatInterface;
   index: number;
-  messages: MessageInterface[];
+  messages: ChatInterface[];
   myUserId: number;
 }
 

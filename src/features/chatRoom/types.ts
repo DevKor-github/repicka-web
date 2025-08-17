@@ -1,5 +1,19 @@
 import type { Color, ProductType, Quality, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 
+export type SubChatRoomInterface =
+  | {
+      type: 'CHAT';
+      message: ChatInterface;
+    }
+  | {
+      type: 'ENTER';
+      message: EnterInterface;
+    }
+  | {
+      type: 'EXIT';
+      message: ExitInterface;
+    };
+
 export interface ChatRoomInterface {
   chatRoomId: number;
   myUserId: number;
@@ -7,17 +21,54 @@ export interface ChatRoomInterface {
   opponentNickname: string;
   opponentProfileImageUrl: string | undefined;
   isOpponentKorean: boolean;
+  isOpponentOnline: boolean;
+  opponentLastEnterAt: string;
   isFinished: boolean;
   mostRecentChat: string | null;
 }
 
-export interface MessageInterface {
+export interface ChatInterface {
   chatId: string;
   userId: number;
   content: string;
   isPick: boolean;
-  isRead: boolean;
+  pickInfo: PickInfoInterface | null;
   createdAt: string;
+}
+
+export interface EnterInterface {
+  chatRoomId: number;
+  requesterId: number;
+  ownerId: number;
+  isRequesterOnline: boolean;
+  isOwnerOnline: boolean;
+  requesterLastEnterAt: string;
+  ownerLastEnterAt: string;
+}
+
+export interface ExitInterface {
+  chatRoomId: number;
+  requesterId: number;
+  ownerId: number;
+  isRequesterOnline: boolean;
+  isOwnerOnline: boolean;
+  requesterLastEnterAt: string;
+  ownerLastEnterAt: string;
+}
+
+export interface PickInfoInterface {
+  appointmentId: number;
+  requesterId: number;
+  ownerId: number;
+  creatorId: number;
+  type: TransactionType;
+  state: 'PENDING' | 'CONFIRMED' | 'IN_PROGRESS'; // TODO: 어떤 거 들어가는지 확인
+  rentalDate: string;
+  returnDate: string;
+  rentalLocation: string;
+  returnLocation: string;
+  price: number;
+  deposit: number;
 }
 
 export interface ItemInterface {

@@ -2,26 +2,29 @@ import { css, cva } from '@styled-system/css';
 
 export const Container = css({
   position: 'relative',
-  height: '2.75rem',
   backgroundColor: 'systemGray5',
-  padding: '0rem 1rem',
   borderRadius: '0.375rem',
+  paddingRight: '0.75rem',
+
   display: 'flex',
   flex: 1,
+  justifyContent: 'center',
   alignItems: 'center',
+  gap: '1.03675rem', // 아이콘 안 겹치게
 });
 
 export const Input = css({
-  width: '100%',
+  display: 'flex',
+  flex: 1,
   border: 'none',
-  background: 'transparent',
   color: 'white',
   fontSize: '1rem',
   fontWeight: '500',
   lineHeight: 'normal',
   letterSpacing: '-0.04rem',
-  marginRight: '1.03675rem', // 아이콘 안 겹치게
+  m: '0.88rem 0rem 0.88rem 1rem',
   fontFamily: 'Pretendard',
+  resize: 'none',
 
   _focus: {
     outline: 'none',
@@ -30,10 +33,6 @@ export const Input = css({
 
 export const SendIcon = cva({
   base: {
-    position: 'absolute',
-    right: '1rem',
-    top: '50%',
-    transform: 'translateY(-50%)',
     width: '1.03675rem',
     height: '1.18588rem',
     cursor: 'pointer',
@@ -41,10 +40,10 @@ export const SendIcon = cva({
   variants: {
     canSend: {
       true: {
-        color: 'main',
+        color: '84',
       },
       false: {
-        color: '80',
+        color: '54',
       },
     },
   },

@@ -1,6 +1,6 @@
 import client from '@/common/utils/client';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import type { ChatRoomInterface } from '../types';
+import type { ChatListInterface } from '../types';
 
 export interface GetChatListRequest {
   pageSize: number;
@@ -11,7 +11,7 @@ export interface GetChatListRequest {
 export interface ChatListResponse {
   message: string;
   data: {
-    chatRooms: ChatRoomInterface[];
+    chatRooms: ChatListInterface[];
     hasNext: boolean;
     cursorLastChatAt: string | null;
     cursorId: string | null;
