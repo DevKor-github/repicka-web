@@ -1,8 +1,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import { useRoutes } from 'react-router';
+
 import routes from '@/pages/routes';
-import SocketProvider from './common/components/SocketProvider';
+import NotificationProvider from '@/common/components/NotificationProvider';
+import SocketProvider from '@/common/components/SocketProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SocketProvider>{router}</SocketProvider>
+      <NotificationProvider>
+        <SocketProvider>{router}</SocketProvider>
+      </NotificationProvider>
     </QueryClientProvider>
   );
 }

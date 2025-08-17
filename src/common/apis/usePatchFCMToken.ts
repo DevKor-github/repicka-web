@@ -1,0 +1,13 @@
+import client from '@/common/utils/client';
+import { useMutation } from '@tanstack/react-query';
+
+const patchFCMToken = async (token: string) => {
+  const response = await client.patch('/api/v1/user/fcm-token', token);
+  return response.data;
+};
+
+export const usePatchFCMToken = () => {
+  return useMutation({
+    mutationFn: patchFCMToken,
+  });
+};
