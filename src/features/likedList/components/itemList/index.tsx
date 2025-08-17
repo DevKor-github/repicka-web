@@ -33,9 +33,13 @@ const LikedItemRow = ({ item }: { item: LikeInterface }) => {
   const isRental = item.transactionTypes?.includes('RENTAL') ?? false;
   const isSale = item.transactionTypes?.includes('SALE') ?? false;
 
-  const toggle = () => {
-    const next = !isLiked;
+  const toggle = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
 
+    const next = !isLiked;
     setIsLiked(next);
     setLikeCount(c => (next ? c + 1 : Math.max(0, c - 1)));
 
@@ -69,6 +73,7 @@ const LikedItemRow = ({ item }: { item: LikeInterface }) => {
           <button
             className={cx(s.LikeButton({ isLiked }), isLiked ? 'mgc_heart_fill' : 'mgc_heart_line')}
             onClick={toggle}
+            onMouseDown={e => e.preventDefault()}
           />
         </div>
 
