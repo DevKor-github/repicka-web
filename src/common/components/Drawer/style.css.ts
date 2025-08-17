@@ -12,10 +12,10 @@ export const BackLayerStyle = css({
 
 export const Container = css({
   pos: 'absolute',
-  top: '100dvh',
+  top: '100%',
   left: 0,
   w: 'full',
-  h: '100dvh',
+  h: '100%',
   bgColor: 'systemGray6',
   roundedTop: '10px',
   willChange: 'transform',

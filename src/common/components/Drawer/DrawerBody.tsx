@@ -47,8 +47,8 @@ const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) =>
       transition={{ duration: 0.35 }}
       dragElastic={0.4}
       variants={{
-        opened: { top: `calc(100dvh - ${height}px)` },
-        closed: { top: '100dvh' },
+        opened: { top: `calc(100% - ${height}px)` },
+        closed: { top: '100%' },
       }}
       initial={'closed'}
       animate={'opened'}
