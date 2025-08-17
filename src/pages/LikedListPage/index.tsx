@@ -1,58 +1,35 @@
 import MyHeader from '@/common/components/MyHeader';
 import * as s from './style.css';
-import { Link } from 'react-router';
-import PriceToken from '@/features/home/components/ItemCard/PriceToken';
-import getImageUrl from '@/common/utils/getImageUrl';
+import { useNavigate } from 'react-router';
 import { useGetLike } from '@/features/likedList/apis/useGetLike';
-import ItemTokenList from '@/common/components/ItemTokenList';
-import { cx } from '@styled-system/css';
+import NoResult from '@/common/components/NoResult';
+import Btn from '@/common/components/Button';
+import NotFoundPage from '../NotFoundPage';
+import LikedItemList from '@/features/likedList/components/itemList';
 
 const LikedPage = () => {
-  const { data, isLoading } = useGetLike();
+  const { data: likes, isLoading } = useGetLike();
+  const navigate = useNavigate();
+
   if (isLoading) return null;
-  if (data === undefined) return <div>잘못된 접근입니다</div>;
+  if (!likes) return <NotFoundPage />;
+
+  const isEmpty = likes.length === 0;
 
   return (
-    <div>
+    <div className={s.Wrapper}>
       <MyHeader title="관심 목록" />
-      <div className={s.Content}>
-        {data.map(data => {
-          const isRental = data.transactionTypes.includes('RENTAL');
-          const isSale = data.transactionTypes.includes('SALE');
-
-          return (
-            <Link className={s.Container} to={`/detail/${data.itemId}`}>
-              <img className={s.Image} src={getImageUrl(data.thumbnail)} aria-hidden />
-              <div className={s.Info}>
-                <div className={s.Heart}>
-                  <div className={s.Header}>
-                    <h2 className={s.Title}>{data.title}</h2>
-                    <div className={s.Price}>
-                      {isRental && <PriceToken price={data.rentalFee} deposit={data.deposit} />}
-                      {isSale && <PriceToken price={data.salePrice} />}
-                    </div>
-                  </div>
-                  <div className={cx('mgc_heart_fill')} />
-                </div>
-                <div className={s.Footer}>
-                  <div className={s.Tokens}>
-                    {/* TODO: 디자이너 확인 후 백엔드 데이터 추가 요청 */}
-                    {/* <ItemTokenList
-                                            showCount={2}
-                                            itemInfo={{
-                                                productTypes: data.productTypes,
-                                                quality: 'BEST',
-                                                size: 'L',
-                                                color: 'COLOR_OTHER',
-                                                tradeMethods: ['PARCEL'],
-                                            }}
-                                        /> */}
-                  </div>
-                </div>
-              </div>
-            </Link>
-          );
-        })}
+      <div className={s.Content({ isEmpty })}>
+        {isEmpty ? (
+          <div className={s.NoResult}>
+            <NoResult type="like" />
+            <Btn mode="main" className={s.Button} onClick={() => navigate('/')}>
+              홈으로 돌아가기
+            </Btn>
+          </div>
+        ) : (
+          <LikedItemList likes={likes} />
+        )}
       </div>
     </div>
   );
