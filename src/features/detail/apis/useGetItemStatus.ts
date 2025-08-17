@@ -24,7 +24,7 @@ interface GetItemStatusResponse {
 }
 const getItemStatus = async (itemId: number) => {
   const response = await client.get<GetItemStatusResponse>(`/api/v1/item/${itemId}/current`);
-  return response.data;
+  return response.data.data;
 };
 export const useGetItemStatus = (itemId: number) => {
   return useQuery({
