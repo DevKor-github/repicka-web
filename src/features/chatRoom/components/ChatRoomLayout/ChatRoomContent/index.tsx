@@ -1,7 +1,7 @@
 import * as s from './style.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { ChatRoomInterface, MessageInterface } from '@/features/chatRoom/types';
-import { connectSocket, subSocket } from '@/common/utils/wsClient';
+import type { ChatInterface, ChatRoomInterface } from '@/features/chatRoom/types';
+import { connectSocket, subChatRoomSocket } from '@/common/utils/wsClient';
 import ChatMessageContents from '../../ChatMessageContents';
 import Pagination from '@/common/components/Pagination';
 import { useGetLoadChat } from '@/features/chatRoom/api/useGetLoadChat';
@@ -14,7 +14,7 @@ export const ChatRoomContent = ({ data }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const isFirstRender = useRef(true);
 
-  const [newMessages, setNewMessages] = useState<MessageInterface[]>([]);
+  const [newMessages, setNewMessages] = useState<ChatInterface[]>([]);
 
   const myUserId = data.myUserId;
   const chatRoomId = data.chatRoomId;
@@ -27,8 +27,10 @@ export const ChatRoomContent = ({ data }: Props) => {
 
     connectSocket().then(() => {
       if (!isNaN(chatRoomId)) {
-        unsubscribe = subSocket(chatRoomId, data => {
-          setNewMessages(prev => [...prev, data]);
+        unsubscribe = subChatRoomSocket(chatRoomId, data => {
+          if (data.type === 'CHAT') {
+            setNewMessages(prev => [...prev, data.message]);
+          }
         });
       }
     });
@@ -40,7 +42,7 @@ export const ChatRoomContent = ({ data }: Props) => {
 
   // 메시지 합치기
   const messages = useMemo(() => {
-    const base: MessageInterface[] = chats?.slice()?.reverse() ?? [];
+    const base: ChatInterface[] = chats?.slice()?.reverse() ?? [];
     return [...base, ...newMessages];
   }, [chats, newMessages]);
 
@@ -57,7 +59,7 @@ export const ChatRoomContent = ({ data }: Props) => {
   return (
     <div>
       <div className={s.Wrapper}>
-        <Pagination<MessageInterface>
+        <Pagination<ChatInterface>
           items={messages}
           render={(message, index) => (
             <ChatMessageContents chat={message} index={index} messages={messages} myUserId={myUserId} />

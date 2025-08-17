@@ -5,12 +5,16 @@ interface Props {
   children: ReactNode;
   time?: string;
   marginTop: string;
+  isRead?: boolean;
 }
 
 export const MyChat = ({ children, time, marginTop }: Props) => {
   return (
     <div className={s.Container} style={{ marginTop: marginTop }}>
-      <div className={s.Time}>{time}</div>
+      <div className={s.Info}>
+        {/* <p>1</p> */}
+        <span>{time}</span>
+      </div>
       <div className={s.Message}>{children}</div>
     </div>
   );

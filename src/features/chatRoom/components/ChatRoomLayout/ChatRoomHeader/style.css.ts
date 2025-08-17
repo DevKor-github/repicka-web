@@ -2,16 +2,16 @@ import { css } from '@styled-system/css';
 
 export const Container = css({
   display: 'flex',
-  paddingLeft: '1rem',
+  p: '0.9375rem 0 0.9375rem 1rem',
   alignItems: 'center',
-  height: '4.44rem',
-  gap: '0.88rem',
+  height: 'HEADER_HEIGHT',
+  gap: '0.875rem',
   boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
 });
 
 export const UserInfo = css({
   display: 'flex',
-  gap: '0.88rem',
+  gap: '0.875rem',
   justifyContent: 'center',
   alignItems: 'center',
 });

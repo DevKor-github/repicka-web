@@ -4,7 +4,7 @@ import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
 import { toKST } from '@/common/utils/toKST';
 import { getKoreanRelativeTime } from '@/common/utils/getKoreanRelativeTime';
-import type { ChatRoomInterface } from '../../types';
+import type { ChatListInterface } from '../../types';
 import { useLongPress } from 'use-long-press';
 import Drawer from '@/common/components/Drawer';
 import useDrawer from '@/common/hooks/useDrawer';
@@ -13,7 +13,7 @@ import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
 
 export interface Props {
-  data: ChatRoomInterface;
+  data: ChatListInterface;
 }
 
 const ChatList = ({ data }: Props) => {
@@ -44,7 +44,7 @@ const ChatList = ({ data }: Props) => {
   };
 
   const message = data.mostRecentChatIsPick
-    ? 'PICK을 확인해 보세요!'
+    ? `${data.mostRecentChatNickname}님께서 설정하신 대여 정보가 도착했어요`
     : data.mostRecentChatContent
       ? data.mostRecentChatContent
       : '대화를 시작해 보세요!';
@@ -67,8 +67,7 @@ const ChatList = ({ data }: Props) => {
           </div>
           <div className={s.MessageInfo}>
             <p className={s.Message}>{message}</p>
-            {data.unreadChatCount !== undefined && <div className={s.Count}>{data.unreadChatCount}</div>}
-            {/* {data.unreadChatCount !== 0  && <div className={s.Count}>{data.unreadChatCount}</div>} */}
+            {data.unreadChatCount !== 0 && <div className={s.Count}>{data.unreadChatCount}</div>}
           </div>
         </div>
       </Link>
