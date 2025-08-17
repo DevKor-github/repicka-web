@@ -14,7 +14,7 @@ const postChatroom = async (itemId: number) => {
 };
 
 export const usePostChatroom = () => {
-  useMutation({
+  return useMutation({
     mutationFn: postChatroom,
   });
 };

@@ -1,8 +1,12 @@
 import Btn from '@/common/components/Button';
+import { useNavigate } from 'react-router';
 
 import * as s from './style.css';
+
 import type { TransactionType } from '@/libs/types/item';
 import type { ItemInfoInterface } from '@/features/detail/types';
+import { useGetItemStatus } from '@/features/detail/apis/useGetItemStatus';
+import { usePostChatroom } from '@/features/detail/apis/usePostChatroom';
 
 interface PickButtonProps {
   type: TransactionType;
@@ -32,14 +36,33 @@ const PickButton = ({ type, index, salePrice, deposit, rentalFee }: PickButtonPr
 };
 
 interface Props {
+  itemId: number;
   itemInfo: ItemInfoInterface;
 }
-const BottomActions = ({ itemInfo }: Props) => {
+const BottomActions = ({ itemId, itemInfo }: Props) => {
+  const navigate = useNavigate();
   const { transactionTypes, mine, salePrice, deposit, rentalFee } = itemInfo;
+  const { data: itemStatusData, isSuccess: isItemStatusSuccess } = useGetItemStatus(itemId);
+  const { mutate: createChatroom } = usePostChatroom();
 
   // TODO: 실제 액션 추가
   const handleChatClick = () => {
-    alert('채팅 연결');
+    if (mine) {
+      alert('내 채팅방으로 연결');
+      return;
+    }
+    if (isItemStatusSuccess) {
+      if (itemStatusData.data.chatRoomId) {
+        navigate(`/chatroom/${itemStatusData.data.chatRoomId}`);
+        return;
+      }
+
+      createChatroom(itemId, {
+        onSuccess: data => {
+          navigate(`/chatroom/${data.data.chatRoom.chatRoomId}`);
+        },
+      });
+    }
   };
 
   return (
