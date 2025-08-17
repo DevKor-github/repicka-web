@@ -20,6 +20,7 @@ export const Wrapper = css({
   display: 'flex',
   flexDir: 'column',
   flex: 1,
+  justifyContent: 'space-between',
 });
 
 export const Info = css({
