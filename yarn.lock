@@ -4106,6 +4106,11 @@ use-latest@^1.2.1:
   dependencies:
     use-isomorphic-layout-effect "^1.1.1"
 
+use-long-press@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/use-long-press/-/use-long-press-3.3.0.tgz#dc661c281722f5816b61c6cb337a6a9d0b105d2c"
+  integrity sha512-Yedz46ILxsb1BTS6kUzpV/wyEZPUlJDq+8Oat0LP1eOZQHbS887baJHJbIGENqCo8wTKNxmoTHLdY8lU/e+wvw==
+
 util-deprecate@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
