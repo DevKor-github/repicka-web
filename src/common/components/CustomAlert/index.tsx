@@ -2,18 +2,14 @@ import Btn from '@/common/components/Button';
 import * as s from './style.css';
 
 interface Props {
-  onUnshow: () => void;
+  onNo: () => void;
   onYes: () => void;
   Title: string;
   subTitle: string;
   yesBtn: string;
 }
 
-const CustomAlert = ({ onUnshow, onYes, Title, subTitle, yesBtn }: Props) => {
-  const onClick = () => {
-    onYes();
-  };
-
+const CustomAlert = ({ onNo, onYes, Title, subTitle, yesBtn }: Props) => {
   return (
     <div className={s.Filter}>
       <div className={s.Container}>
@@ -22,10 +18,10 @@ const CustomAlert = ({ onUnshow, onYes, Title, subTitle, yesBtn }: Props) => {
           <p>{subTitle}</p>
         </div>
         <div className={s.Btn}>
-          <Btn onClick={onUnshow} style={{ flex: '1' }}>
+          <Btn onClick={onNo} style={{ flex: '1' }}>
             아니오
           </Btn>
-          <Btn mode="main" onClick={onClick} style={{ width: '13.125rem' }}>
+          <Btn mode="main" onClick={onYes} style={{ width: '13.125rem' }}>
             {yesBtn}
           </Btn>
         </div>

@@ -1,18 +1,12 @@
 import { cx } from '@styled-system/css';
-import { useNavigate } from 'react-router';
 import * as s from './style.css';
 
 interface Props {
   title: string;
+  onClick: () => void;
 }
 
-const MyHeader = ({ title }: Props) => {
-  const navigate = useNavigate();
-
-  const onClick = () => {
-    navigate(-1);
-  };
-
+const MyHeader = ({ title, onClick }: Props) => {
   return (
     <div className={s.Container}>
       <button className={cx('mgc_left_line', s.backBtn)} onClick={onClick}></button>

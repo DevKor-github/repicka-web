@@ -79,7 +79,7 @@ const ChatList = ({ data }: Props) => {
           Title="대화방을 나가면 대화 내용이 모두 삭제돼요."
           subTitle="정말 퇴장하실 건가요?"
           yesBtn="네, 퇴장할래요"
-          onUnshow={onUnshowAlert}
+          onNo={onUnshowAlert}
           onYes={leaveChat}
         />
       )}
