@@ -16,6 +16,12 @@ export const Image = css({
   flexShrink: 0,
 });
 
+export const Wrapper = css({
+  display: 'flex',
+  flexDir: 'column',
+  flex: 1,
+});
+
 export const Info = css({
   flex: '1 0 0',
   display: 'flex',
@@ -36,10 +42,7 @@ export const Header = css({
 export const Heart = css({
   display: 'flex',
   alignItems: 'flex-start',
-
   gap: '0.25rem',
-  fontSize: '1.5rem',
-  color: 'main',
 });
 
 export const LikeButton = cva({
