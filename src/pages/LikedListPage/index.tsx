@@ -18,7 +18,7 @@ const LikedPage = () => {
 
   return (
     <div className={s.Wrapper}>
-      <MyHeader title="관심 목록" />
+      <MyHeader title="관심 목록" onClick={() => navigate(-1)} />
       <div className={s.Content({ isEmpty })}>
         {isEmpty ? (
           <div className={s.NoResult}>
