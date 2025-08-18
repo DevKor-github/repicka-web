@@ -76,15 +76,24 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
   };
 
   // TODO: PICK 구현 후 하단 바텀 액션 보여주는 조건 분기 테스트
-  const showPickButton = !mine && isItemStatusSuccess && !itemStatusData.isPresent;
-
   return (
     <div className={s.Container}>
       <Btn className={s.ChatButton({ isMine: mine })} onClick={handleChatClick}>
         <span className="mgc_chat_2_fill" />
         {mine && <p>채팅</p>}
       </Btn>
-      {showPickButton ? (
+      {!mine && isItemStatusSuccess && itemStatusData.isPresent ? (
+        <div className={s.PickButtonContainer}>
+          {/* TODO: 이미 있는 픽 표시 */}
+          <PickButton
+            type={itemStatusData.appointment.type}
+            index={0}
+            deposit={itemStatusData.appointment.deposit}
+            rentalFee={itemStatusData.appointment.price}
+            salePrice={itemStatusData.appointment.price}
+          />
+        </div>
+      ) : !mine ? (
         <div className={s.PickButtonContainer}>
           {transactionTypes.map((type, index) => {
             return (
@@ -98,17 +107,6 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
               />
             );
           })}
-        </div>
-      ) : itemStatusData?.isPresent ? (
-        <div className={s.PickButtonContainer}>
-          {/* TODO: 이미 있는 픽 표시 */}
-          <PickButton
-            type={itemStatusData.appointment.type}
-            index={0}
-            deposit={itemStatusData.appointment.deposit}
-            rentalFee={itemStatusData.appointment.price}
-            salePrice={itemStatusData.appointment.price}
-          />
         </div>
       ) : null}
     </div>
