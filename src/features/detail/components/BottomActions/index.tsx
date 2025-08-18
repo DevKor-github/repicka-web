@@ -65,7 +65,7 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
     }
   };
 
-  // TODO: 하단 바텀 액션 보여주는 조건 분기 확실하게 하기
+  // TODO: PICK 구현 후 하단 바텀 액션 보여주는 조건 분기 테스트
   const showPickButton = !mine && isItemStatusSuccess && !itemStatusData.isPresent;
 
   return (
