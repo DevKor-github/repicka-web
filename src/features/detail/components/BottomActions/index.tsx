@@ -7,6 +7,7 @@ import type { TransactionType } from '@/libs/types/item';
 import type { ItemInfoInterface } from '@/features/detail/types';
 import { useGetItemStatus } from '@/features/detail/apis/useGetItemStatus';
 import { usePostChatroom } from '@/features/detail/apis/usePostChatroom';
+import useGetIsLogin from '@/common/apis/useGetIsLogin';
 
 interface PickButtonProps {
   type: TransactionType;
@@ -44,10 +45,19 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
   const { transactionTypes, mine, salePrice, deposit, rentalFee } = itemInfo;
   const { data: itemStatusData, isSuccess: isItemStatusSuccess } = useGetItemStatus(itemId);
   const { mutate: createChatroom } = usePostChatroom();
+  const { data: isLogin, isSuccess: isLoginSuccess } = useGetIsLogin();
 
-  // TODO: 실제 액션 추가
   const handleChatClick = () => {
+    if (!isLogin) {
+      if (isLoginSuccess) {
+        navigate('/login', { replace: true });
+        return;
+      }
+      return;
+    }
+
     if (mine) {
+      // TODO: 아이템과 관련된 내 채팅방으로 연결
       alert('내 채팅방으로 연결');
       return;
     }
@@ -91,6 +101,7 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
         </div>
       ) : itemStatusData?.isPresent ? (
         <div className={s.PickButtonContainer}>
+          {/* TODO: 이미 있는 픽 표시 */}
           <PickButton
             type={itemStatusData.appointment.type}
             index={0}
