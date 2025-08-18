@@ -48,31 +48,31 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
   const { data: isLogin, isSuccess: isLoginSuccess } = useGetIsLogin();
 
   const handleChatClick = () => {
+    if (!isLoginSuccess) return;
+
     if (!isLogin) {
-      if (isLoginSuccess) {
-        navigate('/login', { replace: true });
-        return;
-      }
+      navigate('/login', { replace: true });
       return;
     }
+
+    if (!isItemStatusSuccess) return;
 
     if (mine) {
       // TODO: 아이템과 관련된 내 채팅방으로 연결
       alert('내 채팅방으로 연결');
       return;
     }
-    if (isItemStatusSuccess) {
-      if (itemStatusData.chatRoomId) {
-        navigate(`/chatroom/${itemStatusData.chatRoomId}`);
-        return;
-      }
 
-      createChatroom(itemId, {
-        onSuccess: data => {
-          navigate(`/chatroom/${data.data.chatRoom.chatRoomId}`);
-        },
-      });
+    if (itemStatusData.chatRoomId) {
+      navigate(`/chatroom/${itemStatusData.chatRoomId}`);
+      return;
     }
+
+    createChatroom(itemId, {
+      onSuccess: data => {
+        navigate(`/chatroom/${data.data.chatRoom.chatRoomId}`);
+      },
+    });
   };
 
   // TODO: PICK 구현 후 하단 바텀 액션 보여주는 조건 분기 테스트
