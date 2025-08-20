@@ -11,6 +11,7 @@ import useDrawer from '@/common/hooks/useDrawer';
 import ChatDrawer from '../ChatDrawer';
 import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
+import { usePatchExit } from '../../api/usePatchExit';
 
 export interface Props {
   data: ChatListInterface;
@@ -18,6 +19,7 @@ export interface Props {
 
 const ChatList = ({ data }: Props) => {
   const { open, drawerState, close } = useDrawer();
+  const { mutate: exitChatRoom } = usePatchExit();
   const [showLeaveAlert, setShowLeaveAlert] = useState(false);
 
   const onUnshowAlert = () => {
@@ -38,7 +40,7 @@ const ChatList = ({ data }: Props) => {
   };
 
   const leaveChat = () => {
-    console.log('채팅방 퇴장');
+    exitChatRoom(data.chatRoomId);
     setShowLeaveAlert(false);
     close();
   };
