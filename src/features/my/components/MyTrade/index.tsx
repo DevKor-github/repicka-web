@@ -11,7 +11,6 @@ interface MenuProps {
 const Menu = ({ Title, Icon, Addr }: MenuProps) => {
   return (
     <Link className={s.GoMenu} to={Addr}>
-      {/* 메뉴마다 라우팅될 주소 달아주기 */}
       <div className={s.MenuContent}>
         <span className={cx(`${Icon}`)} />
         {Title}
@@ -27,8 +26,9 @@ const MyTrade = () => {
       <div className={s.Title}>나의 거래</div>
       <div className={s.Menu}>
         <Menu Icon="mgc_heart_fill" Title="관심 목록" Addr="/liked" />
-        <Menu Icon="mgc_document_fill" Title="최근 본 게시물" Addr="/recent" />
-        <Menu Icon="mgc_shopping_bag_1_fill" Title="나의 판매 내역" Addr="/my-trade" />
+        {/* TODO: api 나오면 달아주기 */}
+        {/* <Menu Icon="mgc_document_fill" Title="최근 본 게시물" Addr="/recent" /> */}
+        {/* <Menu Icon="mgc_shopping_bag_1_fill" Title="나의 판매 내역" Addr="/my-trade" /> */}
       </div>
     </div>
   );
