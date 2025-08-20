@@ -20,14 +20,14 @@ export interface Props {
 const ChatList = ({ data }: Props) => {
   const { open, drawerState, close } = useDrawer();
   const { mutate: exitChatRoom } = usePatchExit();
-  const [showLeaveAlert, setShowLeaveAlert] = useState(false);
+  const [showExitAlert, setShowExitAlert] = useState(false);
 
   const onUnshowAlert = () => {
-    setShowLeaveAlert(false);
+    setShowExitAlert(false);
   };
 
-  const onLeave = () => {
-    setShowLeaveAlert(true);
+  const onExit = () => {
+    setShowExitAlert(true);
   };
 
   const onReport = () => {
@@ -39,9 +39,9 @@ const ChatList = ({ data }: Props) => {
     close();
   };
 
-  const leaveChat = () => {
+  const exitChat = () => {
     exitChatRoom(data.chatRoomId);
-    setShowLeaveAlert(false);
+    setShowExitAlert(false);
     close();
   };
 
@@ -74,15 +74,15 @@ const ChatList = ({ data }: Props) => {
         </div>
       </Link>
       <Drawer drawerState={drawerState} title={data.opponentNickname}>
-        <ChatDrawer onLeave={onLeave} onRead={onRead} onReport={onReport} />
+        <ChatDrawer onExit={onExit} onRead={onRead} onReport={onReport} />
       </Drawer>
-      {showLeaveAlert && (
+      {showExitAlert && (
         <CustomAlert
           Title="대화방을 나가면 대화 내용이 모두 삭제돼요."
           subTitle="정말 퇴장하실 건가요?"
           yesBtn="네, 퇴장할래요"
           onUnshow={onUnshowAlert}
-          onYes={leaveChat}
+          onYes={exitChat}
         />
       )}
     </>
