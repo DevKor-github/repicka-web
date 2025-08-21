@@ -1,7 +1,8 @@
 import client from '@/common/utils/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 
-interface ExitResponse {
+export interface ExitResponse {
   code?: string;
   data: string;
   message: string;
@@ -16,7 +17,7 @@ const patchExit = async (chatRoomId: number) => {
 export const usePatchExit = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<ExitResponse, AxiosError<ExitResponse>, number, unknown>({
     mutationFn: (chatRoomId: number) => patchExit(chatRoomId),
     retry: 0,
     onSuccess: () => {

@@ -2,7 +2,7 @@ import Btn from '@/common/components/Button';
 import * as s from './style.css';
 
 interface Props {
-  onUnshow: () => void;
+  onUnshow?: () => void;
   onYes: () => void;
   Title: string;
   subTitle: string;
@@ -14,6 +14,8 @@ const CustomAlert = ({ onUnshow, onYes, Title, subTitle, yesBtn }: Props) => {
     onYes();
   };
 
+  const hasOnUnshow = onUnshow !== undefined;
+
   return (
     <div className={s.Filter}>
       <div className={s.Container}>
@@ -22,10 +24,12 @@ const CustomAlert = ({ onUnshow, onYes, Title, subTitle, yesBtn }: Props) => {
           <p>{subTitle}</p>
         </div>
         <div className={s.Btn}>
-          <Btn onClick={onUnshow} style={{ flex: '1' }}>
-            아니오
-          </Btn>
-          <Btn mode="main" onClick={onClick} style={{ width: '13.125rem' }}>
+          {hasOnUnshow && (
+            <Btn onClick={onUnshow} style={{ flex: '1' }}>
+              아니오
+            </Btn>
+          )}
+          <Btn mode="main" onClick={onClick} style={{ width: hasOnUnshow ? '13.125rem' : '100%' }}>
             {yesBtn}
           </Btn>
         </div>
