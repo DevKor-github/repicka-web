@@ -23,8 +23,6 @@ interface FilePayload {
 
 const putUser = async ({ userData, fileData }: { userData: UserPayload; fileData: FilePayload | undefined }) => {
   if (fileData) await s3PutImageToUrl(fileData.file, fileData.presignedUrl);
-
-  // 제출
   const res = await client.put<UserResponse>('/api/v1/user', userData);
 
   return res.data;

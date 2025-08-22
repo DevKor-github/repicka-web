@@ -3,6 +3,7 @@ import { cx } from '@styled-system/css';
 import * as s from './style.css';
 import { useRef, useState } from 'react';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
+import { ALLOWED_EXTENSIONS } from '@/libs/constants';
 
 interface Props {
   nickname: string;
@@ -35,7 +36,13 @@ const MyEditContent = ({ nickname, setNickname, isNicknameEdited, setFile, profi
         <div className={cx('mgc_camera_2_fill', s.SelectPhoto)} />
       </div>
 
-      <input type="file" accept="image/*" style={{ display: 'none' }} ref={fileInputRef} onChange={onFileChange} />
+      <input
+        type="file"
+        accept={ALLOWED_EXTENSIONS.map(val => '.' + val).join()}
+        style={{ display: 'none' }}
+        ref={fileInputRef}
+        onChange={onFileChange}
+      />
 
       <div className={s.Content}>
         <h1>닉네임</h1>
