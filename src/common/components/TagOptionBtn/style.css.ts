@@ -31,8 +31,6 @@ export const Container = cva({
 });
 // style.css.ts
 export const colorPalette = css({
-  width: '1.25rem',
-  height: '1.25rem',
   borderRadius: '9999px',
   padding: '1px',
   borderColor: 'white',
@@ -81,4 +79,10 @@ export const rightIcon = cva({
       },
     },
   },
+});
+
+export const SymbolStyle = css({
+  fontSize: '1.25rem',
+  w: '1.25rem',
+  h: '1.25rem',
 });

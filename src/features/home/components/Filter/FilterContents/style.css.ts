@@ -2,8 +2,8 @@ import { css } from '@styled-system/css';
 
 export const Container = css({
   width: 'full',
-  pt: '1.3125rem',
-  height: 'full',
+  mt: '1.3125rem',
+  height: '19rem',
 });
 
 export const TagOptionButtonWrapper = css({

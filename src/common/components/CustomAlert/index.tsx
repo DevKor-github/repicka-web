@@ -1,20 +1,21 @@
-import Btn from '@/common/components/Button';
 import * as s from './style.css';
+
+import Btn from '@/common/components/Button';
 
 interface Props {
   onNo: () => void;
   onYes: () => void;
-  Title: string;
+  title: string;
   subTitle: string;
   yesBtn: string;
 }
 
-const CustomAlert = ({ onNo, onYes, Title, subTitle, yesBtn }: Props) => {
+const CustomAlert = ({ onNo, onYes, title, subTitle, yesBtn }: Props) => {
   return (
     <div className={s.Filter}>
       <div className={s.Container}>
         <div className={s.Text}>
-          <span>{Title}</span>
+          <span>{title}</span>
           <p>{subTitle}</p>
         </div>
         <div className={s.Btn}>
