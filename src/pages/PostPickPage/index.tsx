@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 import * as s from './style.css';
@@ -12,6 +12,7 @@ import getItemInterfaceFromItemDetail from '@/common/utils/getItemInterfaceFromI
 import type { TradeMethods, TransactionType } from '@/libs/types/item';
 import Caution from '@/features/pick/components/Caution';
 import PriceBox from '@/features/pick/components/PriceBox';
+import { useGetItemStatus } from '@/features/detail/apis/useGetItemStatus';
 
 const PostPickPage = () => {
   const navigate = useNavigate();
@@ -19,10 +20,19 @@ const PostPickPage = () => {
   const itemId = Number(id);
   const transactionType = type as TransactionType;
   const tradeMethod = method as TradeMethods;
-  const { data: itemData } = useGetItemDetail(itemId);
+  const { data: itemData, isLoading: isItemDetailLoading } = useGetItemDetail(itemId);
+  const { data: itemStatus, isLoading: isItemStatusLoading, isSuccess: isItemStatusSuccess } = useGetItemStatus(itemId);
 
   const [negotiationPrice, setNegotiationPrice] = useState<number>(NaN);
   const [negotiationDeposit, setNegotiationDeposit] = useState<number>(NaN);
+
+  useEffect(() => {
+    if (isItemStatusSuccess && itemStatus.isPresent) {
+      navigate(-1);
+    }
+  }, [isItemStatusSuccess, itemStatus, navigate]);
+
+  if (isItemDetailLoading || isItemStatusLoading) return null;
 
   if (itemData === undefined) return <NotFoundPage />;
 
