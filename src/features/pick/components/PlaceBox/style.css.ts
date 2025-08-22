@@ -31,11 +31,14 @@ export const PlaceViewerContent = css({
   '& > p': {
     color: '100',
     flexShrink: 0,
+    fontWeight: 600,
   },
   '& > input': {
     width: 'full',
     flexGrow: 1,
     outline: 'none',
+    fontWeight: 400,
+    color: '80',
   },
   '& > span': {
     height: '1rem',

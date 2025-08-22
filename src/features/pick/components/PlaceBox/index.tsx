@@ -6,14 +6,15 @@ interface PlaceViewerProps {
   placeTitle: string;
   location: string;
   setLocation: (location: string) => void;
+  placeholder?: string;
 }
-const PlaceViewer = ({ placeTitle, location, setLocation }: PlaceViewerProps) => {
+const PlaceViewer = ({ placeTitle, location, setLocation, placeholder }: PlaceViewerProps) => {
   return (
     <div className={s.PlaceViewer}>
       <div className={s.PlaceViewerContent}>
         <p>{placeTitle}</p>
         <span />
-        <input type="text" value={location} onChange={e => setLocation(e.target.value)} />
+        <input type="text" value={location} placeholder={placeholder} onChange={e => setLocation(e.target.value)} />
       </div>
       <span className={cx('mgc_edit_4_fill', s.PlaceViewerButton)} />
     </div>
@@ -24,10 +25,20 @@ interface Props {
   transactionType: TransactionType;
   startLocation: string;
   endLocation: string;
+  startPlaceholder: string;
+  endPlaceholder: string;
   setStartLocation: (location: string) => void;
   setEndLocation: (location: string) => void;
 }
-const PlaceBox = ({ transactionType, startLocation, endLocation, setStartLocation, setEndLocation }: Props) => {
+const PlaceBox = ({
+  transactionType,
+  startLocation,
+  endLocation,
+  startPlaceholder,
+  endPlaceholder,
+  setStartLocation,
+  setEndLocation,
+}: Props) => {
   const isRental = transactionType === 'RENTAL';
 
   return (
@@ -36,8 +47,16 @@ const PlaceBox = ({ transactionType, startLocation, endLocation, setStartLocatio
         placeTitle={isRental ? '대여 장소' : '거래 장소'}
         location={startLocation}
         setLocation={setStartLocation}
+        placeholder={startPlaceholder}
       />
-      {isRental && <PlaceViewer placeTitle="반납 장소" location={endLocation} setLocation={setEndLocation} />}
+      {isRental && (
+        <PlaceViewer
+          placeTitle="반납 장소"
+          location={endLocation}
+          setLocation={setEndLocation}
+          placeholder={endPlaceholder}
+        />
+      )}
     </div>
   );
 };

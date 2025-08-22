@@ -66,6 +66,8 @@ const PostPickPage = () => {
               endLocation={endLocation}
               setStartLocation={setStartLocation}
               setEndLocation={setEndLocation}
+              startPlaceholder={itemData.itemInfo.location}
+              endPlaceholder={itemData.itemInfo.location}
             />
           )}
           <PriceBox
