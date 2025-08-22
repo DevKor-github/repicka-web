@@ -13,7 +13,7 @@ const DatePickButton = () => {
         <span className={cx('mgc_calendar_fill', s.Icon)} />
         날짜선택
       </button>
-      <Drawer title="대여 및 반납 일자" drawerState={drawerState}>
+      <Drawer title="날짜" description="대여 및 반납일자를 선택해 주세요" drawerState={drawerState}>
         <DatePicker />
       </Drawer>
     </>

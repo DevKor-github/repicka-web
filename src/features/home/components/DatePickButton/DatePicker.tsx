@@ -1,17 +1,34 @@
-// TODO: 디자인 확정나면 구현
-// 이거 근데 Pick 페이지랑 공유될 거 같음
-// 개발 진척도 보고 Common으로 빼든가 하기
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+// import 'react-calendar/dist/Calendar.css';
 
 import * as s from './style.css';
+import { formatDate } from 'date-fns';
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const DatePicker = () => {
+  const [value, onChange] = useState<Value>(new Date());
+
   return (
     <div className={s.DatePickerContainer}>
-      <h1>대충 달력</h1>
-      <p>일년은삼백육십오일일년은삼백육십오일</p>
-      <p>일년은삼백육십오일일년은삼백육십오일</p>
-      <p>일년은삼백육십오일일년은삼백육십오일</p>
-      <p>사실은삼백육십오일쩜이사이이일</p>
+      <div className={s.DatePicker}>
+        <Calendar
+          value={value}
+          onChange={onChange}
+          formatDay={(_, date) => date.getDate().toString()}
+          formatMonthYear={(_, date) => formatDate(date, 'yyyy M월')}
+          minDetail="year"
+          next2Label={null}
+          prev2Label={null}
+          selectRange={true}
+        />
+      </div>
+      <div>
+        <label htmlFor=""></label>
+      </div>
     </div>
   );
 };
