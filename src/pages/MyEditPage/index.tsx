@@ -1,7 +1,3 @@
-// 파일 선택자로 수정된 경우 -> getFileKey를 받아서 해당 fileKey를 붙여서 내기 (s3에 먼저 저장)
-// 파일 선택자로 수정되지 않은 경우 -> 그대로 보내기
-// nickname, profileImgUrl이 각각 바뀌었는지... 를 약간 인덱싱 해서 관리해야 할 것 같은데 말이지?
-
 import * as s from './style.css';
 import MyHeader from '@/common/components/MyHeader';
 import { useNavigate, useLocation } from 'react-router';
@@ -11,6 +7,7 @@ import MyEditContent from '@/features/myEdit/components/MyEditContent';
 import { useState } from 'react';
 import type { UserInterface } from '@/libs/types/user';
 import CustomAlert from '@/common/components/CustomAlert';
+import { getFileKey } from '@/common/utils/getFileKeys';
 
 type MyEditState = { data: UserInterface };
 
@@ -19,12 +16,10 @@ const MyEditPage = () => {
   const { data } = (state ?? {}) as MyEditState;
 
   const [nickname, setNickname] = useState<string>(data.nickname);
-  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(data.profileImageUrl);
-  const [fileKey, setFileKey] = useState<string | null>();
+  const [file, setFile] = useState<File>();
 
   const isNicknameEdited = nickname !== data.nickname && nickname.length >= 2 && nickname.length <= 10;
-  const isProfileEdited = profileImageUrl !== data.profileImageUrl;
-
+  const isProfileEdited = !!file;
   const isEdited = isNicknameEdited || isProfileEdited ? 'main' : 'disabled';
 
   const [showAlert, setShowAlert] = useState(false);
@@ -32,27 +27,36 @@ const MyEditPage = () => {
   const { mutate: updateUser } = usePutUser();
   const navigate = useNavigate();
 
-  const onSave = () => {
-    updateUser(
-      {
-        nickname: nickname,
-        profileImageUrl: fileKey ?? profileImageUrl,
+  const onSave = async () => {
+    let profileImageUrl: string | null = data.profileImageUrl;
+    let fileData: { file: File; presignedUrl: string } | undefined = undefined;
+
+    if (file) {
+      const { fileKey, presignedUrl } = await getFileKey(file);
+      profileImageUrl = fileKey;
+      fileData = { file, presignedUrl };
+    }
+
+    updateUser({
+      userData: {
+        nickname,
+        profileImageUrl: profileImageUrl,
         gender: data.gender,
         height: data.height,
         weight: data.weight,
       },
-      { onSuccess: () => navigate(-1) },
-    );
+      fileData,
+    });
+
+    navigate(-1);
   };
 
   const onNo = () => {
     setShowAlert(false);
   };
-
   const onYes = () => {
     navigate(-1);
   };
-
   const onShowAlert = () => {
     if (isEdited === 'main') setShowAlert(true);
     else navigate(-1);
@@ -66,9 +70,8 @@ const MyEditPage = () => {
           nickname={nickname}
           setNickname={setNickname}
           isNicknameEdited={isNicknameEdited}
-          profileImageUrl={profileImageUrl}
-          setProfileImageUrl={setProfileImageUrl}
-          setFileKey={setFileKey}
+          setFile={setFile}
+          profileImageUrl={data.profileImageUrl}
         />
         <div className={s.Footer}>
           <Btn mode={isEdited} onClick={onSave}>

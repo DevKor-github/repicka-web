@@ -15,7 +15,6 @@ export const getFileKeys = async (files: File[]) => {
 // 배열이 아닌 경우
 export const getFileKey = async (file: File) => {
   const { presignedUrl, fileKey } = await getPresignedUrl(file);
-  await s3PutImageToUrl(file, presignedUrl);
 
-  return fileKey;
+  return { presignedUrl, fileKey };
 };

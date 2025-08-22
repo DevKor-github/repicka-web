@@ -1,3 +1,4 @@
+import { s3PutImageToUrl } from '@/common/apis/usePutPresignedUrl';
 import client from '@/common/utils/client';
 import type { Gender, UserInterface } from '@/libs/types/user';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -15,10 +16,16 @@ interface UserResponse {
   data: UserInterface;
 }
 
-const putUser = async (userData: UserPayload) => {
-  const res = await client.put<UserResponse>('/api/v1/user', userData);
+interface FilePayload {
+  file: File;
+  presignedUrl: string;
+}
 
-  console.log(userData);
+const putUser = async ({ userData, fileData }: { userData: UserPayload; fileData: FilePayload | undefined }) => {
+  if (fileData) await s3PutImageToUrl(fileData.file, fileData.presignedUrl);
+
+  // 제출
+  const res = await client.put<UserResponse>('/api/v1/user', userData);
 
   return res.data;
 };

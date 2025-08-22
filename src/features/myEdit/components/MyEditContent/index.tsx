@@ -1,28 +1,20 @@
 import InputField from '@/features/post/components/InputField';
 import { cx } from '@styled-system/css';
 import * as s from './style.css';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
-import { getFileKey } from '@/common/utils/getFileKeys';
 
 interface Props {
   nickname: string;
   setNickname: (value: string) => void;
+  setFile: (value: File) => void;
   profileImageUrl: string | null;
-  setProfileImageUrl: (value: string) => void;
-  setFileKey: (value: string) => void;
   isNicknameEdited: boolean;
 }
 
-const MyEditContent = ({
-  nickname,
-  setNickname,
-  isNicknameEdited,
-  profileImageUrl,
-  setProfileImageUrl,
-  setFileKey,
-}: Props) => {
+const MyEditContent = ({ nickname, setNickname, isNicknameEdited, setFile, profileImageUrl }: Props) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [src, setSrc] = useState<string | null>(profileImageUrl);
 
   const onClickCamera = () => {
     fileInputRef.current?.click();
@@ -32,16 +24,14 @@ const MyEditContent = ({
     const file = e.target.files?.[0]; // 첫 번째로 고른 파일 선택
     if (!file) return;
 
-    const fileKey = await getFileKey(file);
-
-    setProfileImageUrl(URL.createObjectURL(file));
-    setFileKey(fileKey);
+    setFile(file);
+    setSrc(URL.createObjectURL(file));
   };
 
   return (
     <div className={s.Wrapper}>
       <div className={s.EditImage} onClick={onClickCamera}>
-        <UserProfileImage nickname={nickname} profileImageUrl={profileImageUrl} isMyEdit />
+        <UserProfileImage nickname={nickname} src={src} isMyEdit />
         <div className={cx('mgc_camera_2_fill', s.SelectPhoto)} />
       </div>
 

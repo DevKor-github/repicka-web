@@ -3,7 +3,7 @@ export interface ChatListInterface {
   myUserId: number;
   opponentUserId: number;
   opponentNickname: string;
-  opponentProfileImageUrl: string | undefined;
+  opponentProfileImageUrl: string | null;
   isOpponentKorean: boolean;
   isOpponentOnline: boolean | null;
   opponentLastEnterAt: string | null;

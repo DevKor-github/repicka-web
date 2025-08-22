@@ -3,14 +3,14 @@ import * as s from './style.css';
 import defaultImg from '@/libs/assets/defaultImg.png';
 
 interface Props {
-  profileImageUrl: string | null;
+  src: string | null;
   nickname: string;
   isMyEdit?: boolean;
 }
 
-export const UserProfileImage = ({ profileImageUrl, nickname, isMyEdit }: Props) => {
+export const UserProfileImage = ({ src, nickname, isMyEdit }: Props) => {
   const cn = isMyEdit ? s.MyProfileEditImage : s.ProfileImage;
-  const profileImage = profileImageUrl ? getImageUrl(profileImageUrl) : defaultImg;
+  const profileImage = src ? getImageUrl(src) : defaultImg;
 
   return <img className={cn} src={profileImage} alt={nickname} />;
 };
