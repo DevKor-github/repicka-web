@@ -2,7 +2,7 @@ import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
 import { cx } from '@styled-system/css';
 import * as s from './style.css';
-import type { UserInterface } from '../../types';
+import type { UserInterface } from '../../../../libs/types/types';
 import { Link } from 'react-router';
 
 interface Props {

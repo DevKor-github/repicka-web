@@ -9,3 +9,13 @@ export const ProfileImage = css({
   display: 'flex',
   flexShrink: 0,
 });
+
+export const MyProfileEditImage = css({
+  borderRadius: 'full',
+  display: 'block',
+  w: '7.5rem',
+  h: '7.5rem',
+  flexShrink: 0,
+  aspectRatio: '1/1',
+  bg: 'systemGray4',
+});

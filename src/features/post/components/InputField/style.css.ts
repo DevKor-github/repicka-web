@@ -23,10 +23,10 @@ export const Container = cva({
       },
     },
     isEdited: {
-      main: {
+      true: {
         border: '1px solid var(--systemGray3, #48484A)',
       },
-      disabled: {
+      false: {
         border: 'none',
       },
     },

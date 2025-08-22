@@ -1,5 +1,5 @@
 import client from '@/common/utils/client';
-import type { UserInterface } from '../types';
+import type { UserInterface } from '../../../libs/types/types';
 import { useQuery } from '@tanstack/react-query';
 
 export interface UserResponse {

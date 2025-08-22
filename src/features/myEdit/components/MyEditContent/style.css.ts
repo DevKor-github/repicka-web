@@ -15,16 +15,6 @@ export const EditImage = css({
   m: '3.44rem 0 3.13rem 0',
 });
 
-export const ProfileImage = css({
-  borderRadius: 'full',
-  display: 'block',
-  w: '7.5rem',
-  h: '7.5rem',
-  flexShrink: 0,
-  aspectRatio: '1/1',
-  bg: 'systemGray4',
-});
-
 export const SelectPhoto = css({
   position: 'absolute',
   bottom: 0,
