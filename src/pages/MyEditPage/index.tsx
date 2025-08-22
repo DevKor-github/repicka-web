@@ -20,7 +20,7 @@ const MyEditPage = () => {
 
   const [nickname, setNickname] = useState<string>(data.nickname);
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(data.profileImageUrl);
-  const [fileKey, setFileKey] = useState<string>('');
+  const [fileKey, setFileKey] = useState<string | null>();
 
   const isNicknameEdited = nickname !== data.nickname && nickname.length >= 2 && nickname.length <= 10;
   const isProfileEdited = profileImageUrl !== data.profileImageUrl;
@@ -36,7 +36,7 @@ const MyEditPage = () => {
     updateUser(
       {
         nickname: nickname,
-        profileImageUrl: fileKey,
+        profileImageUrl: fileKey ?? profileImageUrl,
         gender: data.gender,
         height: data.height,
         weight: data.weight,

@@ -18,6 +18,8 @@ interface UserResponse {
 const putUser = async (userData: UserPayload) => {
   const res = await client.put<UserResponse>('/api/v1/user', userData);
 
+  console.log(userData);
+
   return res.data;
 };
 
