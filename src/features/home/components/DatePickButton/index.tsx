@@ -2,9 +2,12 @@ import { cx } from '@styled-system/css';
 import * as s from './style.css';
 import useDrawer from '@/common/hooks/useDrawer';
 import Drawer from '@/common/components/Drawer';
-import DatePicker from '@/features/home/components/DatePickButton/DatePicker';
+import DateFilter from '@/features/home/components/DateFilter';
 
-const DatePickButton = () => {
+interface Props {
+  itemCounts: number;
+}
+const DatePickButton = ({ itemCounts }: Props) => {
   const { open, drawerState } = useDrawer();
   // TODO: 디자인 확정, 백엔드 API 나오면 디자인 및 로직 추가
   return (
@@ -14,7 +17,7 @@ const DatePickButton = () => {
         날짜선택
       </button>
       <Drawer title="날짜" description="대여 및 반납일자를 선택해 주세요" drawerState={drawerState}>
-        <DatePicker />
+        <DateFilter itemCounts={itemCounts} />
       </Drawer>
     </>
   );

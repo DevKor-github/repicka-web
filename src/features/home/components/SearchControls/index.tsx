@@ -36,7 +36,7 @@ const SearchControls = ({ itemCounts }: Props) => {
           </div>
           <div className={s.TopRightControl}>
             <SortTriggerButton />
-            <DatePickButton />
+            <DatePickButton itemCounts={itemCounts} />
           </div>
         </div>
         <div className={s.SelectButtonContainer}>
