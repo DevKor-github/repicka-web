@@ -14,6 +14,9 @@ import Caution from '@/features/pick/components/Caution';
 import PriceBox from '@/features/pick/components/PriceBox';
 import { useGetItemStatus } from '@/features/detail/apis/useGetItemStatus';
 import PlaceBox from '@/features/pick/components/PlaceBox';
+import DateTimeBox from '@/features/pick/components/DateTimeBox';
+
+const TODAY = new Date();
 
 const PostPickPage = () => {
   const navigate = useNavigate();
@@ -28,6 +31,8 @@ const PostPickPage = () => {
   const [negotiationDeposit, setNegotiationDeposit] = useState<number>(NaN);
   const [startLocation, setStartLocation] = useState<string>('');
   const [endLocation, setEndLocation] = useState<string>('');
+  const [startDateTime, setStartDateTime] = useState<Date>(TODAY);
+  const [endDateTime, setEndDateTime] = useState<Date>(TODAY);
 
   useEffect(() => {
     if (isItemStatusSuccess && itemStatus.isPresent) {
@@ -70,6 +75,14 @@ const PostPickPage = () => {
               endPlaceholder={itemData.itemInfo.location}
             />
           )}
+          <DateTimeBox
+            transactionType={transactionType}
+            tradeMethod={tradeMethod}
+            startDateTime={startDateTime}
+            endDateTime={endDateTime}
+            setStartDateTime={setStartDateTime}
+            setEndDateTime={setEndDateTime}
+          />
           <PriceBox
             itemInfo={itemData.itemInfo}
             transactionType={transactionType}
