@@ -8,8 +8,8 @@ interface Props {
   itemCounts: number;
 }
 const DatePickButton = ({ itemCounts }: Props) => {
-  const { open, drawerState } = useDrawer();
-  // TODO: 디자인 확정, 백엔드 API 나오면 디자인 및 로직 추가
+  const { open, close, drawerState } = useDrawer();
+
   return (
     <>
       <button className={s.Container} onClick={open}>
@@ -17,7 +17,7 @@ const DatePickButton = ({ itemCounts }: Props) => {
         날짜선택
       </button>
       <Drawer title="날짜" description="대여 및 반납일자를 선택해 주세요" drawerState={drawerState}>
-        <DateFilter itemCounts={itemCounts} />
+        <DateFilter itemCounts={itemCounts} close={close} />
       </Drawer>
     </>
   );

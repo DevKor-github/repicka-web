@@ -42,13 +42,47 @@ export const SelectedDateItem = css({
   },
 });
 
+export const FilterButtonWrapper = css({
+  display: 'flex',
+  gap: '0.625rem',
+  alignItems: 'stretch',
+  height: '3.125rem',
+});
+
+export const FilterButton = cva({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    rounded: '0.375rem',
+  },
+  variants: {
+    type: {
+      reset: {
+        width: '4.625rem',
+        flexShrink: 0,
+        bgColor: 'systemGray4',
+        color: '80',
+        fontSize: '1.5rem',
+      },
+      result: {
+        flex: '1 0 0',
+        bgColor: 'main',
+        color: '100',
+        fontSize: '1.25rem',
+        fontWeight: 500,
+        letterSpacing: '-0.05rem',
+      },
+    },
+  },
+});
+
 export const DateFilter = css({
   '& .react-calendar': {
     display: 'flex',
     flexDir: 'column',
     gap: '1.4375rem',
     alignItems: 'center',
-    // height: '23.325rem', TODO: 달력 6줄 대응
   },
   '& .react-calendar__navigation': {
     color: '100',
