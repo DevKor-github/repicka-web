@@ -1,21 +1,26 @@
 import { formatDate } from 'date-fns';
+
 import * as s from './style.css.ts';
+
 import useDrawer from '@/common/hooks/useDrawer.tsx';
 import Drawer from '@/common/components/Drawer/index.tsx';
-import type { TransactionType } from '@/libs/types/item.ts';
+import DateDrawer from '@/features/pick/components/DateDrawer/index.tsx';
 
 interface Props {
-  transactionType: TransactionType;
+  transactionText: '거래' | '대여' | '반납';
   label: string;
-  dateTime: Date;
-  setDateTime: (date: Date) => void;
+  dateTime: Date | null;
+  setDateTime: (date: Date | null) => void;
   canSelectTime?: boolean;
 }
-const DateTimeButton = ({ transactionType, label, dateTime, setDateTime, canSelectTime = false }: Props) => {
-  const { open: dateDrawerOpen, drawerState: dateDrawerState } = useDrawer();
-  const { open: timeDrawerOpen, drawerState: timeDrawerState } = useDrawer();
+const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSelectTime = false }: Props) => {
+  const { open: dateDrawerOpen, drawerState: dateDrawerState, close: dateDrawerClose } = useDrawer();
+  const { open: timeDrawerOpen, drawerState: timeDrawerState, close: timeDrawerClose } = useDrawer();
 
-  const transactionText = transactionType === 'RENTAL' ? '대여' : '거래';
+  const handleDateDrawerNext = () => {
+    dateDrawerClose();
+    timeDrawerOpen();
+  };
 
   return (
     <>
@@ -23,12 +28,12 @@ const DateTimeButton = ({ transactionType, label, dateTime, setDateTime, canSele
         <label className={s.Label}>{label}</label>
         <div className={s.ButtonWrapper}>
           <button className={s.ButtonItem} onClick={dateDrawerOpen}>
-            <p>{formatDate(dateTime, 'yy.MM.dd')}</p>
+            <p>{dateTime ? formatDate(dateTime, 'yy.MM.dd') : ''}</p>
             <span className="mgc_calendar_fill" />
           </button>
           {canSelectTime && (
             <button className={s.ButtonItem} onClick={timeDrawerOpen}>
-              <p>{formatDate(dateTime, 'HH:mm')}</p>
+              <p>{dateTime ? formatDate(dateTime, 'HH:mm') : ''}</p>
               <span className="mgc_alarm_1_fill" />
             </button>
           )}
@@ -39,8 +44,14 @@ const DateTimeButton = ({ transactionType, label, dateTime, setDateTime, canSele
         title="날짜"
         description={`${transactionText}를 원하는 날짜를 선택해주세요`}
       >
-        <div></div>
+        <DateDrawer
+          dateTime={dateTime}
+          setDateTime={setDateTime}
+          transactionText={transactionText}
+          next={handleDateDrawerNext}
+        />
       </Drawer>
+      {/* TODO: 날짜 선택해야 시간 선택 가능하도록 수정 */}
       <Drawer
         drawerState={timeDrawerState}
         title="시간"

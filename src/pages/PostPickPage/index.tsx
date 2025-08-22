@@ -16,8 +16,6 @@ import { useGetItemStatus } from '@/features/detail/apis/useGetItemStatus';
 import PlaceBox from '@/features/pick/components/PlaceBox';
 import DateTimeBox from '@/features/pick/components/DateTimeBox';
 
-const TODAY = new Date();
-
 const PostPickPage = () => {
   const navigate = useNavigate();
   const { id, type, method } = useParams();
@@ -31,8 +29,8 @@ const PostPickPage = () => {
   const [negotiationDeposit, setNegotiationDeposit] = useState<number>(NaN);
   const [startLocation, setStartLocation] = useState<string>('');
   const [endLocation, setEndLocation] = useState<string>('');
-  const [startDateTime, setStartDateTime] = useState<Date>(TODAY);
-  const [endDateTime, setEndDateTime] = useState<Date>(TODAY);
+  const [startDateTime, setStartDateTime] = useState<Date | null>(null);
+  const [endDateTime, setEndDateTime] = useState<Date | null>(null);
 
   useEffect(() => {
     if (isItemStatusSuccess && itemStatus.isPresent) {

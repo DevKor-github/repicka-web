@@ -1,4 +1,4 @@
-import { css } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Container = css({
   '& .react-calendar': {
@@ -79,5 +79,18 @@ export const Container = css({
   },
   '& .react-calendar__tile--rangeBothEnds': {
     bg: 'transparent',
+  },
+});
+
+export const Icon = cva({
+  variants: {
+    direction: {
+      left: {
+        transform: 'rotate(0deg)',
+      },
+      right: {
+        transform: 'rotate(180deg)',
+      },
+    },
   },
 });
