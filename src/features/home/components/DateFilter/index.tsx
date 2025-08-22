@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 
 import * as s from './style.css';
 import { formatDate } from 'date-fns';
 import SlideIcon from '@/features/home/components/DateFilter/SlideIcon';
+import { useSearchParams } from 'react-router';
 
 type ValuePiece = Date | null;
 
@@ -14,16 +15,41 @@ interface Props {
   close: () => void;
 }
 const DateFilter = ({ itemCounts, close }: Props) => {
-  const [value, setValue] = useState<Value>([null, null]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const resetDate = () => {
-    setValue([null, null]);
-  };
+  const defaultStartDate = searchParams.get('start-date') ? new Date(searchParams.get('start-date') as string) : null;
+  const defaultEndDate = searchParams.get('end-date') ? new Date(searchParams.get('end-date') as string) : null;
+  const [value, setValue] = useState<Value>([defaultStartDate, defaultEndDate]);
 
   const startDate = value && Array.isArray(value) && value[0] ? formatDate(value[0], 'yyyy-MM-dd') : '';
   const endDate = value && Array.isArray(value) && value[1] ? formatDate(value[1], 'yyyy-MM-dd') : '';
 
   const canReset = value && Array.isArray(value) && value[0] !== null && value[1] !== null;
+
+  useEffect(() => {
+    if (!value || !Array.isArray(value)) return;
+
+    if (value[0] === null && value[1] === null) {
+      setSearchParams(prev => {
+        prev.delete('start-date');
+        prev.delete('end-date');
+        return prev;
+      });
+      return;
+    }
+
+    if (value[0] !== null && value[1] !== null) {
+      setSearchParams(prev => {
+        prev.set('start-date', formatDate(value[0] as Date, "yyyy-MM-dd'T'00:00:00"));
+        prev.set('end-date', formatDate(value[1] as Date, "yyyy-MM-dd'T'23:59:59"));
+        return prev;
+      });
+    }
+  }, [value, setSearchParams]);
+
+  const resetDate = () => {
+    setValue([null, null]);
+  };
 
   return (
     <div className={s.Container}>
