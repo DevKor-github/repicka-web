@@ -67,7 +67,7 @@ const MyEditPage = () => {
       </div>
       {showAlert && (
         <CustomAlert
-          Title="지금 그만두면 변경사항이 저장되지 않아요!"
+          title="지금 그만두면 변경사항이 저장되지 않아요!"
           subTitle="정말 그만두실 건가요?"
           onNo={onNo}
           onYes={onYes}
