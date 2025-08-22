@@ -12,20 +12,19 @@ import { getFileKey } from '@/common/utils/getFileKeys';
 type MyEditState = { data: UserInterface };
 
 const MyEditPage = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const { data } = (state ?? {}) as MyEditState;
 
   const [nickname, setNickname] = useState<string>(data.nickname);
   const [file, setFile] = useState<File>();
+  const [showAlert, setShowAlert] = useState(false);
 
   const isNicknameEdited = nickname !== data.nickname && nickname.length >= 2 && nickname.length <= 10;
   const isProfileEdited = !!file;
   const isEdited = isNicknameEdited || isProfileEdited ? 'main' : 'disabled';
 
-  const [showAlert, setShowAlert] = useState(false);
-
   const { mutate: updateUser } = usePutUser();
-  const navigate = useNavigate();
 
   const onSave = async () => {
     let profileImageUrl: string | null = data.profileImageUrl;
@@ -40,7 +39,7 @@ const MyEditPage = () => {
     updateUser({
       userData: {
         nickname,
-        profileImageUrl: profileImageUrl,
+        profileImageUrl,
         gender: data.gender,
         height: data.height,
         weight: data.weight,
