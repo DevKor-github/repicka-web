@@ -17,6 +17,7 @@ import LikedPage from './LikedListPage';
 import PostEdit from './PostEditPage';
 import ItemChatPage from './ItemChatPage';
 import Review from './ReviewPage';
+import PostPick from '@/pages/PostPick';
 
 /**
  * 새로운 페이지 추가하고 싶으면 여기에 추가하면 됩니다
@@ -83,6 +84,10 @@ const routes: RouteObject[] = [
           {
             path: 'review',
             element: <Review />,
+          },
+          {
+            path: '/post-pick/:id/:type/:method',
+            element: <PostPick />,
           },
         ],
       },
