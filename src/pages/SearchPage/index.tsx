@@ -21,7 +21,8 @@ const SearchPage = () => {
     qualities: searchParams.getAll('quality') as Quality[],
     startPrice: searchParams.get('start-price') ? Number(searchParams.get('start-price')) : undefined,
     endPrice: searchParams.get('end-price') ? Number(searchParams.get('end-price')) : undefined,
-    // date: searchParams.get('date') || undefined,
+    startDate: searchParams.get('start-date') || undefined,
+    endDate: searchParams.get('end-date') || undefined,
   };
   const { data: totalCount } = useGetItemCount(searchFilters);
 
