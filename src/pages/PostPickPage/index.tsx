@@ -1,0 +1,58 @@
+import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
+
+import * as s from './style.css';
+
+import SafeArea from '@/common/components/SafeArea';
+import Btn from '@/common/components/Button';
+import ItemCard from '@/features/home/components/ItemCard';
+import useGetItemDetail from '@/features/detail/apis/useGetItemDetail';
+import NotFoundPage from '@/pages/NotFoundPage';
+import getItemInterfaceFromItemDetail from '@/common/utils/getItemInterfaceFromItemDetail';
+import type { TradeMethods, TransactionType } from '@/libs/types/item';
+import Caution from '@/features/pick/components/Caution';
+import PriceBox from '@/features/pick/components/PriceBox';
+
+const PostPickPage = () => {
+  const navigate = useNavigate();
+  const { id, type, method } = useParams();
+  const itemId = Number(id);
+  const transactionType = type as TransactionType;
+  const tradeMethod = method as TradeMethods;
+  const { data: itemData } = useGetItemDetail(itemId);
+
+  const [negotiationPrice, setNegotiationPrice] = useState<number>(NaN);
+  const [negotiationDeposit, setNegotiationDeposit] = useState<number>(NaN);
+
+  if (itemData === undefined) return <NotFoundPage />;
+
+  return (
+    <SafeArea>
+      {/* TODO: 헤더 공용 컴포넌트 사용 */}
+      <div className={s.Wrapper}>
+        <header className={s.Header}>
+          <button className="mgc_left_fill" onClick={() => navigate(-1)} />
+          PICK 생성
+        </header>
+        <div className={s.Container}>
+          <div className={s.ItemContainer}>
+            <ItemCard data={getItemInterfaceFromItemDetail(itemData)} />
+          </div>
+          <PriceBox
+            itemInfo={itemData.itemInfo}
+            transactionType={transactionType}
+            negotiationPrice={negotiationPrice}
+            negotiationDeposit={negotiationDeposit}
+            setNegotiationPrice={setNegotiationPrice}
+            setNegotiationDeposit={setNegotiationDeposit}
+          />
+          {tradeMethod === 'PARCEL' && <Caution />}
+        </div>
+        <div className={s.SaveButtonContainer}>
+          <Btn mode="main">저장하기</Btn>
+        </div>
+      </div>
+    </SafeArea>
+  );
+};
+export default PostPickPage;
