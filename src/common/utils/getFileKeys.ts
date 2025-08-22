@@ -1,5 +1,4 @@
 import { getPresignedUrl } from '../apis/useGetPresignedUrl';
-import { s3PutImageToUrl } from '../apis/usePutPresignedUrl';
 
 // 배열인 경우
 export const getFileKeys = async (files: File[]) => {
@@ -7,9 +6,9 @@ export const getFileKeys = async (files: File[]) => {
   const presignedUrls = getUrlResult.map(result => result.presignedUrl as string);
   const fileKeys = getUrlResult.map(result => result.fileKey as string);
 
-  await Promise.all(presignedUrls.map((url, idx) => s3PutImageToUrl(files[idx], url)));
+  // await Promise.all(presignedUrls.map((url, idx) => s3PutImageToUrl(files[idx], url)));
 
-  return fileKeys;
+  return { presignedUrls, fileKeys };
 };
 
 // 배열이 아닌 경우

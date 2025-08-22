@@ -5,11 +5,17 @@ import { create } from 'zustand';
 interface Step5Store {
   title: string;
   desc: string;
-  files: File[];
+  serverFileKeys: string[]; // 서버에서 가져온 fileKey
+  localFileKeys: string[]; // 로컬 업로드해서 새로 받은 fileKey
+  file: File[];
+  presignedUrl: string[];
 
   setTitle: (title: string) => void;
   setDesc: (desc: string) => void;
-  setFiles: (files: File[]) => void;
+  setServerFileKeys: (keys: string[]) => void;
+  setLocalFileKeys: (keys: string[]) => void;
+  setFile: (file: File[]) => void;
+  setPresignedUrl: (presignedUrl: string[]) => void;
 
   isBtnValid: () => boolean;
   reset: () => void;
@@ -18,18 +24,29 @@ interface Step5Store {
 export const useStep5Store = create<Step5Store>((set, get) => ({
   title: '',
   desc: '',
-  files: [],
+  serverFileKeys: [],
+  localFileKeys: [],
+  file: [],
+  presignedUrl: [],
 
   setTitle: title => set({ title }),
   setDesc: desc => set({ desc }),
-  setFiles: files => set({ files }),
+  setServerFileKeys: keys => set({ serverFileKeys: keys }),
+  setLocalFileKeys: keys => set({ localFileKeys: keys }),
+  setFile: file => set({ file }),
+  setPresignedUrl: presignedUrl => set({ presignedUrl }),
 
   isBtnValid: () => {
-    const { title, desc, files } = get();
-    return title.trim() !== '' && desc.trim() !== '' && files.length !== 0 && files.length <= MAX_FILE_LENGTH;
+    const { title, desc, serverFileKeys, localFileKeys, file } = get();
+    return (
+      title.trim() !== '' &&
+      desc.trim() !== '' &&
+      serverFileKeys.length + localFileKeys.length > 0 &&
+      file.length <= MAX_FILE_LENGTH
+    );
   },
 
   reset: () => {
-    set({ title: '', desc: '', files: [] });
+    set({ title: '', desc: '', serverFileKeys: [], localFileKeys: [], file: [], presignedUrl: [] });
   },
 }));

@@ -1,4 +1,4 @@
-import { s3PutImageToUrl } from '@/common/apis/usePutPresignedUrl';
+import { s3PutImageToUrl } from '@/common/apis/s3PutImageToUrl';
 import client from '@/common/utils/client';
 import type { Gender, UserInterface } from '@/libs/types/user';
 import { useMutation, useQueryClient } from '@tanstack/react-query';

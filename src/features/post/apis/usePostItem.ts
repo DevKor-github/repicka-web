@@ -2,10 +2,20 @@ import client from '@/common/utils/client';
 import type { PostItemRequest, PostPayload } from '../types/post';
 import type { ItemDetailResponse } from '@/features/detail/types';
 import { useMutation } from '@tanstack/react-query';
-import { getFileKeys } from '@/common/utils/getFileKeys';
+import { s3PutImageToUrl } from '@/common/apis/s3PutImageToUrl';
 
-const postItem = async ({ data, files }: { data: PostPayload; files: File[] }) => {
-  const fileKeys = await getFileKeys(files);
+const postItem = async ({
+  data,
+  fileKeys,
+  files,
+  presignedUrls,
+}: {
+  data: PostPayload;
+  fileKeys: string[];
+  files: File[];
+  presignedUrls: string[];
+}) => {
+  await Promise.all(presignedUrls.map((url, idx) => s3PutImageToUrl(files[idx], url))); // 올릴 때
 
   const request: PostItemRequest = { ...data, images: fileKeys };
   const res = await client.post<ItemDetailResponse>('/api/v1/item', request);

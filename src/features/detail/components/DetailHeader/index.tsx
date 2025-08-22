@@ -4,12 +4,12 @@ import * as s from './style.css';
 
 import useDrawer from '@/common/hooks/useDrawer';
 import OptionDrawer from '@/features/detail/components/OptionDrawer';
+import type { ItemDetailInterface } from '../../types';
 
 interface Props {
-  itemId: number;
-  isMine: boolean;
+  state: ItemDetailInterface;
 }
-const DetailHeader = ({ itemId, isMine }: Props) => {
+const DetailHeader = ({ state }: Props) => {
   const navigate = useNavigate();
   const { open, drawerState } = useDrawer();
 
@@ -22,10 +22,10 @@ const DetailHeader = ({ itemId, isMine }: Props) => {
         <button className={`mgc_left_line ${s.BackButton}`} onClick={goBack} aria-label="Go back" />
         <div className={s.RightSide}>
           <button className={`${s.RightButton} mgc_share_3_fill`} aria-label="Share item" />
-          {isMine && <button className={`${s.RightButton} mgc_more_2_fill`} onClick={open} />}
+          {state.itemInfo.mine && <button className={`${s.RightButton} mgc_more_2_fill`} onClick={open} />}
         </div>
       </header>
-      <OptionDrawer itemId={itemId} drawerState={drawerState} />
+      <OptionDrawer drawerState={drawerState} state={state} />
     </>
   );
 };
