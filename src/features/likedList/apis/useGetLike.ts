@@ -16,7 +16,6 @@ export const useGetLike = () => {
   return useQuery({
     queryKey: ['like'],
     queryFn: getLike,
-    staleTime: 0,
     select: response => response.data,
   });
 };

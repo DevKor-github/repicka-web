@@ -4,47 +4,59 @@ import { useNavigate, useLocation } from 'react-router';
 import Btn from '@/common/components/Button';
 import { usePutUser } from '@/features/myEdit/apis/usePutUser';
 import MyEditContent from '@/features/myEdit/components/MyEditContent';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { UserInterface } from '@/libs/types/user';
 import CustomAlert from '@/common/components/CustomAlert';
+import { getFileKey } from '@/common/utils/getFileKeys';
 
 type MyEditState = { data: UserInterface };
 
 const MyEditPage = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const { data } = (state ?? {}) as MyEditState;
 
-  const [nickname, setNickname] = useState(data.nickname);
-  const [isEdited, setIsEdited] = useState<'main' | 'disabled'>('disabled');
+  const [nickname, setNickname] = useState<string>(data.nickname);
+  const [file, setFile] = useState<File>();
   const [showAlert, setShowAlert] = useState(false);
 
+  const isNicknameEdited = nickname !== data.nickname && nickname.length >= 2 && nickname.length <= 10;
+  const isProfileEdited = !!file;
+  const isEdited = isNicknameEdited || isProfileEdited ? 'main' : 'disabled';
+
   const { mutate: updateUser } = usePutUser();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (nickname !== data.nickname && nickname.length >= 2) {
-      setIsEdited('main');
-    } else {
-      setIsEdited('disabled');
+  const onSave = async () => {
+    let profileImageUrl: string | null = data.profileImageUrl;
+    let fileData: { file: File; presignedUrl: string } | undefined = undefined;
+
+    if (file) {
+      const { fileKey, presignedUrl } = await getFileKey(file);
+      profileImageUrl = fileKey;
+      fileData = { file, presignedUrl };
     }
-  }, [nickname, data.nickname]);
 
-  const onSave = () => {
-    updateUser({ nickname }, { onSuccess: () => navigate(-1) });
+    updateUser({
+      userData: {
+        nickname,
+        profileImageUrl,
+        gender: data.gender,
+        height: data.height,
+        weight: data.weight,
+      },
+      fileData,
+    });
+
+    navigate(-1);
   };
 
   const onNo = () => {
     setShowAlert(false);
   };
-
   const onYes = () => {
     navigate(-1);
   };
-
   const onShowAlert = () => {
-    console.log(1, isEdited);
-    console.log(2, showAlert);
-
     if (isEdited === 'main') setShowAlert(true);
     else navigate(-1);
   };
@@ -56,7 +68,8 @@ const MyEditPage = () => {
         <MyEditContent
           nickname={nickname}
           setNickname={setNickname}
-          isEdited={isEdited}
+          isNicknameEdited={isNicknameEdited}
+          setFile={setFile}
           profileImageUrl={data.profileImageUrl}
         />
         <div className={s.Footer}>

@@ -1,5 +1,5 @@
 import client from '@/common/utils/client';
-import type { UserInterface } from '../types';
+import type { UserInterface } from '@/libs/types/user';
 import { useQuery } from '@tanstack/react-query';
 
 export interface UserResponse {
@@ -16,7 +16,6 @@ export const useGetUser = () => {
   return useQuery({
     queryKey: ['user'],
     queryFn: getUser,
-    staleTime: 0,
     select: response => response.data,
   });
 };

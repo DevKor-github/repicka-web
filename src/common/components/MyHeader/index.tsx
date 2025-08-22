@@ -9,7 +9,7 @@ interface Props {
 const MyHeader = ({ title, onClick }: Props) => {
   return (
     <div className={s.Container}>
-      <button className={cx('mgc_left_line', s.backBtn)} onClick={onClick}></button>
+      <button className={cx('mgc_left_line', s.backBtn)} onClick={onClick} />
       <span className={s.headerText}> {title} </span>
     </div>
   );

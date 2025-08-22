@@ -2,8 +2,8 @@ import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
 import { cx } from '@styled-system/css';
 import * as s from './style.css';
-import type { UserInterface } from '../../types';
 import { Link } from 'react-router';
+import type { UserInterface } from '@/libs/types/user';
 
 interface Props {
   data: UserInterface;
@@ -15,7 +15,7 @@ const Profile = ({ data }: Props) => {
   return (
     <Link className={s.Profile} to="/my-edit" state={{ data: data }}>
       <div className={s.UserInfo}>
-        <UserProfileImage nickname={data.nickname} profileImageUrl={data.profileImageUrl} />
+        <UserProfileImage nickname={data.nickname} src={data.profileImageUrl} />
         <div className={s.Verifiy}>
           {isKorean && <SchoolVerifiedTag />}
           <span>{data.nickname}</span>
