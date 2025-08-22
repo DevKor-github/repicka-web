@@ -5,7 +5,7 @@ import { motion, type PanInfo } from 'motion/react';
 import * as s from './style.css';
 
 interface DrawerBodyProps extends PropsWithChildren {
-  title: string;
+  title?: string;
   description?: string;
   close: () => void;
 }
@@ -13,6 +13,8 @@ interface DrawerBodyProps extends PropsWithChildren {
 const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
+
+  const hasHeader = title !== undefined;
 
   useEffect(() => {
     // UI 페인팅 이후 계산
@@ -47,22 +49,24 @@ const DrawerBody = ({ children, title, description, close }: DrawerBodyProps) =>
       transition={{ duration: 0.35 }}
       dragElastic={0.4}
       variants={{
-        opened: { top: `calc(100dvh - ${height}px)` },
-        closed: { top: '100dvh' },
+        opened: { top: `calc(100% - ${height}px)` },
+        closed: { top: '100%' },
       }}
       initial={'closed'}
       animate={'opened'}
       exit={'closed'}
       onDragEnd={onDragEnd}
     >
-      <div ref={contentRef} className={s.Wrapper}>
-        <header className={s.Header}>
-          <div className={s.HeaderTitle}>
-            <span className={s.Title}>{title}</span>
-            {description && <span className={s.Description}>{description}</span>}
-          </div>
-          <button className={cx('mgc_close_line', s.CloseButton)} onClick={close} />
-        </header>
+      <div ref={contentRef} className={s.Wrapper({ hasHeader })}>
+        {hasHeader && (
+          <header className={s.Header}>
+            <div className={s.HeaderTitle}>
+              <span className={s.Title}>{title}</span>
+              {description && <span className={s.Description}>{description}</span>}
+            </div>
+            <button className={cx('mgc_close_line', s.CloseButton)} onClick={close} />
+          </header>
+        )}
         <div className={s.Content}>{children}</div>
       </div>
     </motion.div>
