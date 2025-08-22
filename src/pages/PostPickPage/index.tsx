@@ -13,6 +13,7 @@ import type { TradeMethods, TransactionType } from '@/libs/types/item';
 import Caution from '@/features/pick/components/Caution';
 import PriceBox from '@/features/pick/components/PriceBox';
 import { useGetItemStatus } from '@/features/detail/apis/useGetItemStatus';
+import PlaceBox from '@/features/pick/components/PlaceBox';
 
 const PostPickPage = () => {
   const navigate = useNavigate();
@@ -20,17 +21,27 @@ const PostPickPage = () => {
   const itemId = Number(id);
   const transactionType = type as TransactionType;
   const tradeMethod = method as TradeMethods;
-  const { data: itemData, isLoading: isItemDetailLoading } = useGetItemDetail(itemId);
+  const { data: itemData, isLoading: isItemDetailLoading, isSuccess: isItemDetailSuccess } = useGetItemDetail(itemId);
   const { data: itemStatus, isLoading: isItemStatusLoading, isSuccess: isItemStatusSuccess } = useGetItemStatus(itemId);
 
   const [negotiationPrice, setNegotiationPrice] = useState<number>(NaN);
   const [negotiationDeposit, setNegotiationDeposit] = useState<number>(NaN);
+  const [startLocation, setStartLocation] = useState<string>('');
+  const [endLocation, setEndLocation] = useState<string>('');
 
   useEffect(() => {
     if (isItemStatusSuccess && itemStatus.isPresent) {
       navigate(-1);
     }
   }, [isItemStatusSuccess, itemStatus, navigate]);
+
+  useEffect(() => {
+    // 초기값 설정
+    if (isItemDetailSuccess) {
+      setStartLocation(itemData.itemInfo.location);
+      setEndLocation(itemData.itemInfo.location);
+    }
+  }, [isItemDetailSuccess, itemData?.itemInfo]);
 
   if (isItemDetailLoading || isItemStatusLoading) return null;
 
@@ -48,6 +59,15 @@ const PostPickPage = () => {
           <div className={s.ItemContainer}>
             <ItemCard data={getItemInterfaceFromItemDetail(itemData)} />
           </div>
+          {tradeMethod === 'DIRECT' && (
+            <PlaceBox
+              transactionType={transactionType}
+              startLocation={startLocation}
+              endLocation={endLocation}
+              setStartLocation={setStartLocation}
+              setEndLocation={setEndLocation}
+            />
+          )}
           <PriceBox
             itemInfo={itemData.itemInfo}
             transactionType={transactionType}
