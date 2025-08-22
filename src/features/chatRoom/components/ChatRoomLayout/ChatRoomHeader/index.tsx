@@ -21,8 +21,10 @@ export const ChatRoomHeader = ({ data }: Props) => {
         <button className={`mgc_left_fill ${s.BackBtn}`} onClick={goBack}></button>
         <div className={s.UserInfo}>
           <UserProfileImage nickname={data.opponentNickname} profileImageUrl={data.opponentProfileImageUrl} />
-          <span>{nickname}</span>
-          {isOpponentKorean && <SchoolVerifiedTag />}
+          <div className={s.Verifiy}>
+            {isOpponentKorean && <SchoolVerifiedTag />}
+            <span>{nickname}</span>
+          </div>
         </div>
       </div>
     </header>

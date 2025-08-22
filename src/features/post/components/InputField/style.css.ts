@@ -22,11 +22,23 @@ export const Container = cva({
         textAlign: 'start',
       },
     },
+    isEdited: {
+      main: {
+        border: '1px solid var(--systemGray3, #48484A)',
+      },
+      disabled: {
+        border: 'none',
+      },
+    },
   },
 });
 
 export const ContainerWithPlaceholder = css({
   _placeholder: {
     color: '54',
+  },
+  '&:focus': {
+    outline: 'none',
+    boxShadow: 'none',
   },
 });

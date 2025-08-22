@@ -50,7 +50,7 @@ const OptionDrawer = ({ itemId, drawerState }: Props) => {
           title="삭제한 글은 다시 볼 수 없어요!"
           subTitle="정말 글을 삭제하실 건가요?"
           yesBtn="네, 삭제할게요"
-          onUnshow={() => setShowDeleteAlert(false)}
+          onNo={() => setShowDeleteAlert(false)}
           onYes={deleteItem}
         />
       )}

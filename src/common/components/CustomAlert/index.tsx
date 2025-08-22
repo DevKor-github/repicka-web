@@ -3,14 +3,14 @@ import * as s from './style.css';
 import Btn from '@/common/components/Button';
 
 interface Props {
-  onUnshow: () => void;
+  onNo: () => void;
   onYes: () => void;
   title: string;
   subTitle: string;
   yesBtn: string;
 }
 
-const CustomAlert = ({ onUnshow, onYes, title, subTitle, yesBtn }: Props) => {
+const CustomAlert = ({ onNo, onYes, title, subTitle, yesBtn }: Props) => {
   return (
     <div className={s.Filter}>
       <div className={s.Container}>
@@ -19,7 +19,7 @@ const CustomAlert = ({ onUnshow, onYes, title, subTitle, yesBtn }: Props) => {
           <p>{subTitle}</p>
         </div>
         <div className={s.Btn}>
-          <Btn onClick={onUnshow} style={{ flex: '1' }}>
+          <Btn onClick={onNo} style={{ flex: '1' }}>
             아니오
           </Btn>
           <Btn mode="main" onClick={onYes} style={{ width: '13.125rem' }}>

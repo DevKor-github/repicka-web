@@ -11,6 +11,9 @@ import ChatPage from './ChatPage';
 import ChatRoomPage from './ChatRoomPage';
 import AuthGuard from '@/common/components/AuthGuard';
 import SearchPage from '@/pages/SearchPage';
+import MyPage from './MyPage';
+import MyEditPage from './MyEditPage';
+import LikedPage from './LikedListPage';
 
 /**
  * 새로운 페이지 추가하고 싶으면 여기에 추가하면 됩니다
@@ -53,6 +56,18 @@ const routes: RouteObject[] = [
           {
             path: '/chatroom/:chatRoomId',
             element: <ChatRoomPage />,
+          },
+          {
+            path: '/my',
+            element: <MyPage />,
+          },
+          {
+            path: '/my-edit',
+            element: <MyEditPage />,
+          },
+          {
+            path: 'liked',
+            element: <LikedPage />,
           },
         ],
       },

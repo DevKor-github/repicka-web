@@ -5,3 +5,7 @@ export interface UserInterface {
   profileImageUrl: string;
   isKoreanUnivVerified: boolean;
 }
+
+export const GENDER_ARRAY = ['MALE', 'FEMALE'] as const;
+
+export type Gender = (typeof GENDER_ARRAY)[number];

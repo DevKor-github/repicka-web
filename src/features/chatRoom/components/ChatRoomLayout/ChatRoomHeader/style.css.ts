@@ -16,6 +16,11 @@ export const UserInfo = css({
   alignItems: 'center',
 });
 
+export const Verifiy = css({
+  display: 'flex',
+  flexDir: 'column',
+});
+
 export const BackBtn = css({
   fontSize: '1.625rem',
   cursor: 'pointer',
