@@ -35,3 +35,28 @@ export const PickButtonContainer = css({
   gap: '0.87rem',
   height: '3.125rem',
 });
+
+export const AlreadyPickedButton = css({
+  width: 'full',
+  height: '3.125rem',
+  bgColor: 'main',
+  display: 'flex',
+  flexDir: 'column',
+  gap: '0.25rem',
+  alignItems: 'center',
+  rounded: '0.375rem',
+  justifyContent: 'center',
+  '& p': {
+    color: '80',
+    fontSize: '0.75rem',
+    lineHeight: 'normal',
+    letterSpacing: '-0.03rem',
+  },
+  '& div': {
+    color: 'white',
+    fontSize: '1rem',
+    lineHeight: 'normal',
+    fontWeight: 600,
+    letterSpacing: '-0.04em',
+  },
+});

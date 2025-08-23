@@ -1,5 +1,6 @@
-import client from '@/common/utils/client';
 import { useMutation } from '@tanstack/react-query';
+import client from '@/common/utils/client';
+import type { PostAppointmentResponse } from '@/features/pick/apis/usePostSaleAppointment';
 
 interface PostRentalAppointmentRequest {
   itemId: number;
@@ -11,8 +12,8 @@ interface PostRentalAppointmentRequest {
   deposit: number;
 }
 const postRentalAppointment = async (data: PostRentalAppointmentRequest) => {
-  const response = await client.post('/api/v1/appointment/rental', data);
-  return response.data;
+  const response = await client.post<PostAppointmentResponse>('/api/v1/appointment/rental', data);
+  return response.data.data;
 };
 export const usePostRentalAppointment = () => {
   return useMutation({

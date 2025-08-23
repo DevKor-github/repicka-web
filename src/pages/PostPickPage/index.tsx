@@ -56,24 +56,38 @@ const PostPickPage = () => {
     if (!submitValidation) return;
 
     if (transactionType === 'RENTAL') {
-      postRentalAppointment({
-        itemId,
-        startDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
-        endDate: formatDate(endDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
-        startLocation,
-        endLocation,
-        price,
-        deposit,
-      });
+      postRentalAppointment(
+        {
+          itemId,
+          startDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+          endDate: formatDate(endDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+          startLocation,
+          endLocation,
+          price,
+          deposit,
+        },
+        {
+          onSuccess: response => {
+            navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
+          },
+        },
+      );
       return;
     }
 
-    postSaleAppointment({
-      itemId,
-      startDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
-      startLocation,
-      price,
-    });
+    postSaleAppointment(
+      {
+        itemId,
+        startDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+        startLocation,
+        price,
+      },
+      {
+        onSuccess: response => {
+          navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
+        },
+      },
+    );
   };
 
   useEffect(() => {

@@ -60,7 +60,13 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
       {!mine && isItemStatusSuccess && itemStatusData.isPresent ? (
         <div className={s.PickButtonContainer}>
           {/* TODO: 이미 있는 픽 표시 */}
-          <PickButton itemId={itemId} type={itemStatusData.appointment.type} index={0} itemInfo={itemInfo} />
+          <button
+            className={s.AlreadyPickedButton}
+            onClick={() => navigate(`/pick-detail/${itemStatusData.appointment.appointmentId}`)}
+          >
+            <p>진행 중인 PICK이 있어요</p>
+            <div>PICK 바로 가기</div>
+          </button>
         </div>
       ) : !mine ? (
         <div className={s.PickButtonContainer}>

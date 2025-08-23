@@ -1,6 +1,29 @@
 import client from '@/common/utils/client';
+import type { TransactionType } from '@/libs/types/item';
 import { useMutation } from '@tanstack/react-query';
 
+export interface PostAppointmentResponse {
+  message: string;
+  data: {
+    currentAppointment: {
+      isPresent: boolean;
+      chatRoomId: number | null;
+      appointment: {
+        appointmentId: number;
+        itemId: number | null;
+        ownerId: number | null;
+        borrowerId: number | null;
+        type: TransactionType;
+        rentalDate: string;
+        returnDate: string;
+        rentalLocation: string;
+        returnLocation: string;
+        price: number;
+        deposit: number;
+      };
+    };
+  };
+}
 interface PostSaleAppointmentRequest {
   itemId: number;
   startDate: string;
@@ -9,8 +32,8 @@ interface PostSaleAppointmentRequest {
 }
 
 const postSaleAppointment = async (data: PostSaleAppointmentRequest) => {
-  const response = await client.post('/api/v1/appointment/sale', data);
-  return response.data;
+  const response = await client.post<PostAppointmentResponse>('/api/v1/appointment/sale', data);
+  return response.data.data;
 };
 
 export const usePostSaleAppointment = () => {
