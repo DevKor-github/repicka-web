@@ -3,7 +3,8 @@ import * as s from './style.css';
 import Btn from '@/common/components/Button';
 
 interface Props {
-  onNo: () => void;
+  onUnshow?: () => void;
+  onNo?: () => void;
   onYes: () => void;
   title: string;
   subTitle: string;

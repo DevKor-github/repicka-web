@@ -11,6 +11,8 @@ import useDrawer from '@/common/hooks/useDrawer';
 import ChatDrawer from '../ChatDrawer';
 import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
+import { usePatchExit, type ExitResponse } from '../../api/usePatchExit';
+import type { AxiosError } from 'axios';
 
 export interface Props {
   data: ChatListInterface;
@@ -18,14 +20,17 @@ export interface Props {
 
 const ChatList = ({ data }: Props) => {
   const { open, drawerState, close } = useDrawer();
-  const [showLeaveAlert, setShowLeaveAlert] = useState(false);
+  const { mutate: exitChatRoom } = usePatchExit();
+  const [showExitAlert, setShowExitAlert] = useState(false);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
 
   const onUnshowAlert = () => {
-    setShowLeaveAlert(false);
+    if (showExitAlert) setShowExitAlert(false);
+    if (showErrorAlert) setShowErrorAlert(false);
   };
 
-  const onLeave = () => {
-    setShowLeaveAlert(true);
+  const onExit = () => {
+    setShowExitAlert(true);
   };
 
   const onReport = () => {
@@ -37,17 +42,24 @@ const ChatList = ({ data }: Props) => {
     close();
   };
 
-  const leaveChat = () => {
-    console.log('채팅방 퇴장');
-    setShowLeaveAlert(false);
+  const exitChat = () => {
+    setShowExitAlert(false);
     close();
+
+    exitChatRoom(data.chatRoomId, {
+      onError: (err: AxiosError<ExitResponse>) => {
+        const code = err.response?.data?.code;
+
+        // 이미 진행 중인 약속
+        if (code === 'IN_PROGRESS_APPOINTMENT_EXIST') {
+          setShowErrorAlert(true);
+          return;
+        }
+      },
+    });
   };
 
-  const message = data.mostRecentChatIsPick
-    ? `${data.mostRecentChatNickname}님께서 설정하신 대여 정보가 도착했어요`
-    : data.mostRecentChatContent
-      ? data.mostRecentChatContent
-      : '대화를 시작해 보세요!';
+  const message = data.mostRecentChatContent ? data.mostRecentChatContent : '대화를 시작해 보세요!';
 
   const bind = useLongPress(() => {
     open();
@@ -72,15 +84,26 @@ const ChatList = ({ data }: Props) => {
         </div>
       </Link>
       <Drawer drawerState={drawerState} title={data.opponentNickname}>
-        <ChatDrawer onLeave={onLeave} onRead={onRead} onReport={onReport} />
+        <ChatDrawer onExit={onExit} onRead={onRead} onReport={onReport} />
       </Drawer>
-      {showLeaveAlert && (
+      {showExitAlert && (
         <CustomAlert
-          title="대화방을 나가면 대화 내용이 모두 삭제돼요."
+          title={'채팅방을 나가면 대화 내용과\n약속이 모두 취소돼요.'}
           subTitle="정말 퇴장하실 건가요?"
           yesBtn="네, 퇴장할래요"
           onNo={onUnshowAlert}
-          onYes={leaveChat}
+          onYes={exitChat}
+        />
+      )}
+      {showErrorAlert && (
+        <CustomAlert
+          title="앗, 아직 대여가 진행 중인 상품이에요!"
+          subTitle={'착용 후, 판매자에게\n상품을 돌려주어야 퇴장이 가능해요.'}
+          yesBtn="닫기"
+          onYes={() => {
+            setShowErrorAlert(false);
+            close();
+          }}
         />
       )}
     </>
