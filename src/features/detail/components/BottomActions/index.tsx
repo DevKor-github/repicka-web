@@ -50,7 +50,6 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
     });
   };
 
-  // TODO: PICK 구현 후 하단 바텀 액션 보여주는 조건 분기 테스트
   return (
     <div className={s.Container}>
       <Btn className={s.ChatButton({ isMine: mine })} onClick={handleChatClick}>
@@ -59,7 +58,6 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
       </Btn>
       {!mine && isItemStatusSuccess && itemStatusData.isPresent ? (
         <div className={s.PickButtonContainer}>
-          {/* TODO: 이미 있는 픽 표시 */}
           <button
             className={s.AlreadyPickedButton}
             onClick={() => navigate(`/pick-detail/${itemStatusData.appointment.appointmentId}`)}
