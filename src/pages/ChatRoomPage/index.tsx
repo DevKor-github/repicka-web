@@ -9,6 +9,7 @@ import * as s from './style.css';
 import SafeArea from '@/common/components/SafeArea';
 import Chip from '@/common/components/Chip';
 import { getChatRoom } from '@/features/chatRoom/api/useGetChatRoom';
+import ItemInfo from '@/features/chatRoom/components/ItemInfo';
 
 const ChatRoomPage = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const ChatRoomPage = () => {
     <SafeArea>
       <div className={s.entireLayout}>
         <ChatRoomHeader data={data.chatRoom} />
+        <ItemInfo data={data.item} />
         <div className={s.innerPage}>
           <ChatRoomContent data={data.chatRoom} />
         </div>
