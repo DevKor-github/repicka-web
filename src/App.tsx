@@ -4,7 +4,7 @@ import { useRoutes } from 'react-router';
 import routes from '@/pages/routes';
 import SocketProvider from './common/components/SocketProvider';
 
-export const queryClient = new QueryClient({
+const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false, // API 호출 실패 시 재시도 여부
