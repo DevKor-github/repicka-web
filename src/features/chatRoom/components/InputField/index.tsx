@@ -11,14 +11,13 @@ export const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
   const send = () => {
     if (!message.trim()) return;
 
-    stompClient.send(
-      '/pub/chat',
-      {},
-      JSON.stringify({
+    stompClient.publish({
+      destination: '/pub/chat',
+      body: JSON.stringify({
         chatRoomId,
         content: message,
       }),
-    );
+    });
 
     setMessage('');
   };

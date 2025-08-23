@@ -5,9 +5,6 @@ export interface ChatListInterface {
   opponentNickname: string;
   opponentProfileImageUrl: string | null;
   isOpponentKorean: boolean;
-  isOpponentOnline: boolean | null;
-  opponentLastEnterAt: string | null;
-  isFinished: boolean;
   mostRecentChatContent: string | null;
   mostRecentChatNickname: string | null;
   mostRecentChatIsPick: boolean | null;
@@ -16,11 +13,6 @@ export interface ChatListInterface {
 }
 
 export interface SubChatListInterface {
-  chatRoomId: number;
-  chatId: string;
-  userId: number;
-  content: string | null;
-  isPick: boolean;
-  isRead: boolean;
-  createdAt: string;
+  type: 'CHAT';
+  message: ChatListInterface;
 }
