@@ -21,6 +21,7 @@ export const Thumbnail = css({
   aspectRatio: 1 / 1,
   bg: 'main',
   borderRadius: '0.78125rem',
+  objectFit: 'cover',
 });
 
 export const Info = css({
