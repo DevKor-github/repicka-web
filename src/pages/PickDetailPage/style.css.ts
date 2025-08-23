@@ -1,5 +1,11 @@
 import { css } from '@styled-system/css';
 
+export const Wrapper = css({
+  display: 'flex',
+  flexDir: 'column',
+  height: 'full',
+});
+
 export const Container = css({
   display: 'flex',
   flexDir: 'column',
@@ -7,7 +13,7 @@ export const Container = css({
   justifyContent: 'center',
   gap: '1.875rem',
   px: '1rem',
-  height: 'full',
+  flex: '1 0 0',
 });
 
 export const Contents = css({

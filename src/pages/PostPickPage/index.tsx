@@ -18,6 +18,7 @@ import DateTimeBox from '@/features/pick/components/DateTimeBox';
 import { usePostRentalAppointment } from '@/features/pick/apis/usePostRentalAppointment';
 import { usePostSaleAppointment } from '@/features/pick/apis/usePostSaleAppointment';
 import { formatDate, isBefore } from 'date-fns';
+import CustomHeader from '@/common/components/CustomHeader';
 
 const PostPickPage = () => {
   const navigate = useNavigate();
@@ -132,12 +133,8 @@ const PostPickPage = () => {
 
   return (
     <SafeArea>
-      {/* TODO: 헤더 공용 컴포넌트 사용 */}
       <div className={s.Wrapper}>
-        <header className={s.Header}>
-          <button className="mgc_left_fill" onClick={() => navigate(-1)} />
-          PICK 생성
-        </header>
+        <CustomHeader title="PICK 생성" onClick={() => navigate(-1)} />
         <div className={s.Container}>
           <div className={s.ItemContainer}>
             <ItemCard data={getItemInterfaceFromItemDetail(itemData)} />
