@@ -17,7 +17,7 @@ import PlaceBox from '@/features/pick/components/PlaceBox';
 import DateTimeBox from '@/features/pick/components/DateTimeBox';
 import { usePostRentalAppointment } from '@/features/pick/apis/usePostRentalAppointment';
 import { usePostSaleAppointment } from '@/features/pick/apis/usePostSaleAppointment';
-import { formatDate } from 'date-fns';
+import { formatDate, isBefore } from 'date-fns';
 
 const PostPickPage = () => {
   const navigate = useNavigate();
@@ -56,6 +56,11 @@ const PostPickPage = () => {
     if (!submitValidation) return;
 
     if (transactionType === 'RENTAL') {
+      if (isBefore(endDateTime as Date, startDateTime as Date)) {
+        alert('대여 일시는 반납 일시보다 이전이어야 합니다.');
+        return;
+      }
+
       postRentalAppointment(
         {
           itemId,
