@@ -12,6 +12,7 @@ const MultilineInputfield = (props: TextareaHTMLAttributes<HTMLTextAreaElement>)
         value={props.value}
         placeholder={props.placeholder}
         className={s.InputField}
+        maxRows={4}
       />
       <div className={s.MaxLength}>
         ({typeof props.value === 'string' ? props.value.length : 0}/{props.maxLength})

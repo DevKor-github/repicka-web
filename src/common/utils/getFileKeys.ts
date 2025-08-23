@@ -6,8 +6,6 @@ export const getFileKeys = async (files: File[]) => {
   const presignedUrls = getUrlResult.map(result => result.presignedUrl as string);
   const fileKeys = getUrlResult.map(result => result.fileKey as string);
 
-  // await Promise.all(presignedUrls.map((url, idx) => s3PutImageToUrl(files[idx], url)));
-
   return { presignedUrls, fileKeys };
 };
 
