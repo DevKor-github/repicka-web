@@ -1,8 +1,3 @@
-// 만약 isEdit라면
-// state 받아서 store에 넣어 주기
-// store에서 edit 초기 상태 따로 만들기
-// 근데 이제 상품을 수정할 때에는 초기 상태가 이미 정해져 있음...
-
 import Header from './header';
 import Navigator from './navigator';
 import Step1 from '@/features/post/components/StepFunnel/Step1';
