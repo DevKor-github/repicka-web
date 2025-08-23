@@ -62,7 +62,13 @@ export const ChatRoomContent = ({ data }: Props) => {
         <Pagination<ChatInterface>
           items={messages}
           render={(message, index) => (
-            <ChatMessageContents chat={message} index={index} messages={messages} myUserId={myUserId} />
+            <ChatMessageContents
+              chat={message}
+              index={index}
+              messages={messages}
+              myUserId={myUserId}
+              nickname={data.opponentNickname}
+            />
           )}
           hasNextPage={hasNextPage}
           isFetchingNextPage={isFetchingNextPage}

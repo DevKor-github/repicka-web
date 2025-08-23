@@ -1,11 +1,17 @@
 import type { SubChatListInterface } from '@/features/chatList/types';
 import type { SubChatRoomInterface } from '@/features/chatRoom/types';
-import { Stomp, type Frame, type IFrame, type StompSubscription } from '@stomp/stompjs';
+import { Client } from '@stomp/stompjs';
+import type { IFrame, StompSubscription } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
 const wsUrl = import.meta.env.VITE_WS_URL || '';
-const socket = new SockJS(wsUrl);
-const stompClient = Stomp.over(socket);
+
+/** STOMP Client 초기화 */
+const stompClient = new Client({
+  webSocketFactory: () => new SockJS(wsUrl),
+  reconnectDelay: 5000, // 자동 재연결
+  debug: str => console.log('[STOMP]', str),
+});
 
 // --------- ChatRoom per-room subscriptions ---------
 const subChatRooms = new Map<number, StompSubscription>();
@@ -15,120 +21,93 @@ export const subChatRoomSocket = (chatRoomId: number, callback: (data: SubChatRo
 
   // 중복 구독 방지
   const prev = subChatRooms.get(chatRoomId);
-  prev?.unsubscribe();
+  if (prev) {
+    prev.unsubscribe();
+    subChatRooms.delete(chatRoomId);
+    console.log(`♻️ 기존 ChatRoom ${chatRoomId} 구독 해제 후 재구독`);
+  }
 
   const sub = stompClient.subscribe(`/sub/chatroom/${chatRoomId}`, message => {
     const data = JSON.parse(message.body) as SubChatRoomInterface;
+    console.log(data);
+    console.log(1);
     callback(data);
   });
 
   subChatRooms.set(chatRoomId, sub);
+  console.log(`📬 ChatRoom ${chatRoomId} 구독 시작`);
 
   return () => {
     sub.unsubscribe();
     subChatRooms.delete(chatRoomId);
-    console.log('언마운트된 채팅방 구독 해제');
+    console.log(`📪 ChatRoom ${chatRoomId} 구독 해제`);
   };
 };
 
 // --------- ChatList global subscription (single) ---------
-let chatListSub: StompSubscription | null = null;
-const chatListListeners = new Set<(data: SubChatListInterface) => void>();
+let subChatList: StompSubscription | null = null;
 
-/** 내부용: 실제 STOMP 구독 시작 (이미 있으면 스킵) */
-const startChatListSubscription = () => {
-  if (!stompClient.connected || chatListSub) return;
+export const subChatListSocket = (callback: (data: SubChatListInterface) => void) => {
+  if (!stompClient.connected) return;
 
-  chatListSub = stompClient.subscribe('/user/sub', message => {
+  // 중복 구독 방지
+  subChatList?.unsubscribe();
+
+  console.log(`♻️ 기존 ChatList 구독 해제 후 재구독`);
+
+  subChatList = stompClient.subscribe('/user/sub', message => {
     const data = JSON.parse(message.body) as SubChatListInterface;
-    chatListListeners.forEach(cb => cb(data));
+    console.log(data);
+    callback(data);
   });
 
-  console.log('📬 ChatList 구독 시작');
-};
-
-/** 내부용: 구독 해제 */
-const stopChatListSubscription = () => {
-  chatListSub?.unsubscribe();
-  chatListSub = null;
-  console.log('📪 ChatList 구독 해제');
-};
-
-/**
- * 외부 API: ChatList 스트림 리스너 등록
- * - 소켓이 이미 연결되어 있으면 즉시 구독 시작
- * - 연결되기 전이면 onConnect에서 자동 시작
- * - 반환된 함수 호출하면 해당 리스너만 제거
- */
-export const subChatListSocket = (callback: (data: SubChatListInterface) => void) => {
-  chatListListeners.add(callback);
-  // 연결돼 있으면 바로 보장
-  startChatListSubscription();
+  console.log(`📬 ChatList 구독 시작`);
 
   return () => {
-    chatListListeners.delete(callback);
-    // 더 이상 리스너가 없으면 구독도 정리 (메모리/트래픽 절약)
-    if (chatListListeners.size === 0) {
-      stopChatListSubscription();
-    }
+    subChatList?.unsubscribe();
+    subChatList = null;
+    console.log(`📪 ChatList 구독 해제`);
   };
 };
 
 // --------- Connect / Disconnect ----------
 export const connectSocket = () => {
   return new Promise((resolve, reject) => {
-    if (stompClient.connected) {
+    if (stompClient.active) {
+      console.log('이미 연결 활성화됨');
       resolve(true);
       return;
     }
 
-    // 연결 성공 시점에 글로벌 ChatList 구독 보장
-    // (재연결 시에도 자동 재구독)
-    stompClient.onConnect = _frame => {
-      console.log('WebSocket onConnect');
-      startChatListSubscription(); // 여기서 자동 구독
+    stompClient.onConnect = (_frame: IFrame) => {
+      console.log('✅ STOMP Connected');
       resolve(true);
     };
 
     stompClient.onStompError = frame => {
-      console.error('STOMP Error:', frame);
+      console.error('❌ STOMP Error:', frame);
+      reject(frame);
     };
 
-    stompClient.connect(
-      {},
-      // 구버전 콜백 (onConnect가 이미 있으므로 여기선 noop 가능)
-      (_frame: IFrame) => {},
-      (error: Frame | CloseEvent) => {
-        console.error('WebSocket 연결 실패', error);
-        reject(error);
-      },
-    );
+    stompClient.onWebSocketClose = event => {
+      console.warn('💥 WebSocket Closed', event);
+      subChatRooms.forEach(sub => sub.unsubscribe());
+      subChatRooms.clear();
+    };
+
+    stompClient.activate(); // 연결 시작
   });
 };
 
 export const disconnectSocket = () => {
-  if (stompClient && stompClient.connected) {
-    // 끊기 전에 글로벌 구독 해제
-    stopChatListSubscription();
-
-    // 룸 구독들도 정리
+  if (stompClient.active) {
     subChatRooms.forEach(sub => sub.unsubscribe());
     subChatRooms.clear();
 
-    stompClient.disconnect(() => {
-      console.log('🛑 WebSocket 연결 해제 완료');
+    stompClient.deactivate().then(() => {
+      console.log('🛑 STOMP Disconnected');
     });
   }
-};
-
-// 연결 끊김 이벤트 (서버/네트워크 사유 등)
-stompClient.onWebSocketClose = (event: CloseEvent) => {
-  console.warn('💥 WebSocket 연결 끊김:', event);
-
-  // 안전: 소켓이 비정상 종료되었을 때도 구독 핸들 정리
-  stopChatListSubscription();
-  subChatRooms.forEach(sub => sub.unsubscribe());
-  subChatRooms.clear();
 };
 
 export { stompClient };

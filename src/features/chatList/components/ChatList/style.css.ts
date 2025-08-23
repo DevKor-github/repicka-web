@@ -65,6 +65,7 @@ export const MessageInfo = css({
   alignItems: 'center',
   overflow: 'hidden',
   justifyContent: 'space-between',
+  gap: '0.375rem',
 });
 
 export const Message = css({

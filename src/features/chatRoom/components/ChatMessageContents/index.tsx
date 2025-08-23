@@ -12,12 +12,14 @@ interface Props {
   index: number;
   messages: ChatInterface[];
   myUserId: number;
+  nickname: string;
 }
 
 const ChatMessageContents = ({ chat, index, messages, myUserId }: Props) => {
   const time = parseTime(chat.createdAt);
   const date = parseDate(chat.createdAt);
   const isMine = chat.userId === myUserId;
+  const isNotification = chat.isNotification;
 
   const prevChat = messages[index - 1];
   const nextChat = messages[index + 1];
@@ -37,9 +39,10 @@ const ChatMessageContents = ({ chat, index, messages, myUserId }: Props) => {
   return (
     <React.Fragment key={chat.chatId}>
       {isNewDate && <div className={s.Date({ isFirst })}>{date}</div>}
-
-      {chat.isPick ? (
-        <PickChat marginTop={marginTop} isMine={isMine} />
+      {isNotification ? (
+        <div className={s.Notification}>{chat.content}</div>
+      ) : chat.isPick ? (
+        <PickChat marginTop={marginTop} isMine={isMine} children={chat.content} />
       ) : isMine ? (
         <MyChat marginTop={marginTop} time={showTime ? time : undefined}>
           {chat.content}

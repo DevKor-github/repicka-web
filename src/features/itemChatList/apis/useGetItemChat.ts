@@ -1,6 +1,6 @@
 import client from '@/common/utils/client';
+import type { ChatListInterface } from '@/features/chatList/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import type { ChatListInterface } from '../types';
 
 export interface GetChatListRequest {
   pageSize: number;
@@ -23,20 +23,23 @@ interface PageParam {
   cursorLastChatAt?: string | null;
 }
 
-const getChatList = async (params: GetChatListRequest) => {
-  const res = await client.get<ChatListResponse>('/api/v1/chatroom', {
-    params,
+const getItemChatList = async ({ params, itemId }: { params: GetChatListRequest; itemId: number }) => {
+  const res = await client.get<ChatListResponse>(`/api/v1/chatroom`, {
+    params: {
+      itemId,
+      ...params,
+    },
   });
 
   return res.data;
 };
 
-const useGetChatList = (params: GetChatListRequest) => {
+const useGetItemChatList = ({ params, itemId }: { params: GetChatListRequest; itemId: number }) => {
   const initialPageParam: PageParam = {};
 
   return useInfiniteQuery({
-    queryKey: ['chat-list', params],
-    queryFn: ({ pageParam }) => getChatList({ ...params, ...pageParam }),
+    queryKey: ['item-chat', params, itemId],
+    queryFn: ({ pageParam }) => getItemChatList({ itemId: itemId, params: { ...params, ...pageParam } }),
     getNextPageParam: lastPage =>
       lastPage.data.hasNext
         ? {
@@ -50,4 +53,4 @@ const useGetChatList = (params: GetChatListRequest) => {
   });
 };
 
-export default useGetChatList;
+export default useGetItemChatList;
