@@ -20,14 +20,22 @@ const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSele
 
   const isTimeButtonActive = dateTime !== null;
 
-  const handleDateDrawerNext = () => {
-    dateDrawerClose();
-    timeDrawerOpen();
+  const handleTimeDrawerOpen = () => {
+    if (isTimeButtonActive) {
+      timeDrawerOpen();
+      return;
+    }
+
+    dateDrawerOpen();
   };
 
   const handleTimeDrawerPrev = () => {
     timeDrawerClose();
     dateDrawerOpen();
+  };
+  const handleDateDrawerNext = () => {
+    dateDrawerClose();
+    timeDrawerOpen();
   };
 
   return (
@@ -35,19 +43,22 @@ const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSele
       <div className={s.ButtonContainer}>
         <label className={s.Label}>{label}</label>
         <div className={s.ButtonWrapper}>
-          <button className={s.ButtonItem()} onClick={dateDrawerOpen}>
-            <p>{dateTime ? formatDate(dateTime, 'yy.MM.dd') : ''}</p>
-            <span className="mgc_calendar_fill" />
-          </button>
-          {canSelectTime && (
-            <button
-              className={s.ButtonItem({ isActive: isTimeButtonActive })}
-              onClick={() => {
-                if (isTimeButtonActive) timeDrawerOpen();
-              }}
-            >
-              <p>{dateTime ? formatDate(dateTime, 'HH:mm') : ''}</p>
-              <span className="mgc_alarm_1_fill" />
+          {canSelectTime ? (
+            <div className={s.ButtonItem({ dateOnly: false })}>
+              <button onClick={dateDrawerOpen}>
+                <p>{dateTime ? formatDate(dateTime, 'yy.MM.dd') : ''}</p>
+                <span className="mgc_calendar_fill" />
+              </button>
+              <div />
+              <button onClick={handleTimeDrawerOpen}>
+                <p>{dateTime ? formatDate(dateTime, 'HH:mm') : ''}</p>
+                <span className="mgc_alarm_1_fill" />
+              </button>
+            </div>
+          ) : (
+            <button className={s.ButtonItem({ dateOnly: true })} onClick={dateDrawerOpen}>
+              <p>{dateTime ? formatDate(dateTime, 'yy.MM.dd') : ''}</p>
+              <span className="mgc_calendar_fill" />
             </button>
           )}
         </div>

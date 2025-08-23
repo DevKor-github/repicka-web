@@ -48,6 +48,7 @@ export const ButtonItem = cva({
     bgColor: 'systemGray5',
     height: '2.75rem',
     px: '1rem',
+
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -60,9 +61,26 @@ export const ButtonItem = cva({
     },
   },
   variants: {
-    isActive: {
+    dateOnly: {
       true: {},
-      false: {},
+      false: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.625rem',
+        '& button': {
+          flex: '1 0 0',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        },
+        '& div': {
+          height: '1rem',
+          width: '0.0625rem',
+          borderRadius: '0.625rem',
+          bgColor: '20',
+          flexShrink: 0,
+        },
+      },
     },
   },
 });

@@ -61,6 +61,11 @@ const PostPickPage = () => {
         return;
       }
 
+      if (isBefore(startDateTime as Date, new Date())) {
+        alert('대여 일시는 현재 시간보다 이후여야 합니다.');
+        return;
+      }
+
       postRentalAppointment(
         {
           itemId,
@@ -75,6 +80,9 @@ const PostPickPage = () => {
         {
           onSuccess: response => {
             navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
+          },
+          onError: error => {
+            alert(error.message);
           },
         },
       );
@@ -93,6 +101,7 @@ const PostPickPage = () => {
         onSuccess: response => {
           navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
         },
+        onError: error => alert(error.message),
       },
     );
   };
