@@ -4,7 +4,7 @@ import Btn from '@/common/components/Button';
 
 interface Props {
   onUnshow?: () => void;
-  onNo: () => void;
+  onNo?: () => void;
   onYes: () => void;
   title: string;
   subTitle: string;
