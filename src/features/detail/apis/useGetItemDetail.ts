@@ -10,11 +10,12 @@ const getItemDetail = async (id: number) => {
   return response.data;
 };
 
-const useGetItemDetail = (id: number) => {
+const useGetItemDetail = (id?: number) => {
   return useQuery({
     queryKey: ['item-detail', id],
-    queryFn: () => getItemDetail(id),
+    queryFn: () => getItemDetail(id!),
     select: data => data.data,
+    enabled: id !== undefined,
   });
 };
 

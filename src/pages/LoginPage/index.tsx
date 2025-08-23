@@ -32,6 +32,13 @@ const LoginPage = () => {
         <div className={s.ButtonContainer}>
           {/* TODO: 애플 로그인 추가 */}
           <a
+            className={s.LoginButton({ src: 'apple' })}
+            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/apple?redirectURI=${redirectionUrl}`}
+          >
+            <GoogleLogo />
+            Apple로 로그인
+          </a>
+          <a
             className={s.LoginButton({ src: 'google' })}
             href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google?redirectURI=${redirectionUrl}`}
           >

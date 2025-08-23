@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
 
 import * as s from './style.css';
 import { formatDate } from 'date-fns';
-import SlideIcon from '@/features/home/components/DateFilter/SlideIcon';
 import { useSearchParams } from 'react-router';
-
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+import DatePicker, { type Value } from '@/common/components/DatePicker';
 
 interface Props {
   itemCounts: number;
@@ -54,23 +49,7 @@ const DateFilter = ({ itemCounts, close }: Props) => {
   return (
     <div className={s.Container}>
       <div className={s.DateFilterWrapper}>
-        <div className={s.DateFilter}>
-          <Calendar
-            value={value}
-            onChange={setValue}
-            prevLabel={<SlideIcon direction="left" />}
-            nextLabel={<SlideIcon direction="right" />}
-            formatDay={(_, date) => date.getDate().toString()}
-            formatMonthYear={(_, date) => formatDate(date, 'yyyy M월')}
-            allowPartialRange={true}
-            minDetail="month"
-            next2Label={null}
-            prev2Label={null}
-            selectRange={true}
-            goToRangeStartOnSelect={false}
-            showFixedNumberOfWeeks={true}
-          />
-        </div>
+        <DatePicker value={value} setValue={setValue} range />
         <div className={s.SelectedDateWrapper}>
           <div className={s.SelectedDateItem}>
             <label>대여일</label>

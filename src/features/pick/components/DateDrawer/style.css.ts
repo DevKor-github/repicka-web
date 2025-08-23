@@ -5,10 +5,10 @@ export const Container = css({
   px: '1rem',
   display: 'flex',
   flexDir: 'column',
-  gap: '4.375rem',
+  gap: '4.38rem',
 });
 
-export const DateFilterWrapper = css({
+export const DateWrapper = css({
   display: 'flex',
   flexDir: 'column',
   gap: '1.4375rem',
@@ -16,40 +16,32 @@ export const DateFilterWrapper = css({
 
 export const SelectedDateWrapper = css({
   display: 'flex',
-  gap: '1rem',
-});
-
-export const SelectedDateItem = css({
-  display: 'flex',
   flexDir: 'column',
   gap: '0.375rem',
-  flex: '1 0 0',
-  color: '100',
-  fontSize: '1rem',
   '& label': {
+    color: '100',
     fontWeight: 600,
+    lineHeight: 'normal',
     letterSpacing: '-0.04rem',
   },
   '& div': {
-    rounded: '0.375rem',
-    bg: 'systemGray4',
-    width: 'full',
     height: '2.75rem',
     px: '0.625rem',
     display: 'flex',
     alignItems: 'center',
-    fontWeight: 400,
+    rounded: '0.375rem',
+    bgColor: 'systemGray4',
   },
 });
 
-export const FilterButtonWrapper = css({
+export const ButtonWrapper = css({
   display: 'flex',
   gap: '0.625rem',
   alignItems: 'stretch',
   height: '3.125rem',
 });
 
-export const FilterButton = cva({
+export const DateDrawerButton = cva({
   base: {
     display: 'flex',
     alignItems: 'center',
@@ -65,7 +57,7 @@ export const FilterButton = cva({
         color: '80',
         fontSize: '1.5rem',
       },
-      result: {
+      submit: {
         flex: '1 0 0',
         bgColor: 'main',
         color: '100',
