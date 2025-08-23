@@ -7,21 +7,14 @@ import type { ItemInfoInterface } from '@/features/detail/types';
 interface Props {
   itemInfo: ItemInfoInterface;
   transactionType: TransactionType;
-  negotiationPrice: number;
-  negotiationDeposit: number;
-  setNegotiationPrice: (price: number) => void;
-  setNegotiationDeposit: (deposit: number) => void;
+  price: number;
+  deposit: number;
+  setPrice: (price: number) => void;
+  setDeposit: (deposit: number) => void;
 }
-const PriceBox = ({
-  itemInfo,
-  transactionType,
-  negotiationPrice,
-  negotiationDeposit,
-  setNegotiationPrice,
-  setNegotiationDeposit,
-}: Props) => {
+const PriceBox = ({ itemInfo, transactionType, price, deposit, setPrice, setDeposit }: Props) => {
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'price' | 'deposit') => {
-    const handlePrice = type === 'price' ? setNegotiationPrice : setNegotiationDeposit;
+    const handlePrice = type === 'price' ? setPrice : setDeposit;
     const value = e.target.value;
     // 빈 문자열이면 NaN으로 설정
     if (value === '') {
@@ -57,7 +50,7 @@ const PriceBox = ({
           <div>
             <input
               type="text"
-              value={isNaN(negotiationPrice) ? '' : negotiationPrice.toString()}
+              value={isNaN(price) ? '' : price.toString()}
               inputMode="numeric"
               pattern="[0-9]*"
               placeholder={transactionType === 'SALE' ? '구매가' : '대여료'}
@@ -66,7 +59,7 @@ const PriceBox = ({
             {transactionType === 'RENTAL' && (
               <input
                 type="text"
-                value={isNaN(negotiationDeposit) ? '' : negotiationDeposit.toString()}
+                value={isNaN(deposit) ? '' : deposit.toString()}
                 inputMode="numeric"
                 pattern="[0-9]*"
                 placeholder={'보증금'}

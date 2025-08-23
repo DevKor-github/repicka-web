@@ -15,6 +15,9 @@ import PriceBox from '@/features/pick/components/PriceBox';
 import { useGetItemStatus } from '@/features/detail/apis/useGetItemStatus';
 import PlaceBox from '@/features/pick/components/PlaceBox';
 import DateTimeBox from '@/features/pick/components/DateTimeBox';
+import { usePostRentalAppointment } from '@/features/pick/apis/usePostRentalAppointment';
+import { usePostSaleAppointment } from '@/features/pick/apis/usePostSaleAppointment';
+import { formatDate } from 'date-fns';
 
 const PostPickPage = () => {
   const navigate = useNavigate();
@@ -25,12 +28,53 @@ const PostPickPage = () => {
   const { data: itemData, isLoading: isItemDetailLoading, isSuccess: isItemDetailSuccess } = useGetItemDetail(itemId);
   const { data: itemStatus, isLoading: isItemStatusLoading, isSuccess: isItemStatusSuccess } = useGetItemStatus(itemId);
 
-  const [negotiationPrice, setNegotiationPrice] = useState<number>(NaN);
-  const [negotiationDeposit, setNegotiationDeposit] = useState<number>(NaN);
+  const { mutate: postRentalAppointment } = usePostRentalAppointment();
+  const { mutate: postSaleAppointment } = usePostSaleAppointment();
+
+  const [price, setPrice] = useState<number>(NaN);
+  const [deposit, setDeposit] = useState<number>(NaN);
   const [startLocation, setStartLocation] = useState<string>('');
   const [endLocation, setEndLocation] = useState<string>('');
   const [startDateTime, setStartDateTime] = useState<Date | null>(null);
   const [endDateTime, setEndDateTime] = useState<Date | null>(null);
+
+  const submitValidation = (() => {
+    if (transactionType === 'RENTAL') {
+      if (tradeMethod === 'DIRECT') {
+        return startLocation && endLocation && startDateTime && endDateTime ? true : false;
+      }
+
+      return startDateTime && endDateTime ? true : false;
+    }
+
+    if (tradeMethod === 'DIRECT') return startLocation && startDateTime ? true : false;
+
+    return startDateTime ? true : false;
+  })();
+
+  const handleSubmit = () => {
+    if (!submitValidation) return;
+
+    if (transactionType === 'RENTAL') {
+      postRentalAppointment({
+        itemId,
+        startDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+        endDate: formatDate(endDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+        startLocation,
+        endLocation,
+        price,
+        deposit,
+      });
+      return;
+    }
+
+    postSaleAppointment({
+      itemId,
+      startDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+      startLocation,
+      price,
+    });
+  };
 
   useEffect(() => {
     if (isItemStatusSuccess && itemStatus.isPresent) {
@@ -43,6 +87,12 @@ const PostPickPage = () => {
     if (isItemDetailSuccess) {
       setStartLocation(itemData.itemInfo.location);
       setEndLocation(itemData.itemInfo.location);
+      if (itemData.itemInfo.salePrice) {
+        setPrice(itemData.itemInfo.salePrice);
+      } else {
+        setPrice(itemData.itemInfo.rentalFee);
+      }
+      setDeposit(itemData.itemInfo.deposit);
     }
   }, [isItemDetailSuccess, itemData?.itemInfo]);
 
@@ -84,15 +134,17 @@ const PostPickPage = () => {
           <PriceBox
             itemInfo={itemData.itemInfo}
             transactionType={transactionType}
-            negotiationPrice={negotiationPrice}
-            negotiationDeposit={negotiationDeposit}
-            setNegotiationPrice={setNegotiationPrice}
-            setNegotiationDeposit={setNegotiationDeposit}
+            price={price}
+            deposit={deposit}
+            setPrice={setPrice}
+            setDeposit={setDeposit}
           />
           {tradeMethod === 'PARCEL' && <Caution />}
         </div>
         <div className={s.SaveButtonContainer}>
-          <Btn mode="main">저장하기</Btn>
+          <Btn mode={submitValidation ? 'main' : 'disabled'} onClick={handleSubmit}>
+            저장하기
+          </Btn>
         </div>
       </div>
     </SafeArea>

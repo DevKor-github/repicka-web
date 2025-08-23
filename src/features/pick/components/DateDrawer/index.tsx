@@ -6,7 +6,7 @@ import { formatDate } from 'date-fns';
 interface Props {
   dateTime: Date | null;
   setDateTime: (date: Date | null) => void;
-  transactionText: string;
+  transactionText: '거래' | '대여' | '반납';
   next: () => void;
 }
 const DateDrawer = ({ dateTime, setDateTime, transactionText, next }: Props) => {

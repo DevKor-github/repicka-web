@@ -38,22 +38,31 @@ export const ButtonWrapper = css({
   width: '100%',
 });
 
-export const ButtonItem = css({
-  flex: '1 0 0',
-  rounded: '0.375rem',
-  border: '1px solid',
-  borderColor: 'systemGray3',
-  bgColor: 'systemGray5',
-  height: '2.75rem',
-  px: '1rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  color: '100',
-  letterSpacing: '-0.04rem',
-  fontWeight: 400,
-  lineHeight: 'normal',
-  '& span': {
-    fontSize: '1.25rem',
+// TODO: 버튼 비활성화 만들기
+export const ButtonItem = cva({
+  base: {
+    flex: '1 0 0',
+    rounded: '0.375rem',
+    border: '1px solid',
+    borderColor: 'systemGray3',
+    bgColor: 'systemGray5',
+    height: '2.75rem',
+    px: '1rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    color: '100',
+    letterSpacing: '-0.04rem',
+    fontWeight: 400,
+    lineHeight: 'normal',
+    '& span': {
+      fontSize: '1.25rem',
+    },
+  },
+  variants: {
+    isActive: {
+      true: {},
+      false: {},
+    },
   },
 });
