@@ -10,11 +10,14 @@ import DatePickButton from '@/features/home/components/DatePickButton';
 import SortTriggerButton from '@/features/home/components/SortControl';
 import Filter from '@/features/home/components/Filter';
 import { FilterTypeArray, FilterTypeMap, type FilterType } from '@/features/home/types';
+import { useSearchParams } from 'react-router';
+import type { TagType } from '@/libs/types/item';
 
 interface Props {
   itemCounts: number;
 }
 const SearchControls = ({ itemCounts }: Props) => {
+  const [searchParams] = useSearchParams();
   const [state, setState] = useState<FilterType>('product-type');
   const { open, drawerState, close } = useDrawer();
 
@@ -33,18 +36,30 @@ const SearchControls = ({ itemCounts }: Props) => {
           </div>
           <div className={s.TopRightControl}>
             <SortTriggerButton />
-            <DatePickButton />
+            <DatePickButton itemCounts={itemCounts} />
           </div>
         </div>
         <div className={s.SelectButtonContainer}>
           {/* TODO: 디자인 적용, 필터 로직 추가 */}
           <div className={s.Gradient({ position: 'left' })} />
           <div className={s.ButtonWrapper}>
-            {FilterTypeArray.map(filter => (
-              <SelectButton key={filter} active={false} onClick={() => handleFilterClick(filter)}>
-                {FilterTypeMap[filter]}
-              </SelectButton>
-            ))}
+            {FilterTypeArray.map(filter => {
+              const selected = (() => {
+                if (filter === 'price') {
+                  if (searchParams.get('start-price') !== null && searchParams.get('end-price') !== null) {
+                    return [searchParams.get('start-price') as TagType, searchParams.get('end-price') as TagType];
+                  }
+                  return [];
+                }
+                return searchParams.getAll(filter) as TagType[];
+              })();
+
+              return (
+                <SelectButton key={filter} onClick={() => handleFilterClick(filter)} selected={selected}>
+                  {FilterTypeMap[filter]}
+                </SelectButton>
+              );
+            })}
           </div>
           <div className={s.Gradient({ position: 'right' })} />
           <button

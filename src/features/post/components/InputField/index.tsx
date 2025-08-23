@@ -8,7 +8,9 @@ interface InputProps<T extends number | string> {
   value: T;
   setValue: (value: T) => void;
   maxLength?: number;
+  minLength?: number;
   placeholder?: string;
+  isEdited?: boolean;
 }
 
 const InputField = <T extends number | string>({
@@ -17,6 +19,7 @@ const InputField = <T extends number | string>({
   setValue,
   maxLength,
   placeholder,
+  isEdited,
 }: InputProps<T>) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -49,7 +52,7 @@ const InputField = <T extends number | string>({
 
   return (
     <input
-      className={cx(s.Container({ isNumber }), className, s.ContainerWithPlaceholder)}
+      className={cx(s.Container({ isNumber, isEdited }), className, s.ContainerWithPlaceholder)}
       value={stringValue}
       onChange={handleChange}
       onFocus={handleFocus}

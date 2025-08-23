@@ -1,6 +1,7 @@
 import HockeyIcon from '@/libs/assets/HockeyIcon';
 import { ICON_MAP } from '@/libs/constants/iconMap';
 import type { ProductType, TradeMethods, TransactionType } from '@/libs/types/item';
+import { cx } from '@styled-system/css';
 
 interface TagIconProps {
   className?: string;
@@ -14,5 +15,5 @@ export const TagIcon = ({ className, type }: TagIconProps) => {
       </span>
     );
 
-  return <span className={`${ICON_MAP[type]} ${className}`} />;
+  return <span className={cx(ICON_MAP[type], className)} />;
 };

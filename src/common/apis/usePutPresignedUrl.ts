@@ -1,5 +1,3 @@
-// baseUrl 무시 (외부 주소)
-
 import axios from 'axios';
 
 export const s3PutImageToUrl = async (file: File, url: string) => {

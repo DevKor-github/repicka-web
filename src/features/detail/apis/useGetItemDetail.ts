@@ -4,6 +4,9 @@ import type { ItemDetailResponse } from '@/features/detail/types';
 
 const getItemDetail = async (id: number) => {
   const response = await client.get<ItemDetailResponse>(`/api/v1/item/${id}`);
+
+  console.log(response);
+
   return response.data;
 };
 

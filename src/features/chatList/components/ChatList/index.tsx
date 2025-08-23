@@ -68,7 +68,7 @@ const ChatList = ({ data }: Props) => {
   return (
     <>
       <Link className={s.List} to={`/chatroom/${data.chatRoomId}`} {...bind()}>
-        <UserProfileImage nickname={data.opponentNickname} profileImageUrl={data.opponentProfileImageUrl} />
+        <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
         <div className={s.Contents}>
           <div className={s.TimeInfo}>
             <div className={s.UserInfo}>
@@ -88,16 +88,16 @@ const ChatList = ({ data }: Props) => {
       </Drawer>
       {showExitAlert && (
         <CustomAlert
-          Title={'채팅방을 나가면 대화 내용과\n약속이 모두 취소돼요.'}
+          title={'채팅방을 나가면 대화 내용과\n약속이 모두 취소돼요.'}
           subTitle="정말 퇴장하실 건가요?"
           yesBtn="네, 퇴장할래요"
-          onUnshow={onUnshowAlert}
+          onNo={onUnshowAlert}
           onYes={exitChat}
         />
       )}
       {showErrorAlert && (
         <CustomAlert
-          Title="앗, 아직 대여가 진행 중인 상품이에요!"
+          title="앗, 아직 대여가 진행 중인 상품이에요!"
           subTitle={'착용 후, 판매자에게\n상품을 돌려주어야 퇴장이 가능해요.'}
           yesBtn="닫기"
           onYes={() => {

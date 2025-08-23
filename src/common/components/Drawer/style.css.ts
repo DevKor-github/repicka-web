@@ -1,4 +1,4 @@
-import { css } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const BackLayerStyle = css({
   pos: 'fixed',
@@ -12,10 +12,10 @@ export const BackLayerStyle = css({
 
 export const Container = css({
   pos: 'absolute',
-  top: '100dvh',
+  top: '100%',
   left: 0,
   w: 'full',
-  h: '100dvh',
+  h: '100%',
   bgColor: 'systemGray6',
   roundedTop: '10px',
   willChange: 'transform',
@@ -26,10 +26,21 @@ export const Container = css({
   boxShadow: '0px 0px 30px 0px rgba(0, 0, 0, 0.25)',
 });
 
-export const Wrapper = css({
-  w: 'full',
-  pt: '1.5rem',
-  pb: '2.625rem',
+export const Wrapper = cva({
+  base: {
+    w: 'full',
+    pb: '2.625rem',
+  },
+  variants: {
+    hasHeader: {
+      true: {
+        pt: '1.5rem',
+      },
+      false: {
+        pt: '0.625rem',
+      },
+    },
+  },
 });
 
 export const Header = css({

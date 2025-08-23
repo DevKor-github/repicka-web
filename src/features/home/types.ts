@@ -32,21 +32,14 @@ export interface ItemInterface {
   tradeMethods: TradeMethods[];
 }
 
-export const ItemOrderArray = [
-  'RECENT',
-  'LIKE',
-  // 'RENTAL_FEE',
-  // 'SALE_PRICE'
-] as const;
+export const ItemOrderArray = ['RECENT', 'LIKE'] as const;
 export type ItemOrderType = (typeof ItemOrderArray)[number];
 export const ItemOrderMap: Record<ItemOrderType, string> = {
   RECENT: '최신순',
   LIKE: '좋아요순',
-  // RENTAL_FEE: '가격순', // TODO: 흠...
-  // SALE_PRICE: '가격순',
 };
 
-// TODO: quality, price는 백엔드 api가 없음
+// TODO: price는 백엔드 api가 없음
 export const FilterTypeArray = [
   'transaction-type',
   'product-type',

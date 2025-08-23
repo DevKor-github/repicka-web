@@ -44,8 +44,8 @@ const Header = () => {
       </header>
       {showAlert && (
         <CustomAlert
-          onUnshow={onUnshow}
-          Title="지금 그만두면 진행상황이 저장되지 않아요!"
+          onNo={onUnshow}
+          title="지금 그만두면 진행상황이 저장되지 않아요!"
           subTitle="정말 글 작성을 그만두실 건가요?"
           yesBtn="네, 다음에 다시 쓸게요"
           onYes={onReset}
