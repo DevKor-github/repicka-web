@@ -13,17 +13,11 @@ interface Props {
   prev: () => void;
 }
 const TimeDrawer = ({ dateTime, setDateTime, transactionText, next, prev }: Props) => {
-  const value = dateTime as Value;
-  const setValue = (value: Value) => {
-    if (Array.isArray(value)) return;
-    setDateTime(value);
-  };
-
   return (
     <div className={s.Container}>
       <div className={s.TimePickerWrapper}>
         <label>{transactionText} 시간</label>
-        <TimePicker />
+        <TimePicker value={dateTime} onChange={setDateTime} />
       </div>
       <div className={s.ButtonWrapper}>
         <button className={s.DateDrawerButton({ type: 'prev' })} onClick={prev}>

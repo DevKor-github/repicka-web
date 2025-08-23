@@ -16,6 +16,7 @@ export const TimePickerWrapper = css({
     fontSize: '1rem',
     fontWeight: 500,
     lineHeight: 'normal',
+    color: '100',
   },
 });
 
