@@ -10,7 +10,7 @@ interface InputProps<T extends number | string> {
   maxLength?: number;
   minLength?: number;
   placeholder?: string;
-  isEdited?: 'main' | 'disabled';
+  isEdited?: boolean;
 }
 
 const InputField = <T extends number | string>({

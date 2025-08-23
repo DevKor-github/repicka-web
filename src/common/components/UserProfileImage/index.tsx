@@ -1,10 +1,16 @@
+import getImageUrl from '@/common/utils/getImageUrl';
 import * as s from './style.css';
+import defaultImg from '@/libs/assets/defaultImg.png';
 
 interface Props {
-  profileImageUrl: string | undefined;
+  src: string | null;
   nickname: string;
+  isMyEdit?: boolean;
 }
 
-export const UserProfileImage = ({ profileImageUrl, nickname }: Props) => {
-  return <img className={s.ProfileImage} src={profileImageUrl} alt={nickname} />;
+export const UserProfileImage = ({ src, nickname, isMyEdit }: Props) => {
+  const cn = isMyEdit ? s.MyProfileEditImage : s.ProfileImage;
+  const profileImage = src ? getImageUrl(src) : defaultImg;
+
+  return <img className={cn} src={profileImage} alt={nickname} />;
 };
