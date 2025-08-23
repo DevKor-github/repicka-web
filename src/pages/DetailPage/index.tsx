@@ -8,14 +8,14 @@ import UserInfo from '@/features/detail/components/UserInfo';
 import PostContent from '@/features/detail/components/PostContent';
 import useGetItemDetail from '@/features/detail/apis/useGetItemDetail';
 import BottomActions from '@/features/detail/components/BottomActions';
+import NotFoundPage from '@/pages/NotFoundPage';
 
 const DetailPage = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetItemDetail(Number(id));
 
-  // TODO: 더 예쁜 보여주기
   if (isLoading) return <div>Loading...</div>;
-  if (data === undefined) return <div>잘못된 접근입니다</div>;
+  if (data === undefined) return <NotFoundPage />;
 
   return (
     <div className={s.Container}>

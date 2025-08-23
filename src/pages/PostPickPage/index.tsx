@@ -65,6 +65,7 @@ const PostPickPage = () => {
           endLocation,
           price,
           deposit,
+          tradeMethod,
         },
         {
           onSuccess: response => {
@@ -81,6 +82,7 @@ const PostPickPage = () => {
         startDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
         startLocation,
         price,
+        tradeMethod,
       },
       {
         onSuccess: response => {

@@ -1,5 +1,5 @@
 import client from '@/common/utils/client';
-import type { TransactionType } from '@/libs/types/item';
+import type { TradeMethods, TransactionType } from '@/libs/types/item';
 import { useMutation } from '@tanstack/react-query';
 
 export interface PostAppointmentResponse {
@@ -29,6 +29,7 @@ interface PostSaleAppointmentRequest {
   startDate: string;
   startLocation: string;
   price: number;
+  tradeMethod: TradeMethods;
 }
 
 const postSaleAppointment = async (data: PostSaleAppointmentRequest) => {
