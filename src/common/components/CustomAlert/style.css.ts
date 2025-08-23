@@ -32,6 +32,7 @@ export const Text = css({
   flexDirection: 'column',
   textAlign: 'center',
   fontFamily: 'Pretendard',
+  whiteSpace: 'pre-wrap',
   '& span': {
     fontSize: '1rem',
     fontWeight: 600,
