@@ -46,6 +46,7 @@ const useGetChatList = (params: GetChatListRequest) => {
         : undefined,
     initialPageParam,
     select: data => data.pages.flatMap(page => page.data.chatRooms),
+    staleTime: 0,
   });
 };
 
