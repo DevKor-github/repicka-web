@@ -12,6 +12,7 @@ interface Props {
   index: number;
   messages: ChatInterface[];
   myUserId: number;
+  nickname: string;
 }
 
 const ChatMessageContents = ({ chat, index, messages, myUserId }: Props) => {
@@ -39,7 +40,7 @@ const ChatMessageContents = ({ chat, index, messages, myUserId }: Props) => {
       {isNewDate && <div className={s.Date({ isFirst })}>{date}</div>}
 
       {chat.isPick ? (
-        <PickChat marginTop={marginTop} isMine={isMine} />
+        <PickChat marginTop={marginTop} isMine={isMine} children={chat.content} />
       ) : isMine ? (
         <MyChat marginTop={marginTop} time={showTime ? time : undefined}>
           {chat.content}

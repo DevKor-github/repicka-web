@@ -6,7 +6,7 @@ interface Props {
   onClick: () => void;
 }
 
-const MyHeader = ({ title, onClick }: Props) => {
+const CustomHeader = ({ title, onClick }: Props) => {
   return (
     <div className={s.Container}>
       <button className={cx('mgc_left_line', s.backBtn)} onClick={onClick} />
@@ -15,4 +15,4 @@ const MyHeader = ({ title, onClick }: Props) => {
   );
 };
 
-export default MyHeader;
+export default CustomHeader;

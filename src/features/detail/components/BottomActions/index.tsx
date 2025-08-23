@@ -43,7 +43,7 @@ interface Props {
 const BottomActions = ({ itemId, itemInfo }: Props) => {
   const navigate = useNavigate();
   const { transactionTypes, mine, salePrice, deposit, rentalFee } = itemInfo;
-  const { data: itemStatusData, isSuccess: isItemStatusSuccess } = useGetItemStatus(itemId);
+  const { data: itemStatusData, isSuccess: isItemStatusSuccess, isLoading } = useGetItemStatus(itemId);
   const { mutate: createChatroom } = usePostChatroom();
   const { data: isLogin, isSuccess: isLoginSuccess } = useGetIsLogin();
 
@@ -55,11 +55,11 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
       return;
     }
 
-    if (!isItemStatusSuccess) return;
+    if (isLoading) return;
 
-    if (mine) {
+    if (itemStatusData === undefined) {
       // TODO: 아이템과 관련된 내 채팅방으로 연결
-      alert('내 채팅방으로 연결');
+      navigate(`/chat-about/${itemId}`);
       return;
     }
 

@@ -1,4 +1,4 @@
-import MyHeader from '@/common/components/MyHeader';
+import CustomHeader from '@/common/components/CustomHeader';
 import * as s from './style.css';
 import { useNavigate } from 'react-router';
 import { useGetLike } from '@/features/likedList/apis/useGetLike';
@@ -18,7 +18,7 @@ const LikedPage = () => {
 
   return (
     <div className={s.Wrapper}>
-      <MyHeader title="관심 목록" onClick={() => navigate(-1)} />
+      <CustomHeader title="관심 목록" onClick={() => navigate(-1)} />
       <div className={s.Content({ isEmpty })}>
         {isEmpty ? (
           <div className={s.NoResult}>

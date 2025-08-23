@@ -29,4 +29,6 @@ export const Description = css({
   fontSize: '1rem',
   fontWeight: 400,
   letterSpacing: '-0.04rem',
+  whiteSpace: 'pre-wrap',
+  textAlign: 'center',
 });
