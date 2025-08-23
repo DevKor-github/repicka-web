@@ -49,8 +49,11 @@ const PickDetailPage = () => {
               <ItemCard data={getItemInterfaceFromItemDetail(itemData)} />
             </div>
             <div className={s.Block}>
+              <InfoItem title="거래 방식" value={data.tradeMethod === 'PARCEL' ? '택배' : '직거래'} />
+            </div>
+            <div className={s.Block}>
               <InfoItem
-                title={isSale ? '판매 일자' : '대여 기간'}
+                title={isSale ? '발송 일자' : '대여 기간'}
                 value={
                   data.returnDate === null
                     ? formatDate(data.rentalDate, 'yy.MM.dd')
