@@ -21,6 +21,7 @@ import { resetAllStores } from '../../stores/StoreReset';
 import { useCollectPostData } from '../../hooks/useCollectPostData';
 import { SetTotalStore } from '../../stores/EditStore';
 import type { ItemDetailInterface } from '@/features/detail/types';
+import { usePutItem } from '../../apis/usePutItem';
 
 interface Props {
   postState?: ItemDetailInterface;
@@ -34,10 +35,13 @@ const WriteLayout = ({ postState, itemId, isEdit }: Props) => {
   const [step, setStep] = useState(1);
 
   const { mutate: postItem } = usePostItem();
+  const { mutate: putItem } = usePutItem();
+
   const navigate = useNavigate();
   const data = useCollectPostData();
   const files = useStep5Store(state => state.file);
   const localFileKeys = useStep5Store(state => state.localFileKeys);
+  const serverFileKeys = useStep5Store(state => state.serverFileKeys);
   const presignedUrls = useStep5Store(state => state.presignedUrl);
 
   const isFirst = step === 1;
@@ -58,9 +62,26 @@ const WriteLayout = ({ postState, itemId, isEdit }: Props) => {
   const goNext = () => {
     if (step < MAX_STEP) setStep(step + 1);
     else {
-      if (isEdit) {
+      if (isEdit && itemId) {
+        putItem(
+          {
+            data,
+            files,
+            presignedUrls,
+            localFileKeys,
+            serverFileKeys,
+            itemId,
+          },
+          {
+            onSuccess: res => {
+              const itemId = res.data.itemId;
+              resetAllStores();
+              navigate(`/detail/${itemId}`, { replace: true });
+            },
+          },
+        );
         return;
-      } // TODO: putItem으로 바꾸기, itemId 사용
+      }
 
       postItem(
         { data, fileKeys: localFileKeys, files, presignedUrls },

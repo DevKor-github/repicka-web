@@ -15,7 +15,7 @@ const postItem = async ({
   files: File[];
   presignedUrls: string[];
 }) => {
-  await Promise.all(presignedUrls.map((url, idx) => s3PutImageToUrl(files[idx], url))); // 올릴 때
+  await Promise.all(presignedUrls.map((url, idx) => s3PutImageToUrl(files[idx], url)));
 
   const request: PostItemRequest = { ...data, images: fileKeys };
   const res = await client.post<ItemDetailResponse>('/api/v1/item', request);
