@@ -43,7 +43,7 @@ const Review = () => {
   return (
     <SafeArea>
       <div className={s.Layout}>
-        <div>
+        <div className={s.Wrapper}>
           <CustomHeader onClick={() => navigate(-1)} title="후기 작성하기" />
           <ReviewContent
             handleReview={handleReview}
