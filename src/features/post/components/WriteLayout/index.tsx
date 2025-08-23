@@ -6,7 +6,7 @@ import Step3 from '@/features/post/components/StepFunnel/Step3';
 import Step4 from '@/features/post/components/StepFunnel/Step4';
 import Step5 from '@/features/post/components/StepFunnel/Step5';
 import Step6 from '@/features/post/components/StepFunnel/Step6';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import * as s from './style.css';
 import { usePostItem } from '../../apis/usePostItem';
@@ -14,29 +14,72 @@ import { useStep5Store } from '../../stores/Step5Store';
 import { useNavigate } from 'react-router';
 import { resetAllStores } from '../../stores/StoreReset';
 import { useCollectPostData } from '../../hooks/useCollectPostData';
+import { SetTotalStore } from '../../stores/EditStore';
+import type { ItemDetailInterface } from '@/features/detail/types';
+import { usePutItem } from '../../apis/usePutItem';
 
-const MAX_STEP = 6;
-const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
+interface Props {
+  postState?: ItemDetailInterface;
+  itemId?: number;
+  isEdit?: boolean;
+}
 
-const WriteLayout = () => {
+export const MAX_STEP = 6;
+
+const WriteLayout = ({ postState, itemId, isEdit }: Props) => {
   const [step, setStep] = useState(1);
+
   const { mutate: postItem } = usePostItem();
+  const { mutate: putItem } = usePutItem();
+
   const navigate = useNavigate();
   const data = useCollectPostData();
-  const files = useStep5Store(state => state.files);
+  const files = useStep5Store(state => state.file);
+  const localFileKeys = useStep5Store(state => state.localFileKeys);
+  const serverFileKeys = useStep5Store(state => state.serverFileKeys);
+  const presignedUrls = useStep5Store(state => state.presignedUrl);
 
   const isFirst = step === 1;
   const isLast = step === MAX_STEP;
 
+  const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />, <Step5 />, <Step6 />];
+
+  useEffect(() => {
+    if (isEdit && postState) {
+      SetTotalStore(postState);
+    }
+  }, [isEdit, postState]);
+
   const goPrev = () => {
-    setStep(prev => Math.max(1, prev - 1)); // 이전 상태 고려 (prev), 최소 1
+    setStep(prev => Math.max(1, prev - 1));
   };
 
   const goNext = () => {
     if (step < MAX_STEP) setStep(step + 1);
     else {
+      if (isEdit && itemId) {
+        putItem(
+          {
+            data,
+            files,
+            presignedUrls,
+            localFileKeys,
+            serverFileKeys,
+            itemId,
+          },
+          {
+            onSuccess: res => {
+              const itemId = res.data.itemId;
+              resetAllStores();
+              navigate(`/detail/${itemId}`, { replace: true });
+            },
+          },
+        );
+        return;
+      }
+
       postItem(
-        { data, files },
+        { data, fileKeys: localFileKeys, files, presignedUrls },
         {
           onSuccess: res => {
             const itemId = res.data.itemId;
@@ -50,7 +93,7 @@ const WriteLayout = () => {
 
   return (
     <div className={s.entireLayout}>
-      <Header />
+      <Header postState={postState} />
       <div className={s.innerPage}>{steps[step - 1]}</div>
       <div className={s.Navigator}>
         <Navigator
@@ -60,6 +103,7 @@ const WriteLayout = () => {
           goPrev={goPrev}
           isFirst={isFirst}
           isLast={isLast}
+          postState={postState}
         />
       </div>
     </div>

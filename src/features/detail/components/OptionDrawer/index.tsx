@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 import * as s from './style.css';
 
@@ -7,20 +7,17 @@ import CustomAlert from '@/common/components/CustomAlert';
 import Drawer from '@/common/components/Drawer';
 import type { DrawerState } from '@/common/hooks/useDrawer';
 import { useDeleteItem } from '@/features/detail/apis/useDeleteItem';
+import type { ItemDetailInterface } from '../../types';
 
 interface Props {
-  itemId: number;
   drawerState: DrawerState;
+  state: ItemDetailInterface;
 }
-const OptionDrawer = ({ itemId, drawerState }: Props) => {
+const OptionDrawer = ({ drawerState, state }: Props) => {
   const navigate = useNavigate();
   const { mutate } = useDeleteItem();
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
-
-  const onEdit = () => {
-    // TODO: navigate to edit page
-    alert('수정하기');
-  };
+  const itemId = state.itemId;
 
   const deleteItem = () => {
     mutate(itemId, {
@@ -34,10 +31,10 @@ const OptionDrawer = ({ itemId, drawerState }: Props) => {
     <>
       <Drawer drawerState={drawerState}>
         <div className={s.Container}>
-          <button className={s.Button} onClick={onEdit}>
+          <Link className={s.Button} to={'/post-edit'} state={state}>
             <span className="mgc_pencil_fill" />
             수정하기
-          </button>
+          </Link>
           <div className={s.Divider} />
           <button className={s.Button} onClick={() => setShowDeleteAlert(true)}>
             <span className="mgc_delete_2_fill" />

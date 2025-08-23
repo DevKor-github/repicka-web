@@ -7,8 +7,14 @@ import { useStep2Store } from '../../stores/Step2Store';
 import { useStep3Store } from '../../stores/Step3Store';
 import { useStep4Store } from '../../stores/Step4Store';
 import { resetAllStores } from '../../stores/StoreReset';
+import type { ItemDetailInterface } from '@/features/detail/types';
+import { isStoreEqualToState } from '../../stores/EditStore';
 
-const Header = () => {
+interface Props {
+  postState?: ItemDetailInterface;
+}
+
+const Header = ({ postState }: Props) => {
   const [showAlert, setShowAlert] = useState(false);
 
   const isStep1Empty = useStep1Store(state => state.isEmpty());
@@ -16,13 +22,19 @@ const Header = () => {
   const isStep3Empty = useStep3Store(state => state.isEmpty());
   const isStep4Empty = useStep4Store(state => state.isEmpty());
 
-  const shouldShow = !(isStep1Empty && isStep2Empty && isStep3Empty && isStep4Empty);
+  const shouldShow = postState
+    ? !isStoreEqualToState(postState)
+    : !(isStep1Empty && isStep2Empty && isStep3Empty && isStep4Empty);
+  const title = postState ? '상품 수정' : '상품 등록';
 
   const navigator = useNavigate();
 
   const handleClose = () => {
     if (shouldShow) setShowAlert(true);
-    else navigator(-1);
+    else {
+      resetAllStores();
+      navigator(-1);
+    }
   };
 
   const onUnshow = () => {
@@ -39,7 +51,7 @@ const Header = () => {
       <header>
         <div className={s.Container}>
           <button className={`mgc_close_line ${s.closeBtn}`} onClick={handleClose}></button>
-          <span className={s.headerText}> 상품 등록 </span>
+          <span className={s.headerText}>{title}</span>
         </div>
       </header>
       {showAlert && (

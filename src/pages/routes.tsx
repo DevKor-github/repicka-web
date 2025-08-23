@@ -14,6 +14,7 @@ import SearchPage from '@/pages/SearchPage';
 import MyPage from './MyPage';
 import MyEditPage from './MyEditPage';
 import LikedPage from './LikedListPage';
+import PostEdit from './PostEditPage';
 import ItemChatPage from './ItemChatPage';
 
 /**
@@ -69,6 +70,10 @@ const routes: RouteObject[] = [
           {
             path: 'liked',
             element: <LikedPage />,
+          },
+          {
+            path: 'post-edit',
+            element: <PostEdit />,
           },
           {
             path: 'chat-about/:itemId',

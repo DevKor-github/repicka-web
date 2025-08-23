@@ -7,6 +7,8 @@ import { useStep2Store } from '../../stores/Step2Store';
 import { useStep3Store } from '../../stores/Step3Store';
 import { useStep4Store } from '../../stores/Step4Store';
 import { useStep5Store } from '../../stores/Step5Store';
+import { isStoreEqualToState } from '../../stores/EditStore';
+import type { ItemDetailInterface } from '@/features/detail/types';
 
 interface NavigatorProps {
   totalSteps: number;
@@ -15,9 +17,10 @@ interface NavigatorProps {
   goPrev: () => void;
   isFirst: boolean;
   isLast: boolean;
+  postState?: ItemDetailInterface;
 }
 
-const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }: NavigatorProps) => {
+const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast, postState }: NavigatorProps) => {
   const isStep1Valid = useStep1Store(state => state.isBtnValid());
   const isStep2Valid = useStep2Store(state => state.isBtnValid());
   const isStep3Valid = useStep3Store(state => state.isBtnValid());
@@ -26,10 +29,15 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast }:
 
   const isBtnValids = [isStep1Valid, isStep2Valid, isStep3Valid, isStep4Valid, isStep5Valid, true];
 
-  const label = isLast ? '완료' : '다음';
-  const isBtnValid = isBtnValids[currentStep - 1]; // 현재 스텝의 유효성
+  const label = !isLast ? '다음' : postState ? '수정' : '완료';
 
+  let isBtnValid = isBtnValids[currentStep - 1];
+
+  if (isLast && postState) {
+    isBtnValid = !isStoreEqualToState(postState);
+  }
   const isBtnAble = isBtnValid ? 'main' : 'disabled';
+
   const onClick = () => {
     if (isBtnValid) goNext();
   };

@@ -19,7 +19,7 @@ const DetailPage = () => {
 
   return (
     <div className={s.Container}>
-      <DetailHeader itemId={data.itemId} isMine={data.itemInfo.mine} />
+      <DetailHeader state={data} />
       <div className={s.ScrollContainer}>
         <ImageContainer images={data.itemInfo.images} />
         <div className={s.ContentContainer}>

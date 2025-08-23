@@ -11,6 +11,7 @@ export const UploadedPhoto = css({
   alignItems: 'center',
   borderRadius: '0.5rem',
   backgroundColor: 'systemGray5',
+  objectFit: 'cover',
 });
 
 export const CancelBtn = css({
