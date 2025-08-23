@@ -30,6 +30,7 @@ export const subChatRoomSocket = (chatRoomId: number, callback: (data: SubChatRo
   const sub = stompClient.subscribe(`/sub/chatroom/${chatRoomId}`, message => {
     const data = JSON.parse(message.body) as SubChatRoomInterface;
     console.log(data);
+    console.log(1);
     callback(data);
   });
 
@@ -44,32 +45,28 @@ export const subChatRoomSocket = (chatRoomId: number, callback: (data: SubChatRo
 };
 
 // --------- ChatList global subscription (single) ---------
-let chatListSub: StompSubscription | null = null;
-const chatListListeners = new Set<(data: SubChatListInterface) => void>();
-
-const startChatListSubscription = () => {
-  if (!stompClient.connected || chatListSub) return;
-
-  chatListSub = stompClient.subscribe('/user/sub', message => {
-    const data = JSON.parse(message.body) as SubChatListInterface;
-    chatListListeners.forEach(cb => cb(data));
-  });
-  console.log('📬 ChatList 구독 시작');
-};
-
-const stopChatListSubscription = () => {
-  chatListSub?.unsubscribe();
-  chatListSub = null;
-  console.log('📪 ChatList 구독 해제');
-};
+let subChatList: StompSubscription | null = null;
 
 export const subChatListSocket = (callback: (data: SubChatListInterface) => void) => {
-  chatListListeners.add(callback);
-  startChatListSubscription();
+  if (!stompClient.connected) return;
+
+  // 중복 구독 방지
+  subChatList?.unsubscribe();
+
+  console.log(`♻️ 기존 ChatList 구독 해제 후 재구독`);
+
+  subChatList = stompClient.subscribe('/user/sub', message => {
+    const data = JSON.parse(message.body) as SubChatListInterface;
+    console.log(data);
+    callback(data);
+  });
+
+  console.log(`📬 ChatList 구독 시작`);
 
   return () => {
-    chatListListeners.delete(callback);
-    if (chatListListeners.size === 0) stopChatListSubscription();
+    subChatList?.unsubscribe();
+    subChatList = null;
+    console.log(`📪 ChatList 구독 해제`);
   };
 };
 
@@ -84,7 +81,6 @@ export const connectSocket = () => {
 
     stompClient.onConnect = (_frame: IFrame) => {
       console.log('✅ STOMP Connected');
-      startChatListSubscription();
       resolve(true);
     };
 
@@ -95,7 +91,6 @@ export const connectSocket = () => {
 
     stompClient.onWebSocketClose = event => {
       console.warn('💥 WebSocket Closed', event);
-      stopChatListSubscription();
       subChatRooms.forEach(sub => sub.unsubscribe());
       subChatRooms.clear();
     };
@@ -106,7 +101,6 @@ export const connectSocket = () => {
 
 export const disconnectSocket = () => {
   if (stompClient.active) {
-    stopChatListSubscription();
     subChatRooms.forEach(sub => sub.unsubscribe());
     subChatRooms.clear();
 
