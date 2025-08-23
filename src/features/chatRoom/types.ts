@@ -30,7 +30,8 @@ export interface ChatRoomInterface {
 export interface ChatInterface {
   chatId: string;
   userId: number;
-  content: string;
+  content: string | null;
+  isNotification: boolean;
   isPick: boolean;
   pickInfo: PickInfoInterface | null;
   createdAt: string;

@@ -1,4 +1,4 @@
-import { cva } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Date = cva({
   base: {
@@ -21,4 +21,22 @@ export const Date = cva({
       },
     },
   },
+});
+
+export const Notification = css({
+  color: '54',
+  w: 'fit-content',
+  textAlign: 'center',
+  fontSize: '0.75rem',
+  fontFamily: 'Pretendard',
+  fontStyle: 'normal',
+  fontWeight: '500',
+  lineHeight: 'normal',
+  letterSpacing: '-0.03rem',
+  p: '0.625rem 0.875rem',
+  bg: 'systemGray5',
+  borderRadius: 'full',
+  marginTop: '2.25rem',
+  display: 'flex',
+  alignSelf: 'center',
 });

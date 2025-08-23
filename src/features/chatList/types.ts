@@ -1,3 +1,5 @@
+import type { PickInfoInterface } from '../chatRoom/types';
+
 export interface ChatListInterface {
   chatRoomId: number;
   myUserId: number;
@@ -16,11 +18,11 @@ export interface ChatListInterface {
 }
 
 export interface SubChatListInterface {
-  chatRoomId: number;
   chatId: string;
   userId: number;
   content: string | null;
+  isNotification: boolean;
   isPick: boolean;
-  isRead: boolean;
+  pickInfo: PickInfoInterface | null;
   createdAt: string;
 }
