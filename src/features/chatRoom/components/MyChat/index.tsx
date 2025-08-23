@@ -5,14 +5,14 @@ interface Props {
   children: ReactNode;
   time?: string;
   marginTop: string;
-  isRead?: boolean;
+  isRead: boolean;
 }
 
-export const MyChat = ({ children, time, marginTop }: Props) => {
+export const MyChat = ({ children, time, marginTop, isRead }: Props) => {
   return (
     <div className={s.Container} style={{ marginTop: marginTop }}>
       <div className={s.Info}>
-        {/* <p>1</p> */}
+        {isRead || <p>1</p>}
         <span>{time}</span>
       </div>
       <div className={s.Message}>{children}</div>

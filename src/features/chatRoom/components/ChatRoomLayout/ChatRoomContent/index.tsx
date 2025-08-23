@@ -16,10 +16,13 @@ export const ChatRoomContent = ({ data }: Props) => {
 
   const [newMessages, setNewMessages] = useState<ChatInterface[]>([]);
 
-  const myUserId = data.myUserId;
   const chatRoomId = data.chatRoomId;
+  const myUserId = data.myUserId;
 
   const { data: chats = [], hasNextPage, isFetchingNextPage, fetchNextPage } = useGetLoadChat(chatRoomId);
+
+  const [isOpponentOnline, setIsOpponentOnline] = useState(data.isOpponentOnline);
+  const [opponentLastEnterAt, setOpponentLastEnterAt] = useState(data.opponentLastEnterAt);
 
   // 소켓 구독하기
   useEffect(() => {
@@ -31,6 +34,22 @@ export const ChatRoomContent = ({ data }: Props) => {
           if (data.type === 'CHAT') {
             setNewMessages(prev => [...prev, data.message]);
           }
+          if (data.type === 'ENTER' || data.type === 'EXIT') {
+            if (data.message.ownerId === myUserId) {
+              setIsOpponentOnline(data.message.isRequesterOnline);
+              setOpponentLastEnterAt(data.message.requesterLastEnterAt);
+            }
+            if (data.message.requesterId === myUserId) {
+              setIsOpponentOnline(data.message.isOwnerOnline);
+              setOpponentLastEnterAt(data.message.ownerLastEnterAt);
+            }
+          }
+          // 입퇴장 구독 메시지가 오면 내가 owner, requester인지 식별하기
+          // 상대방의 실시간 온라인 여부를 알아내기
+          // 상대방의 온라인 여부를 보내주기???
+          //
+          // ChatMessageContents에는 상대방이 온라인인지 여부 & 상대방이 언제 마지막으로 들어왔는지를 보내줘야 함
+          // ChatMessageContents에서 그 두개를 이용해서 각 메시지가 isRead인지 아닌지를 식별해야 함
         });
       }
     });
@@ -67,7 +86,10 @@ export const ChatRoomContent = ({ data }: Props) => {
               index={index}
               messages={messages}
               myUserId={myUserId}
+              opponentUserId={data.opponentUserId}
               nickname={data.opponentNickname}
+              isOpponentOnline={isOpponentOnline}
+              opponentLastEnterAt={opponentLastEnterAt}
             />
           )}
           hasNextPage={hasNextPage}

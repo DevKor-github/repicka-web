@@ -7,11 +7,11 @@ export type SubChatRoomInterface =
     }
   | {
       type: 'ENTER';
-      message: EnterInterface;
+      message: StateInterface;
     }
   | {
       type: 'EXIT';
-      message: ExitInterface;
+      message: StateInterface;
     };
 
 export interface ChatRoomInterface {
@@ -37,17 +37,7 @@ export interface ChatInterface {
   createdAt: string;
 }
 
-export interface EnterInterface {
-  chatRoomId: number;
-  requesterId: number;
-  ownerId: number;
-  isRequesterOnline: boolean;
-  isOwnerOnline: boolean;
-  requesterLastEnterAt: string;
-  ownerLastEnterAt: string;
-}
-
-export interface ExitInterface {
+export interface StateInterface {
   chatRoomId: number;
   requesterId: number;
   ownerId: number;

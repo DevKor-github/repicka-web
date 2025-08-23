@@ -6,7 +6,7 @@ export const Container = css({
   alignSelf: 'center',
   top: 'calc({sizes.HEADER_HEIGHT} + 0.375rem)',
 
-  width: '22.375rem',
+  width: '100%',
   padding: '0.625rem 1rem',
   alignItems: 'center',
   gap: '0.625rem',
