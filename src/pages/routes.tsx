@@ -16,6 +16,7 @@ import MyEditPage from './MyEditPage';
 import LikedPage from './LikedListPage';
 import PostEdit from './PostEditPage';
 import ItemChatPage from './ItemChatPage';
+import Review from './ReviewPage';
 
 /**
  * 새로운 페이지 추가하고 싶으면 여기에 추가하면 됩니다
@@ -78,6 +79,10 @@ const routes: RouteObject[] = [
           {
             path: 'chat-about/:itemId',
             element: <ItemChatPage />,
+          },
+          {
+            path: 'review',
+            element: <Review />,
           },
         ],
       },
