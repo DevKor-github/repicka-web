@@ -18,6 +18,15 @@ export const TimePickerWrapper = css({
     lineHeight: 'normal',
     color: '100',
   },
+  '& input': {
+    padding: '0.375rem 0.625rem',
+    borderRadius: '0.375rem',
+    bgColor: 'systemGray4',
+    color: 'main',
+    '&::-webkit-calendar-picker-indicator': {
+      display: 'none',
+    },
+  },
 });
 
 export const ButtonWrapper = css({

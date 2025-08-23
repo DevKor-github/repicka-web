@@ -14,6 +14,7 @@ interface Props {
   setDateTime: (date: Date | null) => void;
   canSelectTime?: boolean;
 }
+
 const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSelectTime = false }: Props) => {
   const { open: dateDrawerOpen, drawerState: dateDrawerState, close: dateDrawerClose } = useDrawer();
   const { open: timeDrawerOpen, drawerState: timeDrawerState, close: timeDrawerClose } = useDrawer();
@@ -76,19 +77,21 @@ const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSele
         />
       </Drawer>
       {/* TODO: 날짜 선택해야 시간 선택 가능하도록 수정 */}
-      <Drawer
-        drawerState={timeDrawerState}
-        title="시간"
-        description={`${transactionText}를 원하는 시간을 선택해주세요`}
-      >
-        <TimeDrawer
-          dateTime={dateTime}
-          setDateTime={setDateTime}
-          transactionText={transactionText}
-          next={timeDrawerClose}
-          prev={handleTimeDrawerPrev}
-        />
-      </Drawer>
+      {dateTime && (
+        <Drawer
+          drawerState={timeDrawerState}
+          title="시간"
+          description={`${transactionText}를 원하는 시간을 선택해주세요`}
+        >
+          <TimeDrawer
+            dateTime={dateTime}
+            setDateTime={setDateTime}
+            transactionText={transactionText}
+            next={timeDrawerClose}
+            prev={handleTimeDrawerPrev}
+          />
+        </Drawer>
+      )}
     </>
   );
 };

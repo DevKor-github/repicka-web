@@ -32,6 +32,7 @@
     "react-dom": "^19.1.0",
     "react-router": "^7.6.3",
     "react-textarea-autosize": "^8.5.9",
+    "react-time-picker-typescript": "^1.2.5",
     "sockjs-client": "^1.6.1",
     "swiper": "^11.2.10",
     "use-long-press": "^3.3.0",

@@ -1,10 +1,9 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import { useRoutes } from 'react-router';
 import routes from '@/pages/routes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import 'react-time-picker-typescript/dist/style.css';
+
 import SocketProvider from './common/components/SocketProvider';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,9 +23,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SocketProvider>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>{router}</LocalizationProvider>
-      </SocketProvider>
+      <SocketProvider>{router}</SocketProvider>
     </QueryClientProvider>
   );
 }
