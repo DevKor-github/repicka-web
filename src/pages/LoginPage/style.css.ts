@@ -62,8 +62,7 @@ export const LoginButton = cva({
       apple: {
         bgColor: '#FFF',
         color: '#000',
-        fontWeight: 590,
-        fontFamily: 'SF Pro',
+        gap: '0.3125rem',
       },
       google: {
         bgColor: '#F2F2F2',

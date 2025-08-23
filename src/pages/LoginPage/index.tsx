@@ -7,6 +7,7 @@ import SafeArea from '@/common/components/SafeArea';
 import useGetIsLogin from '@/common/apis/useGetIsLogin';
 import GoogleLogo from '@/libs/assets/GoogleLogo';
 import KakaoLogo from '@/libs/assets/KakaoLogo';
+import AppleLogo from '@/libs/assets/AppleLogo';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const LoginPage = () => {
             className={s.LoginButton({ src: 'apple' })}
             href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/apple?redirectURI=${redirectionUrl}`}
           >
-            <GoogleLogo />
+            <AppleLogo />
             Apple로 로그인
           </a>
           <a
