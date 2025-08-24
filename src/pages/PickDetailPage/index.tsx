@@ -91,7 +91,7 @@ const PickDetailPage = () => {
             </button>
           </div>
         </div>
-        <DetailBottom id={id} isCreator={false} pickState={data.state} />
+        <DetailBottom id={id} isCreator={data.isCreator} pickState={data.state} />
       </div>
     </SafeArea>
   );
