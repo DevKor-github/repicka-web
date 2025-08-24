@@ -1,5 +1,5 @@
 import React from 'react';
-import { parseDate, parseTime } from '@/common/utils/parseDate';
+import { parseChatDate, parseTime } from '@/common/utils/parseDate';
 import * as s from './style.css';
 
 import type { ChatInterface } from '@/features/chatRoom/types';
@@ -23,14 +23,14 @@ const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline
   const isRead = isOpponentOnline || isBefore(chat.createdAt, opponentLastEnterAt);
 
   const time = parseTime(chat.createdAt);
-  const date = parseDate(chat.createdAt);
+  const date = parseChatDate(chat.createdAt);
   const isMine = chat.userId === myUserId;
   const isNotification = chat.isNotification;
 
   const prevChat = messages[index - 1];
   const nextChat = messages[index + 1];
 
-  const prevDate = prevChat ? parseDate(prevChat.createdAt) : null;
+  const prevDate = prevChat ? parseChatDate(prevChat.createdAt) : null;
   const prevIsMine = prevChat ? (prevChat.isNotification ? false : prevChat.userId === myUserId) : false;
 
   const isNewDate = date !== prevDate;

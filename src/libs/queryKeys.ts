@@ -11,4 +11,5 @@ export const QUERY_KEYS = {
   LIKE_LIST: 'like', // 내 좋아요 목록
   USER: 'user', // 내 정보
   PICK_DETAIL: 'pick', // 특정 id에 해당하는 약속 상세
+  APPOINTMENT_LIST: 'pick-list', // 나의 픽 페이지 리스트
 };

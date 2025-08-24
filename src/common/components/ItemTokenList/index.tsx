@@ -17,7 +17,7 @@ interface Props {
     color?: Color;
     tradeMethods?: TradeMethods[];
     quality?: Quality;
-    size: Size;
+    size?: Size;
   };
   showCount?: number;
 }

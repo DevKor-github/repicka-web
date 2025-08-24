@@ -32,7 +32,8 @@ const DetailBottom = ({ id, itemId, isCreator, pickState }: Props) => {
   const confirmPick = () => {
     confirm(id, {
       onSuccess: () => {
-        navigate(`/pick-detail/${id}`);
+        // TODO: 채팅방 이동
+        navigate(`/chat`);
       },
     });
   };

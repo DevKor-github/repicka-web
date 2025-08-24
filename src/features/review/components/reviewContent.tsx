@@ -8,13 +8,14 @@ interface Props {
   setIsStarClicked: React.Dispatch<React.SetStateAction<boolean[]>>;
   review: string;
   handleReview: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  nickname: string;
 }
 
-const ReviewContent = ({ handleReview, isStarClicked, review, setIsStarClicked }: Props) => {
+const ReviewContent = ({ handleReview, isStarClicked, review, setIsStarClicked, nickname }: Props) => {
   return (
     <div className={s.Wrapper}>
       <div className={s.Content}>
-        <p>며나 님과의 거래를 평가해 주세요</p>
+        <p>{nickname} 님과의 거래를 평가해 주세요</p>
         <div className={s.StarContainer}>
           {isStarClicked.map((star, idx) => {
             return (
@@ -28,7 +29,7 @@ const ReviewContent = ({ handleReview, isStarClicked, review, setIsStarClicked }
         </div>
       </div>
       <div className={s.Content}>
-        <p>며나 님과의 거래는 어떠셨나요?</p>
+        <p>{nickname} 님과의 거래는 어떠셨나요?</p>
         <MultilineInputfield
           placeholder={'배송, 제품 상태, 채팅 등 상품거래와 관련된 내용을 최대 500자 이내로 작성해 주세요.'}
           maxLength={MAX_REVIEW}
