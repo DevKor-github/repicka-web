@@ -11,8 +11,7 @@ import useDrawer from '@/common/hooks/useDrawer';
 import ChatDrawer from '../ChatDrawer';
 import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
-import { usePatchExit, type ExitResponse } from '../../api/usePatchExit';
-import type { AxiosError } from 'axios';
+import { usePatchExit } from '../../api/usePatchExit';
 import { getInProgress } from '../../api/useGetInProgess';
 
 export interface Props {
@@ -40,11 +39,6 @@ const ChatList = ({ data }: Props) => {
 
   const onReport = () => {
     console.log('신고하기');
-  };
-
-  const onRead = () => {
-    console.log('읽음 처리');
-    close();
   };
 
   const exitChat = () => {
@@ -78,7 +72,7 @@ const ChatList = ({ data }: Props) => {
         </div>
       </Link>
       <Drawer drawerState={drawerState} title={data.opponentNickname}>
-        <ChatDrawer onExit={onExit} onRead={onRead} onReport={onReport} />
+        <ChatDrawer onExit={onExit} onReport={onReport} />
       </Drawer>
       {showExitAlert && (
         <CustomAlert
