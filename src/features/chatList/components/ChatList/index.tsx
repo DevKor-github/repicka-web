@@ -14,6 +14,7 @@ import CustomAlert from '@/common/components/CustomAlert';
 import { usePatchExit, type ExitResponse } from '../../api/usePatchExit';
 import type { AxiosError } from 'axios';
 import getImageUrl from '@/common/utils/getImageUrl';
+import { getInProgress } from '../../api/useGetInProgess';
 
 export interface Props {
   data: ChatListInterface;
@@ -22,6 +23,7 @@ export interface Props {
 const ChatList = ({ data }: Props) => {
   const { open, drawerState, close } = useDrawer();
   const { mutate: exitChatRoom } = usePatchExit();
+
   const [showExitAlert, setShowExitAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
 
@@ -32,34 +34,30 @@ const ChatList = ({ data }: Props) => {
     if (showErrorAlert) setShowErrorAlert(false);
   };
 
-  const onExit = () => {
-    setShowExitAlert(true);
+  const onExit = async () => {
+    try {
+      const res = await getInProgress(data.chatRoomId);
+      const isInProgress = res.data;
+      setShowErrorAlert(isInProgress);
+      setShowExitAlert(!isInProgress);
+    } catch (error) {
+      console.error('대여 중 약속 체크 실패', error);
+      setShowErrorAlert(true);
+    }
   };
 
   const onReport = () => {
     console.log('신고하기');
   };
 
-  const onRead = () => {
-    console.log('읽음 처리');
-    close();
-  };
-
-  const exitChat = () => {
+  const exitChat = async () => {
     setShowExitAlert(false);
-    close();
-
-    exitChatRoom(data.chatRoomId, {
-      onError: (err: AxiosError<ExitResponse>) => {
-        const code = err.response?.data?.code;
-
-        // 이미 진행 중인 약속
-        if (code === 'IN_PROGRESS_APPOINTMENT_EXIST') {
-          setShowErrorAlert(true);
-          return;
-        }
-      },
-    });
+    try {
+      await exitChatRoom(data.chatRoomId);
+      close();
+    } catch (error) {
+      setShowErrorAlert(true);
+    }
   };
 
   const message = data.mostRecentChatContent ? data.mostRecentChatContent : '대화를 시작해 보세요!';
@@ -90,7 +88,7 @@ const ChatList = ({ data }: Props) => {
         </div>
       </Link>
       <Drawer drawerState={drawerState} title={data.opponentNickname}>
-        <ChatDrawer onExit={onExit} onRead={onRead} onReport={onReport} />
+        <ChatDrawer onExit={onExit} onReport={onReport} />
       </Drawer>
       {showExitAlert && (
         <CustomAlert

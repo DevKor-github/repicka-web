@@ -10,7 +10,7 @@ export interface Props {
   data: ChatRoomInterface;
 }
 
-export const ChatRoomContent = ({ data }: Props) => {
+const ChatRoomContent = ({ data }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const isFirstRender = useRef(true);
 

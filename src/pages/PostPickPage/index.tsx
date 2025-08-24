@@ -118,14 +118,14 @@ const PostPickPage = () => {
     if (isItemDetailSuccess) {
       setStartLocation(itemData.itemInfo.location);
       setEndLocation(itemData.itemInfo.location);
-      if (itemData.itemInfo.salePrice) {
-        setPrice(itemData.itemInfo.salePrice);
-      } else {
+      if (transactionType === 'RENTAL') {
         setPrice(itemData.itemInfo.rentalFee);
+      } else {
+        setPrice(itemData.itemInfo.salePrice);
       }
       setDeposit(itemData.itemInfo.deposit);
     }
-  }, [isItemDetailSuccess, itemData?.itemInfo]);
+  }, [isItemDetailSuccess, itemData?.itemInfo, transactionType]);
 
   if (isItemDetailLoading || isItemStatusLoading) return null;
 

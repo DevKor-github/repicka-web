@@ -20,10 +20,12 @@ const CustomAlert = ({ onNo, onYes, title, subTitle, yesBtn }: Props) => {
           <p>{subTitle}</p>
         </div>
         <div className={s.Btn}>
-          <Btn onClick={onNo} style={{ flex: '1' }}>
-            아니오
-          </Btn>
-          <Btn mode="main" onClick={onYes} style={{ width: '13.125rem' }}>
+          {onNo && (
+            <Btn onClick={onNo} style={{ flex: '1' }}>
+              아니오
+            </Btn>
+          )}
+          <Btn mode="main" onClick={onYes} style={{ width: onNo ? '13.125rem' : '100%' }}>
             {yesBtn}
           </Btn>
         </div>

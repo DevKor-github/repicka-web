@@ -1,4 +1,5 @@
 import client from '@/common/utils/client';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 
 const getIsLogin = async () => {
@@ -15,7 +16,7 @@ const getIsLogin = async () => {
 
 const useGetIsLogin = () => {
   return useQuery({
-    queryKey: ['isLogin'],
+    queryKey: [QUERY_KEYS.IS_LOGIN],
     queryFn: getIsLogin,
     staleTime: 0, // 매번 확인
   });

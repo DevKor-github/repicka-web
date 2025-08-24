@@ -1,6 +1,7 @@
 import client from '@/common/utils/client';
 import type { ChatRoomInterface } from '@/features/chatRoom/types';
-import { useMutation } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/libs/queryKeys';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface PostChatroomResponse {
   message: string;
@@ -14,7 +15,11 @@ const postChatroom = async (itemId: number) => {
 };
 
 export const usePostChatroom = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: postChatroom,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
+    },
   });
 };
