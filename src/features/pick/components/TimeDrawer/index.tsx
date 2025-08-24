@@ -2,7 +2,6 @@ import * as s from './style.css';
 
 import { formatDate } from 'date-fns';
 
-// TODO: 확정 디자인 & 기능으로 고고
 interface Props {
   dateTime: Date;
   setDateTime: (date: Date) => void;

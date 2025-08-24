@@ -33,7 +33,6 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
     if (isLoading) return;
 
     if (itemStatusData === undefined) {
-      // TODO: 아이템과 관련된 내 채팅방으로 연결
       navigate(`/chat-about/${itemId}`);
       return;
     }

@@ -40,7 +40,6 @@ const SearchControls = ({ itemCounts }: Props) => {
           </div>
         </div>
         <div className={s.SelectButtonContainer}>
-          {/* TODO: 디자인 적용, 필터 로직 추가 */}
           <div className={s.Gradient({ position: 'left' })} />
           <div className={s.ButtonWrapper}>
             {FilterTypeArray.map(filter => {
