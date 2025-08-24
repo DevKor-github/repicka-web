@@ -15,10 +15,11 @@ import DetailBottom from '@/features/pick/components/DetailBottom';
 interface InfoItemProps {
   title: string;
   value: string;
+  bold?: boolean;
 }
-const InfoItem = ({ title, value }: InfoItemProps) => {
+const InfoItem = ({ title, value, bold = false }: InfoItemProps) => {
   return (
-    <div className={s.Item}>
+    <div className={s.Item({ bold })}>
       <label>{title}</label>
       <p>{value}</p>
     </div>
@@ -86,6 +87,17 @@ const PickDetailPage = () => {
                   )}
                 </>
               )}
+              <div className={s.Block}>
+                <InfoItem
+                  title={'총 가격'}
+                  value={
+                    data.type === 'SALE'
+                      ? `${data.price.toLocaleString()}원`
+                      : `대여료 ${data.price.toLocaleString()}원 + 보증금 ${data.deposit.toLocaleString()}원`
+                  }
+                  bold
+                />
+              </div>
             </div>
             {canEdit && (
               <button className={s.EditButton} onClick={handleEdit}>
