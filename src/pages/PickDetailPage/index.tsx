@@ -10,6 +10,7 @@ import useGetItemDetail from '@/features/detail/apis/useGetItemDetail';
 import getItemInterfaceFromItemDetail from '@/common/utils/getItemInterfaceFromItemDetail';
 import NotFoundPage from '@/pages/NotFoundPage';
 import CustomHeader from '@/common/components/CustomHeader';
+import DetailBottom from '@/features/pick/components/DetailBottom';
 
 interface InfoItemProps {
   title: string;
@@ -26,20 +27,21 @@ const InfoItem = ({ title, value }: InfoItemProps) => {
 
 const PickDetailPage = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const { data, isError } = useGetPickDetail(Number(id));
+  const { id: idString } = useParams();
+  const id = Number(idString);
+  const { data, isError } = useGetPickDetail(id);
   const { data: itemData } = useGetItemDetail(data?.itemId);
 
   const handleEdit = () => {
     alert('수정!');
   };
 
-  const isSale = data?.type === 'SALE';
-  const isParcel = data?.tradeMethod === 'PARCEL';
-
   if (isError) return <NotFoundPage />;
 
   if (data === undefined || itemData === undefined) return null;
+
+  const isSale = data.type === 'SALE';
+  const isParcel = data.tradeMethod === 'PARCEL';
 
   return (
     <SafeArea>
@@ -89,6 +91,7 @@ const PickDetailPage = () => {
             </button>
           </div>
         </div>
+        <DetailBottom id={id} isCreator={false} pickState={data.state} />
       </div>
     </SafeArea>
   );

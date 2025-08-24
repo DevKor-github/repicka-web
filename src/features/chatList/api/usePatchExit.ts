@@ -1,4 +1,5 @@
 import client from '@/common/utils/client';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
@@ -21,7 +22,7 @@ export const usePatchExit = () => {
     mutationFn: (chatRoomId: number) => patchExit(chatRoomId),
     retry: 0,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['chat-list'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
       console.log('퇴장 성공');
     },
     onError: error => {
