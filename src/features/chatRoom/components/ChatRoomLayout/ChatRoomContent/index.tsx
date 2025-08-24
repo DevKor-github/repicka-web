@@ -23,7 +23,14 @@ const ChatRoomContent = ({ data }: Props) => {
     restOpponentLastEnterAt: data.opponentLastEnterAt,
   });
 
-  const { data: chats = [], hasNextPage, isFetching, isFetchingNextPage, fetchNextPage } = useGetLoadChat(chatRoomId);
+  const {
+    data: chats = [],
+    hasNextPage,
+    isFetching,
+    isSuccess,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useGetLoadChat(chatRoomId);
 
   // 메시지 합치기
   const messages = [[...chats].reverse(), ...newMessages].flat();
@@ -39,11 +46,15 @@ const ChatRoomContent = ({ data }: Props) => {
 
   useEffect(() => {
     // 첫 방문시에 스크롤 위치 초기화
-    if (scrollRef.current && !isFetching && !isMountedRef.current) {
+    if (scrollRef.current && isSuccess && !isMountedRef.current) {
+      console.log(scrollRef.current.scrollTop);
+      console.log(scrollRef.current.scrollHeight);
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      console.log(scrollRef.current.scrollTop);
+      console.log(scrollRef.current.scrollHeight);
       isMountedRef.current = true;
     }
-  }, [isFetching]);
+  }, [isSuccess]);
 
   useEffect(() => {
     // 페이지네이션시에 스크롤 보정

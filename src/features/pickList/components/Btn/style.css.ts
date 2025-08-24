@@ -1,4 +1,4 @@
-import { css, cva } from '@styled-system/css';
+import { cva } from '@styled-system/css';
 
 export const Container = cva({
   base: {
