@@ -1,7 +1,6 @@
 const RepickaLogo = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 25">
-      <rect width="24" height="24" y="0.143" fill="#1C1C1E" rx="4"></rect>
       <path
         fill="url(#paint0_linear_2760_4935)"
         d="M12.056 21.562c-.456.089-.933-.336-1.093-.978L7.337 6.073c-.473-1.764.215-2.928 1.273-3.133 1.08-.21 2.119.457 2.363 2.507l1.736 14.837c.075.64-.207 1.192-.653 1.278"
