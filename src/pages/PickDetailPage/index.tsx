@@ -43,6 +43,8 @@ const PickDetailPage = () => {
   const isSale = data.type === 'SALE';
   const isParcel = data.tradeMethod === 'PARCEL';
 
+  const canEdit = data.state === 'CONFIRMED' || data.state === 'PENDING';
+
   return (
     <SafeArea>
       <div className={s.Wrapper}>
@@ -85,13 +87,15 @@ const PickDetailPage = () => {
                 </>
               )}
             </div>
-            <button className={s.EditButton} onClick={handleEdit}>
-              <span className="mgc_edit_4_fill" />
-              수정하기
-            </button>
+            {canEdit && (
+              <button className={s.EditButton} onClick={handleEdit}>
+                <span className="mgc_edit_4_fill" />
+                수정하기
+              </button>
+            )}
           </div>
         </div>
-        <DetailBottom id={id} isCreator={data.isCreator} pickState={data.state} />
+        <DetailBottom id={id} itemId={data.itemId} isCreator={data.isCreator} pickState={data.state} />
       </div>
     </SafeArea>
   );
