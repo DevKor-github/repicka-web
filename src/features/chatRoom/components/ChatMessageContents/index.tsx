@@ -6,16 +6,22 @@ import type { ChatInterface } from '@/features/chatRoom/types';
 import PickChat from '../PickChat';
 import MyChat from '../MyChat';
 import OtherChat from '../OtherChat';
+import { isBefore } from 'date-fns';
 
 interface Props {
   chat: ChatInterface;
   index: number;
   messages: ChatInterface[];
   myUserId: number;
+  opponentUserId: number;
   nickname: string;
+  isOpponentOnline: boolean;
+  opponentLastEnterAt: string;
 }
 
-const ChatMessageContents = ({ chat, index, messages, myUserId }: Props) => {
+const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline, opponentLastEnterAt }: Props) => {
+  const isRead = isOpponentOnline || isBefore(chat.createdAt, opponentLastEnterAt);
+
   const time = parseTime(chat.createdAt);
   const date = parseDate(chat.createdAt);
   const isMine = chat.userId === myUserId;
@@ -44,7 +50,7 @@ const ChatMessageContents = ({ chat, index, messages, myUserId }: Props) => {
       ) : chat.isPick ? (
         <PickChat marginTop={marginTop} isMine={isMine} children={chat.content} />
       ) : isMine ? (
-        <MyChat marginTop={marginTop} time={showTime ? time : undefined}>
+        <MyChat marginTop={marginTop} time={showTime ? time : undefined} isRead={isRead}>
           {chat.content}
         </MyChat>
       ) : (

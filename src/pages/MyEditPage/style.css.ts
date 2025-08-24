@@ -8,5 +8,5 @@ export const EntireLayout = css({
 });
 
 export const Footer = css({
-  padding: '0rem 1rem 2.625rem 1rem',
+  padding: '1rem 1rem 2.625rem 1rem',
 });

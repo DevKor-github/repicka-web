@@ -7,6 +7,7 @@ import SafeArea from '@/common/components/SafeArea';
 import useGetIsLogin from '@/common/apis/useGetIsLogin';
 import GoogleLogo from '@/libs/assets/GoogleLogo';
 import KakaoLogo from '@/libs/assets/KakaoLogo';
+import AppleLogo from '@/libs/assets/AppleLogo';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -31,6 +32,13 @@ const LoginPage = () => {
         <p className={s.Label}>SNS 계정으로 로그인하기</p>
         <div className={s.ButtonContainer}>
           {/* TODO: 애플 로그인 추가 */}
+          <a
+            className={s.LoginButton({ src: 'apple' })}
+            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/apple?redirectURI=${redirectionUrl}`}
+          >
+            <AppleLogo />
+            Apple로 로그인
+          </a>
           <a
             className={s.LoginButton({ src: 'google' })}
             href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google?redirectURI=${redirectionUrl}`}

@@ -27,7 +27,7 @@ export const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
       if (e.nativeEvent.isComposing) return;
 
       if (!e.shiftKey) {
-        e.preventDefault(); // ✅ 기본 줄바꿈 막기
+        e.preventDefault();
         send();
       }
     }

@@ -1,7 +1,8 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import { useRoutes } from 'react-router';
 import routes from '@/pages/routes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import 'react-time-picker-typescript/dist/style.css';
+
 import SocketProvider from './common/components/SocketProvider';
 
 const queryClient = new QueryClient({

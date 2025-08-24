@@ -7,7 +7,7 @@ export const Container = css({
   borderRadius: '0.375rem',
   display: 'flex',
   flexDir: 'column',
-  gap: '0.625rem',
+  gap: '1.5rem',
 });
 
 export const InputField = css({
@@ -22,6 +22,9 @@ export const InputField = css({
   resize: 'none',
   '&::placeholder': {
     color: '54',
+  },
+  _focus: {
+    outline: 'none',
   },
 });
 

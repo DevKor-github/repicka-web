@@ -3,12 +3,14 @@ import { css } from '@styled-system/css';
 export const Container = css({
   width: '100%',
   height: '100%',
-  display: 'relative',
+  position: 'relative',
+  display: 'flex',
+  flexDir: 'column',
 });
 
 export const ScrollContainer = css({
   width: 'full',
-  height: 'calc(100% - {sizes.DETAIL_PAGE_NAVIGATOR_HEIGHT})',
+  flexGrow: 1,
   overflowY: 'auto',
   paddingBottom: '1rem',
 });

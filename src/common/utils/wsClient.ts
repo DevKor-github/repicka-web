@@ -29,8 +29,6 @@ export const subChatRoomSocket = (chatRoomId: number, callback: (data: SubChatRo
 
   const sub = stompClient.subscribe(`/sub/chatroom/${chatRoomId}`, message => {
     const data = JSON.parse(message.body) as SubChatRoomInterface;
-    console.log(data);
-    console.log(1);
     callback(data);
   });
 

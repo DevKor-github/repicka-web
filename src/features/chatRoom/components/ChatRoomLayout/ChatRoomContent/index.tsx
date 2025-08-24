@@ -16,10 +16,13 @@ export const ChatRoomContent = ({ data }: Props) => {
 
   const [newMessages, setNewMessages] = useState<ChatInterface[]>([]);
 
-  const myUserId = data.myUserId;
   const chatRoomId = data.chatRoomId;
+  const myUserId = data.myUserId;
 
   const { data: chats = [], hasNextPage, isFetchingNextPage, fetchNextPage } = useGetLoadChat(chatRoomId);
+
+  const [isOpponentOnline, setIsOpponentOnline] = useState(data.isOpponentOnline);
+  const [opponentLastEnterAt, setOpponentLastEnterAt] = useState(data.opponentLastEnterAt);
 
   // 소켓 구독하기
   useEffect(() => {
@@ -30,6 +33,16 @@ export const ChatRoomContent = ({ data }: Props) => {
         unsubscribe = subChatRoomSocket(chatRoomId, data => {
           if (data.type === 'CHAT') {
             setNewMessages(prev => [...prev, data.message]);
+          }
+          if (data.type === 'ENTER' || data.type === 'EXIT') {
+            if (data.message.ownerId === myUserId) {
+              setIsOpponentOnline(data.message.isRequesterOnline);
+              setOpponentLastEnterAt(data.message.requesterLastEnterAt);
+            }
+            if (data.message.requesterId === myUserId) {
+              setIsOpponentOnline(data.message.isOwnerOnline);
+              setOpponentLastEnterAt(data.message.ownerLastEnterAt);
+            }
           }
         });
       }
@@ -67,7 +80,10 @@ export const ChatRoomContent = ({ data }: Props) => {
               index={index}
               messages={messages}
               myUserId={myUserId}
+              opponentUserId={data.opponentUserId}
               nickname={data.opponentNickname}
+              isOpponentOnline={isOpponentOnline}
+              opponentLastEnterAt={opponentLastEnterAt}
             />
           )}
           hasNextPage={hasNextPage}
