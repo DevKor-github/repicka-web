@@ -17,8 +17,10 @@ import PlaceBox from '@/features/pick/components/PlaceBox';
 import DateTimeBox from '@/features/pick/components/DateTimeBox';
 import { usePostRentalAppointment } from '@/features/pick/apis/usePostRentalAppointment';
 import { usePostSaleAppointment } from '@/features/pick/apis/usePostSaleAppointment';
-import { formatDate, isBefore } from 'date-fns';
+import { formatDate } from 'date-fns';
 import CustomHeader from '@/common/components/CustomHeader';
+import checkValidation from '@/features/pick/utils/checkValidation';
+import handleSubmitEdgeCase from '@/features/pick/utils/handelSubmitEdgeCase';
 
 const PostPickPage = () => {
   const navigate = useNavigate();
@@ -39,34 +41,21 @@ const PostPickPage = () => {
   const [startDateTime, setStartDateTime] = useState<Date | null>(null);
   const [endDateTime, setEndDateTime] = useState<Date | null>(null);
 
-  const submitValidation = (() => {
-    if (transactionType === 'RENTAL') {
-      if (tradeMethod === 'DIRECT') {
-        return startLocation && endLocation && startDateTime && endDateTime ? true : false;
-      }
-
-      return startDateTime && endDateTime ? true : false;
-    }
-
-    if (tradeMethod === 'DIRECT') return startLocation && startDateTime ? true : false;
-
-    return startDateTime ? true : false;
-  })();
+  const submitValidation = checkValidation({
+    transactionType,
+    tradeMethod,
+    startLocation,
+    endLocation,
+    startDateTime,
+    endDateTime,
+  });
 
   const handleSubmit = () => {
     if (!submitValidation) return;
 
+    if (!handleSubmitEdgeCase({ transactionType, startDateTime, endDateTime })) return;
+
     if (transactionType === 'RENTAL') {
-      if (isBefore(endDateTime as Date, startDateTime as Date)) {
-        alert('대여 일시는 반납 일시보다 이전이어야 합니다.');
-        return;
-      }
-
-      if (isBefore(startDateTime as Date, new Date())) {
-        alert('대여 일시는 현재 시간보다 이후여야 합니다.');
-        return;
-      }
-
       postRentalAppointment(
         {
           itemId,
