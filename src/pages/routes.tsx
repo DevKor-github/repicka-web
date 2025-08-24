@@ -83,7 +83,7 @@ const routes: RouteObject[] = [
             element: <ItemChatPage />,
           },
           {
-            path: 'review',
+            path: '/review/:appointmentId',
             element: <Review />,
           },
           {

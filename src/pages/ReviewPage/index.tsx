@@ -1,6 +1,6 @@
 import CustomHeader from '@/common/components/CustomHeader';
 import SafeArea from '@/common/components/SafeArea';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import * as s from './style.css';
 import { useState } from 'react';
 import Btn from '@/common/components/Button';
@@ -9,8 +9,10 @@ import ReviewContent from '@/features/review/components/reviewContent';
 
 const Review = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { mutate: postReview } = usePostReview();
-  const { itemId } = useParams();
+  const { appointmentId } = useParams();
 
   const [review, setReview] = useState('');
   const [isStarClicked, setIsStarClicked] = useState([false, false, false, false, false]);
@@ -26,7 +28,7 @@ const Review = () => {
     if (isValid === 'main') {
       postReview(
         {
-          appointmentId: Number(itemId),
+          appointmentId: Number(appointmentId),
           content: review,
           rating: rating,
         },
@@ -50,6 +52,7 @@ const Review = () => {
             isStarClicked={isStarClicked}
             review={review}
             setIsStarClicked={setIsStarClicked}
+            nickname={location.state.nickname}
           />
         </div>
         <div className={s.Btn}>
