@@ -36,7 +36,7 @@ const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSele
   };
   const handleDateDrawerNext = () => {
     dateDrawerClose();
-    timeDrawerOpen();
+    if (canSelectTime) timeDrawerOpen();
   };
 
   return (

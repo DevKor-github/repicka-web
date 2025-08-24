@@ -47,8 +47,8 @@ const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline
       {isNewDate && <div className={s.Date({ isFirst })}>{date}</div>}
       {isNotification ? (
         <div className={s.Notification}>{chat.content}</div>
-      ) : chat.isPick ? (
-        <PickChat marginTop={marginTop} isMine={isMine} children={chat.content} />
+      ) : chat.isPick && chat.pickInfo ? (
+        <PickChat marginTop={marginTop} isMine={isMine} children={chat.content} pickId={chat.pickInfo.appointmentId} />
       ) : isMine ? (
         <MyChat marginTop={marginTop} time={showTime ? time : undefined} isRead={isRead}>
           {chat.content}

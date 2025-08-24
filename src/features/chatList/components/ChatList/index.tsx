@@ -2,7 +2,6 @@ import * as s from './style.css';
 import { Link } from 'react-router';
 import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
-import { toKST } from '@/common/utils/toKST';
 import { getKoreanRelativeTime } from '@/common/utils/getKoreanRelativeTime';
 import type { ChatListInterface } from '../../types';
 import { useLongPress } from 'use-long-press';
@@ -13,7 +12,7 @@ import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
 import { usePatchExit } from '../../api/usePatchExit';
 import getImageUrl from '@/common/utils/getImageUrl';
-import { getInProgress } from '../../api/useGetInProgess';
+import { getInProgress } from '../../api/useGetInProgress';
 
 export interface Props {
   data: ChatListInterface;
@@ -78,7 +77,7 @@ const ChatList = ({ data }: Props) => {
               <h1>{data.opponentNickname}</h1>
               {data.isOpponentKorean && <SchoolVerifiedTag />}
             </div>
-            {data.lastChatAt && <div className={s.Time}>{getKoreanRelativeTime(toKST(new Date(data.lastChatAt)))}</div>}
+            {data.lastChatAt && <div className={s.Time}>{getKoreanRelativeTime(new Date(data.lastChatAt))}</div>}
           </div>
           <div className={s.MessageInfo}>
             <p className={s.Message}>{message}</p>
