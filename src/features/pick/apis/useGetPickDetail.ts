@@ -24,6 +24,7 @@ interface GetPickDetailResponse {
     state: PickStatus;
     type: TransactionType;
     tradeMethod: TradeMethods;
+    isCreator: boolean;
   };
 }
 
