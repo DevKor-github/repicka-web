@@ -1,22 +1,5 @@
 import { css } from '@styled-system/css';
 
-export const Header = css({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  p: '1.25rem 1rem',
-  position: 'relative',
-  height: 'HEADER_HEIGHT',
-  fontSize: '1.25rem',
-  fontWeight: 600,
-  flexShrink: 0,
-  '& button': {
-    position: 'absolute',
-    left: '1.25rem',
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
-});
 export const Wrapper = css({
   display: 'flex',
   flexDir: 'column',

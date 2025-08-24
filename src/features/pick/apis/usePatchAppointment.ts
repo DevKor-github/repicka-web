@@ -1,14 +1,15 @@
 import client from '@/common/utils/client';
-import { useMutation } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/libs/queryKeys';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface PatchAppointmentRequest {
   appointmentId: number;
   rentalLocation: string;
-  returnLocation: string;
+  returnLocation?: string;
   rentalDate: string;
-  returnDate: string;
+  returnDate?: string;
   price: number;
-  deposit: number;
+  deposit?: number;
 }
 
 const patchAppointment = async (data: PatchAppointmentRequest) => {
@@ -17,7 +18,11 @@ const patchAppointment = async (data: PatchAppointmentRequest) => {
 };
 
 export const usePatchAppointment = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: patchAppointment,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PICK_DETAIL] });
+    },
   });
 };
