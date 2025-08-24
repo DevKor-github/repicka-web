@@ -5,8 +5,16 @@ import PickItemList from '@/features/pickList/components/PickItemList';
 import useGetAppointment from '@/features/pickList/apis/useGetAppointment';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
 import Pagination from '@/common/components/Pagination';
+import { useSearchParams } from 'react-router';
+import { motion } from 'framer-motion'; // motion/react → framer-motion
+import NoResult from '@/common/components/NoResult';
 
 const PickPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const rawSubject = searchParams.get('subject');
+
+  const subject = rawSubject === 'requester' ? 'REQUESTER' : 'OWNER'; // 기본값 OWNER
+
   const {
     data: picks = [],
     isSuccess,
@@ -16,28 +24,35 @@ const PickPage = () => {
   } = useGetAppointment({
     pageSize: CHAT_PAGING_SIZE,
     period: 'ALL',
-    subject: 'OWNER',
+    subject, // OWNER or REQUESTER
   });
 
   const isEmpty = isSuccess && picks.length === 0;
+
+  const handleTabClick = (value: 'OWNER' | 'REQUESTER') => {
+    setSearchParams({ subject: value.toLowerCase() });
+  };
 
   return (
     <SafeArea>
       <MainTopBar />
       <div className={s.Section}>
-        <div className={s.Type({ g: true })}>
-          <div>내 게시물</div>
-          <div className={s.Bar} />
+        <div className={s.Type({ active: subject === 'OWNER' })} onClick={() => handleTabClick('OWNER')}>
+          내 게시물
+          {subject === 'OWNER' && <motion.div layoutId="underline" className={s.Underline} />}
         </div>
-        <div className={s.Type({ g: true })}>
-          <div>다른 게시물</div>
-          <div className={s.Bar} />
+
+        <div className={s.Type({ active: subject === 'REQUESTER' })} onClick={() => handleTabClick('REQUESTER')}>
+          다른 게시물
+          {subject === 'REQUESTER' && <motion.div layoutId="underline" className={s.Underline} />}
         </div>
       </div>
 
       <div className={s.Wrapper}>
-        <div className={s.Content}>
-          {!isEmpty && (
+        <div className={s.Content({ isEmpty })}>
+          {isEmpty ? (
+            <NoResult type="pick" />
+          ) : (
             <Pagination
               fetchNextPage={fetchNextPage}
               items={picks}

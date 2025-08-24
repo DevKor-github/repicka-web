@@ -19,7 +19,7 @@ const PickItemList = ({ data }: PickItemListProps) => {
   return (
     <div className={s.TradeInfo}>
       <TradeInfo isSuccess={isSuccess} date={date} />
-      <Link className={s.Container} to={`/detail/${data.itemId}`}>
+      <Link className={s.Container} to={`/pick-detail/${data.appointmentId}`}>
         <img className={s.Image} src={getImageUrl(data.imageUrl)} aria-hidden />
 
         <div className={s.Wrapper}>

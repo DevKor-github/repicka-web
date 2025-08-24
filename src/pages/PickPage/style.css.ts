@@ -7,9 +7,12 @@ export const Wrapper = css({
 });
 
 export const Section = css({
-  p: '0.75rem 0 0 1.25rem',
+  p: '0.75rem 0 0rem 1.25rem',
   display: 'flex',
   gap: '1rem',
+  borderBottomWidth: '0.5px',
+  borderColor: '#2C2C2E',
+  borderStyle: 'solid',
 });
 
 export const Type = cva({
@@ -17,35 +20,64 @@ export const Type = cva({
     display: 'flex',
     flexDir: 'column',
     gap: '0.69rem',
+    textAlign: 'center',
+    fontFamily: ' Pretendard',
+    fontSize: '1.125rem',
+    fontStyle: 'normal',
+    lineHeight: 'normal',
+    letterSpacing: '-0.045rem',
   },
   variants: {
-    g: {
+    active: {
       true: {
         color: '100',
-        textAlign: 'center',
-        fontFamily: ' Pretendard',
-        fontSize: '1.125rem',
-        fontStyle: 'normal',
         fontWeight: 700,
-        lineHeight: 'normal',
-        letterSpacing: '-0.045rem',
+      },
+      false: {
+        color: 'systemGray',
+        fontWeight: 400,
       },
     },
   },
 });
 
-export const Bar = css({
-  display: 'flex',
-  flex: 1,
-  color: '100',
-  border: '1.5px solid',
-  bg: 'main',
+export const Underline = css({
+  height: '2px',
+  width: '100%',
+  background: '100',
 });
 
-export const Content = css({
-  display: 'flex',
-  flex: 1,
-  flexDir: 'column',
-  p: '1rem',
-  gap: '1rem',
+export const Content = cva({
+  base: {
+    display: 'flex',
+    flexDir: 'column',
+    gap: '1rem',
+    p: '1rem',
+  },
+  variants: {
+    isEmpty: {
+      true: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+      },
+    },
+  },
 });
+
+// export const Container = cva({
+//   base: {
+//     display: 'flex',
+//     flexDir: 'column',
+//     gap: '1rem',
+//   },
+//   variants: {
+//     isEmpty: {
+//       true: {
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         height: '100%',
+//       },
+//     },
+//   },
+// });

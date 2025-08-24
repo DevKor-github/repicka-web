@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { connectSocket, subChatListSocket } from '@/common/utils/wsClient';
 import { useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/libs/queryKeys';
+import NoResult from '@/common/components/NoResult';
 
 const ChatPage = () => {
   const {
@@ -41,8 +42,10 @@ const ChatPage = () => {
   return (
     <SafeArea>
       <ChatTopBar />
-      <div className={s.Wrapper}>
-        {!isEmpty && (
+      <div className={s.Wrapper({ isEmpty })}>
+        {isEmpty ? (
+          <NoResult type="chat-list" />
+        ) : (
           <Pagination
             fetchNextPage={fetchNextPage}
             items={rooms}
