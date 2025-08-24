@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { stompClient } from '@/common/utils/wsClient';
 import TextareaAutosize from 'react-textarea-autosize';
 
-export const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
+const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
   const [message, setMessage] = useState('');
   const canSend = message.trim().length > 0;
 

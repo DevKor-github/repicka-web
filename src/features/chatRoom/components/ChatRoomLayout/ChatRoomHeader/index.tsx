@@ -8,7 +8,7 @@ export interface Props {
   data: ChatRoomInterface;
 }
 
-export const ChatRoomHeader = ({ data }: Props) => {
+const ChatRoomHeader = ({ data }: Props) => {
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
 
