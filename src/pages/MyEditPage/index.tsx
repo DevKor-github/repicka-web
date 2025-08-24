@@ -21,8 +21,8 @@ const MyEditPage = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const isNicknameEdited = nickname !== data.nickname && nickname.length >= 2 && nickname.length <= 10;
-  const isProfileEdited = !!file;
-  const isEdited = isNicknameEdited || isProfileEdited ? 'main' : 'disabled';
+  const isImgEdited = !!file;
+  const isEdited = isNicknameEdited || isImgEdited ? 'main' : 'disabled';
 
   const { mutate: updateUser } = usePutUser();
 
@@ -71,6 +71,7 @@ const MyEditPage = () => {
           isNicknameEdited={isNicknameEdited}
           setFile={setFile}
           profileImageUrl={data.profileImageUrl}
+          isImgEdited={isImgEdited}
         />
         <div className={s.Footer}>
           <Btn mode={isEdited} onClick={onSave}>
