@@ -14,6 +14,14 @@ export const UserInfo = css({
   gap: '0.875rem',
   justifyContent: 'center',
   alignItems: 'center',
+
+  color: '100',
+  fontFamily: 'Pretendard',
+  fontSize: ' 1rem',
+  fontStyle: 'normal',
+  fontWeight: 500,
+  lineHeight: 'normal',
+  letterSpacing: '-0.04rem',
 });
 
 export const Verifiy = css({

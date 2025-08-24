@@ -11,7 +11,9 @@ import useDrawer from '@/common/hooks/useDrawer';
 import ChatDrawer from '../ChatDrawer';
 import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
-import { usePatchExit } from '../../api/usePatchExit';
+import { usePatchExit, type ExitResponse } from '../../api/usePatchExit';
+import type { AxiosError } from 'axios';
+import getImageUrl from '@/common/utils/getImageUrl';
 import { getInProgress } from '../../api/useGetInProgess';
 
 export interface Props {
@@ -24,6 +26,8 @@ const ChatList = ({ data }: Props) => {
 
   const [showExitAlert, setShowExitAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
+
+  const thumbnail = data.itemThumbnailUrl ? getImageUrl(data.itemThumbnailUrl) : 'base-url';
 
   const onUnshowAlert = () => {
     if (showExitAlert) setShowExitAlert(false);
@@ -65,7 +69,10 @@ const ChatList = ({ data }: Props) => {
   return (
     <>
       <Link className={s.List} to={`/chatroom/${data.chatRoomId}`} {...bind()}>
-        <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
+        <div className={s.Img}>
+          <img className={s.Thumbnail} src={thumbnail} />
+          <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
+        </div>
         <div className={s.Contents}>
           <div className={s.TimeInfo}>
             <div className={s.UserInfo}>
