@@ -44,12 +44,6 @@ export const ChatRoomContent = ({ data }: Props) => {
               setOpponentLastEnterAt(data.message.ownerLastEnterAt);
             }
           }
-          // 입퇴장 구독 메시지가 오면 내가 owner, requester인지 식별하기
-          // 상대방의 실시간 온라인 여부를 알아내기
-          // 상대방의 온라인 여부를 보내주기???
-          //
-          // ChatMessageContents에는 상대방이 온라인인지 여부 & 상대방이 언제 마지막으로 들어왔는지를 보내줘야 함
-          // ChatMessageContents에서 그 두개를 이용해서 각 메시지가 isRead인지 아닌지를 식별해야 함
         });
       }
     });

@@ -20,9 +20,6 @@ interface Props {
 }
 
 const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline, opponentLastEnterAt }: Props) => {
-  console.log('isopp: ', isOpponentOnline);
-  console.log('created at : ', chat.createdAt);
-  console.log('opponentLastEnter: ', opponentLastEnterAt);
   const isRead = isOpponentOnline || isBefore(chat.createdAt, opponentLastEnterAt);
 
   const time = parseTime(chat.createdAt);
