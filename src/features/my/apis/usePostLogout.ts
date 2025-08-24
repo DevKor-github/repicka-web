@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 const postLogout = async () => {
-  const response = await client.post(`/api/v1/logout`);
+  const response = await client.post('/api/v1/logout');
   return response.data;
 };
 
