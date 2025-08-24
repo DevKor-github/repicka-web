@@ -13,6 +13,7 @@ import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
 import { usePatchExit, type ExitResponse } from '../../api/usePatchExit';
 import type { AxiosError } from 'axios';
+import { getInProgress } from '../../api/useGetInProgess';
 
 export interface Props {
   data: ChatListInterface;
@@ -21,6 +22,7 @@ export interface Props {
 const ChatList = ({ data }: Props) => {
   const { open, drawerState, close } = useDrawer();
   const { mutate: exitChatRoom } = usePatchExit();
+
   const [showExitAlert, setShowExitAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
 
@@ -29,8 +31,11 @@ const ChatList = ({ data }: Props) => {
     if (showErrorAlert) setShowErrorAlert(false);
   };
 
-  const onExit = () => {
-    setShowExitAlert(true);
+  const onExit = async () => {
+    const res = await getInProgress(data.chatRoomId);
+    const isInProgress = res.data;
+    setShowErrorAlert(isInProgress);
+    setShowExitAlert(!isInProgress);
   };
 
   const onReport = () => {
@@ -44,19 +49,8 @@ const ChatList = ({ data }: Props) => {
 
   const exitChat = () => {
     setShowExitAlert(false);
+    exitChatRoom(data.chatRoomId);
     close();
-
-    exitChatRoom(data.chatRoomId, {
-      onError: (err: AxiosError<ExitResponse>) => {
-        const code = err.response?.data?.code;
-
-        // 이미 진행 중인 약속
-        if (code === 'IN_PROGRESS_APPOINTMENT_EXIST') {
-          setShowErrorAlert(true);
-          return;
-        }
-      },
-    });
   };
 
   const message = data.mostRecentChatContent ? data.mostRecentChatContent : '대화를 시작해 보세요!';
