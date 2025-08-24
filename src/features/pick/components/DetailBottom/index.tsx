@@ -49,7 +49,7 @@ const DetailBottom = ({ id, itemId, isCreator, pickState }: Props) => {
         ) : (
           <>
             <button className={s.Button({ color: 'gray' })} onClick={cancelPick}>
-              거절하기
+              {pickState === 'PENDING' ? '거절하기' : 'PICK 취소하기'}
             </button>
             {pickState === 'PENDING' && (
               <button className={s.Button({ color: 'main' })} onClick={confirmPick}>
