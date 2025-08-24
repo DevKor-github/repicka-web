@@ -1,15 +1,32 @@
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import { formatDate } from 'date-fns';
+
+import * as s from './style.css';
 
 import { useGetPickDetail } from '@/features/pick/apis/useGetPickDetail';
 import NotFoundPage from '@/pages/NotFoundPage';
-import { useEffect, useState } from 'react';
-import { formatDate, isBefore } from 'date-fns';
 import { usePatchAppointment } from '@/features/pick/apis/usePatchAppointment';
+import checkValidation from '@/features/pick/utils/checkValidation';
+import handleSubmitEdgeCase from '@/features/pick/utils/handelSubmitEdgeCase';
+import SafeArea from '@/common/components/SafeArea';
+import CustomHeader from '@/common/components/CustomHeader';
+import useGetItemDetail from '@/features/detail/apis/useGetItemDetail';
+import ItemCard from '@/features/home/components/ItemCard';
+import PlaceBox from '@/features/pick/components/PlaceBox';
+import DateTimeBox from '@/features/pick/components/DateTimeBox';
+import PriceBox from '@/features/pick/components/PriceBox';
+import Btn from '@/common/components/Button';
+import getItemInterfaceFromItemDetail from '@/common/utils/getItemInterfaceFromItemDetail';
+import Caution from '@/features/pick/components/Caution';
+import comparePickData from '@/features/pick/utils/comparePickData';
 
 const EditPickPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { data, isError, isSuccess } = useGetPickDetail(Number(id));
+  const pickId = Number(id);
+  const { data, isLoading, isError, isSuccess } = useGetPickDetail(pickId);
+  const { data: itemData, isLoading: isItemDetailLoading } = useGetItemDetail(data?.itemId);
   const { mutate: patchAppointment } = usePatchAppointment();
 
   const [price, setPrice] = useState<number>(NaN);
@@ -18,75 +35,6 @@ const EditPickPage = () => {
   const [endLocation, setEndLocation] = useState<string>('');
   const [startDateTime, setStartDateTime] = useState<Date | null>(null);
   const [endDateTime, setEndDateTime] = useState<Date | null>(null);
-
-  const submitValidation = (() => {
-    if (data?.type === 'RENTAL') {
-      if (data.tradeMethod === 'DIRECT') {
-        return startLocation && endLocation && startDateTime && endDateTime ? true : false;
-      }
-
-      return startDateTime && endDateTime ? true : false;
-    }
-
-    if (data?.tradeMethod === 'DIRECT') return startLocation && startDateTime ? true : false;
-
-    return startDateTime ? true : false;
-  })();
-
-  const handleSubmit = () => {
-    if (!submitValidation) return;
-
-    if (data?.type === 'RENTAL') {
-      if (isBefore(endDateTime as Date, startDateTime as Date)) {
-        alert('대여 일시는 반납 일시보다 이전이어야 합니다.');
-        return;
-      }
-
-      if (isBefore(startDateTime as Date, new Date())) {
-        alert('대여 일시는 현재 시간보다 이후여야 합니다.');
-        return;
-      }
-
-      patchAppointment(
-        {
-          appointmentId: Number(id),
-          rentalDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
-          returnDate: formatDate(endDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
-          rentalLocation: startLocation,
-          returnLocation: endLocation,
-          price,
-          deposit,
-        },
-        {
-          onSuccess: response => {
-            navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
-          },
-          onError: error => {
-            alert(error.message);
-          },
-        },
-      );
-      return;
-    }
-
-    patchAppointment(
-      {
-        appointmentId: Number(id),
-        rentalDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
-        returnDate: formatDate(endDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
-        rentalLocation: startLocation,
-        returnLocation: endLocation,
-        price,
-        deposit,
-      },
-      {
-        onSuccess: response => {
-          navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
-        },
-        onError: error => alert(error.message),
-      },
-    );
-  };
 
   useEffect(() => {
     // 초기값 설정
@@ -100,10 +48,125 @@ const EditPickPage = () => {
     }
   }, [data, isSuccess]);
 
-  if (isError) return <NotFoundPage />;
+  if (isLoading || isItemDetailLoading) return null;
 
-  if (data === undefined) return null;
+  if (data === undefined || itemData === undefined || isError) return <NotFoundPage />;
 
-  return <div>EditPickPage</div>;
+  const submitValidation = checkValidation({
+    transactionType: data.type,
+    tradeMethod: data.tradeMethod,
+    startLocation,
+    endLocation,
+    startDateTime,
+    endDateTime,
+  });
+
+  const handleSubmit = () => {
+    if (!submitValidation) return;
+
+    if (!handleSubmitEdgeCase({ transactionType: data.type, startDateTime, endDateTime })) return;
+
+    if (
+      comparePickData(data, {
+        type: data.type,
+        rentalDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+        returnDate: formatDate(endDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+        rentalLocation: startLocation,
+        returnLocation: endLocation,
+        price,
+        deposit,
+      })
+    ) {
+      navigate(-1);
+      return;
+    }
+
+    if (data.type === 'RENTAL') {
+      patchAppointment(
+        {
+          appointmentId: Number(id),
+          rentalDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+          returnDate: formatDate(endDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+          rentalLocation: startLocation,
+          returnLocation: endLocation,
+          price,
+          deposit,
+        },
+        {
+          onSuccess: () => {
+            navigate(-1);
+          },
+          onError: error => {
+            alert(error.message);
+          },
+        },
+      );
+      return;
+    }
+
+    patchAppointment(
+      {
+        appointmentId: Number(id),
+        rentalDate: formatDate(startDateTime as Date, "yyyy-MM-dd'T'HH:mm:ss"),
+        rentalLocation: startLocation,
+        price,
+        deposit,
+      },
+      {
+        onSuccess: () => {
+          navigate(-1);
+        },
+        onError: error => {
+          alert(error.message);
+        },
+      },
+    );
+  };
+
+  return (
+    <SafeArea>
+      <div className={s.Wrapper}>
+        <CustomHeader title="PICK 수정" onClick={() => navigate(-1)} />
+        <div className={s.Container}>
+          <div className={s.ItemContainer}>
+            <ItemCard data={getItemInterfaceFromItemDetail(itemData)} />
+          </div>
+          {data.tradeMethod === 'DIRECT' && (
+            <PlaceBox
+              transactionType={data.type}
+              startLocation={startLocation}
+              endLocation={endLocation}
+              setStartLocation={setStartLocation}
+              setEndLocation={setEndLocation}
+              startPlaceholder={itemData.itemInfo.location}
+              endPlaceholder={itemData.itemInfo.location}
+            />
+          )}
+          <DateTimeBox
+            transactionType={data.type}
+            tradeMethod={data.tradeMethod}
+            startDateTime={startDateTime}
+            endDateTime={endDateTime}
+            setStartDateTime={setStartDateTime}
+            setEndDateTime={setEndDateTime}
+          />
+          <PriceBox
+            itemInfo={itemData.itemInfo}
+            transactionType={data.type}
+            price={price}
+            deposit={deposit}
+            setPrice={setPrice}
+            setDeposit={setDeposit}
+          />
+          {data.tradeMethod === 'PARCEL' && <Caution />}
+        </div>
+        <div className={s.SaveButtonContainer}>
+          <Btn mode={submitValidation ? 'main' : 'disabled'} onClick={handleSubmit}>
+            저장하기
+          </Btn>
+        </div>
+      </div>
+    </SafeArea>
+  );
 };
 export default EditPickPage;
