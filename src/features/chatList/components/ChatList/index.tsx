@@ -31,20 +31,29 @@ const ChatList = ({ data }: Props) => {
   };
 
   const onExit = async () => {
-    const res = await getInProgress(data.chatRoomId);
-    const isInProgress = res.data;
-    setShowErrorAlert(isInProgress);
-    setShowExitAlert(!isInProgress);
+    try {
+      const res = await getInProgress(data.chatRoomId);
+      const isInProgress = res.data;
+      setShowErrorAlert(isInProgress);
+      setShowExitAlert(!isInProgress);
+    } catch (error) {
+      console.error('대여 중 약속 체크 실패', error);
+      setShowErrorAlert(true);
+    }
   };
 
   const onReport = () => {
     console.log('신고하기');
   };
 
-  const exitChat = () => {
+  const exitChat = async () => {
     setShowExitAlert(false);
-    exitChatRoom(data.chatRoomId);
-    close();
+    try {
+      await exitChatRoom(data.chatRoomId);
+      close();
+    } catch (error) {
+      setShowErrorAlert(true);
+    }
   };
 
   const message = data.mostRecentChatContent ? data.mostRecentChatContent : '대화를 시작해 보세요!';
