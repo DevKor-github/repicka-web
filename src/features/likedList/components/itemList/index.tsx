@@ -8,6 +8,7 @@ import { usePostLike } from '@/features/detail/apis/usePostLike';
 import ItemTokenList from '@/common/components/ItemTokenList';
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 
 interface Props {
   likes: LikeInterface[];
@@ -28,7 +29,6 @@ const LikedItemRow = ({ item }: { item: LikeInterface }) => {
   const queryClient = useQueryClient();
 
   const [isLiked, setIsLiked] = useState(true);
-  const [likeCount, setLikeCount] = useState(item.likeCount);
 
   const isRental = item.transactionTypes?.includes('RENTAL') ?? false;
   const isSale = item.transactionTypes?.includes('SALE') ?? false;
@@ -39,17 +39,16 @@ const LikedItemRow = ({ item }: { item: LikeInterface }) => {
       e.stopPropagation();
     }
 
-    const next = !isLiked;
-    setIsLiked(next);
-    setLikeCount(c => (next ? c + 1 : Math.max(0, c - 1)));
-
     likeItem(item.itemId, {
       onSuccess: () => {
-        // TODO: 좋아요 목록 리페치 해야하는지
-      },
-      onError: () => {
         setIsLiked(prev => !prev);
-        setLikeCount(c => (!next ? c + 1 : Math.max(0, c - 1)));
+        queryClient.setQueryData([QUERY_KEYS.LIKE_LIST], (old: LikeInterface[]) => {
+          return old.map(like =>
+            like.itemId === item.itemId
+              ? { ...like, likeCount: isLiked ? like.likeCount - 1 : like.likeCount + 1 }
+              : like,
+          );
+        });
       },
     });
   };
@@ -93,7 +92,7 @@ const LikedItemRow = ({ item }: { item: LikeInterface }) => {
           <div className={s.Interactions}>
             <div className={s.InteractionItem}>
               <span className="mgc_heart_fill" />
-              <p>{likeCount}</p>
+              <p>{item.likeCount}</p>
             </div>
             <div className={s.InteractionItem}>
               <span className="mgc_chat_2_fill" />

@@ -10,13 +10,13 @@ export interface LikeResponse {
 
 const getLike = async () => {
   const res = await client.get<LikeResponse>('/api/v1/like');
-  return res.data;
+  return res.data.data;
 };
 
 export const useGetLike = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.LIKE_LIST],
     queryFn: getLike,
-    select: response => response.data,
+    staleTime: 0,
   });
 };
