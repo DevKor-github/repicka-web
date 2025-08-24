@@ -19,6 +19,7 @@ import ItemChatPage from './ItemChatPage';
 import Review from './ReviewPage';
 import PostPickPage from '@/pages/PostPickPage';
 import PickDetailPage from '@/pages/PickDetailPage';
+import EditPickPage from '@/pages/EditPickPage';
 
 /**
  * 새로운 페이지 추가하고 싶으면 여기에 추가하면 됩니다
@@ -93,6 +94,10 @@ const routes: RouteObject[] = [
           {
             path: '/pick-detail/:id',
             element: <PickDetailPage />,
+          },
+          {
+            path: '/edit-pick/:id',
+            element: <EditPickPage />,
           },
         ],
       },
