@@ -39,7 +39,6 @@ export const ItemOrderMap: Record<ItemOrderType, string> = {
   LIKE: '좋아요순',
 };
 
-// TODO: price는 백엔드 api가 없음
 export const FilterTypeArray = [
   'transaction-type',
   'product-type',
