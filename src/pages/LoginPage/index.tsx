@@ -15,7 +15,6 @@ const LoginPage = () => {
   const redirectionUrl = encodeURIComponent(window.location.origin + '/');
 
   useEffect(() => {
-    // TODO: 원래 있던 페이지로
     if (isLogin) {
       navigate(-1);
     }
@@ -31,7 +30,6 @@ const LoginPage = () => {
         </div>
         <p className={s.Label}>SNS 계정으로 로그인하기</p>
         <div className={s.ButtonContainer}>
-          {/* TODO: 애플 로그인 추가 */}
           <a
             className={s.LoginButton({ src: 'apple' })}
             href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/apple?redirectURI=${redirectionUrl}`}

@@ -37,7 +37,7 @@ const routes: RouteObject[] = [
         element: <DetailPage />,
       },
       {
-        path: '/login', // TODO: 임시
+        path: '/login',
         element: <LoginPage />,
       },
       {

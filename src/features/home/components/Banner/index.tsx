@@ -53,7 +53,6 @@ const Banner = () => {
       </Swiper>
       <div className={s.Filter} />
       <div className={s.ContentInfo}>
-        {/* TODO: 레이아웃이 이게 맞는지 검토 필요 */}
         <div className={s.Content}>
           <div className={s.Title}>{currentData.title}</div>
           <div className={s.DescriptionWrapper}>

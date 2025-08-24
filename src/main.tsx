@@ -7,7 +7,6 @@ import { BrowserRouter } from 'react-router';
 
 import App from '@/App';
 
-// TODO: BASE_URL 추후 수정
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>

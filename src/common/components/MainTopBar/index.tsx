@@ -8,7 +8,6 @@ const MainTopBar = () => {
   return (
     <div className={s.Wrapper}>
       <Link className={s.Title} to={'/'}>
-        {/* TODO: 실제 로고 넣기 ! */}
         <span className={s.LogoContainer}>
           <RepickaLogo />
         </span>
