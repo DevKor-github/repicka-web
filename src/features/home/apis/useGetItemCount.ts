@@ -1,4 +1,5 @@
 import client from '@/common/utils/client';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import type { Color, ProductType, Quality, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 import { useQuery } from '@tanstack/react-query';
 
@@ -27,7 +28,7 @@ const getItemCount = async (params: ItemListRequest) => {
 
 export const useGetItemCount = (params: ItemListRequest) => {
   return useQuery({
-    queryKey: ['item-count', params],
+    queryKey: [QUERY_KEYS.ITEM_COUNT, params],
     queryFn: () => getItemCount(params),
     select: data => data.data.totalCount,
   });

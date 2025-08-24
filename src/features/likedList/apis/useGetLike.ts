@@ -1,6 +1,7 @@
 import client from '@/common/utils/client';
 import type { LikeInterface } from '../types';
 import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 
 export interface LikeResponse {
   message: string;
@@ -14,7 +15,7 @@ const getLike = async () => {
 
 export const useGetLike = () => {
   return useQuery({
-    queryKey: ['like'],
+    queryKey: [QUERY_KEYS.LIKE_LIST],
     queryFn: getLike,
     select: response => response.data,
   });

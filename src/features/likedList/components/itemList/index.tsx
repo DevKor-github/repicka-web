@@ -45,8 +45,7 @@ const LikedItemRow = ({ item }: { item: LikeInterface }) => {
 
     likeItem(item.itemId, {
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['likes'], refetchType: 'active' });
-        queryClient.invalidateQueries({ queryKey: ['item', item.itemId], refetchType: 'active' });
+        // TODO: 좋아요 목록 리페치 해야하는지
       },
       onError: () => {
         setIsLiked(prev => !prev);
