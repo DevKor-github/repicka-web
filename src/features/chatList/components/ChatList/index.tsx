@@ -13,6 +13,7 @@ import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
 import { usePatchExit, type ExitResponse } from '../../api/usePatchExit';
 import type { AxiosError } from 'axios';
+import getImageUrl from '@/common/utils/getImageUrl';
 
 export interface Props {
   data: ChatListInterface;
@@ -23,6 +24,8 @@ const ChatList = ({ data }: Props) => {
   const { mutate: exitChatRoom } = usePatchExit();
   const [showExitAlert, setShowExitAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
+
+  const thumbnail = data.itemThumbnailUrl ? getImageUrl(data.itemThumbnailUrl) : 'base-url';
 
   const onUnshowAlert = () => {
     if (showExitAlert) setShowExitAlert(false);
@@ -68,7 +71,10 @@ const ChatList = ({ data }: Props) => {
   return (
     <>
       <Link className={s.List} to={`/chatroom/${data.chatRoomId}`} {...bind()}>
-        <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
+        <div className={s.Img}>
+          <img className={s.Thumbnail} src={thumbnail} />
+          <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
+        </div>
         <div className={s.Contents}>
           <div className={s.TimeInfo}>
             <div className={s.UserInfo}>
