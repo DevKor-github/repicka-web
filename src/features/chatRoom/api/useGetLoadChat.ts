@@ -52,5 +52,6 @@ export const useGetLoadChat = (chatRoomId: number) => {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     staleTime: 0, // 채팅 데이터는 실시간으로 업데이트 되어야 하므로 0으로 설정
+    gcTime: 0,
   });
 };

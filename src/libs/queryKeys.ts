@@ -2,6 +2,7 @@ export const QUERY_KEYS = {
   IS_LOGIN: 'isLogin', // 내 로그인 여부
   CHAT_LIST: 'chat-list', // 내 채팅 목록
   CHAT_ROOM: 'chat-room', // 특정 id에 해당하는 채팅방
+  CHAT_ROOM_INFO: 'chat-room-info', // 특정 id에 해당하는 채팅방 정보
   ITEM_DETAIL: 'item-detail', // 특정 id에 해당하는 상품 상세
   ITEM_STATUS: 'item-status', // 특정 id에 해당하는 상품 상태
   ITEM_LIST: 'item-list', // 상품 검색 목록
