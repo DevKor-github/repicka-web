@@ -6,6 +6,29 @@ export const List = css({
   gap: '0.87rem',
 });
 
+export const Img = css({
+  w: '3.5rem',
+  h: '3.5rem',
+  position: 'relative',
+  display: 'inline-block',
+});
+
+export const Thumbnail = css({
+  display: 'flex',
+  position: 'absolute',
+  right: 0,
+  bottom: 0,
+  w: '2rem',
+  h: '2rem',
+  bg: 'systemGray',
+  flexShrink: 0,
+  aspectRatio: '1/1',
+  objectFit: 'cover',
+  borderRadius: '0.375rem',
+  border: '1px solid var(--100, #FFF)',
+  boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.10)',
+});
+
 export const Contents = css({
   display: 'flex',
   flex: 1,

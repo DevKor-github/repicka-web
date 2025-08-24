@@ -4,7 +4,6 @@ import * as s from './style.css';
 interface DrawerProps {
   onExit: () => void;
   onReport: () => void;
-  onRead: () => void;
 }
 
 interface BtnProps {
@@ -22,10 +21,9 @@ const Button = ({ onClick, icon, title }: BtnProps) => {
   );
 };
 
-const ChatDrawer = ({ onExit, onRead, onReport }: DrawerProps) => {
+const ChatDrawer = ({ onExit, onReport }: DrawerProps) => {
   return (
     <div className={s.ButtonWrapper}>
-      <Button icon="mgc_task_fill" onClick={onRead} title="읽음으로 표시하기" />
       <Button icon="mgc_exit_fill" onClick={onExit} title="채팅방 퇴장하기" />
       <Button icon="mgc_warning_fill" onClick={onReport} title="신고하기" />
     </div>

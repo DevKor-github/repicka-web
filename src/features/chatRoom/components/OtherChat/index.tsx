@@ -8,7 +8,7 @@ interface Props {
   isRead?: boolean;
 }
 
-export const OtherChat = ({ children, time, marginTop }: Props) => {
+const OtherChat = ({ children, time, marginTop }: Props) => {
   return (
     <div className={s.Container} style={{ marginTop: marginTop }}>
       <div className={s.Message}>{children}</div>

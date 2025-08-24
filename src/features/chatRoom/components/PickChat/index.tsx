@@ -8,7 +8,7 @@ interface Props {
   isMine?: boolean;
 }
 
-export const PickChat = ({ isMine, marginTop, children }: Props) => {
+const PickChat = ({ isMine, marginTop, children }: Props) => {
   return (
     <div className={s.Container({ isMine })} style={{ marginTop: marginTop }}>
       <div className={s.HeadText}>{children}</div>
