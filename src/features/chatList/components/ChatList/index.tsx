@@ -11,8 +11,7 @@ import useDrawer from '@/common/hooks/useDrawer';
 import ChatDrawer from '../ChatDrawer';
 import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
-import { usePatchExit, type ExitResponse } from '../../api/usePatchExit';
-import type { AxiosError } from 'axios';
+import { usePatchExit } from '../../api/usePatchExit';
 import getImageUrl from '@/common/utils/getImageUrl';
 import { getInProgress } from '../../api/useGetInProgess';
 
