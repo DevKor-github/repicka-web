@@ -10,6 +10,7 @@ type Props<T> = {
   items: T[];
   render: (item: T, index: number) => ReactNode;
   fetchNextPage: () => void;
+  isFetching: boolean;
   hasNextPage?: boolean; // 옵션 값이지만 웬만하면 넣어주삼
   isFetchingNextPage?: boolean; // 옵션 값이지만 웬만하면 넣어주삼
   direction?: 'normal' | 'reverse';
@@ -20,13 +21,14 @@ const Pagination = <T,>({
   render,
   hasNextPage,
   isFetchingNextPage,
+  isFetching,
   fetchNextPage,
   direction = 'normal',
 }: Props<T>) => {
   const isReverse = direction === 'reverse';
   const fetchNextRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
-    if (hasNextPage && !isFetchingNextPage) throttle(() => fetchNextPage(), 200)();
+    if (hasNextPage && !isFetching) throttle(() => fetchNextPage(), 200)();
   });
 
   const Loader = useCallback(() => {

@@ -25,9 +25,7 @@ const ChatRoomPage = () => {
       <div className={s.entireLayout}>
         <ChatRoomHeader data={chatRoomInfo.chatRoom} />
         <ItemInfo data={chatRoomInfo.item} />
-        <div className={s.innerPage}>
-          <ChatRoomContent data={chatRoomInfo.chatRoom} />
-        </div>
+        <ChatRoomContent data={chatRoomInfo.chatRoom} />
         <ChatRoomFooter data={chatRoomInfo.chatRoom} />
       </div>
     </SafeArea>

@@ -1,98 +1,96 @@
+import { useEffect, useLayoutEffect, useRef } from 'react';
+
 import * as s from './style.css';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import type { ChatInterface, ChatRoomInterface } from '@/features/chatRoom/types';
-import { connectSocket, subChatRoomSocket } from '@/common/utils/wsClient';
+
+import type { ChatRoomInterface } from '@/features/chatRoom/types';
 import ChatMessageContents from '../../ChatMessageContents';
 import Pagination from '@/common/components/Pagination';
 import { useGetLoadChat } from '@/features/chatRoom/api/useGetLoadChat';
+import useChatRoomSocket from '@/features/chatRoom/hooks/useChatRoomSocket';
 
 export interface Props {
   data: ChatRoomInterface;
 }
 
 const ChatRoomContent = ({ data }: Props) => {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const isFirstRender = useRef(true);
-
-  const [newMessages, setNewMessages] = useState<ChatInterface[]>([]);
-
   const chatRoomId = data.chatRoomId;
   const myUserId = data.myUserId;
 
-  const { data: chats = [], hasNextPage, isFetchingNextPage, fetchNextPage } = useGetLoadChat(chatRoomId);
+  const { newMessages, isOpponentOnline, opponentLastEnterAt } = useChatRoomSocket({
+    chatRoomId,
+    userId: myUserId,
+    restIsOpponentOnline: data.isOpponentOnline,
+    restOpponentLastEnterAt: data.opponentLastEnterAt,
+  });
 
-  const [isOpponentOnline, setIsOpponentOnline] = useState(data.isOpponentOnline);
-  const [opponentLastEnterAt, setOpponentLastEnterAt] = useState(data.opponentLastEnterAt);
-
-  // 소켓 구독하기
-  useEffect(() => {
-    let unsubscribe: (() => void) | undefined;
-
-    connectSocket().then(() => {
-      if (!isNaN(chatRoomId)) {
-        unsubscribe = subChatRoomSocket(chatRoomId, data => {
-          if (data.type === 'CHAT') {
-            setNewMessages(prev => [...prev, data.message]);
-          }
-          if (data.type === 'ENTER' || data.type === 'EXIT') {
-            if (data.message.ownerId === myUserId) {
-              setIsOpponentOnline(data.message.isRequesterOnline);
-              setOpponentLastEnterAt(data.message.requesterLastEnterAt);
-            }
-            if (data.message.requesterId === myUserId) {
-              setIsOpponentOnline(data.message.isOwnerOnline);
-              setOpponentLastEnterAt(data.message.ownerLastEnterAt);
-            }
-          }
-        });
-      }
-    });
-
-    return () => {
-      unsubscribe?.();
-    };
-  }, [chatRoomId]);
+  const { data: chats = [], hasNextPage, isFetching, isFetchingNextPage, fetchNextPage } = useGetLoadChat(chatRoomId);
 
   // 메시지 합치기
-  const messages = useMemo(() => {
-    const base: ChatInterface[] = chats?.slice()?.reverse() ?? [];
-    return [...base, ...newMessages];
-  }, [chats, newMessages]);
+  const messages = [[...chats].reverse(), ...newMessages].flat();
 
-  // 스크롤 관리
-  useEffect(() => {
-    if (messages.length > 0 && isFirstRender.current) {
-      ref.current?.scrollIntoView({ behavior: 'instant' });
-      isFirstRender.current = false;
-    } else {
-      ref.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const prevHeight = useRef(0);
+  const isMountedRef = useRef(false);
+
+  const customFetchNextPage = () => {
+    prevHeight.current = scrollRef?.current?.scrollHeight || 0;
+    fetchNextPage();
+  };
+
+  useLayoutEffect(() => {
+    // 첫 방문시에 스크롤 위치 초기화
+    if (scrollRef.current && !isFetching && !isMountedRef.current) {
+      console.log(scrollRef.current.scrollTop);
+      console.log(scrollRef.current.scrollHeight);
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      console.log(scrollRef.current.scrollTop);
+      console.log(scrollRef.current.scrollHeight);
+      isMountedRef.current = true;
     }
-  }, [messages]);
+  }, [isFetching]);
+
+  useEffect(() => {
+    // 페이지네이션시에 스크롤 보정
+    if (prevHeight.current > 0 && scrollRef.current && !isFetching) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight - prevHeight.current;
+    }
+  }, [isFetching]);
+
+  useEffect(() => {
+    if (newMessages.length > 0 && scrollRef.current) {
+      // if (newMessages[newMessages.length - 1].userId === myId) {
+      // 내가 새로운 메세지를 보낼 때
+      // 또는 새로운 메세지가 올 때 바닥에 있는 경우
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+      // }
+    }
+  }, [newMessages]);
 
   return (
-    <div>
-      <div className={s.Wrapper}>
-        <Pagination<ChatInterface>
-          items={messages}
-          render={(message, index) => (
-            <ChatMessageContents
-              chat={message}
-              index={index}
-              messages={messages}
-              myUserId={myUserId}
-              opponentUserId={data.opponentUserId}
-              nickname={data.opponentNickname}
-              isOpponentOnline={isOpponentOnline}
-              opponentLastEnterAt={opponentLastEnterAt}
-            />
-          )}
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-          fetchNextPage={fetchNextPage}
-          direction="reverse"
-        />
-      </div>
-      <div ref={ref} />
+    <div className={s.Wrapper} ref={scrollRef}>
+      <Pagination
+        items={messages}
+        render={(message, index) => (
+          <ChatMessageContents
+            chat={message}
+            index={index}
+            messages={messages}
+            myUserId={myUserId}
+            opponentUserId={data.opponentUserId}
+            nickname={data.opponentNickname}
+            isOpponentOnline={isOpponentOnline}
+            opponentLastEnterAt={opponentLastEnterAt}
+          />
+        )}
+        hasNextPage={hasNextPage}
+        isFetching={isFetching}
+        isFetchingNextPage={isFetchingNextPage}
+        fetchNextPage={customFetchNextPage}
+        direction="reverse"
+      />
     </div>
   );
 };
