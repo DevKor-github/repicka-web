@@ -71,19 +71,19 @@ const routes: RouteObject[] = [
             element: <MyEditPage />,
           },
           {
-            path: 'liked',
+            path: '/liked',
             element: <LikedPage />,
           },
           {
-            path: 'post-edit',
+            path: '/post-edit',
             element: <PostEdit />,
           },
           {
-            path: 'chat-about/:itemId',
+            path: '/chat-about/:itemId',
             element: <ItemChatPage />,
           },
           {
-            path: 'review',
+            path: '/review',
             element: <Review />,
           },
           {
