@@ -1,5 +1,6 @@
 import client from '@/common/utils/client';
 import type { ChatListInterface } from '@/features/chatList/types';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 export interface GetChatListRequest {
@@ -38,7 +39,7 @@ const useGetItemChatList = ({ params, itemId }: { params: GetChatListRequest; it
   const initialPageParam: PageParam = {};
 
   return useInfiniteQuery({
-    queryKey: ['item-chat', params, itemId],
+    queryKey: [QUERY_KEYS.ITEM_CHAT_LIST, params, itemId],
     queryFn: ({ pageParam }) => getItemChatList({ itemId: itemId, params: { ...params, ...pageParam } }),
     getNextPageParam: lastPage =>
       lastPage.data.hasNext

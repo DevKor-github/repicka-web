@@ -1,4 +1,5 @@
 import client from '@/common/utils/client';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const postLike = async (itemId: number) => {
@@ -12,8 +13,8 @@ export const usePostLike = () => {
   return useMutation({
     mutationFn: postLike,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['item-detail'] });
-      queryClient.invalidateQueries({ queryKey: ['item-list'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_DETAIL] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_LIST] });
     },
   });
 };
