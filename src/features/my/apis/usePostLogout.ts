@@ -1,5 +1,6 @@
 import client from '@/common/utils/client';
-import { useMutation } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/libs/queryKeys';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 const postLogout = async () => {
@@ -9,11 +10,14 @@ const postLogout = async () => {
 
 export const usePostLogout = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: postLogout,
     onSuccess: () => {
       navigate('/');
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.IS_LOGIN] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER] });
     },
   });
 };
