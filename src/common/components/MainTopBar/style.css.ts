@@ -16,6 +16,11 @@ export const Title = css({
   color: '100',
 });
 
+export const LogoContainer = css({
+  width: '1.5rem',
+  height: '1.5rem',
+});
+
 export const Logo = css({
   width: '1.5rem',
   height: '1.5rem',
