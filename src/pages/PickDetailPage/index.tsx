@@ -33,7 +33,7 @@ const PickDetailPage = () => {
   const { data: itemData } = useGetItemDetail(data?.itemId);
 
   const handleEdit = () => {
-    alert('수정!');
+    navigate(`/edit-pick/${id}`);
   };
 
   if (isError) return <NotFoundPage />;
