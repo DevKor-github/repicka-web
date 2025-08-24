@@ -21,13 +21,6 @@ export const LogoContainer = css({
   height: '1.5rem',
 });
 
-export const Logo = css({
-  width: '1.5rem',
-  height: '1.5rem',
-  bgColor: '100',
-  rounded: '3.2px',
-});
-
 export const Menu = css({
   display: 'flex',
   alignItems: 'center',
