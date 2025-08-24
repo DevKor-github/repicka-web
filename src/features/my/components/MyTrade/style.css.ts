@@ -52,7 +52,7 @@ export const MenuContent = css({
   gap: '0.5rem',
   '& span': {
     fontSize: '1.25rem',
-    color: '80',
+    color: '54',
   },
 });
 
