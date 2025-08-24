@@ -31,5 +31,7 @@ export const useGetChatRoom = (chatRoomId: number) => {
   return useQuery({
     queryKey: [QUERY_KEYS.CHAT_ROOM_INFO, chatRoomId],
     queryFn: () => getChatRoom(chatRoomId),
+    staleTime: 0,
+    gcTime: 0,
   });
 };
