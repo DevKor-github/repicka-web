@@ -31,10 +31,10 @@ const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline
   const nextChat = messages[index + 1];
 
   const prevDate = prevChat ? parseDate(prevChat.createdAt) : null;
-  const prevIsMine = prevChat ? prevChat.userId === myUserId : null;
+  const prevIsMine = prevChat ? (prevChat.isNotification ? false : prevChat.userId === myUserId) : false;
 
   const isNewDate = date !== prevDate;
-  const isNewIsMine = isMine !== prevIsMine;
+  const isNewIsMine = isMine && !prevIsMine;
   const isFirst = index === 0;
   const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
 
