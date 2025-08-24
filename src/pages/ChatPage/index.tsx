@@ -8,6 +8,7 @@ import { CHAT_PAGING_SIZE } from '@/libs/constants';
 import { useEffect } from 'react';
 import { connectSocket, subChatListSocket } from '@/common/utils/wsClient';
 import { useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 
 const ChatPage = () => {
   const {
@@ -28,7 +29,7 @@ const ChatPage = () => {
 
     connectSocket().then(() => {
       unsubscribe = subChatListSocket(() => {
-        queryClient.invalidateQueries({ queryKey: ['chat-list'] });
+        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
       });
     });
 
