@@ -25,7 +25,6 @@ const Btn = ({ type, isComplete, chatRoomId, appointmentId, nickname }: BtnProps
     e.preventDefault();
 
     if (type === 'chat') {
-      alert('채팅창으로 연결');
       navigate(`/chatroom/${chatRoomId}`);
 
       return;
