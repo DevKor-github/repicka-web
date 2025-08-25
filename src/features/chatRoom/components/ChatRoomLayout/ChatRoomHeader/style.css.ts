@@ -1,4 +1,11 @@
-import { css } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
+
+export const Wrapper = css({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingRight: '1rem',
+});
 
 export const Container = css({
   display: 'flex',
@@ -8,6 +15,51 @@ export const Container = css({
   gap: '0.875rem',
   boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
   flexShrink: 0,
+});
+
+export const Pick = cva({
+  base: {
+    display: 'flex',
+    p: '0.5rem',
+    alignItems: 'center',
+    gap: '0.375rem',
+    borderRadius: '6.25rem',
+    bg: 'systemGray5',
+
+    fontFamily: 'Pretendard',
+    fontSize: '0.75rem',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: 'normal',
+    letterSpacing: '-0.03rem',
+  },
+  variants: {
+    isPicked: {
+      true: {
+        borderWidth: '1px',
+        borderStyle: 'solid',
+        borderColor: 'systemGray4',
+        color: 'main',
+      },
+      false: {
+        color: '20',
+      },
+    },
+  },
+});
+
+export const Logo = cva({
+  base: {
+    width: '1rem',
+    aspectRatio: '1/1',
+  },
+  variants: {
+    isPicked: {
+      false: {
+        opacity: 0.2,
+      },
+    },
+  },
 });
 
 export const UserInfo = css({
