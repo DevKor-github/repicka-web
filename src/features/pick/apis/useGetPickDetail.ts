@@ -1,6 +1,6 @@
 import client from '@/common/utils/client';
 import { QUERY_KEYS } from '@/libs/queryKeys';
-import type { ProductType, TradeMethods, TransactionType } from '@/libs/types/item';
+import type { Color, ProductType, Quality, Size, TradeMethods, TransactionType } from '@/libs/types/item';
 import type { PickStatus } from '@/libs/types/pick';
 import { useQuery } from '@tanstack/react-query';
 
@@ -9,12 +9,16 @@ interface GetPickDetailResponse {
   data: {
     appointmentId: number;
     itemId: number;
+    chatRoomId: number;
     requesterId: number;
     ownerId: number;
     imageUrl: string;
     title: string;
     description: string;
     productTypes: ProductType[];
+    quality: Quality;
+    size: Size;
+    color: Color;
     rentalDate: string;
     returnDate: string | null;
     rentalLocation: string;
@@ -25,6 +29,8 @@ interface GetPickDetailResponse {
     type: TransactionType;
     tradeMethod: TradeMethods;
     isCreator: boolean;
+    opponentNickname: string;
+    isReviewed: boolean;
   };
 }
 

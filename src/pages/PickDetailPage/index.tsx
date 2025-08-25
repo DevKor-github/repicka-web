@@ -54,7 +54,7 @@ const PickDetailPage = () => {
           <div className={s.InfoText}>
             {data.isCreator
               ? `내가 요청한 ${isSale ? '판매' : '대여'} 정보예요 🔥`
-              : `${data.requesterId} 님께서 요청하신 ${isSale ? '판매' : '대여'} 정보예요 🔥`}
+              : `${data.opponentNickname}님께서 요청하신 ${isSale ? '판매' : '대여'} 정보예요 🔥`}
           </div>
           <div className={s.Contents}>
             <div className={s.PickInfo}>
@@ -111,7 +111,13 @@ const PickDetailPage = () => {
             )}
           </div>
         </div>
-        <DetailBottom id={id} itemId={data.itemId} isCreator={data.isCreator} pickState={data.state} />
+        <DetailBottom
+          id={id}
+          itemId={data.itemId}
+          isCreator={data.isCreator}
+          pickState={data.state}
+          chatRoomId={data.chatRoomId}
+        />
       </div>
     </SafeArea>
   );

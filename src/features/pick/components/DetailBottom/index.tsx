@@ -3,6 +3,7 @@ import * as s from './style.css';
 import { usePatchConfirmPick } from '@/features/pick/apis/usePatchConfirmPick';
 import type { PickStatus } from '@/libs/types/pick';
 import { useNavigate } from 'react-router';
+import { useToast } from '@/common/hooks/useToast';
 
 const PICK_EXPIRED_MESSAGE: Record<Exclude<PickStatus, 'PENDING' | 'CONFIRMED'>, string> = {
   CANCELLED: '취소된 PICK이에요',
@@ -16,24 +17,29 @@ interface Props {
   itemId: number;
   isCreator: boolean;
   pickState: PickStatus;
+  chatRoomId: number;
 }
-const DetailBottom = ({ id, itemId, isCreator, pickState }: Props) => {
+const DetailBottom = ({ id, itemId, isCreator, pickState, chatRoomId }: Props) => {
   const navigate = useNavigate();
   const { mutate: cancel } = usePatchCancelPick();
   const { mutate: confirm } = usePatchConfirmPick();
+  const { openToast } = useToast();
 
   const cancelPick = () => {
     cancel(id, {
       onSuccess: () => {
-        navigate(`/detail/${itemId}`);
+        navigate(`/detail/${itemId}`, { replace: true });
+        openToast({ message: 'PICK이 취소되었어요' });
       },
     });
   };
+
   const confirmPick = () => {
     confirm(id, {
       onSuccess: () => {
         // TODO: 채팅방 이동
-        navigate(`/chat`);
+        navigate(`/chatroom/${chatRoomId}`, { replace: true });
+        openToast({ message: 'PICK이 확정되었어요' });
       },
     });
   };

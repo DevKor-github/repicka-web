@@ -13,6 +13,7 @@ export const usePatchConfirmPick = () => {
     mutationFn: patchConfirmPick,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PICK_DETAIL] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_STATUS] });
     },
   });
 };

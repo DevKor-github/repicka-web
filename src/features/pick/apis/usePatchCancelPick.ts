@@ -12,6 +12,7 @@ export const usePatchCancelPick = () => {
     mutationFn: patchCancelPick,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PICK_DETAIL] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_STATUS] });
     },
   });
 };
