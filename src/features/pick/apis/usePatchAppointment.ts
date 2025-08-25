@@ -15,7 +15,6 @@ interface PatchAppointmentRequest {
   tradeMethod: TradeMethods;
 }
 
-// TODO: url 수정!!!!
 const patchAppointment = async (data: PatchAppointmentRequest) => {
   const response = await client.patch('/api/v1/appointment', data);
   return response.data.data;
@@ -30,6 +29,6 @@ export const usePatchAppointment = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PICK_DETAIL] });
     },
-    onError: handleError,
+    onError: error => handleError(error, 'PICK 수정에 실패했어요'),
   });
 };
