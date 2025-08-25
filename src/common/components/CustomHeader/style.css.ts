@@ -15,7 +15,7 @@ export const backBtn = css({
   color: '80',
   flexShrink: '1',
   aspectRatio: '1/1',
-  fontSize: '1.65rem',
+  fontSize: '1.625rem',
 });
 
 export const headerText = css({
