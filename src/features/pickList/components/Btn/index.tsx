@@ -30,9 +30,7 @@ const Btn = ({ type, isReviewed, chatRoomId, appointmentId, nickname }: BtnProps
       return;
     }
     if (type === 'review') {
-      // 리뷰 작성 전일 때,
       if (!isReviewed) {
-        alert('리뷰 작성 페이지로 연결');
         navigate(`/review/${appointmentId}`, {
           state: {
             nickname: nickname,
@@ -40,8 +38,6 @@ const Btn = ({ type, isReviewed, chatRoomId, appointmentId, nickname }: BtnProps
         });
         return;
       }
-      // 리뷰 작성 완료 동작
-      alert('리뷰 작성 완료');
     }
   };
 

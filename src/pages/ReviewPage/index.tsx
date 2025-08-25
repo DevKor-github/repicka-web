@@ -6,10 +6,12 @@ import { useState } from 'react';
 import Btn from '@/common/components/Button';
 import { usePostReview } from '@/features/review/apis/usePostReview';
 import ReviewContent from '@/features/review/components/reviewContent';
+import { useToast } from '@/common/hooks/useToast';
 
 const Review = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { openToast } = useToast();
 
   const { mutate: postReview } = usePostReview();
   const { appointmentId } = useParams();
@@ -34,11 +36,11 @@ const Review = () => {
         },
         {
           onSuccess: () => {
+            openToast({ message: '후기 작성 완료!' });
             navigate(-1);
           },
         },
       );
-      alert('후기 작성 완료');
     }
   };
 

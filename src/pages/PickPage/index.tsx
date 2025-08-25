@@ -38,12 +38,12 @@ const PickPage = () => {
       <MainTopBar />
       <div className={s.Section}>
         <div className={s.Type({ active: subject === 'OWNER' })} onClick={() => handleTabClick('OWNER')}>
-          내 게시물
+          받은 PICK
           {subject === 'OWNER' && <motion.div layoutId="underline" className={s.Underline} />}
         </div>
 
         <div className={s.Type({ active: subject === 'REQUESTER' })} onClick={() => handleTabClick('REQUESTER')}>
-          다른 게시물
+          보낸 PICK
           {subject === 'REQUESTER' && <motion.div layoutId="underline" className={s.Underline} />}
         </div>
       </div>
