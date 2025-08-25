@@ -25,7 +25,7 @@ export const SelectButton = cva({
       letterSpacing: '-0.045rem',
       lineHeight: 'normal',
     },
-    '& p': {
+    '& div': {
       fontSize: '0.75rem',
       fontWeight: 400,
       letterSpacing: '-0.03rem',

@@ -144,6 +144,7 @@ const PostPickPage = () => {
             />
           )}
           <DateTimeBox
+            itemId={itemId}
             transactionType={transactionType}
             tradeMethod={tradeMethod}
             startDateTime={startDateTime}

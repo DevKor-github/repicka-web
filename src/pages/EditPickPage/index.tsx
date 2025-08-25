@@ -147,6 +147,7 @@ const EditPickPage = () => {
             />
           )}
           <DateTimeBox
+            itemId={itemData.itemId}
             transactionType={data.type}
             tradeMethod={data.tradeMethod}
             startDateTime={startDateTime}

@@ -45,6 +45,9 @@ export const Container = css({
     fontSize: '0.75rem',
     fontWeight: 400,
     letterSpacing: '-0.03rem',
+    '&:disabled': {
+      color: '20',
+    },
   },
   '& .react-calendar__month-view__days__day--neighboringMonth': {
     color: '20',

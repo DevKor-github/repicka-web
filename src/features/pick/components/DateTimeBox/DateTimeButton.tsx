@@ -8,14 +8,26 @@ import DateDrawer from '@/features/pick/components/DateDrawer/index.tsx';
 import TimeDrawer from '@/features/pick/components/TimeDrawer/index.tsx';
 
 interface Props {
+  itemId: number;
   transactionText: '거래' | '대여' | '반납';
   label: string;
   dateTime: Date | null;
   setDateTime: (date: Date | null) => void;
   canSelectTime?: boolean;
+  minDate?: Date;
+  maxDate?: Date;
 }
 
-const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSelectTime = false }: Props) => {
+const DateTimeButton = ({
+  itemId,
+  transactionText,
+  label,
+  dateTime,
+  setDateTime,
+  canSelectTime = false,
+  minDate,
+  maxDate,
+}: Props) => {
   const { open: dateDrawerOpen, drawerState: dateDrawerState, close: dateDrawerClose } = useDrawer();
   const { open: timeDrawerOpen, drawerState: timeDrawerState, close: timeDrawerClose } = useDrawer();
 
@@ -70,6 +82,9 @@ const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSele
         description={`${transactionText}를 원하는 날짜를 선택해주세요`}
       >
         <DateDrawer
+          minDate={minDate}
+          maxDate={maxDate}
+          itemId={itemId}
           dateTime={dateTime}
           setDateTime={setDateTime}
           transactionText={transactionText}

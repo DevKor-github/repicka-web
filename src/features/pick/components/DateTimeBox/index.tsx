@@ -9,6 +9,7 @@ const SALE_DIRECT_LABEL = '거래를 원하는 일시를 입력해 주세요';
 const SALE_PARCEL_LABEL = '희망 택배 발송 일자를 입력해주세요';
 
 interface Props {
+  itemId: number;
   transactionType: TransactionType;
   tradeMethod: TradeMethods;
   startDateTime: Date | null;
@@ -17,6 +18,7 @@ interface Props {
   setEndDateTime: (date: Date | null) => void;
 }
 const DateTimeBox = ({
+  itemId,
   transactionType,
   tradeMethod,
   startDateTime,
@@ -30,6 +32,8 @@ const DateTimeBox = ({
     <div className={s.Container({ isDirect })}>
       {isDirect ? (
         <DateTimeButton
+          itemId={itemId}
+          maxDate={endDateTime ?? undefined}
           transactionText={isRental ? '대여' : '거래'}
           label={isRental ? RENTAL_START_LABEL : SALE_DIRECT_LABEL}
           canSelectTime
@@ -38,6 +42,8 @@ const DateTimeBox = ({
         />
       ) : (
         <DateTimeButton
+          itemId={itemId}
+          maxDate={endDateTime ?? undefined}
           transactionText={isRental ? '대여' : '거래'}
           label={isRental ? RENTAL_START_LABEL : SALE_PARCEL_LABEL}
           dateTime={startDateTime}
@@ -47,6 +53,8 @@ const DateTimeBox = ({
       {isRental &&
         (isDirect ? (
           <DateTimeButton
+            itemId={itemId}
+            minDate={startDateTime ?? undefined}
             transactionText={'반납'}
             label={RENTAL_END_LABEL}
             canSelectTime
@@ -55,6 +63,8 @@ const DateTimeBox = ({
           />
         ) : (
           <DateTimeButton
+            itemId={itemId}
+            minDate={startDateTime ?? undefined}
             transactionText={'반납'}
             label={RENTAL_END_LABEL}
             dateTime={endDateTime}
