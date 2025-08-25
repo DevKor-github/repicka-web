@@ -2,14 +2,23 @@ import DatePicker, { type Value } from '@/common/components/DatePicker';
 
 import * as s from './style.css.ts';
 import { formatDate } from 'date-fns';
+import { useGetRentalAvailability } from '@/features/pick/apis/useGetRentalAvailability.ts';
+import { useState } from 'react';
+import type { TileDisabledFunc } from 'react-calendar';
 
 interface Props {
+  itemId: number;
   dateTime: Date | null;
   setDateTime: (date: Date | null) => void;
   transactionText: '거래' | '대여' | '반납';
   next: () => void;
+  minDate?: Date;
+  maxDate?: Date;
 }
-const DateDrawer = ({ dateTime, setDateTime, transactionText, next }: Props) => {
+const DateDrawer = ({ itemId, dateTime, setDateTime, transactionText, next, minDate = new Date(), maxDate }: Props) => {
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const { data: rentalAvailability } = useGetRentalAvailability({ itemId, year, month });
   const value = dateTime as Value;
   const setValue = (value: Value) => {
     if (Array.isArray(value)) return;
@@ -18,12 +27,26 @@ const DateDrawer = ({ dateTime, setDateTime, transactionText, next }: Props) => 
 
   const reset = () => setDateTime(null);
 
-  // TODO: 날짜 선택해야 다음 버튼 활성화
+  const tileDisabled: TileDisabledFunc = ({ date }) => {
+    if (rentalAvailability === undefined) return true;
+    const canRental = !!rentalAvailability[formatDate(date, 'yyyy-MM-dd')];
+    return !canRental;
+  };
 
   return (
     <div className={s.Container}>
       <div className={s.DateWrapper}>
-        <DatePicker value={value} setValue={setValue} />
+        <DatePicker
+          value={value}
+          setValue={setValue}
+          minDate={minDate}
+          maxDate={maxDate}
+          tileDisabled={tileDisabled}
+          checkMonthYear={(month, year) => {
+            setMonth(month);
+            setYear(year);
+          }}
+        />
         <div className={s.SelectedDateWrapper}>
           <label>{transactionText}일</label>
           <div>{dateTime ? formatDate(dateTime, 'yyyy.MM.dd') : ''}</div>

@@ -29,7 +29,7 @@ const PickOptionDrawer = ({ itemId, type, tradeMethods, location }: Props) => {
         }}
       >
         <span>직거래</span>
-        <p>
+        <div>
           {canDirectTrade ? (
             <>
               <div className="mgc_location_fill" />
@@ -38,7 +38,7 @@ const PickOptionDrawer = ({ itemId, type, tradeMethods, location }: Props) => {
           ) : (
             '직거래가 불가능한 상품이에요'
           )}
-        </p>
+        </div>
       </button>
       <button
         className={s.SelectButton({ isActive: canParcelTrade })}
@@ -48,7 +48,7 @@ const PickOptionDrawer = ({ itemId, type, tradeMethods, location }: Props) => {
         }}
       >
         <span>택배거래</span>
-        <p>{canParcelTrade ? '내 주소로 판매자가 택배를 발송해 줘요' : '택배거래가 불가능한 상품이에요'}</p>
+        <div>{canParcelTrade ? '내 주소로 판매자가 택배를 발송해 줘요' : '택배거래가 불가능한 상품이에요'}</div>
       </button>
     </div>
   );
