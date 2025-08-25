@@ -19,7 +19,11 @@ interface Props {
 const DateDrawer = ({ itemId, dateTime, setDateTime, transactionText, next, minDate = new Date(), maxDate }: Props) => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const { data: rentalAvailability } = useGetRentalAvailability({ itemId, year, month });
+  const { data: rentalAvailability, isSuccess: isRentalAvailabilitySuccess } = useGetRentalAvailability({
+    itemId,
+    year,
+    month,
+  });
   const { data: saleAvailability } = useGetSaleAvailability(itemId);
   const value = dateTime as Value;
   const setValue = (value: Value) => {
@@ -30,7 +34,11 @@ const DateDrawer = ({ itemId, dateTime, setDateTime, transactionText, next, minD
   const reset = () => setDateTime(null);
 
   const tileDisabled: TileDisabledFunc = ({ date }) => {
-    if (rentalAvailability === undefined) return false;
+    if (rentalAvailability === undefined) {
+      if (isRentalAvailabilitySuccess) return true;
+      return false;
+    }
+
     const canRental = !!rentalAvailability[formatDate(date, 'yyyy-MM-dd')];
     return !canRental;
   };
