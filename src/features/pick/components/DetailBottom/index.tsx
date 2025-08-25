@@ -4,6 +4,8 @@ import { usePatchConfirmPick } from '@/features/pick/apis/usePatchConfirmPick';
 import type { PickStatus } from '@/libs/types/pick';
 import { useNavigate } from 'react-router';
 import { useToast } from '@/common/hooks/useToast';
+import { useState } from 'react';
+import CustomAlert from '@/common/components/CustomAlert';
 
 const PICK_EXPIRED_MESSAGE: Record<Exclude<PickStatus, 'PENDING' | 'CONFIRMED'>, string> = {
   CANCELLED: '취소된 PICK이에요',
@@ -24,11 +26,23 @@ const DetailBottom = ({ id, itemId, isCreator, pickState, chatRoomId }: Props) =
   const { mutate: cancel } = usePatchCancelPick();
   const { mutate: confirm } = usePatchConfirmPick();
   const { openToast } = useToast();
+  const [showAlert, setShowAlert] = useState(false);
+
+  const cancelType = pickState === 'PENDING' ? '거절' : '취소';
+
+  const onNo = () => {
+    setShowAlert(false);
+  };
+
+  const handleAlert = () => {
+    setShowAlert(true);
+  };
 
   const cancelPick = () => {
     cancel(id, {
       onSuccess: () => {
         navigate(`/detail/${itemId}`, { replace: true });
+        setShowAlert(false);
         openToast({ message: 'PICK이 취소되었어요' });
       },
     });
@@ -50,12 +64,12 @@ const DetailBottom = ({ id, itemId, isCreator, pickState, chatRoomId }: Props) =
     <div className={s.Container}>
       {canChangeState ? (
         isCreator ? (
-          <button className={s.Button({ color: 'main' })} onClick={cancelPick}>
+          <button className={s.Button({ color: 'gray' })} onClick={handleAlert}>
             PICK 취소하기
           </button>
         ) : (
           <>
-            <button className={s.Button({ color: 'gray' })} onClick={cancelPick}>
+            <button className={s.Button({ color: 'gray' })} onClick={handleAlert}>
               {pickState === 'PENDING' ? '거절하기' : 'PICK 취소하기'}
             </button>
             {pickState === 'PENDING' && (
@@ -67,6 +81,15 @@ const DetailBottom = ({ id, itemId, isCreator, pickState, chatRoomId }: Props) =
         )
       ) : (
         <div className={s.Button({ color: 'gray' })}>{PICK_EXPIRED_MESSAGE[pickState]}</div>
+      )}
+      {showAlert && (
+        <CustomAlert
+          onYes={cancelPick}
+          subTitle="정말 취소하실 건가요?"
+          title={`PICK을 ${cancelType}하면\n더 이상 거래를 할 수 없어요.`}
+          yesBtn="네, 취소할래요"
+          onNo={onNo}
+        />
       )}
     </div>
   );
