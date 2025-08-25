@@ -23,7 +23,7 @@ const ChatRoomPage = () => {
   return (
     <SafeArea>
       <div className={s.entireLayout}>
-        <ChatRoomHeader data={chatRoomInfo.chatRoom} />
+        <ChatRoomHeader appointmentData={chatRoomInfo.currentAppointment} chatRoomData={chatRoomInfo.chatRoom} />
         <ItemInfo data={chatRoomInfo.item} />
         <ChatRoomContent data={chatRoomInfo.chatRoom} />
         <ChatRoomFooter data={chatRoomInfo.chatRoom} />
