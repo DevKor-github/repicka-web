@@ -1,10 +1,11 @@
 import DatePicker, { type Value } from '@/common/components/DatePicker';
 
 import * as s from './style.css.ts';
-import { formatDate } from 'date-fns';
+import { formatDate, isBefore } from 'date-fns';
 import { useGetRentalAvailability } from '@/features/pick/apis/useGetRentalAvailability.ts';
 import { useState } from 'react';
 import type { TileDisabledFunc } from 'react-calendar';
+import { useGetSaleAvailability } from '@/features/pick/apis/useGetSaleAvailability.ts';
 
 interface Props {
   itemId: number;
@@ -18,7 +19,12 @@ interface Props {
 const DateDrawer = ({ itemId, dateTime, setDateTime, transactionText, next, minDate = new Date(), maxDate }: Props) => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const { data: rentalAvailability } = useGetRentalAvailability({ itemId, year, month });
+  const { data: rentalAvailability, isSuccess: isRentalAvailabilitySuccess } = useGetRentalAvailability({
+    itemId,
+    year,
+    month,
+  });
+  const { data: saleAvailability } = useGetSaleAvailability(itemId);
   const value = dateTime as Value;
   const setValue = (value: Value) => {
     if (Array.isArray(value)) return;
@@ -28,10 +34,16 @@ const DateDrawer = ({ itemId, dateTime, setDateTime, transactionText, next, minD
   const reset = () => setDateTime(null);
 
   const tileDisabled: TileDisabledFunc = ({ date }) => {
-    if (rentalAvailability === undefined) return true;
+    if (rentalAvailability === undefined) {
+      if (isRentalAvailabilitySuccess) return true;
+      return false;
+    }
+
     const canRental = !!rentalAvailability[formatDate(date, 'yyyy-MM-dd')];
     return !canRental;
   };
+
+  const saleAvailabilityDate = saleAvailability ? new Date(saleAvailability) : new Date();
 
   return (
     <div className={s.Container}>
@@ -39,7 +51,7 @@ const DateDrawer = ({ itemId, dateTime, setDateTime, transactionText, next, minD
         <DatePicker
           value={value}
           setValue={setValue}
-          minDate={minDate}
+          minDate={isBefore(saleAvailabilityDate, minDate) ? minDate : saleAvailabilityDate}
           maxDate={maxDate}
           tileDisabled={tileDisabled}
           checkMonthYear={(month, year) => {

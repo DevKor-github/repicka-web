@@ -1,3 +1,4 @@
+import { useHandleError } from '@/common/hooks/useHandleError';
 import client from '@/common/utils/client';
 import type { TradeMethods, TransactionType } from '@/libs/types/item';
 import { useMutation } from '@tanstack/react-query';
@@ -38,7 +39,10 @@ const postSaleAppointment = async (data: PostSaleAppointmentRequest) => {
 };
 
 export const usePostSaleAppointment = () => {
+  const handleError = useHandleError();
+
   return useMutation({
     mutationFn: postSaleAppointment,
+    onError: error => handleError(error, 'PICK 생성에 실패했어요'),
   });
 };

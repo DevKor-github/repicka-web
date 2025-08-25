@@ -1,3 +1,4 @@
+import { useHandleError } from '@/common/hooks/useHandleError';
 import client from '@/common/utils/client';
 import { useMutation } from '@tanstack/react-query';
 
@@ -13,15 +14,16 @@ interface PostInterface {
 }
 
 const postReport = async ({ body }: { body: PostInterface }) => {
-  console.log(body);
-
   const res = await client.post('api/v1/user/report', body);
 
   return res.data;
 };
 
 export const usePostReport = () => {
+  const handleError = useHandleError();
+
   return useMutation({
     mutationFn: postReport,
+    onError: error => handleError(error, '신고에 실패했어요'),
   });
 };

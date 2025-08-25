@@ -1,3 +1,4 @@
+import { useHandleError } from '@/common/hooks/useHandleError';
 import client from '@/common/utils/client';
 import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -9,11 +10,13 @@ const deleteItem = async (itemId: number) => {
 
 export const useDeleteItem = () => {
   const queryClient = useQueryClient();
+  const handleError = useHandleError();
 
   return useMutation({
     mutationFn: deleteItem,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_LIST] });
     },
+    onError: error => handleError(error, '제품 삭제에 실패했어요'),
   });
 };
