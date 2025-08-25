@@ -91,6 +91,7 @@ const EditPickPage = () => {
           returnLocation: endLocation,
           price,
           deposit,
+          tradeMethod: data.tradeMethod,
         },
         {
           onSuccess: () => {
@@ -111,6 +112,7 @@ const EditPickPage = () => {
         rentalLocation: startLocation,
         price,
         deposit,
+        tradeMethod: data.tradeMethod,
       },
       {
         onSuccess: () => {
