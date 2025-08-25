@@ -21,8 +21,10 @@ import { formatDate } from 'date-fns';
 import CustomHeader from '@/common/components/CustomHeader';
 import checkValidation from '@/features/pick/utils/checkValidation';
 import handleSubmitEdgeCase from '@/features/pick/utils/handelSubmitEdgeCase';
+import { useToast } from '@/common/hooks/useToast';
 
 const PostPickPage = () => {
+  const { openToast } = useToast();
   const navigate = useNavigate();
   const { id, type, method } = useParams();
   const itemId = Number(id);
@@ -53,7 +55,7 @@ const PostPickPage = () => {
   const handleSubmit = () => {
     if (!submitValidation) return;
 
-    if (!handleSubmitEdgeCase({ transactionType, startDateTime, endDateTime })) return;
+    if (!handleSubmitEdgeCase({ openToast, transactionType, startDateTime, endDateTime })) return;
 
     if (transactionType === 'RENTAL') {
       postRentalAppointment(

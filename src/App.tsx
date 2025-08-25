@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'react-time-picker-typescript/dist/style.css';
 
 import SocketProvider from './common/components/SocketProvider';
+import { OverlayProvider } from '@/common/components/OverlayProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SocketProvider>{router}</SocketProvider>
+      <SocketProvider>
+        <OverlayProvider>{router}</OverlayProvider>
+      </SocketProvider>
     </QueryClientProvider>
   );
 }
