@@ -53,15 +53,15 @@ const PickItemList = ({ data }: PickItemListProps) => {
             <Btn
               type="chat"
               appointmentId={data.appointmentId}
-              // nickname={data.nickname}
+              nickname={data.opponentNickname}
               chatRoomId={data.chatRoomId}
             />
             {isSuccess && (
               <Btn
                 type="review"
                 appointmentId={data.appointmentId}
-                // nickname={data.nickname}
-                // isComplete={data.isComplete}
+                nickname={data.opponentNickname}
+                isComplete={data.isReviewed}
                 chatRoomId={data.chatRoomId}
               />
             )}

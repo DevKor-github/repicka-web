@@ -23,4 +23,6 @@ export interface AppointmentInterface {
   state: 'CONFIRMED' | 'IN_PROGRESS' | 'SUCCESS';
   type: TransactionType;
   tradeMethod: TradeMethods;
+  opponentNickname: string;
+  isReviewed: boolean;
 }
