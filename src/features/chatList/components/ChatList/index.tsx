@@ -1,5 +1,5 @@
 import * as s from './style.css';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
 import { getKoreanRelativeTime } from '@/common/utils/getKoreanRelativeTime';
@@ -19,6 +19,7 @@ export interface Props {
 }
 
 const ChatList = ({ data }: Props) => {
+  const navigate = useNavigate();
   const { open, drawerState, close } = useDrawer();
   const { mutate: exitChatRoom } = usePatchExit();
 
@@ -45,7 +46,13 @@ const ChatList = ({ data }: Props) => {
   };
 
   const onReport = () => {
-    console.log('신고하기');
+    navigate(`/report/${data.opponentUserId}`, {
+      state: {
+        reportedUserId: data.opponentUserId,
+        itemId: data.itemId,
+        location: 'CHATROOM',
+      },
+    });
   };
 
   const exitChat = async () => {
