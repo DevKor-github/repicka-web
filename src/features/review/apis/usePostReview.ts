@@ -12,7 +12,7 @@ const postReview = async (data: ReviewRequest) => {
 export const usePostReview = () => {
   const handleError = useHandleError();
 
-  useMutation({
+  return useMutation({
     mutationFn: postReview,
     retry: 0,
     onError: error => handleError(error, '리뷰 작성에 실패했어요'),

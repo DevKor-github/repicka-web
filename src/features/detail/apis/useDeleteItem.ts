@@ -1,5 +1,4 @@
 import { useHandleError } from '@/common/hooks/useHandleError';
-import { useToast } from '@/common/hooks/useToast';
 import client from '@/common/utils/client';
 import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
