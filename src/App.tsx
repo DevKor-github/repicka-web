@@ -5,6 +5,7 @@ import 'react-time-picker-typescript/dist/style.css';
 
 import SocketProvider from './common/components/SocketProvider';
 import { OverlayProvider } from '@/common/components/OverlayProvider';
+import NotificationProvider from '@/common/components/NotificationProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +26,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <SocketProvider>
-        <OverlayProvider>{router}</OverlayProvider>
+        <OverlayProvider>
+          <NotificationProvider>{router}</NotificationProvider>
+        </OverlayProvider>
       </SocketProvider>
     </QueryClientProvider>
   );

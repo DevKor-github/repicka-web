@@ -46,11 +46,14 @@ export const Container = css({
     fontWeight: 400,
     letterSpacing: '-0.03rem',
     '&:disabled': {
-      color: '20',
+      color: 'main-26',
     },
   },
   '& .react-calendar__month-view__days__day--neighboringMonth': {
     color: '20',
+    '&:disabled': {
+      color: '20',
+    },
   },
   '& .react-calendar__tile--active': {
     bg: 'main-26',
