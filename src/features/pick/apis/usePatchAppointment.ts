@@ -1,3 +1,4 @@
+import { useHandleError } from '@/common/hooks/useHandleError';
 import client from '@/common/utils/client';
 import { QUERY_KEYS } from '@/libs/queryKeys';
 import type { TradeMethods } from '@/libs/types/item';
@@ -22,10 +23,13 @@ const patchAppointment = async (data: PatchAppointmentRequest) => {
 
 export const usePatchAppointment = () => {
   const queryClient = useQueryClient();
+  const handleError = useHandleError();
+
   return useMutation({
     mutationFn: patchAppointment,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PICK_DETAIL] });
     },
+    onError: handleError,
   });
 };
