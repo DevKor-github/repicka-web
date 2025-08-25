@@ -1,5 +1,6 @@
 export interface ChatListInterface {
   chatRoomId: number;
+  itemId: number;
   myUserId: number;
   opponentUserId: number;
   opponentNickname: string;

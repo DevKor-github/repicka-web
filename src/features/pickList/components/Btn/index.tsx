@@ -7,16 +7,16 @@ interface BtnProps {
   nickname?: string;
   chatRoomId?: number;
   appointmentId: number;
-  isComplete?: boolean;
+  isReviewed?: boolean;
 }
 
-const Btn = ({ type, isComplete, chatRoomId, appointmentId, nickname }: BtnProps) => {
-  const title = type === 'chat' ? '채팅창' : isComplete ? '작성완료' : '리뷰작성';
-  const iconColor = type === 'chat' ? '54' : isComplete ? 'systemGray2' : '100';
-  const icon = type === 'chat' ? 'mgc_chat_1_fill' : isComplete ? 'mgc_choice_fill' : 'mgc_message_4_fill';
+const Btn = ({ type, isReviewed, chatRoomId, appointmentId, nickname }: BtnProps) => {
+  const title = type === 'chat' ? '채팅창' : isReviewed ? '작성완료' : '리뷰작성';
+  const iconColor = type === 'chat' ? '54' : isReviewed ? 'systemGray2' : '100';
+  const icon = type === 'chat' ? 'mgc_chat_1_fill' : isReviewed ? 'mgc_choice_fill' : 'mgc_message_4_fill';
 
-  const bg = type === 'chat' ? 'systemGray2' : isComplete ? 'systemGray5' : 'main';
-  const color = type === 'review' && isComplete ? '54' : '100';
+  const bg = type === 'chat' ? 'systemGray2' : isReviewed ? 'systemGray5' : 'main';
+  const color = type === 'review' && isReviewed ? '54' : '100';
 
   const navigate = useNavigate();
 
@@ -25,14 +25,13 @@ const Btn = ({ type, isComplete, chatRoomId, appointmentId, nickname }: BtnProps
     e.preventDefault();
 
     if (type === 'chat') {
-      alert('채팅창으로 연결');
       navigate(`/chatroom/${chatRoomId}`);
 
       return;
     }
     if (type === 'review') {
       // 리뷰 작성 전일 때,
-      if (!isComplete) {
+      if (!isReviewed) {
         alert('리뷰 작성 페이지로 연결');
         navigate(`/review/${appointmentId}`, {
           state: {

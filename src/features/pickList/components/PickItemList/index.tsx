@@ -37,11 +37,11 @@ const PickItemList = ({ data }: PickItemListProps) => {
                     showCount={3}
                     itemInfo={{
                       productTypes: data.productTypes,
-                      // transactionTypes: data.type,
-                      // quality: 'BEST',
-                      // size: 'L',
-                      // color: 'BLACK',
-                      // tradeMethods: ['DIRECT'],
+                      transactionTypes: [data.type],
+                      quality: data.quality,
+                      size: data.size,
+                      color: data.color,
+                      tradeMethods: ['DIRECT'],
                     }}
                   />
                 </div>
@@ -53,16 +53,16 @@ const PickItemList = ({ data }: PickItemListProps) => {
             <Btn
               type="chat"
               appointmentId={data.appointmentId}
-              // nickname={data.nickname}
-              // chatRoomId={data.chatRoomId}
+              nickname={data.opponentNickname}
+              chatRoomId={data.chatRoomId}
             />
             {isSuccess && (
               <Btn
                 type="review"
                 appointmentId={data.appointmentId}
-                // nickname={data.nickname}
-                // isComplete={data.isComplete}
-                // chatRoomId={data.chatRoomId}
+                nickname={data.opponentNickname}
+                isReviewed={data.isReviewed}
+                chatRoomId={data.chatRoomId}
               />
             )}
           </div>
