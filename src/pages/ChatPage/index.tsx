@@ -37,7 +37,7 @@ const ChatPage = () => {
     return () => {
       unsubscribe?.();
     };
-  }, []);
+  }, [queryClient]);
 
   return (
     <SafeArea>
@@ -49,7 +49,7 @@ const ChatPage = () => {
           <Pagination
             fetchNextPage={fetchNextPage}
             items={rooms}
-            render={item => <ChatList data={item} />}
+            render={item => <ChatList key={item.chatRoomId} data={item} />}
             hasNextPage={hasNextPage}
             isFetchingNextPage={isFetchingNextPage}
           />

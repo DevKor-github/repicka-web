@@ -47,11 +47,7 @@ const ChatRoomContent = ({ data }: Props) => {
   useEffect(() => {
     // 첫 방문시에 스크롤 위치 초기화
     if (scrollRef.current && isSuccess && !isMountedRef.current) {
-      console.log(scrollRef.current.scrollTop);
-      console.log(scrollRef.current.scrollHeight);
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-      console.log(scrollRef.current.scrollTop);
-      console.log(scrollRef.current.scrollHeight);
       isMountedRef.current = true;
     }
   }, [isSuccess]);
@@ -94,6 +90,7 @@ const ChatRoomContent = ({ data }: Props) => {
         )}
         hasNextPage={hasNextPage}
         isFetchingNextPage={isFetchingNextPage}
+        isFetching={isFetching}
         fetchNextPage={customFetchNextPage}
         direction="reverse"
       />

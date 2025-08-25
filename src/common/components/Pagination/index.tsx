@@ -12,6 +12,7 @@ type Props<T> = {
   fetchNextPage: () => void;
   hasNextPage?: boolean; // 옵션 값이지만 웬만하면 넣어주삼
   isFetchingNextPage?: boolean; // 옵션 값이지만 웬만하면 넣어주삼
+  isFetching?: boolean;
   direction?: 'normal' | 'reverse';
 };
 
@@ -20,24 +21,27 @@ const Pagination = <T,>({
   render,
   hasNextPage,
   isFetchingNextPage,
+  isFetching,
   fetchNextPage,
   direction = 'normal',
 }: Props<T>) => {
+  const fetching = isFetchingNextPage || isFetching;
   const isReverse = direction === 'reverse';
   const fetchNextRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
-    if (hasNextPage && !isFetchingNextPage) throttle(() => fetchNextPage(), 200)();
+    if (hasNextPage && !fetching) throttle(() => fetchNextPage(), 200)();
   });
 
   const Loader = useCallback(() => {
     if (!hasNextPage) return null;
 
-    if (isFetchingNextPage)
+    if (isFetchingNextPage) {
       return (
         <div className={s.LoadingWrapper}>
           <LoadingSpinner />
         </div>
       );
+    }
 
     return <div className={s.Trigger} ref={fetchNextRef} />;
   }, [hasNextPage, isFetchingNextPage, fetchNextRef]);
