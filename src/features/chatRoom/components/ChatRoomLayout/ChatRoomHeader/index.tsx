@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import * as s from './style.css';
 import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
-import type { ChatRoomInterface, CurrentAppointmentInterface, ItemInterface } from '@/features/chatRoom/types';
+import type { ChatRoomInterface, CurrentAppointmentInterface } from '@/features/chatRoom/types';
 import RepickaLogo from '@/libs/assets/RepickaLogo';
 
 export interface Props {
