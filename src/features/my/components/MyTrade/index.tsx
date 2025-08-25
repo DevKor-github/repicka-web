@@ -2,6 +2,7 @@ import { cx } from '@styled-system/css';
 import * as s from './style.css';
 import { Link } from 'react-router';
 import { usePostLogout } from '../../apis/usePostLogout';
+import { useToast } from '@/common/hooks/useToast';
 
 interface MenuProps {
   Title: string;
@@ -11,6 +12,7 @@ interface MenuProps {
 
 const Menu = ({ Title, Icon, Addr }: MenuProps) => {
   const { mutate: postLogout } = usePostLogout();
+  const { openToast } = useToast();
 
   if (Title !== '로그아웃') {
     return (
@@ -28,7 +30,11 @@ const Menu = ({ Title, Icon, Addr }: MenuProps) => {
     <button
       className={s.GoMenu}
       onClick={() => {
-        postLogout();
+        postLogout(undefined, {
+          onSuccess: () => {
+            openToast({ message: '로그아웃 완료!' });
+          },
+        });
       }}
     >
       <div className={s.MenuContent}>

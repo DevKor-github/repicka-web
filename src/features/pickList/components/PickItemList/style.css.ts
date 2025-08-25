@@ -74,7 +74,7 @@ export const Footer = css({
   alignItems: 'center',
   justifyContent: 'flex-end',
   width: 'full',
-  gap: '0.25rem',
+  gap: '0.375rem',
 });
 
 export const Btn = cva({
