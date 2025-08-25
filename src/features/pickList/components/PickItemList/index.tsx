@@ -61,7 +61,7 @@ const PickItemList = ({ data }: PickItemListProps) => {
                 type="review"
                 appointmentId={data.appointmentId}
                 nickname={data.opponentNickname}
-                isComplete={data.isReviewed}
+                isReviewed={data.isReviewed}
                 chatRoomId={data.chatRoomId}
               />
             )}
