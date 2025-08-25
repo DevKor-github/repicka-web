@@ -22,10 +22,10 @@ const DetailHeader = ({ state }: Props) => {
         <button className={`mgc_left_line ${s.BackButton}`} onClick={goBack} aria-label="Go back" />
         <div className={s.RightSide}>
           <button className={`${s.RightButton} mgc_share_3_fill`} aria-label="Share item" />
-          {state.itemInfo.mine && <button className={`${s.RightButton} mgc_more_2_fill`} onClick={open} />}
+          <button className={`${s.RightButton} mgc_more_2_fill`} onClick={open} />
         </div>
       </header>
-      <OptionDrawer drawerState={drawerState} state={state} />
+      <OptionDrawer drawerState={drawerState} state={state} isMine={state.itemInfo.mine} />
     </>
   );
 };

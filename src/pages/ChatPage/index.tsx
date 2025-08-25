@@ -2,7 +2,6 @@ import SafeArea from '@/common/components/SafeArea';
 import * as s from './style.css';
 import ChatList from '@/features/chatList/components/ChatList';
 import useGetChatList from '@/features/chatList/api/useGetChatList';
-import ChatTopBar from '@/features/chatList/components/ChatTopBar';
 import Pagination from '@/common/components/Pagination';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
 import { useEffect } from 'react';
@@ -10,6 +9,7 @@ import { connectSocket, subChatListSocket } from '@/common/utils/wsClient';
 import { useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/libs/queryKeys';
 import NoResult from '@/common/components/NoResult';
+import MainTopBar from '@/common/components/MainTopBar';
 
 const ChatPage = () => {
   const {
@@ -41,7 +41,7 @@ const ChatPage = () => {
 
   return (
     <SafeArea>
-      <ChatTopBar />
+      <MainTopBar />
       <div className={s.Wrapper({ isEmpty })}>
         {isEmpty ? (
           <NoResult type="chat-list" />
