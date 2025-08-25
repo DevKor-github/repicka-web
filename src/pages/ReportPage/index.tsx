@@ -65,7 +65,7 @@ const ReportPage = () => {
       },
       {
         onSuccess: () => {
-          navigate('/');
+          navigate(-1);
           // 토스트 띄워주기
         },
       },

@@ -1,4 +1,4 @@
-import { css, cva } from '@styled-system/css';
+import { css } from '@styled-system/css';
 
 export const Wrapper = css({
   p: '2.8rem 1rem 3.75rem 1rem',
