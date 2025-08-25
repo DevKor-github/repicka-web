@@ -15,7 +15,7 @@ const MainTopBar = () => {
       </Link>
       <div className={s.Menu}>
         <Link className="mgc_search_2_fill" to={'/search'} />
-        <button className="mgc_notification_fill" />
+        <Link className="mgc_notification_fill" to={'/notification'} />
       </div>
     </div>
   );

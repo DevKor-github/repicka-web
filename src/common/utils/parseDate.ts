@@ -15,3 +15,8 @@ export const parseTime = (raw: string) => {
   const date = new Date(raw);
   return format(date, 'a h:mm', { locale: ko });
 };
+
+export const parsePickTime = (raw: string) => {
+  const date = new Date(raw);
+  return format(date, 'H:mm', { locale: ko });
+};
