@@ -20,7 +20,7 @@ import Review from './ReviewPage';
 import PostPickPage from '@/pages/PostPickPage';
 import PickDetailPage from '@/pages/PickDetailPage';
 import EditPickPage from '@/pages/EditPickPage';
-import MyTradePage from './MyTradePage';
+import MyTradePage from './MyItemPage';
 import ReportPage from './ReportPage';
 
 /**

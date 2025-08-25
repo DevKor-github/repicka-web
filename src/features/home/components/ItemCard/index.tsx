@@ -6,9 +6,10 @@ import type { ItemInterface } from '@/features/home/types';
 import ItemTokenList from '@/common/components/ItemTokenList';
 import PriceToken from '@/features/home/components/ItemCard/PriceToken';
 import getImageUrl from '@/common/utils/getImageUrl';
+import type { UserItemInterface } from '@/features/myTrade/types';
 
 interface Props {
-  data: ItemInterface;
+  data: ItemInterface | UserItemInterface;
 }
 const ItemCard = ({ data }: Props) => {
   const isRental = data.transactionTypes.includes('RENTAL');
