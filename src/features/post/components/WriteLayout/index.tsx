@@ -29,8 +29,10 @@ export const MAX_STEP = 6;
 const WriteLayout = ({ postState, itemId, isEdit }: Props) => {
   const [step, setStep] = useState(1);
 
-  const { mutate: postItem } = usePostItem();
-  const { mutate: putItem } = usePutItem();
+  const { mutate: postItem, isPending: isPosting } = usePostItem();
+  const { mutate: putItem, isPending: isPutting } = usePutItem();
+
+  const isSubmitting = isPosting || isPutting;
 
   const navigate = useNavigate();
   const data = useCollectPostData();
@@ -104,6 +106,7 @@ const WriteLayout = ({ postState, itemId, isEdit }: Props) => {
           isFirst={isFirst}
           isLast={isLast}
           postState={postState}
+          isSubmitting={isSubmitting}
         />
       </div>
     </div>

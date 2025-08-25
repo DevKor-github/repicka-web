@@ -7,7 +7,14 @@ import * as c from '../style.css';
 import SelectedPhoto from '../../uploadedPhoto';
 import UploadFile from '../../UploadFile';
 import { useStep5Store } from '@/features/post/stores/Step5Store';
-import { ALLOWED_EXTENSIONS, MAX_DESC, MAX_SIZE_BYTES, MAX_SIZE_MB, MAX_TITLE } from '@/libs/constants';
+import {
+  ALLOWED_EXTENSIONS,
+  MAX_DESC,
+  MAX_FILE_LENGTH,
+  MAX_SIZE_BYTES,
+  MAX_SIZE_MB,
+  MAX_TITLE,
+} from '@/libs/constants';
 import AlertText from '../../AlertText';
 import { getFileKeys } from '@/common/utils/getFileKeys';
 import getImageUrl from '@/common/utils/getImageUrl';
@@ -42,11 +49,11 @@ const Step5 = () => {
     const validFiles = fileArray.filter(file => {
       const ext = file.name.split('.').pop()?.toLowerCase();
       if (!ext || !ALLOWED_EXTENSIONS.includes(ext)) {
-        openToast({ message: `"${file.name}"은(는) 지원하지 않는 확장자입니다.` });
+        openToast({ message: `지원하지 않는 확장자입니다.` });
         return false;
       }
       if (file.size > MAX_SIZE_BYTES) {
-        openToast({ message: `"${file.name}"은(는) ${MAX_SIZE_MB}MB를 초과합니다.` });
+        openToast({ message: `${MAX_SIZE_MB}MB를 초과합니다.` });
         return false;
       }
       return true;
@@ -122,8 +129,8 @@ const Step5 = () => {
               </div>
 
               <div className={s.AlertText}>
-                <AlertText isIcon={true}>최대 6장까지 등록이 가능해요.</AlertText>
-                <AlertText isIcon={true}>장당 최대 5MB까지 등록이 가능해요.</AlertText>
+                <AlertText isIcon={true}>최대 {MAX_FILE_LENGTH}장까지 등록이 가능해요.</AlertText>
+                <AlertText isIcon={true}>장당 최대 {MAX_SIZE_MB}MB까지 등록이 가능해요.</AlertText>
               </div>
             </div>
           </div>

@@ -18,9 +18,19 @@ interface NavigatorProps {
   isFirst: boolean;
   isLast: boolean;
   postState?: ItemDetailInterface;
+  isSubmitting?: boolean;
 }
 
-const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast, postState }: NavigatorProps) => {
+const Navigator = ({
+  totalSteps,
+  currentStep,
+  goNext,
+  goPrev,
+  isFirst,
+  isLast,
+  postState,
+  isSubmitting,
+}: NavigatorProps) => {
   const isStep1Valid = useStep1Store(state => state.isBtnValid());
   const isStep2Valid = useStep2Store(state => state.isBtnValid());
   const isStep3Valid = useStep3Store(state => state.isBtnValid());
@@ -36,10 +46,11 @@ const Navigator = ({ totalSteps, currentStep, goNext, goPrev, isFirst, isLast, p
   if (isLast && postState) {
     isBtnValid = !isStoreEqualToState(postState);
   }
-  const isBtnAble = isBtnValid ? 'main' : 'disabled';
+  const isBtnAble = isBtnValid && !isSubmitting ? 'main' : 'disabled';
 
   const onClick = () => {
-    if (isBtnValid) goNext();
+    if (!isBtnValid || isSubmitting) return;
+    goNext();
   };
 
   return (
