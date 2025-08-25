@@ -20,8 +20,10 @@ import Btn from '@/common/components/Button';
 import getItemInterfaceFromItemDetail from '@/common/utils/getItemInterfaceFromItemDetail';
 import Caution from '@/features/pick/components/Caution';
 import comparePickData from '@/features/pick/utils/comparePickData';
+import { useToast } from '@/common/hooks/useToast';
 
 const EditPickPage = () => {
+  const { openToast } = useToast();
   const navigate = useNavigate();
   const { id } = useParams();
   const pickId = Number(id);
@@ -64,7 +66,7 @@ const EditPickPage = () => {
   const handleSubmit = () => {
     if (!submitValidation) return;
 
-    if (!handleSubmitEdgeCase({ transactionType: data.type, startDateTime, endDateTime })) return;
+    if (!handleSubmitEdgeCase({ openToast, transactionType: data.type, startDateTime, endDateTime })) return;
 
     if (
       comparePickData(data, {

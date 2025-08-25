@@ -46,6 +46,7 @@ export default defineConfig({
           navigator: { value: 500 },
           drawerBackLayer: { value: 600 },
           drawerBody: { value: 700 },
+          toast: { value: 800 },
         },
         sizes: PANDA_CSS_CONSTANTS,
         spacing: PANDA_CSS_CONSTANTS,
