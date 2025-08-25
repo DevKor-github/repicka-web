@@ -12,7 +12,7 @@ export const Container = css({
 
 export const BackButton = css({
   color: 'systemGray',
-  fontSize: '2.25rem',
+  fontSize: '1.625rem',
   flexShrink: 0,
 });
 

@@ -26,7 +26,7 @@ export const Container = css({
 });
 
 export const BackButton = css({
-  fontSize: '2.25rem',
+  fontSize: '1.625rem',
   cursor: 'pointer',
   pointerEvents: 'auto',
 });

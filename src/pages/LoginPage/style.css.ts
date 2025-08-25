@@ -25,7 +25,7 @@ export const Header = css({
   pointerEvents: 'none',
   '& button': {
     color: '100',
-    fontSize: '2.25rem',
+    fontSize: '1.625rem',
     cursor: 'pointer',
     pointerEvents: 'auto',
   },

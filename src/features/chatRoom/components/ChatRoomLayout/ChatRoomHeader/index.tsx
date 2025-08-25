@@ -26,7 +26,7 @@ const ChatRoomHeader = ({ appointmentData, chatRoomData }: Props) => {
   return (
     <header className={s.Wrapper}>
       <div className={s.Container}>
-        <button className={`mgc_left_fill ${s.BackBtn}`} onClick={goBack}></button>
+        <button className={`mgc_left_line ${s.BackBtn}`} onClick={goBack}></button>
         <div className={s.UserInfo}>
           <UserProfileImage nickname={nickname} src={profileImg} />
           <div className={s.Verifiy}>
