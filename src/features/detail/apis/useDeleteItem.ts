@@ -1,4 +1,5 @@
 import client from '@/common/utils/client';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const deleteItem = async (itemId: number) => {
@@ -12,7 +13,7 @@ export const useDeleteItem = () => {
   return useMutation({
     mutationFn: deleteItem,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['item-list'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_LIST] });
     },
   });
 };

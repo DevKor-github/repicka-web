@@ -1,5 +1,5 @@
 import React from 'react';
-import { parseDate, parseTime } from '@/common/utils/parseDate';
+import { parseChatDate, parseTime } from '@/common/utils/parseDate';
 import * as s from './style.css';
 
 import type { ChatInterface } from '@/features/chatRoom/types';
@@ -23,18 +23,18 @@ const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline
   const isRead = isOpponentOnline || isBefore(chat.createdAt, opponentLastEnterAt);
 
   const time = parseTime(chat.createdAt);
-  const date = parseDate(chat.createdAt);
+  const date = parseChatDate(chat.createdAt);
   const isMine = chat.userId === myUserId;
   const isNotification = chat.isNotification;
 
   const prevChat = messages[index - 1];
   const nextChat = messages[index + 1];
 
-  const prevDate = prevChat ? parseDate(prevChat.createdAt) : null;
-  const prevIsMine = prevChat ? prevChat.userId === myUserId : null;
+  const prevDate = prevChat ? parseChatDate(prevChat.createdAt) : null;
+  const prevIsMine = prevChat ? (prevChat.isNotification ? false : prevChat.userId === myUserId) : false;
 
   const isNewDate = date !== prevDate;
-  const isNewIsMine = isMine !== prevIsMine;
+  const isNewIsMine = isMine && !prevIsMine;
   const isFirst = index === 0;
   const marginTop = isNewIsMine ? '2.25rem' : '0.75rem';
 
@@ -47,8 +47,8 @@ const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline
       {isNewDate && <div className={s.Date({ isFirst })}>{date}</div>}
       {isNotification ? (
         <div className={s.Notification}>{chat.content}</div>
-      ) : chat.isPick ? (
-        <PickChat marginTop={marginTop} isMine={isMine} children={chat.content} />
+      ) : chat.isPick && chat.pickInfo ? (
+        <PickChat marginTop={marginTop} isMine={isMine} children={chat.content} pickId={chat.pickInfo.appointmentId} />
       ) : isMine ? (
         <MyChat marginTop={marginTop} time={showTime ? time : undefined} isRead={isRead}>
           {chat.content}

@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import * as s from './style.css';
 import { MAX_PRICE } from '@/libs/constants';
 import { useSearchParams } from 'react-router';
+import { useToast } from '@/common/hooks/useToast';
 
 interface Props {
   active: boolean;
 }
 const CustomPriceInput = ({ active }: Props) => {
+  const { openToast } = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const defaultStartPrice = searchParams.get('start-price') ? Number(searchParams.get('start-price')) : NaN;
@@ -42,7 +44,7 @@ const CustomPriceInput = ({ active }: Props) => {
   const submitPrice = () => {
     if (isNaN(startPrice) || isNaN(endPrice)) return;
     if (startPrice > endPrice) {
-      alert('시작 가격이 끝 가격보다 클 수 없습니다.');
+      openToast({ message: '시작 가격이 끝 가격보다 클 수 없습니다.' });
       return;
     }
     setSearchParams(prev => {

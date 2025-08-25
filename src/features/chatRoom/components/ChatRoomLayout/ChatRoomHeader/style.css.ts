@@ -7,6 +7,7 @@ export const Container = css({
   height: 'HEADER_HEIGHT',
   gap: '0.875rem',
   boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
+  flexShrink: 0,
 });
 
 export const UserInfo = css({
@@ -14,6 +15,14 @@ export const UserInfo = css({
   gap: '0.875rem',
   justifyContent: 'center',
   alignItems: 'center',
+
+  color: '100',
+  fontFamily: 'Pretendard',
+  fontSize: ' 1rem',
+  fontStyle: 'normal',
+  fontWeight: 500,
+  lineHeight: 'normal',
+  letterSpacing: '-0.04rem',
 });
 
 export const Verifiy = css({

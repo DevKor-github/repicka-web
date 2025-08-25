@@ -2,7 +2,6 @@ import * as s from './style.css';
 
 import type { ItemInfoInterface } from '@/features/detail/types';
 import { getKoreanRelativeTime } from '@/common/utils/getKoreanRelativeTime';
-import { toKST } from '@/common/utils/toKST';
 import ItemTokenList from '@/common/components/ItemTokenList';
 
 interface Props {
@@ -41,7 +40,7 @@ const PostContent = ({ itemInfo }: Props) => {
           </div>
         </div>
         <div className={s.PostInfoContainer}>
-          <p>{getKoreanRelativeTime(toKST(new Date(itemInfo.repostDate)))}</p>
+          <p>{getKoreanRelativeTime(new Date(itemInfo.repostDate))}</p>
           <span />
           <div className={s.InteractionContainer}>
             <span className={s.InteractionItem}>

@@ -8,6 +8,8 @@ import { CHAT_PAGING_SIZE } from '@/libs/constants';
 import { useEffect } from 'react';
 import { connectSocket, subChatListSocket } from '@/common/utils/wsClient';
 import { useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@/libs/queryKeys';
+import NoResult from '@/common/components/NoResult';
 
 const ChatPage = () => {
   const {
@@ -28,24 +30,26 @@ const ChatPage = () => {
 
     connectSocket().then(() => {
       unsubscribe = subChatListSocket(() => {
-        queryClient.invalidateQueries({ queryKey: ['chat-list'] });
+        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
       });
     });
 
     return () => {
       unsubscribe?.();
     };
-  }, []);
+  }, [queryClient]);
 
   return (
     <SafeArea>
       <ChatTopBar />
-      <div className={s.Wrapper}>
-        {!isEmpty && (
+      <div className={s.Wrapper({ isEmpty })}>
+        {isEmpty ? (
+          <NoResult type="chat-list" />
+        ) : (
           <Pagination
             fetchNextPage={fetchNextPage}
             items={rooms}
-            render={item => <ChatList data={item} />}
+            render={item => <ChatList key={item.chatRoomId} data={item} />}
             hasNextPage={hasNextPage}
             isFetchingNextPage={isFetchingNextPage}
           />

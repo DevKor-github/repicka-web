@@ -3,6 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import client from '@/common/utils/client';
 import type { ItemInterface, ItemOrderType } from '@/features/home/types';
 import type { ItemListRequest } from '@/features/home/apis/useGetItemCount';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 
 export interface GetItemListRequest extends ItemListRequest {
   pageSize: number;
@@ -37,7 +38,7 @@ export const useGetItemList = (params: Omit<GetItemListRequest, 'cursorId' | 'cu
   const initialPageParam: PageParam = {};
 
   return useInfiniteQuery({
-    queryKey: ['item-list', params],
+    queryKey: [QUERY_KEYS.ITEM_LIST, params],
     queryFn: ({ pageParam }) => getItemList({ ...params, ...pageParam }),
     getNextPageParam: lastPage =>
       lastPage.data.hasNext

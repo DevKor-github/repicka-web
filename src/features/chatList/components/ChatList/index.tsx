@@ -2,7 +2,6 @@ import * as s from './style.css';
 import { Link } from 'react-router';
 import SchoolVerifiedTag from '@/common/components/SchoolVerifiedTag';
 import { UserProfileImage } from '@/common/components/UserProfileImage';
-import { toKST } from '@/common/utils/toKST';
 import { getKoreanRelativeTime } from '@/common/utils/getKoreanRelativeTime';
 import type { ChatListInterface } from '../../types';
 import { useLongPress } from 'use-long-press';
@@ -11,8 +10,9 @@ import useDrawer from '@/common/hooks/useDrawer';
 import ChatDrawer from '../ChatDrawer';
 import { useState } from 'react';
 import CustomAlert from '@/common/components/CustomAlert';
-import { usePatchExit, type ExitResponse } from '../../api/usePatchExit';
-import type { AxiosError } from 'axios';
+import { usePatchExit } from '../../api/usePatchExit';
+import getImageUrl from '@/common/utils/getImageUrl';
+import { getInProgress } from '../../api/useGetInProgress';
 
 export interface Props {
   data: ChatListInterface;
@@ -21,42 +21,41 @@ export interface Props {
 const ChatList = ({ data }: Props) => {
   const { open, drawerState, close } = useDrawer();
   const { mutate: exitChatRoom } = usePatchExit();
+
   const [showExitAlert, setShowExitAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
+
+  const thumbnail = data.itemThumbnailUrl ? getImageUrl(data.itemThumbnailUrl) : 'base-url';
 
   const onUnshowAlert = () => {
     if (showExitAlert) setShowExitAlert(false);
     if (showErrorAlert) setShowErrorAlert(false);
   };
 
-  const onExit = () => {
-    setShowExitAlert(true);
+  const onExit = async () => {
+    try {
+      const res = await getInProgress(data.chatRoomId);
+      const isInProgress = res.data;
+      setShowErrorAlert(isInProgress);
+      setShowExitAlert(!isInProgress);
+    } catch (error) {
+      console.error('대여 중 약속 체크 실패', error);
+      setShowErrorAlert(true);
+    }
   };
 
   const onReport = () => {
     console.log('신고하기');
   };
 
-  const onRead = () => {
-    console.log('읽음 처리');
-    close();
-  };
-
-  const exitChat = () => {
+  const exitChat = async () => {
     setShowExitAlert(false);
-    close();
-
-    exitChatRoom(data.chatRoomId, {
-      onError: (err: AxiosError<ExitResponse>) => {
-        const code = err.response?.data?.code;
-
-        // 이미 진행 중인 약속
-        if (code === 'IN_PROGRESS_APPOINTMENT_EXIST') {
-          setShowErrorAlert(true);
-          return;
-        }
-      },
-    });
+    try {
+      await exitChatRoom(data.chatRoomId);
+      close();
+    } catch (error) {
+      setShowErrorAlert(true);
+    }
   };
 
   const message = data.mostRecentChatContent ? data.mostRecentChatContent : '대화를 시작해 보세요!';
@@ -68,14 +67,17 @@ const ChatList = ({ data }: Props) => {
   return (
     <>
       <Link className={s.List} to={`/chatroom/${data.chatRoomId}`} {...bind()}>
-        <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
+        <div className={s.Img}>
+          <img className={s.Thumbnail} src={thumbnail} />
+          <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
+        </div>
         <div className={s.Contents}>
           <div className={s.TimeInfo}>
             <div className={s.UserInfo}>
               <h1>{data.opponentNickname}</h1>
               {data.isOpponentKorean && <SchoolVerifiedTag />}
             </div>
-            {data.lastChatAt && <div className={s.Time}>{getKoreanRelativeTime(toKST(new Date(data.lastChatAt)))}</div>}
+            {data.lastChatAt && <div className={s.Time}>{getKoreanRelativeTime(new Date(data.lastChatAt))}</div>}
           </div>
           <div className={s.MessageInfo}>
             <p className={s.Message}>{message}</p>
@@ -84,7 +86,7 @@ const ChatList = ({ data }: Props) => {
         </div>
       </Link>
       <Drawer drawerState={drawerState} title={data.opponentNickname}>
-        <ChatDrawer onExit={onExit} onRead={onRead} onReport={onReport} />
+        <ChatDrawer onExit={onExit} onReport={onReport} />
       </Drawer>
       {showExitAlert && (
         <CustomAlert

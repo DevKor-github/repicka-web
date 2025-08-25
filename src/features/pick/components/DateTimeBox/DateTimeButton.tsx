@@ -36,7 +36,7 @@ const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSele
   };
   const handleDateDrawerNext = () => {
     dateDrawerClose();
-    timeDrawerOpen();
+    if (canSelectTime) timeDrawerOpen();
   };
 
   return (
@@ -76,7 +76,6 @@ const DateTimeButton = ({ transactionText, label, dateTime, setDateTime, canSele
           next={handleDateDrawerNext}
         />
       </Drawer>
-      {/* TODO: 날짜 선택해야 시간 선택 가능하도록 수정 */}
       {dateTime && (
         <Drawer
           drawerState={timeDrawerState}

@@ -10,6 +10,7 @@ export interface ChatListInterface {
   mostRecentChatIsPick: boolean | null;
   lastChatAt: string | null;
   unreadChatCount: number;
+  itemThumbnailUrl: string;
 }
 
 export interface SubChatListInterface {

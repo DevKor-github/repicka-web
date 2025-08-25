@@ -1,4 +1,5 @@
 import client from '@/common/utils/client';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import type { ProductType, TradeMethods, TransactionType } from '@/libs/types/item';
 import type { PickStatus } from '@/libs/types/pick';
 import { useQuery } from '@tanstack/react-query';
@@ -23,6 +24,7 @@ interface GetPickDetailResponse {
     state: PickStatus;
     type: TransactionType;
     tradeMethod: TradeMethods;
+    isCreator: boolean;
   };
 }
 
@@ -33,7 +35,7 @@ const getPickDetail = async (id: number) => {
 
 export const useGetPickDetail = (id: number) => {
   return useQuery({
-    queryKey: ['pick', id],
+    queryKey: [QUERY_KEYS.PICK_DETAIL, id],
     queryFn: () => getPickDetail(id),
   });
 };

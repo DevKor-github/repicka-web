@@ -1,6 +1,5 @@
 import { css } from '@styled-system/css';
 
-// TODO: 스타일 변경
 export const SpinnerContainer = css({
   width: '40px',
   height: '40px',

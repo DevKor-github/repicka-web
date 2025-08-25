@@ -1,5 +1,7 @@
 import { s3PutImageToUrl } from '@/common/apis/s3PutImageToUrl';
+import { useToast } from '@/common/hooks/useToast';
 import client from '@/common/utils/client';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import type { Gender, UserInterface } from '@/libs/types/user';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -30,14 +32,15 @@ const putUser = async ({ userData, fileData }: { userData: UserPayload; fileData
 
 export const usePutUser = () => {
   const queryClient = useQueryClient();
+  const { openToast } = useToast();
 
   return useMutation({
     mutationFn: putUser,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER] });
     },
-    onError: error => {
-      console.error('유저 정보 수정 실패', error);
+    onError: () => {
+      openToast({ message: '유저 정보 수정에 실패했어요. 다시 시도해주세요!' });
     },
   });
 };

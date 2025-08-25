@@ -1,4 +1,5 @@
 import client from '@/common/utils/client';
+import { QUERY_KEYS } from '@/libs/queryKeys';
 import type { TransactionType } from '@/libs/types/item';
 import { useQuery } from '@tanstack/react-query';
 
@@ -28,7 +29,7 @@ const getItemStatus = async (itemId: number) => {
 };
 export const useGetItemStatus = (itemId: number) => {
   return useQuery({
-    queryKey: ['item-status', itemId],
+    queryKey: [QUERY_KEYS.ITEM_STATUS, itemId],
     queryFn: () => getItemStatus(itemId),
   });
 };

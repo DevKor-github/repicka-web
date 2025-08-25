@@ -1,4 +1,5 @@
 import type { Color, ProductType, Quality, Size, TradeMethods, TransactionType } from '@/libs/types/item';
+import type { PickStatus } from '@/libs/types/pick';
 
 export type SubChatRoomInterface =
   | {
@@ -53,7 +54,7 @@ export interface PickInfoInterface {
   ownerId: number;
   creatorId: number;
   type: TransactionType;
-  state: 'PENDING' | 'CONFIRMED' | 'IN_PROGRESS'; // TODO: 어떤 거 들어가는지 확인
+  state: PickStatus;
   rentalDate: string;
   returnDate: string;
   rentalLocation: string;

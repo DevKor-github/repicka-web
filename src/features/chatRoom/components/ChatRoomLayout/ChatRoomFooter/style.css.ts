@@ -4,6 +4,7 @@ export const Wrapper = css({
   display: 'flex',
   padding: '0.625rem 1rem 2.62rem 1rem',
   alignItems: 'flex-start',
+  flexShrink: 0,
 });
 
 export const Container = css({

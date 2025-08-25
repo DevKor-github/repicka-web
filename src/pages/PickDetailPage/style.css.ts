@@ -1,4 +1,4 @@
-import { css } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Wrapper = css({
   display: 'flex',
@@ -62,22 +62,34 @@ export const Block = css({
   bgColor: 'systemGray5',
 });
 
-export const Item = css({
-  display: 'flex',
-  gap: '2.875rem',
-  alignItems: 'center',
-  fontSize: '0.875rem',
-  fontWeight: 400,
-  letterSpacing: '-0.035rem',
-  lineHeight: 'normal',
-  color: '80',
-  '& label': {
-    color: '100',
-    flexShrink: 0,
+export const Item = cva({
+  base: {
+    display: 'flex',
+    gap: '2.875rem',
+    alignItems: 'center',
+    fontSize: '0.875rem',
+    fontWeight: 400,
+    letterSpacing: '-0.035rem',
+    lineHeight: 'normal',
+    color: '80',
+    '& label': {
+      color: '100',
+      flexShrink: 0,
+      width: '3.125rem',
+    },
+    '& p': {
+      flexGrow: 1,
+      flexShrink: 0,
+    },
   },
-  '& p': {
-    flexGrow: 1,
-    flexShrink: 0,
+  variants: {
+    bold: {
+      true: {
+        '& p': {
+          fontWeight: 600,
+        },
+      },
+    },
   },
 });
 

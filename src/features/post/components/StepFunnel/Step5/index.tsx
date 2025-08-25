@@ -11,8 +11,10 @@ import { ALLOWED_EXTENSIONS, MAX_DESC, MAX_SIZE_BYTES, MAX_SIZE_MB, MAX_TITLE } 
 import AlertText from '../../AlertText';
 import { getFileKeys } from '@/common/utils/getFileKeys';
 import getImageUrl from '@/common/utils/getImageUrl';
+import { useToast } from '@/common/hooks/useToast';
 
 const Step5 = () => {
+  const { openToast } = useToast();
   const serverFileKeyStore = useStep5Store(state => state.serverFileKeys);
   const ServerFileKeySetter = useStep5Store(state => state.setServerFileKeys);
 
@@ -40,11 +42,11 @@ const Step5 = () => {
     const validFiles = fileArray.filter(file => {
       const ext = file.name.split('.').pop()?.toLowerCase();
       if (!ext || !ALLOWED_EXTENSIONS.includes(ext)) {
-        alert(`"${file.name}"은(는) 지원하지 않는 확장자입니다.`);
+        openToast({ message: `"${file.name}"은(는) 지원하지 않는 확장자입니다.` });
         return false;
       }
       if (file.size > MAX_SIZE_BYTES) {
-        alert(`"${file.name}"은(는) ${MAX_SIZE_MB}MB를 초과합니다.`);
+        openToast({ message: `"${file.name}"은(는) ${MAX_SIZE_MB}MB를 초과합니다.` });
         return false;
       }
       return true;

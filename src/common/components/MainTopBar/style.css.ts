@@ -16,11 +16,9 @@ export const Title = css({
   color: '100',
 });
 
-export const Logo = css({
+export const LogoContainer = css({
   width: '1.5rem',
   height: '1.5rem',
-  bgColor: '100',
-  rounded: '3.2px',
 });
 
 export const Menu = css({

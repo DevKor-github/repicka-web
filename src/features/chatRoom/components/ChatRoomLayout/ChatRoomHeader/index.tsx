@@ -8,7 +8,7 @@ export interface Props {
   data: ChatRoomInterface;
 }
 
-export const ChatRoomHeader = ({ data }: Props) => {
+const ChatRoomHeader = ({ data }: Props) => {
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
 
@@ -16,15 +16,13 @@ export const ChatRoomHeader = ({ data }: Props) => {
   const isOpponentKorean = data.isOpponentKorean;
 
   return (
-    <header>
-      <div className={s.Container}>
-        <button className={`mgc_left_fill ${s.BackBtn}`} onClick={goBack}></button>
-        <div className={s.UserInfo}>
-          <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
-          <div className={s.Verifiy}>
-            {isOpponentKorean && <SchoolVerifiedTag />}
-            <span>{nickname}</span>
-          </div>
+    <header className={s.Container}>
+      <button className={`mgc_left_fill ${s.BackBtn}`} onClick={goBack}></button>
+      <div className={s.UserInfo}>
+        <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
+        <div className={s.Verifiy}>
+          {isOpponentKorean && <SchoolVerifiedTag />}
+          <span>{nickname}</span>
         </div>
       </div>
     </header>

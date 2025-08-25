@@ -17,10 +17,14 @@ import PlaceBox from '@/features/pick/components/PlaceBox';
 import DateTimeBox from '@/features/pick/components/DateTimeBox';
 import { usePostRentalAppointment } from '@/features/pick/apis/usePostRentalAppointment';
 import { usePostSaleAppointment } from '@/features/pick/apis/usePostSaleAppointment';
-import { formatDate, isBefore } from 'date-fns';
+import { formatDate } from 'date-fns';
 import CustomHeader from '@/common/components/CustomHeader';
+import checkValidation from '@/features/pick/utils/checkValidation';
+import handleSubmitEdgeCase from '@/features/pick/utils/handelSubmitEdgeCase';
+import { useToast } from '@/common/hooks/useToast';
 
 const PostPickPage = () => {
+  const { openToast } = useToast();
   const navigate = useNavigate();
   const { id, type, method } = useParams();
   const itemId = Number(id);
@@ -39,34 +43,21 @@ const PostPickPage = () => {
   const [startDateTime, setStartDateTime] = useState<Date | null>(null);
   const [endDateTime, setEndDateTime] = useState<Date | null>(null);
 
-  const submitValidation = (() => {
-    if (transactionType === 'RENTAL') {
-      if (tradeMethod === 'DIRECT') {
-        return startLocation && endLocation && startDateTime && endDateTime ? true : false;
-      }
-
-      return startDateTime && endDateTime ? true : false;
-    }
-
-    if (tradeMethod === 'DIRECT') return startLocation && startDateTime ? true : false;
-
-    return startDateTime ? true : false;
-  })();
+  const submitValidation = checkValidation({
+    transactionType,
+    tradeMethod,
+    startLocation,
+    endLocation,
+    startDateTime,
+    endDateTime,
+  });
 
   const handleSubmit = () => {
     if (!submitValidation) return;
 
+    if (!handleSubmitEdgeCase({ openToast, transactionType, startDateTime, endDateTime })) return;
+
     if (transactionType === 'RENTAL') {
-      if (isBefore(endDateTime as Date, startDateTime as Date)) {
-        alert('대여 일시는 반납 일시보다 이전이어야 합니다.');
-        return;
-      }
-
-      if (isBefore(startDateTime as Date, new Date())) {
-        alert('대여 일시는 현재 시간보다 이후여야 합니다.');
-        return;
-      }
-
       postRentalAppointment(
         {
           itemId,
@@ -82,8 +73,8 @@ const PostPickPage = () => {
           onSuccess: response => {
             navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
           },
-          onError: error => {
-            alert(error.message);
+          onError: () => {
+            openToast({ message: 'PICK 생성에 실패했어요. 다시 시도해주세요!' });
           },
         },
       );
@@ -102,7 +93,9 @@ const PostPickPage = () => {
         onSuccess: response => {
           navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
         },
-        onError: error => alert(error.message),
+        onError: () => {
+          openToast({ message: 'PICK 생성에 실패했어요. 다시 시도해주세요!' });
+        },
       },
     );
   };
@@ -118,14 +111,14 @@ const PostPickPage = () => {
     if (isItemDetailSuccess) {
       setStartLocation(itemData.itemInfo.location);
       setEndLocation(itemData.itemInfo.location);
-      if (itemData.itemInfo.salePrice) {
-        setPrice(itemData.itemInfo.salePrice);
-      } else {
+      if (transactionType === 'RENTAL') {
         setPrice(itemData.itemInfo.rentalFee);
+      } else {
+        setPrice(itemData.itemInfo.salePrice);
       }
       setDeposit(itemData.itemInfo.deposit);
     }
-  }, [isItemDetailSuccess, itemData?.itemInfo]);
+  }, [isItemDetailSuccess, itemData?.itemInfo, transactionType]);
 
   if (isItemDetailLoading || isItemStatusLoading) return null;
 
