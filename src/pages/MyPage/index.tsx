@@ -4,6 +4,7 @@ import Profile from '@/features/my/components/Profile';
 import MyTrade from '@/features/my/components/MyTrade';
 import { useGetUser } from '@/features/my/apis/useGetUser';
 import NotFoundPage from '../NotFoundPage';
+import SafeArea from '@/common/components/SafeArea';
 
 const MyPage = () => {
   const { data, isLoading, isError } = useGetUser();
@@ -11,7 +12,7 @@ const MyPage = () => {
   if (isLoading) return null;
 
   return (
-    <>
+    <SafeArea>
       <MainTopBar />
       {isError ? (
         <NotFoundPage />
@@ -23,7 +24,7 @@ const MyPage = () => {
           </div>
         )
       )}
-    </>
+    </SafeArea>
   );
 };
 
