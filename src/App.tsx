@@ -23,6 +23,8 @@ const queryClient = new QueryClient({
 function App() {
   const router = useRoutes(routes);
 
+  alert('2:02');
+
   return (
     <QueryClientProvider client={queryClient}>
       <SocketProvider>
