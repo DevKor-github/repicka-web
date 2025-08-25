@@ -5,7 +5,7 @@ import * as s from './style.css';
 import getImageUrl from '@/common/utils/getImageUrl';
 import { cx } from '@styled-system/css';
 import type { NotificationInterface } from '../../types';
-import { parsePickDate, parsePickTime, parseTime } from '@/common/utils/parseDate';
+import { parsePickDate, parsePickTime } from '@/common/utils/parseDate';
 
 interface Props {
   data: NotificationInterface;
