@@ -1,3 +1,4 @@
+import { useToast } from '@/common/hooks/useToast';
 import client from '@/common/utils/client';
 import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -17,16 +18,18 @@ const patchExit = async (chatRoomId: number) => {
 
 export const usePatchExit = () => {
   const queryClient = useQueryClient();
+  const { openToast } = useToast();
 
   return useMutation<ExitResponse, AxiosError<ExitResponse>, number, unknown>({
     mutationFn: (chatRoomId: number) => patchExit(chatRoomId),
     retry: 0,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
-      console.log('퇴장 성공');
+      openToast({ message: '채팅방에서 퇴장했어요' });
     },
-    onError: error => {
-      console.error('퇴장 실패', error);
+    onError: () => {
+      openToast({ message: '퇴장에 실패했어요. 다시 시도해주세요!' });
+      // console.error('퇴장 실패', error);
     },
   });
 };

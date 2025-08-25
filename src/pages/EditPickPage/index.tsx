@@ -99,8 +99,8 @@ const EditPickPage = () => {
           onSuccess: () => {
             navigate(-1);
           },
-          onError: error => {
-            alert(error.message);
+          onError: () => {
+            openToast({ message: 'PICK 수정에 실패했어요. 다시 시도해주세요!' });
           },
         },
       );
@@ -120,8 +120,8 @@ const EditPickPage = () => {
         onSuccess: () => {
           navigate(-1);
         },
-        onError: error => {
-          alert(error.message);
+        onError: () => {
+          openToast({ message: 'PICK 수정에 실패했어요. 다시 시도해주세요!' });
         },
       },
     );
