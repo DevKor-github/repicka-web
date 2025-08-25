@@ -12,7 +12,7 @@ export interface GetAppointmentReuest {
   cursorDate?: string | null;
 }
 
-export interface GetAppointmentResponst {
+export interface GetAppointmentResponse {
   message: string;
   data: {
     appointmentInfoList: AppointmentInterface[];
@@ -32,7 +32,7 @@ interface PageParam {
 }
 
 const getAppointment = async (params: GetAppointmentReuest) => {
-  const res = await client.get<GetAppointmentResponst>('/api/v1/appointment', {
+  const res = await client.get<GetAppointmentResponse>('/api/v1/appointment', {
     params,
   });
 
