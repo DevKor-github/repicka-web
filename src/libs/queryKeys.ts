@@ -9,6 +9,7 @@ export const QUERY_KEYS = {
   ITEM_COUNT: 'item-count', // 상품 검색 결과 개수
   ITEM_CHAT_LIST: 'item-chat', // 특정 아이템에 대한 채팅 리스트
   LIKE_LIST: 'like', // 내 좋아요 목록
+  USER_ITEM_LIST: 'user-item-list', // 특정 유저의 아이템 리스트
   USER: 'user', // 내 정보
   PICK_DETAIL: 'pick', // 특정 id에 해당하는 약속 상세
   APPOINTMENT_LIST: 'pick-list', // 나의 픽 페이지 리스트

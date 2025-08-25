@@ -11,9 +11,10 @@ interface Props {
   setFile: (value: File) => void;
   profileImageUrl: string | null;
   isNicknameEdited: boolean;
+  isImgEdited: boolean;
 }
 
-const MyEditContent = ({ nickname, setNickname, isNicknameEdited, setFile, profileImageUrl }: Props) => {
+const MyEditContent = ({ nickname, setNickname, isNicknameEdited, setFile, profileImageUrl, isImgEdited }: Props) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [src, setSrc] = useState<string | null>(profileImageUrl);
 
@@ -32,7 +33,7 @@ const MyEditContent = ({ nickname, setNickname, isNicknameEdited, setFile, profi
   return (
     <div className={s.Wrapper}>
       <div className={s.EditImage} onClick={onClickCamera}>
-        <UserProfileImage nickname={nickname} src={src} isMyEdit />
+        <UserProfileImage nickname={nickname} src={src} isMyEdit isEdited={isImgEdited} />
         <div className={cx('mgc_camera_2_fill', s.SelectPhoto)} />
       </div>
 

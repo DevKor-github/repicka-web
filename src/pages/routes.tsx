@@ -20,6 +20,7 @@ import Review from './ReviewPage';
 import PostPickPage from '@/pages/PostPickPage';
 import PickDetailPage from '@/pages/PickDetailPage';
 import EditPickPage from '@/pages/EditPickPage';
+import MyTradePage from './MyItemPage';
 import ReportPage from './ReportPage';
 
 /**
@@ -73,15 +74,19 @@ const routes: RouteObject[] = [
             element: <MyEditPage />,
           },
           {
-            path: 'liked',
+            path: '/my-trade',
+            element: <MyTradePage />,
+          },
+          {
+            path: '/liked',
             element: <LikedPage />,
           },
           {
-            path: 'post-edit',
+            path: '/post-edit',
             element: <PostEdit />,
           },
           {
-            path: 'chat-about/:itemId',
+            path: '/chat-about/:itemId',
             element: <ItemChatPage />,
           },
           {
