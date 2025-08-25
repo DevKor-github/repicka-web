@@ -11,6 +11,7 @@ import getItemInterfaceFromItemDetail from '@/common/utils/getItemInterfaceFromI
 import NotFoundPage from '@/pages/NotFoundPage';
 import CustomHeader from '@/common/components/CustomHeader';
 import DetailBottom from '@/features/pick/components/DetailBottom';
+import { cx } from '@styled-system/css';
 
 interface InfoItemProps {
   title: string;
@@ -35,6 +36,10 @@ const PickDetailPage = () => {
 
   const handleEdit = () => {
     navigate(`/edit-pick/${id}`);
+  };
+
+  const onChatBtnClick = () => {
+    navigate(`/chatroom/${data?.chatRoomId}`);
   };
 
   if (isError) return <NotFoundPage />;
@@ -111,6 +116,10 @@ const PickDetailPage = () => {
             )}
           </div>
         </div>
+        <button className={s.ToChat} onClick={onChatBtnClick}>
+          <div className={cx('mgc_chat_1_fill', s.ChatIcon)} />
+          채팅으로
+        </button>
         <DetailBottom
           id={id}
           itemId={data.itemId}

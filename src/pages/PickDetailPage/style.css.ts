@@ -53,6 +53,34 @@ export const EditButton = css({
   },
 });
 
+export const ChatIcon = css({
+  fontSize: '1.25rem',
+  aspectRatio: '1/1',
+});
+
+export const ToChat = css({
+  display: 'inline-flex',
+  padding: '0.5rem 1rem',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  alignSelf: 'flex-end',
+  gap: '0.625rem',
+  margin: '0 1rem 1rem 0',
+
+  borderRadius: '6.25rem',
+  background: 'main-26',
+  w: 'fit-content',
+
+  color: 'main',
+  textAlign: 'center',
+  fontFamily: 'Pretendard',
+  fontSize: '1rem',
+  fontStyle: 'normal',
+  fontWeight: 600,
+  lineHeight: 'normal',
+  letterSpacing: '-0.04rem',
+});
+
 export const Block = css({
   display: 'flex',
   flexDir: 'column',
