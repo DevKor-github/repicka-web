@@ -86,7 +86,7 @@ const DetailBottom = ({ id, itemId, isCreator, pickState, chatRoomId }: Props) =
         <CustomAlert
           onYes={cancelPick}
           subTitle="정말 취소하실 건가요?"
-          title={`PICK을 ${cancelType}하면\n더 이상 거래를 할 수 없어요.`}
+          title={`PICK을 ${cancelType}하면\n새로운 PICK을 생성해야 해요.`}
           yesBtn="네, 취소할래요"
           onNo={onNo}
         />
