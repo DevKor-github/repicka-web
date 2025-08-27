@@ -82,7 +82,7 @@ const Review = () => {
             setShowAlert(false);
             navigate(-1);
           }}
-          subTitle="정말 글 작성을 그만두실 건가요?"
+          subTitle="정말 리뷰 작성을 그만두실 건가요?"
           title="지금 그만두면 리뷰가 저장되지 않아요!"
           yesBtn="네, 다음에 다시 쓸게요"
           onNo={() => {
