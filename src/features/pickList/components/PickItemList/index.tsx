@@ -20,7 +20,7 @@ const PickItemList = ({ data }: PickItemListProps) => {
   const isSale = data.type === 'SALE';
 
   const currentDate = new Date(); // 현재 시간
-  const isInProgress = isRental && isBefore(data.rentalDate, currentDate);
+  const isInProgress = isBefore(data.rentalDate, currentDate);
   // const tradeData = isRental ? data.returnDate : data.rentalDate; // 거래 실제 시간
   // const isComplete = isBefore(tradeData, currentDate); // 거래 실제 시간이 도래했는지  ->  거래 완료 버튼 활성화
 
