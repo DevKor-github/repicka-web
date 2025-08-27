@@ -13,19 +13,21 @@ interface PickItemListProps {
   data: AppointmentInterface;
 }
 
+// TODO: 거래 완료 버튼 추가
 const PickItemList = ({ data }: PickItemListProps) => {
   const isRental = data.type === 'RENTAL';
   const isSale = data.type === 'SALE';
 
-  const currentDate = new Date();
-  const completeData = isRental ? data.returnDate : data.rentalDate;
-  const isComplete = isBefore(completeData, currentDate);
-  const isSuccess = data.state === 'SUCCESS';
+  const currentDate = new Date(); // 현재 시간
+  const tradeData = isRental ? data.returnDate : data.rentalDate; // 거래 실제 시간
+  const isComplete = isBefore(tradeData, currentDate); // 거래 실제 시간이 도래했는지  ->  거래 완료 버튼 활성화
+
+  const isSuccess = data.state === 'SUCCESS'; // 거래 실제로 완료됐는지   ->  거래 실제 시간 이후에 거래 완료 버튼을 눌렀거나, 24시간이 지났거나 (서버에서 내려줌)
   const tradeDate = parsePickDate(data.rentalDate);
 
   return (
     <div className={s.TradeInfo}>
-      <TradeInfo isComplete={isComplete} date={tradeDate} />
+      <TradeInfo isSuccess={isSuccess} date={tradeDate} />
       <Link className={s.Container} to={`/pick-detail/${data.appointmentId}`}>
         <img className={s.Image} src={getImageUrl(data.imageUrl)} aria-hidden />
 
