@@ -18,9 +18,9 @@ const PickItemList = ({ data }: PickItemListProps) => {
   const isRental = data.type === 'RENTAL';
   const isSale = data.type === 'SALE';
 
-  const currentDate = new Date(); // 현재 시간
-  const tradeData = isRental ? data.returnDate : data.rentalDate; // 거래 실제 시간
-  const isComplete = isBefore(tradeData, currentDate); // 거래 실제 시간이 도래했는지  ->  거래 완료 버튼 활성화
+  // const currentDate = new Date(); // 현재 시간
+  // const tradeData = isRental ? data.returnDate : data.rentalDate; // 거래 실제 시간
+  // const isComplete = isBefore(tradeData, currentDate); // 거래 실제 시간이 도래했는지  ->  거래 완료 버튼 활성화
 
   const isSuccess = data.state === 'SUCCESS'; // 거래 실제로 완료됐는지   ->  거래 실제 시간 이후에 거래 완료 버튼을 눌렀거나, 24시간이 지났거나 (서버에서 내려줌)
   const tradeDate = parsePickDate(data.rentalDate);
