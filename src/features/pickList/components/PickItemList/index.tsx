@@ -7,18 +7,25 @@ import Btn from '../Btn';
 import type { AppointmentInterface } from '../../types';
 import { Link } from 'react-router';
 import { parsePickDate } from '@/common/utils/parseDate';
+import { isBefore } from 'date-fns';
 
 interface PickItemListProps {
   data: AppointmentInterface;
 }
 
 const PickItemList = ({ data }: PickItemListProps) => {
+  const isRental = data.type === 'RENTAL';
+  const isSale = data.type === 'SALE';
+
+  const currentDate = new Date();
+  const completeData = isRental ? data.returnDate : data.rentalDate;
+  const isComplete = isBefore(completeData, currentDate);
   const isSuccess = data.state === 'SUCCESS';
-  const date = parsePickDate(data.rentalDate);
+  const tradeDate = parsePickDate(data.rentalDate);
 
   return (
     <div className={s.TradeInfo}>
-      <TradeInfo isSuccess={isSuccess} date={date} />
+      <TradeInfo isComplete={isComplete} date={tradeDate} />
       <Link className={s.Container} to={`/pick-detail/${data.appointmentId}`}>
         <img className={s.Image} src={getImageUrl(data.imageUrl)} aria-hidden />
 
@@ -28,8 +35,8 @@ const PickItemList = ({ data }: PickItemListProps) => {
               <div className={s.Header}>
                 <h2 className={s.Title}>{data.title}</h2>
                 <div className={s.Price}>
-                  {data.type === 'RENTAL' && <PriceToken price={data.price} deposit={data.deposit} />}
-                  {data.type === 'SALE' && <PriceToken price={data.price} />}
+                  {isRental && <PriceToken price={data.price} deposit={data.deposit} />}
+                  {isSale && <PriceToken price={data.price} />}
                 </div>
 
                 <div className={s.Tokens}>
