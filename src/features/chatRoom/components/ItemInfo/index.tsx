@@ -2,7 +2,7 @@ import { cx } from '@styled-system/css';
 import * as s from './style.css';
 import type { ItemInterface } from '../../types';
 import getImageUrl from '@/common/utils/getImageUrl';
-import { Link, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useToast } from '@/common/hooks/useToast';
 
 interface Props {

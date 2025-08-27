@@ -31,7 +31,6 @@ export const Thumbnail = css({
   h: '3.4375rem',
   flexShrink: 0,
   aspectRatio: 1 / 1,
-  bg: 'main',
   borderRadius: '0.78125rem',
   objectFit: 'cover',
 });
