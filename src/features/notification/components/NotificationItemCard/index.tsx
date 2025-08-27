@@ -14,6 +14,7 @@ interface Props {
 const NotificationItemCard = ({ data }: Props) => {
   const isRental = data.item.transactionTypes.includes('RENTAL');
   const isSale = data.item.transactionTypes.includes('SALE');
+  const isDirect = data.item.tradeMethods.includes('DIRECT');
   const type = data.type;
   const isRemind = type === 'APPOINTMENT_RENTAL_REMIND' || type === 'APPOINTMENT_RETURN_REMIND';
   const remindDate = type === 'APPOINTMENT_RENTAL_REMIND' ? data.rentalDate : data.returnDate;
@@ -50,7 +51,7 @@ const NotificationItemCard = ({ data }: Props) => {
         {isRemind && (
           <div className={s.Date}>
             <h1>{parsePickDate(remindDate)}</h1>
-            <h1>{parsePickTime(remindDate)}</h1>
+            {isDirect && <h1>{parsePickTime(remindDate)}</h1>}
           </div>
         )}
       </div>
