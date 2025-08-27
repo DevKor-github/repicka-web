@@ -26,6 +26,7 @@ const NotificationItemCard = ({ data }: Props) => {
     if (type === 'APPOINTMENT_RENTAL_REMIND') return '오늘은 아래 상품의 거래 날이에요!';
     if (type === 'APPOINTMENT_RETURN_REMIND') return '오늘은 아래 상품의 거래 날이에요!';
     if (type === 'APPOINTMENT_CONFIRM') return '나의 Pick이 확정됐어요.';
+    if (type === 'APPOINTMENT_SUCCESS') return '거래가 완료되었어요! 리뷰를 작성해 보세요.';
   })();
 
   const icon = (() => {
@@ -36,6 +37,7 @@ const NotificationItemCard = ({ data }: Props) => {
     if (type === 'APPOINTMENT_RENTAL_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_RETURN_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_CONFIRM') return 'mgc_emoji_fill';
+    if (type === 'APPOINTMENT_SUCCESS') return 'mgc_heart_fill';
   })();
 
   return (

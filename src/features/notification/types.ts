@@ -8,6 +8,7 @@ export const NOTIFICATION_TYPE_ARRAY = [
   'APPOINTMENT_RENTAL_REMIND',
   'APPOINTMENT_RETURN_REMIND',
   'APPOINTMENT_CONFIRM',
+  'APPOINTMENT_SUCCESS',
 ] as const;
 export type NotificationType = (typeof NOTIFICATION_TYPE_ARRAY)[number];
 
