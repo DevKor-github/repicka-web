@@ -8,7 +8,6 @@ import type { AppointmentInterface } from '../../types';
 import { Link } from 'react-router';
 import { parsePickDate } from '@/common/utils/parseDate';
 import { isBefore } from 'date-fns';
-// import { isBefore } from 'date-fns';
 
 interface PickItemListProps {
   data: AppointmentInterface;
