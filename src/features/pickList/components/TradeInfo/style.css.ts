@@ -33,7 +33,7 @@ export const TradeDate = cva({
     letterSpacing: '-0.03rem',
   },
   variants: {
-    isSuccess: {
+    isComplete: {
       true: {
         color: '54',
       },

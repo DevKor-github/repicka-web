@@ -18,13 +18,13 @@ const LikedItemList = ({ likes }: Props) => {
   return (
     <>
       {likes.map(item => (
-        <LikedItemRow key={item.itemId} item={item} />
+        <LikedItemCard key={item.itemId} item={item} />
       ))}
     </>
   );
 };
 
-const LikedItemRow = ({ item }: { item: LikeInterface }) => {
+const LikedItemCard = ({ item }: { item: LikeInterface }) => {
   const { mutate: likeItem } = usePostLike();
   const queryClient = useQueryClient();
 

@@ -28,7 +28,7 @@ const DetailBottom = ({ id, itemId, isCreator, pickState, chatRoomId }: Props) =
   const { openToast } = useToast();
   const [showAlert, setShowAlert] = useState(false);
 
-  const cancelType = pickState === 'PENDING' ? '거절' : '취소';
+  const cancelType = isCreator ? '취소' : pickState === 'PENDING' ? '거절' : '취소';
 
   const onNo = () => {
     setShowAlert(false);
@@ -85,9 +85,9 @@ const DetailBottom = ({ id, itemId, isCreator, pickState, chatRoomId }: Props) =
       {showAlert && (
         <CustomAlert
           onYes={cancelPick}
-          subTitle="정말 취소하실 건가요?"
-          title={`PICK을 ${cancelType}하면\n더 이상 거래를 할 수 없어요.`}
-          yesBtn="네, 취소할래요"
+          subTitle={`정말 ${cancelType}하실 건가요?`}
+          title={`PICK을 ${cancelType}하면\n기존 내용은 사라져요.`}
+          yesBtn={`네, ${cancelType}할래요`}
           onNo={onNo}
         />
       )}

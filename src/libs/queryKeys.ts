@@ -14,5 +14,6 @@ export const QUERY_KEYS = {
   PICK_DETAIL: 'pick', // 특정 id에 해당하는 약속 상세
   APPOINTMENT_LIST: 'pick-list', // 나의 픽 페이지 리스트
   RENTAL_AVAILABILITY: 'rental-availability', // 특정 아이템에 대한 렌탈 가능 여부
+  NOTIFICATION_LIST: 'notification-list', // 나의 알림 내역 리스트
   SALE_AVAILABILITY: 'sale-availability', // 특정 아이템에 대한 판매 가능 여부
 };

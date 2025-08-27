@@ -22,6 +22,7 @@ import PickDetailPage from '@/pages/PickDetailPage';
 import EditPickPage from '@/pages/EditPickPage';
 import MyTradePage from './MyItemPage';
 import ReportPage from './ReportPage';
+import NotificationPage from './NotificationPage';
 
 /**
  * 새로운 페이지 추가하고 싶으면 여기에 추가하면 됩니다
@@ -108,6 +109,10 @@ const routes: RouteObject[] = [
           {
             path: '/report/:ownerId',
             element: <ReportPage />,
+          },
+          {
+            path: '/notification',
+            element: <NotificationPage />,
           },
         ],
       },

@@ -6,6 +6,7 @@ import NoResult from '@/common/components/NoResult';
 import Btn from '@/common/components/Button';
 import NotFoundPage from '../NotFoundPage';
 import LikedItemList from '@/features/likedList/components/itemList';
+import SafeArea from '@/common/components/SafeArea';
 
 const LikedPage = () => {
   const { data: likes, isLoading } = useGetLike();
@@ -17,21 +18,23 @@ const LikedPage = () => {
   const isEmpty = likes.length === 0;
 
   return (
-    <div className={s.Wrapper}>
+    <SafeArea>
       <CustomHeader title="관심 목록" onClick={() => navigate(-1)} />
-      <div className={s.Content({ isEmpty })}>
-        {isEmpty ? (
-          <div className={s.NoResult}>
-            <NoResult type="like" />
-            <Btn mode="main" className={s.Button} onClick={() => navigate('/')}>
-              홈으로 돌아가기
-            </Btn>
-          </div>
-        ) : (
-          <LikedItemList likes={likes} />
-        )}
+      <div className={s.Wrapper}>
+        <div className={s.Content({ isEmpty })}>
+          {isEmpty ? (
+            <div className={s.NoResult}>
+              <NoResult type="like" />
+              <Btn mode="main" className={s.Button} onClick={() => navigate('/')}>
+                홈으로 돌아가기
+              </Btn>
+            </div>
+          ) : (
+            <LikedItemList likes={likes} />
+          )}
+        </div>
       </div>
-    </div>
+    </SafeArea>
   );
 };
 
