@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import client from '@/common/utils/client';
 import type { PostAppointmentResponse } from '@/features/pick/apis/usePostSaleAppointment';
 import type { TradeMethods } from '@/libs/types/item';
+import { useHandleError } from '@/common/hooks/useHandleError';
 
 interface PostRentalAppointmentRequest {
   itemId: number;
@@ -18,7 +19,10 @@ const postRentalAppointment = async (data: PostRentalAppointmentRequest) => {
   return response.data.data;
 };
 export const usePostRentalAppointment = () => {
+  const handleError = useHandleError();
+
   return useMutation({
     mutationFn: postRentalAppointment,
+    onError: error => handleError(error, 'PICK 생성에 실패했어요'),
   });
 };

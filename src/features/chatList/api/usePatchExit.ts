@@ -1,3 +1,4 @@
+import { useHandleError } from '@/common/hooks/useHandleError';
 import { useToast } from '@/common/hooks/useToast';
 import client from '@/common/utils/client';
 import { QUERY_KEYS } from '@/libs/queryKeys';
@@ -18,6 +19,7 @@ const patchExit = async (chatRoomId: number) => {
 
 export const usePatchExit = () => {
   const queryClient = useQueryClient();
+  const handleError = useHandleError();
   const { openToast } = useToast();
 
   return useMutation<ExitResponse, AxiosError<ExitResponse>, number, unknown>({
@@ -27,9 +29,6 @@ export const usePatchExit = () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
       openToast({ message: '채팅방에서 퇴장했어요' });
     },
-    onError: () => {
-      openToast({ message: '퇴장에 실패했어요. 다시 시도해주세요!' });
-      // console.error('퇴장 실패', error);
-    },
+    onError: error => handleError(error, '퇴장에 실패했어요. 다시 시도해주세요!'),
   });
 };

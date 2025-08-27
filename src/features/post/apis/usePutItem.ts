@@ -3,6 +3,7 @@ import type { PostItemRequest, PostPayload } from '../types/post';
 import type { ItemDetailResponse } from '@/features/detail/types';
 import { useMutation } from '@tanstack/react-query';
 import { s3PutImageToUrl } from '@/common/apis/s3PutImageToUrl';
+import { useHandleError } from '@/common/hooks/useHandleError';
 
 const putItem = async ({
   data,
@@ -29,8 +30,12 @@ const putItem = async ({
   return res.data;
 };
 
-export const usePutItem = () =>
-  useMutation({
+export const usePutItem = () => {
+  const handleError = useHandleError();
+
+  return useMutation({
     mutationFn: putItem,
     retry: 0,
+    onError: error => handleError(error, '제품 수정에 실패했어요'),
   });
+};

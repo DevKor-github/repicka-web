@@ -3,6 +3,7 @@ import type { PostItemRequest, PostPayload } from '../types/post';
 import type { ItemDetailResponse } from '@/features/detail/types';
 import { useMutation } from '@tanstack/react-query';
 import { s3PutImageToUrl } from '@/common/apis/s3PutImageToUrl';
+import { useHandleError } from '@/common/hooks/useHandleError';
 
 const postItem = async ({
   data,
@@ -23,8 +24,12 @@ const postItem = async ({
   return res.data;
 };
 
-export const usePostItem = () =>
-  useMutation({
+export const usePostItem = () => {
+  const handleError = useHandleError();
+
+  return useMutation({
     mutationFn: postItem,
     retry: 0,
+    onError: error => handleError(error, '제품 등록에 실패했어요'),
   });
+};
