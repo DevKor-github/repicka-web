@@ -24,8 +24,8 @@ const NotificationItemCard = ({ data }: Props) => {
     if (type === 'APPOINTMENT_EXPIRE') return '나의 Pick 요청이 만료됐어요.';
     if (type === 'APPOINTMENT_PROPOSAL') return 'Pick 요청을 받았어요.';
     if (type === 'APPOINTMENT_REJECT') return '나의 Pick 요청이 거절됐어요.';
-    if (type === 'APPOINTMENT_RENTAL_REMIND') return '오늘은 아래 상품의 거래 날이에요!';
-    if (type === 'APPOINTMENT_RETURN_REMIND') return '오늘은 아래 상품의 거래 날이에요!';
+    if (type === 'APPOINTMENT_RENTAL_REMIND') return '아래 상품의 거래 날이 다가와요!';
+    if (type === 'APPOINTMENT_RETURN_REMIND') return '아래 상품의 거래 날이 다가와요!';
     if (type === 'APPOINTMENT_CONFIRM') return '나의 Pick이 확정됐어요.';
     if (type === 'APPOINTMENT_SUCCESS') return '거래가 완료되었어요! 리뷰를 작성해 보세요.';
   })();
