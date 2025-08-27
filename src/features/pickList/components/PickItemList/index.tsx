@@ -7,6 +7,7 @@ import Btn from '../Btn';
 import type { AppointmentInterface } from '../../types';
 import { Link } from 'react-router';
 import { parsePickDate } from '@/common/utils/parseDate';
+import { isBefore } from 'date-fns';
 // import { isBefore } from 'date-fns';
 
 interface PickItemListProps {
@@ -18,7 +19,8 @@ const PickItemList = ({ data }: PickItemListProps) => {
   const isRental = data.type === 'RENTAL';
   const isSale = data.type === 'SALE';
 
-  // const currentDate = new Date(); // 현재 시간
+  const currentDate = new Date(); // 현재 시간
+  const isInProgress = isRental && isBefore(data.rentalDate, currentDate);
   // const tradeData = isRental ? data.returnDate : data.rentalDate; // 거래 실제 시간
   // const isComplete = isBefore(tradeData, currentDate); // 거래 실제 시간이 도래했는지  ->  거래 완료 버튼 활성화
 
@@ -27,7 +29,7 @@ const PickItemList = ({ data }: PickItemListProps) => {
 
   return (
     <div className={s.TradeInfo}>
-      <TradeInfo isSuccess={isSuccess} date={tradeDate} />
+      <TradeInfo isSuccess={isSuccess} date={tradeDate} isInProgress={isInProgress} />
       <Link className={s.Container} to={`/pick-detail/${data.appointmentId}`}>
         <img className={s.Image} src={getImageUrl(data.imageUrl)} aria-hidden />
 
