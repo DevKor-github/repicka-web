@@ -5,8 +5,10 @@ export const NOTIFICATION_TYPE_ARRAY = [
   'APPOINTMENT_CANCEL',
   'APPOINTMENT_REJECT',
   'APPOINTMENT_EXPIRE',
-  'APPOINTMENT_REMIND',
+  'APPOINTMENT_RENTAL_REMIND',
+  'APPOINTMENT_RETURN_REMIND',
   'APPOINTMENT_CONFIRM',
+  'APPOINTMENT_SUCCESS',
 ] as const;
 export type NotificationType = (typeof NOTIFICATION_TYPE_ARRAY)[number];
 
@@ -32,6 +34,8 @@ export interface NotificationInterface {
   notificationId: number;
   item: ItemNotificationInterface;
   appointmentId: number;
+  rentalDate: string;
+  returnDate: string;
   type: NotificationType;
   createdAt: string;
 }

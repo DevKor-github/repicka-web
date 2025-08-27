@@ -45,13 +45,17 @@ export const Icon = cva({
   variants: {
     icon: {
       mgc_sob_fill: {
-        background: 'linear-gradient(128deg, #0F71FF 16.45%, #FF0004 102.04%)',
+        background: 'linear-gradient(180deg, #3F2EFF 0%, #FF9F18 100%);',
       },
       mgc_emoji_fill: {
         background: 'linear-gradient(180deg, #FF9F05 0%, #FFC505 81.73%)',
       },
       mgc_t_shirt_fill: {
-        background: 'linear-gradient(180deg, #3F2EFF 0%, #FF9F18 100%);',
+        background: 'linear-gradient(128deg, #0F71FF 16.45%, #FF0004 102.04%)',
+      },
+      mgc_heart_fill: {
+        bg: 'main',
+        // background: 'linear-gradient(180deg, #FF9F05 0%, #FFC505 81.73%)',
       },
     },
   },

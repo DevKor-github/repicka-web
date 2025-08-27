@@ -14,16 +14,20 @@ interface Props {
 const NotificationItemCard = ({ data }: Props) => {
   const isRental = data.item.transactionTypes.includes('RENTAL');
   const isSale = data.item.transactionTypes.includes('SALE');
+  const isDirect = data.item.tradeMethods.includes('DIRECT');
   const type = data.type;
-  const isRemind = type === 'APPOINTMENT_REMIND';
+  const isRemind = type === 'APPOINTMENT_RENTAL_REMIND' || type === 'APPOINTMENT_RETURN_REMIND';
+  const remindDate = type === 'APPOINTMENT_RENTAL_REMIND' ? data.rentalDate : data.returnDate;
 
   const label = (() => {
     if (type === 'APPOINTMENT_CANCEL') return '나의 Pick이 취소됐어요.';
     if (type === 'APPOINTMENT_EXPIRE') return '나의 Pick 요청이 만료됐어요.';
     if (type === 'APPOINTMENT_PROPOSAL') return 'Pick 요청을 받았어요.';
     if (type === 'APPOINTMENT_REJECT') return '나의 Pick 요청이 거절됐어요.';
-    if (type === 'APPOINTMENT_REMIND') return '오늘은 아래 상품의 거래 날이에요!';
+    if (type === 'APPOINTMENT_RENTAL_REMIND') return '오늘은 아래 상품의 거래 날이에요!';
+    if (type === 'APPOINTMENT_RETURN_REMIND') return '오늘은 아래 상품의 거래 날이에요!';
     if (type === 'APPOINTMENT_CONFIRM') return '나의 Pick이 확정됐어요.';
+    if (type === 'APPOINTMENT_SUCCESS') return '거래가 완료되었어요! 리뷰를 작성해 보세요.';
   })();
 
   const icon = (() => {
@@ -31,8 +35,10 @@ const NotificationItemCard = ({ data }: Props) => {
     if (type === 'APPOINTMENT_EXPIRE') return 'mgc_sob_fill';
     if (type === 'APPOINTMENT_PROPOSAL') return 'mgc_emoji_fill';
     if (type === 'APPOINTMENT_REJECT') return 'mgc_sob_fill';
-    if (type === 'APPOINTMENT_REMIND') return 'mgc_t_shirt_fill';
+    if (type === 'APPOINTMENT_RENTAL_REMIND') return 'mgc_t_shirt_fill';
+    if (type === 'APPOINTMENT_RETURN_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_CONFIRM') return 'mgc_emoji_fill';
+    if (type === 'APPOINTMENT_SUCCESS') return 'mgc_heart_fill';
   })();
 
   return (
@@ -42,12 +48,12 @@ const NotificationItemCard = ({ data }: Props) => {
           <div className={cx(`${icon}`, s.Icon({ icon }))} />
           <div className={s.Label}>{label}</div>
         </div>
-        {/* {isRemind && */}
-        <div className={s.Date}>
-          <h1>{parsePickDate(data.createdAt)}</h1>
-          <h1>{parsePickTime(data.createdAt)}</h1>
-        </div>
-        {/*} */}
+        {isRemind && (
+          <div className={s.Date}>
+            <h1>{parsePickDate(remindDate)}</h1>
+            {isDirect && <h1>{parsePickTime(remindDate)}</h1>}
+          </div>
+        )}
       </div>
       <Link className={s.Container} to={`/pick-detail/${data.appointmentId}`}>
         <img className={s.Image} src={getImageUrl(data.item.thumbnail)} aria-hidden />
