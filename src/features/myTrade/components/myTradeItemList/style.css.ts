@@ -38,6 +38,7 @@ export const Content = cva({
     p: '1rem',
     overflowY: 'auto',
     gap: '1rem',
+    w: '100%',
   },
   variants: {
     isEmpty: {
