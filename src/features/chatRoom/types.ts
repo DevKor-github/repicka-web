@@ -79,6 +79,7 @@ export interface ItemInterface {
   likeCount: number;
   chatRoomCount: number;
   repostDate: string;
+  isDeleted: boolean;
 }
 
 export interface CurrentAppointmentInterface {
