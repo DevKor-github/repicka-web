@@ -33,6 +33,8 @@ export interface NotificationInterface {
   notificationId: number;
   item: ItemNotificationInterface;
   appointmentId: number;
+  rentalDate: string;
+  returnDate: string;
   type: NotificationType;
   createdAt: string;
 }

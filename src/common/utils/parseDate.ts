@@ -8,7 +8,7 @@ export const parseChatDate = (raw: string) => {
 
 export const parsePickDate = (raw: string) => {
   const date = new Date(raw);
-  return format(date, 'yyyy. MM. dd. eeee', { locale: ko });
+  return format(date, 'yyyy. MM. dd. (eee)', { locale: ko });
 };
 
 export const parseTime = (raw: string) => {

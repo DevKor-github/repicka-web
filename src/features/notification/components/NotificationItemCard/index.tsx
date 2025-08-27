@@ -16,6 +16,7 @@ const NotificationItemCard = ({ data }: Props) => {
   const isSale = data.item.transactionTypes.includes('SALE');
   const type = data.type;
   const isRemind = type === 'APPOINTMENT_RENTAL_REMIND' || type === 'APPOINTMENT_RETURN_REMIND';
+  const remindDate = type === 'APPOINTMENT_RENTAL_REMIND' ? data.rentalDate : data.returnDate;
 
   const label = (() => {
     if (type === 'APPOINTMENT_CANCEL') return '나의 Pick이 취소됐어요.';
@@ -46,8 +47,8 @@ const NotificationItemCard = ({ data }: Props) => {
         </div>
         {isRemind && (
           <div className={s.Date}>
-            <h1>{parsePickDate(data.createdAt)}</h1>
-            <h1>{parsePickTime(data.createdAt)}</h1>
+            <h1>{parsePickDate(remindDate)}</h1>
+            <h1>{parsePickTime(remindDate)}</h1>
           </div>
         )}
       </div>
