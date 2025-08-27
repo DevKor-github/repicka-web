@@ -24,7 +24,7 @@ const NotigicationPage = () => {
         <div className={s.Content({ isEmpty })}>
           {isEmpty ? (
             <div className={s.NoResult}>
-              <NoResult type="like" />
+              <NoResult type="notification" />
               <Btn mode="main" className={s.Button} onClick={() => navigate('/')}>
                 홈으로 돌아가기
               </Btn>
