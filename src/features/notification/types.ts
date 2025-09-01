@@ -12,7 +12,7 @@ export const NOTIFICATION_TYPE_ARRAY = [
 ] as const;
 export type NotificationType = (typeof NOTIFICATION_TYPE_ARRAY)[number];
 
-export interface ItemNotificationInterface {
+export interface ItemInfoInterface {
   itemId: number;
   productTypes: ProductType[];
   transactionTypes: TransactionType[];
@@ -28,14 +28,23 @@ export interface ItemNotificationInterface {
   likeCount: number;
   chatRoomCount: number;
   repostDate: string;
+  isDeleted: boolean;
+}
+
+export interface notificationInfoInterface {
+  id: number;
+  type: NotificationType;
+  createdAt: string;
+}
+
+export interface appointmentInfoInterface {
+  id: number;
+  rentalDate: string;
+  returnDate: string;
 }
 
 export interface NotificationInterface {
-  notificationId: number;
-  item: ItemNotificationInterface;
-  appointmentId: number;
-  rentalDate: string;
-  returnDate: string;
-  type: NotificationType;
-  createdAt: string;
+  notificationInfo: notificationInfoInterface;
+  appointmentInfo: appointmentInfoInterface;
+  itemInfo: ItemInfoInterface;
 }

@@ -7,15 +7,26 @@ import NotFoundPage from '../NotFoundPage';
 import Btn from '@/common/components/Button';
 import NoResult from '@/common/components/NoResult';
 import NotificationList from '@/features/notification/components/NotificationList';
+import { CHAT_PAGING_SIZE } from '@/libs/constants';
+import Pagination from '@/common/components/Pagination';
 
 const NotigicationPage = () => {
   const navigate = useNavigate();
-  const { data: notifications, isLoading } = useGetNotification();
+  const {
+    data: notifications = [],
+    isSuccess,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+    isLoading,
+  } = useGetNotification({
+    pageSize: CHAT_PAGING_SIZE,
+  });
 
   if (isLoading) return null;
   if (!notifications) return <NotFoundPage />;
 
-  const isEmpty = notifications.length === 0;
+  const isEmpty = (isSuccess && notifications.length) === 0;
 
   return (
     <SafeArea>
@@ -30,7 +41,13 @@ const NotigicationPage = () => {
               </Btn>
             </div>
           ) : (
-            <NotificationList notifications={notifications} />
+            <Pagination
+              fetchNextPage={fetchNextPage}
+              items={notifications}
+              render={item => <NotificationList key={item.appointmentInfo.id} notification={item} />}
+              hasNextPage={hasNextPage}
+              isFetchingNextPage={isFetchingNextPage}
+            />
           )}
         </div>
       </div>

@@ -2,15 +2,15 @@ import type { NotificationInterface } from '../../types';
 import NotificationItemCard from '../NotificationItemCard';
 
 interface Props {
-  notifications: NotificationInterface[];
+  notification: NotificationInterface;
 }
 
-const NotificationList = ({ notifications }: Props) => {
+const NotificationList = ({ notification }: Props) => {
   return (
     <>
-      {notifications.map(item => (
-        <NotificationItemCard data={item} />
-      ))}
+      {/* {notifications.map(item => ( */}
+      <NotificationItemCard data={notification} />
+      {/* ))} */}
     </>
   );
 };
