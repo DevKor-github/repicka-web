@@ -10,9 +10,10 @@ import useChatRoomSocket from '@/features/chatRoom/hooks/useChatRoomSocket';
 
 export interface Props {
   data: ChatRoomInterface;
+  isDeleted: boolean;
 }
 
-const ChatRoomContent = ({ data }: Props) => {
+const ChatRoomContent = ({ data, isDeleted }: Props) => {
   const chatRoomId = data.chatRoomId;
   const myUserId = data.myUserId;
 
@@ -86,6 +87,7 @@ const ChatRoomContent = ({ data }: Props) => {
             nickname={data.opponentNickname}
             isOpponentOnline={isOpponentOnline}
             opponentLastEnterAt={opponentLastEnterAt}
+            isDeleted={isDeleted}
           />
         )}
         hasNextPage={hasNextPage}

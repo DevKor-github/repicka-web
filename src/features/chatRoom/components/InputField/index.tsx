@@ -4,9 +4,14 @@ import { useState } from 'react';
 import { stompClient } from '@/common/utils/wsClient';
 import TextareaAutosize from 'react-textarea-autosize';
 
-const InputField = ({ chatRoomId }: { chatRoomId: number }) => {
+interface Props {
+  chatRoomId: number;
+}
+
+const InputField = ({ chatRoomId }: Props) => {
   const [message, setMessage] = useState('');
   const canSend = message.trim().length > 0;
+  // const placeholder = isDeleted ? '메시지를 입력해 주세요.' : '아이템이 삭제되어 메시지를 보낼 수 없습니다.';
 
   const send = () => {
     if (!message.trim()) return;

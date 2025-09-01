@@ -38,7 +38,7 @@ const NotificationItemCard = ({ data }: Props) => {
     if (type === 'APPOINTMENT_RENTAL_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_RETURN_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_CONFIRM') return 'mgc_emoji_fill';
-    if (type === 'APPOINTMENT_SUCCESS') return 'mgc_heart_fill';
+    if (type === 'APPOINTMENT_SUCCESS') return 'hands_clapping_fill';
   })();
 
   return (

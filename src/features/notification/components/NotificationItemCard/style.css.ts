@@ -53,9 +53,8 @@ export const Icon = cva({
       mgc_t_shirt_fill: {
         background: 'linear-gradient(128deg, #0F71FF 16.45%, #FF0004 102.04%)',
       },
-      mgc_heart_fill: {
-        bg: 'main',
-        // background: 'linear-gradient(180deg, #FF9F05 0%, #FFC505 81.73%)',
+      hands_clapping_fill: {
+        bg: 'linear-gradient(142deg, #FFB200 -0.11%, #F83E00 100.8%)',
       },
     },
   },
