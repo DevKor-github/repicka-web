@@ -17,7 +17,7 @@ const PickChat = ({ isMine, marginTop, children, pickId, isDeleted }: Props) => 
 
   const onClick = () => {
     if (isDeleted) {
-      openToast({ message: '삭제된 게시글에 대한 PICK입니다' });
+      openToast({ message: '삭제된 게시글에 대한 PICK입니다.' });
       return;
     }
     navigate(`/pick-detail/${pickId}`);
