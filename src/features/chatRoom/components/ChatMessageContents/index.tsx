@@ -17,9 +17,18 @@ interface Props {
   nickname: string;
   isOpponentOnline: boolean;
   opponentLastEnterAt: string;
+  isDeleted: boolean;
 }
 
-const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline, opponentLastEnterAt }: Props) => {
+const ChatMessageContents = ({
+  chat,
+  index,
+  messages,
+  myUserId,
+  isOpponentOnline,
+  opponentLastEnterAt,
+  isDeleted,
+}: Props) => {
   const isRead = isOpponentOnline || isBefore(chat.createdAt, opponentLastEnterAt);
 
   const time = parseTime(chat.createdAt);
@@ -48,7 +57,13 @@ const ChatMessageContents = ({ chat, index, messages, myUserId, isOpponentOnline
       {isNotification ? (
         <div className={s.Notification}>{chat.content}</div>
       ) : chat.isPick && chat.pickInfo ? (
-        <PickChat marginTop={marginTop} isMine={isMine} children={chat.content} pickId={chat.pickInfo.appointmentId} />
+        <PickChat
+          marginTop={marginTop}
+          isMine={isMine}
+          children={chat.content}
+          pickId={chat.pickInfo.appointmentId}
+          isDeleted={isDeleted}
+        />
       ) : isMine ? (
         <MyChat marginTop={marginTop} time={showTime ? time : undefined} isRead={isRead}>
           {chat.content}

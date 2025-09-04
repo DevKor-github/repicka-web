@@ -44,14 +44,25 @@ export const Image = css({
   backgroundColor: 'systemGray',
 });
 
-export const PickBtn = css({
-  display: 'flex',
-  padding: '0.5625rem 4.125rem',
-  justifyContent: 'center',
-  alignItems: 'center',
-  alignSelf: 'stretch',
-  borderRadius: '0.375rem',
-  backgroundColor: 'main',
+export const PickBtn = cva({
+  base: {
+    display: 'flex',
+    padding: '0.5625rem 4.125rem',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    borderRadius: '0.375rem',
+  },
+  variants: {
+    isDeleted: {
+      true: {
+        bg: 'systemGray2',
+      },
+      false: {
+        bg: 'main',
+      },
+    },
+  },
 });
 
 export const PickText = css({

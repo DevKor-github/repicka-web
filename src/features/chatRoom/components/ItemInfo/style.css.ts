@@ -1,4 +1,4 @@
-import { css } from '@styled-system/css';
+import { css, cva } from '@styled-system/css';
 
 export const Container = css({
   position: 'absolute',
@@ -9,9 +9,21 @@ export const Container = css({
   width: '100%',
   padding: '0.625rem 1rem',
   alignItems: 'center',
-  gap: '0.625rem',
   bg: 'systemGray5',
   borderRadius: '0.625rem',
+});
+
+export const Deleted = cva({
+  base: {
+    display: 'flex',
+    flex: 1,
+    gap: '0.625rem',
+  },
+  variants: {
+    isDeleted: {
+      true: { opacity: 0.3 },
+    },
+  },
 });
 
 export const Thumbnail = css({
@@ -19,29 +31,37 @@ export const Thumbnail = css({
   h: '3.4375rem',
   flexShrink: 0,
   aspectRatio: 1 / 1,
-  bg: 'main',
   borderRadius: '0.78125rem',
   objectFit: 'cover',
 });
 
-export const Info = css({
-  color: '100',
-  fontFamily: 'Pretendard',
-  fontSize: '0.875rem',
-  fontStyle: 'normal',
-  fontWeight: 600,
-  lineHeight: 'normal',
-  letterSpacing: '-0.035rem',
+export const Info = cva({
+  base: {
+    color: '100',
+    fontFamily: 'Pretendard',
+    fontSize: '0.875rem',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: 'normal',
+    letterSpacing: '-0.035rem',
 
-  display: 'flex',
-  padding: '0.25rem 0',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  alignItems: ' flex-start',
-  flex: '1 0 0',
-  alignSelf: 'stretch',
-  '& span': {
-    lineClamp: 1,
+    display: 'flex',
+    padding: '0.25rem 0',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: ' flex-start',
+    flex: '1 0 0',
+    alignSelf: 'stretch',
+    '& span': {
+      lineClamp: 1,
+    },
+  },
+  variants: {
+    isDeleted: {
+      true: {
+        // opacity: 0.5,
+      },
+    },
   },
 });
 

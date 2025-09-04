@@ -12,12 +12,13 @@ interface Props {
 }
 
 const NotificationItemCard = ({ data }: Props) => {
-  const isRental = data.item.transactionTypes.includes('RENTAL');
-  const isSale = data.item.transactionTypes.includes('SALE');
-  const isDirect = data.item.tradeMethods.includes('DIRECT');
-  const type = data.type;
+  const isRental = data.itemInfo.transactionTypes.includes('RENTAL');
+  const isSale = data.itemInfo.transactionTypes.includes('SALE');
+  const isDirect = data.itemInfo.tradeMethods.includes('DIRECT');
+  const type = data.notificationInfo.type;
   const isRemind = type === 'APPOINTMENT_RENTAL_REMIND' || type === 'APPOINTMENT_RETURN_REMIND';
-  const remindDate = type === 'APPOINTMENT_RENTAL_REMIND' ? data.rentalDate : data.returnDate;
+  const remindDate =
+    type === 'APPOINTMENT_RENTAL_REMIND' ? data.appointmentInfo.rentalDate : data.appointmentInfo.returnDate;
 
   const label = (() => {
     if (type === 'APPOINTMENT_CANCEL') return '나의 Pick이 취소됐어요.';
@@ -38,7 +39,7 @@ const NotificationItemCard = ({ data }: Props) => {
     if (type === 'APPOINTMENT_RENTAL_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_RETURN_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_CONFIRM') return 'mgc_emoji_fill';
-    if (type === 'APPOINTMENT_SUCCESS') return 'mgc_heart_fill';
+    if (type === 'APPOINTMENT_SUCCESS') return 'hands_clapping_fill';
   })();
 
   return (
@@ -55,14 +56,14 @@ const NotificationItemCard = ({ data }: Props) => {
           </div>
         )}
       </div>
-      <Link className={s.Container} to={`/pick-detail/${data.appointmentId}`}>
-        <img className={s.Image} src={getImageUrl(data.item.thumbnail)} aria-hidden />
+      <Link className={s.Container} to={`/pick-detail/${data.appointmentInfo.id}`}>
+        <img className={s.Image} src={getImageUrl(data.itemInfo.thumbnail)} aria-hidden />
         <div className={s.Info}>
           <div className={s.Header}>
-            <h2 className={s.Title}>{data.item.title}</h2>
+            <h2 className={s.Title}>{data.itemInfo.title}</h2>
             <div className={s.Price}>
-              {isRental && <PriceToken price={data.item.rentalFee} deposit={data.item.deposit} />}
-              {isSale && <PriceToken price={data.item.salePrice} />}
+              {isRental && <PriceToken price={data.itemInfo.rentalFee} deposit={data.itemInfo.deposit} />}
+              {isSale && <PriceToken price={data.itemInfo.salePrice} />}
             </div>
           </div>
           <div className={s.Footer}>
@@ -70,22 +71,22 @@ const NotificationItemCard = ({ data }: Props) => {
               <ItemTokenList
                 showCount={3}
                 itemInfo={{
-                  productTypes: data.item.productTypes,
-                  quality: data.item.quality,
-                  size: data.item.size,
-                  color: data.item.color,
-                  tradeMethods: data.item.tradeMethods,
+                  productTypes: data.itemInfo.productTypes,
+                  quality: data.itemInfo.quality,
+                  size: data.itemInfo.size,
+                  color: data.itemInfo.color,
+                  tradeMethods: data.itemInfo.tradeMethods,
                 }}
               />
             </div>
             <div className={s.Interactions}>
               <div className={s.InteractionItem}>
                 <span className="mgc_heart_fill" />
-                <p>{data.item.likeCount}</p>
+                <p>{data.itemInfo.likeCount}</p>
               </div>
               <div className={s.InteractionItem}>
                 <span className="mgc_chat_2_fill" />
-                <p>{data.item.chatRoomCount}</p>
+                <p>{data.itemInfo.chatRoomCount}</p>
               </div>
             </div>
           </div>

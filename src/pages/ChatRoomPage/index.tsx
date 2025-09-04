@@ -25,7 +25,7 @@ const ChatRoomPage = () => {
       <div className={s.entireLayout}>
         <ChatRoomHeader appointmentData={chatRoomInfo.currentAppointment} chatRoomData={chatRoomInfo.chatRoom} />
         <ItemInfo data={chatRoomInfo.item} />
-        <ChatRoomContent data={chatRoomInfo.chatRoom} />
+        <ChatRoomContent data={chatRoomInfo.chatRoom} isDeleted={chatRoomInfo.item.isDeleted} />
         <ChatRoomFooter data={chatRoomInfo.chatRoom} />
       </div>
     </SafeArea>
