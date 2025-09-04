@@ -1,4 +1,3 @@
-import main_banner from '@/libs/assets/banner.webp';
 import banner1 from '@/libs/assets/external_banner_1.webp';
 import banner2 from '@/libs/assets/external_banner_2.webp';
 
