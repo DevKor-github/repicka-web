@@ -26,9 +26,13 @@ const Banner = () => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={`${item.title}-${index}`}>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
+            {item.link ? (
+              <a href={item.link} target="_blank" rel="noopener noreferrer">
+                <img className={s.Image} src={item.src} alt={item.title} />
+              </a>
+            ) : (
               <img className={s.Image} src={item.src} alt={item.title} />
-            </a>
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
