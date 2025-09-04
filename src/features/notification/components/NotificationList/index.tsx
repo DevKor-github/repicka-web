@@ -8,9 +8,7 @@ interface Props {
 const NotificationList = ({ notification }: Props) => {
   return (
     <>
-      {/* {notifications.map(item => ( */}
       <NotificationItemCard data={notification} />
-      {/* ))} */}
     </>
   );
 };

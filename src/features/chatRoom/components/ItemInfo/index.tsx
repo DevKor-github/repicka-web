@@ -52,7 +52,7 @@ const ItemInfo = ({ data }: Props) => {
     <button className={s.Container} onClick={onClick}>
       <div className={s.Deleted({ isDeleted })}>
         <img className={s.Thumbnail} src={getImageUrl(data.thumbnail)} />
-        <div className={s.Info({ isDeleted })}>
+        <div className={s.Info}>
           <span>{data.title}</span>
           {isSale && <Sale />}
           {isRental && <Rental />}
