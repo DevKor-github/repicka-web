@@ -25,7 +25,7 @@ const NoResult = ({ type }: Props) => {
     if (type === 'chat') return '상품에 관심 있는 사람이 나타나면\n채팅을 주고받을 수 있습니다.';
     if (type === 'chat-list') return '채팅을 시작해 보세요.';
     if (type === 'pick') return 'PICK을 생성해 보세요.';
-    if (type === 'notification') return 'PICK을 생성해 보세요.';
+    if (type === 'notification') return '알림 오면 바로 알려드릴게요!';
     if (type === 'my-trade') return '상품을 등록해 보세요.';
     return '원하는 상품을 관심목록에 담아 보세요.';
   })();
