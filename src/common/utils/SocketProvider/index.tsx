@@ -30,7 +30,7 @@ const SocketProvider = ({ children }: Props) => {
     return () => {
       unsubscribe?.();
     };
-  }, [queryClient]);
+  }, [queryClient, setUnreadChatCount]);
 
   return <>{children}</>;
 };
