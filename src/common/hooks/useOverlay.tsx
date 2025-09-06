@@ -1,6 +1,6 @@
+import { OverlayContext } from '@/common/utils/OverlayProvider/OverlayContext';
+import { OverlayController, type OverlayControlRef } from '@/common/utils/OverlayProvider/OverlayController';
 import { useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { OverlayContext } from '@/common/components/OverlayProvider/OverlayContext';
-import { OverlayController, type OverlayControlRef } from '@/common/components/OverlayProvider/OverlayController';
 
 export type CreateOverlayElement = (props: { isOpen: boolean; close: () => void; exit: () => void }) => ReactNode;
 

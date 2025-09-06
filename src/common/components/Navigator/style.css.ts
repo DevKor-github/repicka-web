@@ -31,6 +31,7 @@ export const Menu = cva({
     lineHeight: 1.2,
     letterSpacing: '-0.0175rem',
     cursor: 'pointer',
+    position: 'relative',
     '& p': {
       lineClamp: 1,
       whiteSpace: 'nowrap',
@@ -60,4 +61,18 @@ export const Menu = cva({
   defaultVariants: {
     selected: false,
   },
+});
+
+export const UnreadChatCount = css({
+  position: 'absolute',
+  bgColor: 'main',
+  color: '100',
+  p: '0.0625rem 0.375rem',
+  rounded: 'full',
+  right: '0.25rem',
+  top: '-0.25rem',
+  textAlign: 'center',
+  fontSize: '0.75rem',
+  fontWeight: 400,
+  lineHeight: '1.4',
 });

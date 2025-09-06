@@ -3,10 +3,10 @@ import routes from '@/pages/routes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'react-time-picker-typescript/dist/style.css';
 
-import SocketProvider from './common/components/SocketProvider';
-import { OverlayProvider } from '@/common/components/OverlayProvider';
-import NotificationProvider from '@/common/components/NotificationProvider';
 import AmplitudeProvider from '@/common/utils/AmplitudeProvider';
+import SocketProvider from '@/common/utils/SocketProvider';
+import NotificationProvider from '@/common/utils/NotificationProvider';
+import { OverlayProvider } from '@/common/utils/OverlayProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
