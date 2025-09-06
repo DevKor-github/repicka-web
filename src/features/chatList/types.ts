@@ -15,6 +15,6 @@ export interface ChatListInterface {
 }
 
 export interface SubChatListInterface {
-  type: 'CHAT';
+  type: 'CHAT' | 'UNREAD_CHAT_COUNT';
   message: ChatListInterface;
 }

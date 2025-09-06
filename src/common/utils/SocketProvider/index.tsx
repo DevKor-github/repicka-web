@@ -20,7 +20,7 @@ const SocketProvider = ({ children }: Props) => {
         console.log('앱 시작 시 WebSocket 연결 완료');
         unsubscribe = subChatListSocket(data => {
           queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
-          setUnreadChatCount(data.message.unreadChatCount);
+          if (data.type === 'UNREAD_CHAT_COUNT') setUnreadChatCount(data.message.unreadChatCount);
         });
       })
       .catch(err => {
