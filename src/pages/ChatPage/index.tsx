@@ -4,10 +4,6 @@ import ChatList from '@/features/chatList/components/ChatList';
 import useGetChatList from '@/features/chatList/api/useGetChatList';
 import Pagination from '@/common/components/Pagination';
 import { CHAT_PAGING_SIZE } from '@/libs/constants';
-import { useEffect } from 'react';
-import { connectSocket, subChatListSocket } from '@/common/utils/wsClient';
-import { useQueryClient } from '@tanstack/react-query';
-import { QUERY_KEYS } from '@/libs/queryKeys';
 import NoResult from '@/common/components/NoResult';
 import MainTopBar from '@/common/components/MainTopBar';
 
@@ -21,23 +17,8 @@ const ChatPage = () => {
   } = useGetChatList({
     pageSize: CHAT_PAGING_SIZE,
   });
-  const queryClient = useQueryClient();
 
   const isEmpty = isSuccess && rooms.length === 0;
-
-  useEffect(() => {
-    let unsubscribe: (() => void) | undefined;
-
-    connectSocket().then(() => {
-      unsubscribe = subChatListSocket(() => {
-        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
-      });
-    });
-
-    return () => {
-      unsubscribe?.();
-    };
-  }, [queryClient]);
 
   return (
     <SafeArea>

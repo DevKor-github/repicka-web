@@ -1,4 +1,4 @@
-import { OverlayContext } from '@/common/components/OverlayProvider/OverlayContext';
+import { OverlayContext } from '@/common/utils/OverlayProvider/OverlayContext';
 import React, { useCallback, useMemo, useState, type PropsWithChildren, type ReactNode } from 'react';
 
 export function OverlayProvider({ children }: PropsWithChildren) {
