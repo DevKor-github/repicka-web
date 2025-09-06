@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { connectSocket, subChatListSocket } from '@/common/utils/wsClient';
 import { useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/libs/queryKeys';
+import { useUnreadChatStore } from '@/common/store/UnreadChatStore';
 
 interface Props {
   children: React.ReactNode;
@@ -9,6 +10,7 @@ interface Props {
 
 const SocketProvider = ({ children }: Props) => {
   const queryClient = useQueryClient();
+  const setUnreadChatCount = useUnreadChatStore(state => state.setUnreadChatCount);
 
   useEffect(() => {
     let unsubscribe: (() => void) | undefined;
@@ -16,8 +18,9 @@ const SocketProvider = ({ children }: Props) => {
     connectSocket()
       .then(() => {
         console.log('앱 시작 시 WebSocket 연결 완료');
-        unsubscribe = subChatListSocket(() => {
+        unsubscribe = subChatListSocket(data => {
           queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
+          setUnreadChatCount(data.message.unreadChatCount);
         });
       })
       .catch(err => {
