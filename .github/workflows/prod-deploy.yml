@@ -29,4 +29,4 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: '$'
           AWS_SECRET_ACCESS_KEY: '$'
-        run: aws s3 cp --recursive --region ap-northeast-2 dist s3://home.manual
+        run: aws s3 cp --recursive --region ap-northeast-2 dist s3://repicka-back-dev.shop
