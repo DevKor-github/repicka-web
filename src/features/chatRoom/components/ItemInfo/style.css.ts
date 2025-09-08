@@ -35,33 +35,24 @@ export const Thumbnail = css({
   objectFit: 'cover',
 });
 
-export const Info = cva({
-  base: {
-    color: '100',
-    fontFamily: 'Pretendard',
-    fontSize: '0.875rem',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    lineHeight: 'normal',
-    letterSpacing: '-0.035rem',
+export const Info = css({
+  color: '100',
+  fontFamily: 'Pretendard',
+  fontSize: '0.875rem',
+  fontStyle: 'normal',
+  fontWeight: 600,
+  lineHeight: 'normal',
+  letterSpacing: '-0.035rem',
 
-    display: 'flex',
-    padding: '0.25rem 0',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: ' flex-start',
-    flex: '1 0 0',
-    alignSelf: 'stretch',
-    '& span': {
-      lineClamp: 1,
-    },
-  },
-  variants: {
-    isDeleted: {
-      true: {
-        // opacity: 0.5,
-      },
-    },
+  display: 'flex',
+  padding: '0.25rem 0',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  alignItems: ' flex-start',
+  flex: '1 0 0',
+  alignSelf: 'stretch',
+  '& span': {
+    lineClamp: 1,
   },
 });
 

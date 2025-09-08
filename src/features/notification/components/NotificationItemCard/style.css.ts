@@ -13,6 +13,11 @@ export const Wrapper = cva({
         bg: 'systemGray5',
       },
     },
+    isDeleted: {
+      true: {
+        opacity: 0.2,
+      },
+    },
   },
 });
 
@@ -53,7 +58,7 @@ export const Icon = cva({
       mgc_t_shirt_fill: {
         background: 'linear-gradient(128deg, #0F71FF 16.45%, #FF0004 102.04%)',
       },
-      hands_clapping_fill: {
+      mgc_hands_clapping_fill: {
         bg: 'linear-gradient(142deg, #FFB200 -0.11%, #F83E00 100.8%)',
       },
     },
@@ -104,7 +109,7 @@ export const Header = css({
   display: 'flex',
   flexDir: 'column',
   gap: '0.25rem',
-  alignItems: 'stretch',
+  alignItems: 'flex-start',
 });
 
 export const Title = css({

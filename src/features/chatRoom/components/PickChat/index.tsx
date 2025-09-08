@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router';
 import * as s from './style.css';
 import type { ReactNode } from 'react';
 import { useToast } from '@/common/hooks/useToast';
+import Pick from '@/libs/assets/Pick.png';
 
 interface Props {
   children: ReactNode;
@@ -26,7 +27,9 @@ const PickChat = ({ isMine, marginTop, children, pickId, isDeleted }: Props) => 
   return (
     <div className={s.Container({ isMine })} style={{ marginTop: marginTop }}>
       <div className={s.HeadText}>{children}</div>
-      <div className={s.Image} />
+      <div className={s.Image}>
+        <img src={Pick} alt="예시 이미지" />
+      </div>
       <button className={s.PickBtn({ isDeleted })} onClick={onClick}>
         <div className={s.PickText}>PICK 확인하기</div>
       </button>
