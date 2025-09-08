@@ -1,11 +1,12 @@
 import ItemTokenList from '@/common/components/ItemTokenList';
 import PriceToken from '@/features/home/components/ItemCard/PriceToken';
-import { Link } from 'react-router';
 import * as s from './style.css';
 import getImageUrl from '@/common/utils/getImageUrl';
 import { cx } from '@styled-system/css';
 import type { NotificationInterface } from '../../types';
 import { parsePickDate, parsePickTime } from '@/common/utils/parseDate';
+import { useToast } from '@/common/hooks/useToast';
+import { useNavigate } from 'react-router';
 
 interface Props {
   data: NotificationInterface;
@@ -19,6 +20,10 @@ const NotificationItemCard = ({ data }: Props) => {
   const isRemind = type === 'APPOINTMENT_RENTAL_REMIND' || type === 'APPOINTMENT_RETURN_REMIND';
   const remindDate =
     type === 'APPOINTMENT_RENTAL_REMIND' ? data.appointmentInfo.rentalDate : data.appointmentInfo.returnDate;
+  const isDeleted = data.itemInfo.isDeleted;
+  const { openToast } = useToast();
+  const navigate = useNavigate();
+  const title = data.itemInfo.title;
 
   const label = (() => {
     if (type === 'APPOINTMENT_CANCEL') return '나의 Pick이 취소됐어요.';
@@ -39,11 +44,19 @@ const NotificationItemCard = ({ data }: Props) => {
     if (type === 'APPOINTMENT_RENTAL_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_RETURN_REMIND') return 'mgc_t_shirt_fill';
     if (type === 'APPOINTMENT_CONFIRM') return 'mgc_emoji_fill';
-    if (type === 'APPOINTMENT_SUCCESS') return 'hands_clapping_fill';
+    if (type === 'APPOINTMENT_SUCCESS') return 'mgc_hands_clapping_fill';
   })();
 
+  const onClick = () => {
+    if (isDeleted) {
+      openToast({ message: '삭제된 게시글에 대한 PICK입니다.' });
+      return;
+    }
+    navigate(`/pick-detail/${data.appointmentInfo.id}`);
+  };
+
   return (
-    <div className={s.Wrapper({ isRemind })}>
+    <div className={s.Wrapper({ isRemind, isDeleted })}>
       <div className={s.RemindTime}>
         <div className={s.Type}>
           <div className={cx(`${icon}`, s.Icon({ icon }))} />
@@ -56,11 +69,11 @@ const NotificationItemCard = ({ data }: Props) => {
           </div>
         )}
       </div>
-      <Link className={s.Container} to={`/pick-detail/${data.appointmentInfo.id}`}>
+      <button className={s.Container} onClick={onClick}>
         <img className={s.Image} src={getImageUrl(data.itemInfo.thumbnail)} aria-hidden />
         <div className={s.Info}>
           <div className={s.Header}>
-            <h2 className={s.Title}>{data.itemInfo.title}</h2>
+            <h2 className={s.Title}>{title}</h2>
             <div className={s.Price}>
               {isRental && <PriceToken price={data.itemInfo.rentalFee} deposit={data.itemInfo.deposit} />}
               {isSale && <PriceToken price={data.itemInfo.salePrice} />}
@@ -91,7 +104,7 @@ const NotificationItemCard = ({ data }: Props) => {
             </div>
           </div>
         </div>
-      </Link>
+      </button>
     </div>
   );
 };
