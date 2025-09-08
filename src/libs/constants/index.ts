@@ -1,4 +1,4 @@
-export const VERSION_NAME = 'v1.0.0';
+export const VERSION_NAME = 'v1.0.1';
 
 export const MAX_PRICE = 999999;
 export const MAX_LOCATION = 100;
