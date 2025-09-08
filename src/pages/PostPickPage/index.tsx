@@ -73,9 +73,6 @@ const PostPickPage = () => {
           onSuccess: response => {
             navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
           },
-          onError: () => {
-            openToast({ message: 'PICK 생성에 실패했어요. 다시 시도해주세요!' });
-          },
         },
       );
       return;
@@ -92,9 +89,6 @@ const PostPickPage = () => {
       {
         onSuccess: response => {
           navigate(`/pick-detail/${response.currentAppointment.appointment.appointmentId}`, { replace: true });
-        },
-        onError: () => {
-          openToast({ message: 'PICK 생성에 실패했어요. 다시 시도해주세요!' });
         },
       },
     );
