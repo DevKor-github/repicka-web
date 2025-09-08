@@ -12,6 +12,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import CustomHeader from '@/common/components/CustomHeader';
 import DetailBottom from '@/features/pick/components/DetailBottom';
 import { cx } from '@styled-system/css';
+import { ko } from 'date-fns/locale/ko';
 
 interface InfoItemProps {
   title: string;
@@ -74,8 +75,8 @@ const PickDetailPage = () => {
                   title={isSale ? '발송 일자' : '대여 기간'}
                   value={
                     data.returnDate === null
-                      ? formatDate(data.rentalDate, 'yy.MM.dd')
-                      : `${formatDate(data.rentalDate, 'yy.MM.dd')} ~ ${formatDate(data.returnDate, 'yy.MM.dd')}`
+                      ? formatDate(data.rentalDate, 'yy.MM.dd. (eee)', { locale: ko })
+                      : `${formatDate(data.rentalDate, 'yy.MM.dd. (eee)', { locale: ko })} ~ ${formatDate(data.returnDate, 'yy.MM.dd. (eee)', { locale: ko })}`
                   }
                 />
               </div>
@@ -85,13 +86,16 @@ const PickDetailPage = () => {
                     <InfoItem title={isSale ? '판매 장소' : '대여 장소'} value={data.rentalLocation} />
                     <InfoItem
                       title={isSale ? '판매 일시' : '대여 일시'}
-                      value={formatDate(data.rentalDate, 'yy.MM.dd HH시 mm분')}
+                      value={formatDate(data.rentalDate, 'yy.MM.dd. (eee) HH시 mm분', { locale: ko })}
                     />
                   </div>
                   {data.returnDate !== null && data.returnLocation !== null && (
                     <div className={s.Block}>
                       <InfoItem title={'반납 장소'} value={data.returnLocation} />
-                      <InfoItem title={'반납 일시'} value={formatDate(data.returnDate, 'yy.MM.dd HH시 mm분')} />
+                      <InfoItem
+                        title={'반납 일시'}
+                        value={formatDate(data.returnDate, 'yy.MM.dd. (eee) HH시 mm분', { locale: ko })}
+                      />
                     </div>
                   )}
                 </>
