@@ -4,6 +4,8 @@ import { identify, Identify, init, setUserId } from '@amplitude/analytics-browse
 const AMPLITUDE_API_KEY = import.meta.env.VITE_API_AMPLITUDE_API_KEY || '';
 
 export const initAmplitude = async (userId?: string, callback?: () => void) => {
+  if (!AMPLITUDE_API_KEY) return;
+
   init(AMPLITUDE_API_KEY, {
     userId,
     defaultTracking: true,
