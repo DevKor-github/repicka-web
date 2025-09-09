@@ -7,6 +7,7 @@ import AmplitudeProvider from '@/common/utils/AmplitudeProvider';
 import SocketProvider from '@/common/utils/SocketProvider';
 import NotificationProvider from '@/common/utils/NotificationProvider';
 import { OverlayProvider } from '@/common/utils/OverlayProvider';
+import useVersionName from '@/common/hooks/useVersionName';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +24,8 @@ const queryClient = new QueryClient({
 
 function App() {
   const router = useRoutes(routes);
+
+  useVersionName();
 
   return (
     <QueryClientProvider client={queryClient}>
