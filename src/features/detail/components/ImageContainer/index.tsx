@@ -13,7 +13,6 @@ const ImageContainer = ({ images }: Props) => {
   const totalIndex = images.length;
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // TODO: 모바일에서 줌 되는지 확인하기
   return (
     <div className={s.Container}>
       <Swiper

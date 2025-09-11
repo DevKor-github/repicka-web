@@ -38,13 +38,13 @@ const BottomActions = ({ itemId, itemInfo }: Props) => {
     }
 
     if (itemStatusData.chatRoomId) {
-      navigate(`/chatroom/${itemStatusData.chatRoomId}`);
+      navigate(`/chat/${itemStatusData.chatRoomId}`);
       return;
     }
 
     createChatroom(itemId, {
       onSuccess: data => {
-        navigate(`/chatroom/${data.data.chatRoom.chatRoomId}`);
+        navigate(`/chat/${data.data.chatRoom.chatRoomId}`);
       },
     });
   };

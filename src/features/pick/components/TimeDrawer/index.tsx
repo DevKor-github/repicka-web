@@ -23,7 +23,6 @@ const TimeDrawer = ({ dateTime, setDateTime, transactionText, next, prev }: Prop
       <div className={s.TimePickerWrapper}>
         <label>{transactionText} 시간</label>
         <input type="time" value={value} onChange={e => setValue(e.target.value)} />
-        {/* TODO: TimePicker 컴포넌트 사용 */}
       </div>
       <div className={s.ButtonWrapper}>
         <button className={s.DateDrawerButton({ type: 'prev' })} onClick={prev}>

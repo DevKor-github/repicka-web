@@ -25,7 +25,7 @@ const Btn = ({ type, isReviewed, chatRoomId, appointmentId, nickname }: BtnProps
     e.preventDefault();
 
     if (type === 'chat') {
-      navigate(`/chatroom/${chatRoomId}`);
+      navigate(`/chat/${chatRoomId}`);
 
       return;
     }

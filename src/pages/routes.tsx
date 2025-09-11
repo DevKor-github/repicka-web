@@ -63,7 +63,7 @@ const routes: RouteObject[] = [
             element: <ChatPage />,
           },
           {
-            path: '/chatroom/:chatRoomId',
+            path: '/chat/:chatRoomId',
             element: <ChatRoomPage />,
           },
           {

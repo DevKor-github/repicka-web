@@ -40,7 +40,7 @@ const PickDetailPage = () => {
   };
 
   const onChatBtnClick = () => {
-    navigate(`/chatroom/${data?.chatRoomId}`);
+    navigate(`/chat/${data?.chatRoomId}`);
   };
 
   if (isError) return <NotFoundPage />;
