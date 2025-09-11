@@ -22,7 +22,7 @@ const InAppNotification = ({ isOpen, nickname, profileImage, content, chatRoomId
         navigate(`/chat/${chatRoomId}`);
       }}
       initial={{ opacity: 0, translateX: '-50%' }}
-      animate={isOpen ? { opacity: 1, translateX: '-50%', translateY: '50%' } : { opacity: 0, translateX: '-50%' }}
+      animate={isOpen ? { opacity: 0.84, translateX: '-50%', translateY: '50%' } : { opacity: 0, translateX: '-50%' }}
     >
       <UserProfileImage nickname={nickname ?? ''} src={getImageUrl(profileImage ?? '')} />
       <div className={s.Content}>
