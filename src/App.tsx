@@ -8,7 +8,6 @@ import SocketProvider from '@/common/utils/SocketProvider';
 import NotificationProvider from '@/common/utils/NotificationProvider';
 import { OverlayProvider } from '@/common/utils/OverlayProvider';
 import useVersionName from '@/common/hooks/useVersionName';
-import InAppNotification from './common/components/InAppNotification';
 
 const queryClient = new QueryClient({
   defaultOptions: {
