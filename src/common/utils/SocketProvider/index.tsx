@@ -3,6 +3,8 @@ import { connectSocket, subChatListSocket } from '@/common/utils/wsClient';
 import { useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useUnreadChatStore } from '@/common/store/UnreadChatStore';
+import { useInAppNotificaiton } from '@/common/hooks/useInAppNotification';
+import { useLocation } from 'react-router';
 
 interface Props {
   children: React.ReactNode;
@@ -11,6 +13,9 @@ interface Props {
 const SocketProvider = ({ children }: Props) => {
   const queryClient = useQueryClient();
   const setUnreadChatCount = useUnreadChatStore(state => state.setUnreadChatCount);
+  const { openNotification } = useInAppNotificaiton();
+  const location = useLocation();
+  console.log(location.pathname);
 
   useEffect(() => {
     let unsubscribe: (() => void) | undefined;
@@ -21,6 +26,18 @@ const SocketProvider = ({ children }: Props) => {
         unsubscribe = subChatListSocket(data => {
           queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_LIST] });
           if (data.type === 'UNREAD_CHAT_COUNT') setUnreadChatCount(data.message.unreadChatCount);
+          if (data.type === 'CHAT') {
+            if (location.pathname.startsWith('/chat')) {
+              return;
+            }
+
+            const content = data.message.mostRecentChatContent;
+            const nickname = data.message.mostRecentChatNickname;
+            const profileImage = data.message.opponentProfileImageUrl;
+            const chatRoomId = data.message.chatRoomId;
+
+            openNotification({ content, nickname, profileImage, chatRoomId });
+          }
         });
       })
       .catch(err => {
@@ -30,7 +47,7 @@ const SocketProvider = ({ children }: Props) => {
     return () => {
       unsubscribe?.();
     };
-  }, [queryClient, setUnreadChatCount]);
+  }, [queryClient, setUnreadChatCount, location.pathname]);
 
   return <>{children}</>;
 };

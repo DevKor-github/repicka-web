@@ -51,7 +51,7 @@ const DetailBottom = ({ id, itemId, isCreator, pickState, chatRoomId }: Props) =
   const confirmPick = () => {
     confirm(id, {
       onSuccess: () => {
-        navigate(`/chatroom/${chatRoomId}`, { replace: true });
+        navigate(`/chat/${chatRoomId}`, { replace: true });
         openToast({ message: 'PICK이 확정되었어요' });
       },
     });

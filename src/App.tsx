@@ -8,6 +8,7 @@ import SocketProvider from '@/common/utils/SocketProvider';
 import NotificationProvider from '@/common/utils/NotificationProvider';
 import { OverlayProvider } from '@/common/utils/OverlayProvider';
 import useVersionName from '@/common/hooks/useVersionName';
+import InAppNotification from './common/components/InAppNotification';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,12 +30,12 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SocketProvider>
-        <OverlayProvider>
+      <OverlayProvider>
+        <SocketProvider>
           <AmplitudeProvider />
           <NotificationProvider>{router}</NotificationProvider>
-        </OverlayProvider>
-      </SocketProvider>
+        </SocketProvider>
+      </OverlayProvider>
     </QueryClientProvider>
   );
 }

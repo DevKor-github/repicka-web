@@ -73,7 +73,7 @@ const ChatList = ({ data }: Props) => {
 
   return (
     <>
-      <Link className={s.List} to={`/chatroom/${data.chatRoomId}`} {...bind()}>
+      <Link className={s.List} to={`/chat/${data.chatRoomId}`} {...bind()}>
         <div className={s.Img}>
           <img className={s.Thumbnail} src={thumbnail} />
           <UserProfileImage nickname={data.opponentNickname} src={data.opponentProfileImageUrl} />
