@@ -1,4 +1,6 @@
 export const VERSION_NAME = 'v1.0.2';
+export const REPICKA_INSTAGRAM =
+  'https://www.instagram.com/repicka.shop?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==';
 
 export const MAX_PRICE = 999999;
 export const MAX_LOCATION = 100;
