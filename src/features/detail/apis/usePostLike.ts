@@ -1,3 +1,4 @@
+import { useHandleError } from '@/common/hooks/useHandleError';
 import client from '@/common/utils/client';
 import { QUERY_KEYS } from '@/libs/queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -9,12 +10,16 @@ const postLike = async (itemId: number) => {
 
 export const usePostLike = () => {
   const queryClient = useQueryClient();
+  const handleError = useHandleError();
 
   return useMutation({
     mutationFn: postLike,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_DETAIL] });
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_LIST] });
+    },
+    onError: error => {
+      handleError(error, '로그인 후 시도해 주세요.');
     },
   });
 };
