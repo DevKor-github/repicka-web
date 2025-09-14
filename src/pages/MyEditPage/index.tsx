@@ -8,6 +8,7 @@ import { useState } from 'react';
 import type { UserInterface } from '@/libs/types/user';
 import CustomAlert from '@/common/components/CustomAlert';
 import { getFileKey } from '@/common/utils/getFileKeys';
+import SafeArea from '@/common/components/SafeArea';
 
 type MyEditState = { data: UserInterface };
 
@@ -62,7 +63,7 @@ const MyEditPage = () => {
   };
 
   return (
-    <>
+    <SafeArea>
       <div className={s.EntireLayout}>
         <CustomHeader title="프로필 수정하기" onClick={onShowAlert} />
         <MyEditContent
@@ -88,7 +89,7 @@ const MyEditPage = () => {
           yesBtn="네, 그만둘래요"
         />
       )}
-    </>
+    </SafeArea>
   );
 };
 
