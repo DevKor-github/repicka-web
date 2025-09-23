@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { usePostLogout } from '../../apis/usePostLogout';
 import { useToast } from '@/common/hooks/useToast';
 import { REPICKA_INSTAGRAM } from '@/libs/constants';
+import DeleteAccountButton from '@/features/my/components/MyTrade/DeleteAccountButton';
 
 interface MenuProps {
   Title: string;
@@ -28,35 +29,35 @@ const Menu = ({ Title, Icon, Addr }: MenuProps) => {
     );
   }
 
-  if (Title !== '로그아웃') {
+  if (Title === '로그아웃') {
     return (
-      <Link className={s.GoMenu} to={Addr}>
+      <button
+        className={s.GoMenu}
+        onClick={() => {
+          postLogout(undefined, {
+            onSuccess: () => {
+              openToast({ message: '로그아웃 완료!' });
+            },
+          });
+        }}
+      >
         <div className={s.MenuContent}>
           <span className={cx(`${Icon}`)} />
           {Title}
         </div>
         <div className={cx('mgc_right_line', s.Icon)} />
-      </Link>
+      </button>
     );
   }
 
   return (
-    <button
-      className={s.GoMenu}
-      onClick={() => {
-        postLogout(undefined, {
-          onSuccess: () => {
-            openToast({ message: '로그아웃 완료!' });
-          },
-        });
-      }}
-    >
+    <Link className={s.GoMenu} to={Addr}>
       <div className={s.MenuContent}>
         <span className={cx(`${Icon}`)} />
         {Title}
       </div>
       <div className={cx('mgc_right_line', s.Icon)} />
-    </button>
+    </Link>
   );
 };
 
@@ -69,6 +70,7 @@ const MyTrade = () => {
         <Menu Icon="mgc_shopping_bag_1_fill" Title="나의 판매 내역" Addr="/my-trade" />
         <Menu Icon="mgc_instagram_line" Title="문의하기" Addr="/my-trade" />
         <Menu Icon="mgc_exit_fill" Title="로그아웃" Addr="/my-trade" />
+        <DeleteAccountButton />
       </div>
     </div>
   );
