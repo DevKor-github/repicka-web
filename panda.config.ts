@@ -67,7 +67,7 @@ export default defineConfig({
   // 글꼴 설정
   globalFontface: {
     Pretendard: {
-      src: 'url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css")',
+      src: 'url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css") format("font-woff2")',
       fontWeight: '500',
       fontStyle: 'normal',
       fontDisplay: 'swap',
