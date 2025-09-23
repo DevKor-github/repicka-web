@@ -17,6 +17,7 @@ const DeleteAccountButton = () => {
         openToast({ message: '회원탈퇴 완료!' });
       },
     });
+    setShowDeleteAlert(false);
   };
 
   return (
