@@ -12,7 +12,7 @@ import AppleLogo from '@/libs/assets/AppleLogo';
 const LoginPage = () => {
   const navigate = useNavigate();
   const { data: isLogin, isLoading } = useGetIsLogin();
-  const redirectionUrl = encodeURIComponent(window.location.origin + '/');
+  const redirectUrl = import.meta.env.VITE_REDIRECT_URL || undefined;
 
   useEffect(() => {
     if (isLogin) {
@@ -32,21 +32,21 @@ const LoginPage = () => {
         <div className={s.ButtonContainer}>
           <a
             className={s.LoginButton({ src: 'apple' })}
-            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/apple?redirectURI=${redirectionUrl}`}
+            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/apple${redirectUrl ? `?redirectURI=${redirectUrl}` : ''}`}
           >
             <AppleLogo />
             Apple로 로그인
           </a>
           <a
             className={s.LoginButton({ src: 'google' })}
-            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google?redirectURI=${redirectionUrl}`}
+            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/google${redirectUrl ? `?redirectURI=${redirectUrl}` : ''}`}
           >
             <GoogleLogo />
             Google로 로그인
           </a>
           <a
             className={s.LoginButton({ src: 'kakao' })}
-            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/kakao?redirectURI=${redirectionUrl}`}
+            href={`${import.meta.env.VITE_API_URL}/oauth2/authorization/kakao${redirectUrl ? `?redirectURI=${redirectUrl}` : ''}`}
           >
             <KakaoLogo />
             카카오톡으로 로그인
