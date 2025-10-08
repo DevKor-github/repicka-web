@@ -22,6 +22,7 @@ import CustomHeader from '@/common/components/CustomHeader';
 import checkValidation from '@/features/pick/utils/checkValidation';
 import handleSubmitEdgeCase from '@/features/pick/utils/handelSubmitEdgeCase';
 import { useToast } from '@/common/hooks/useToast';
+import { throttle } from 'es-toolkit';
 
 const PostPickPage = () => {
   const { openToast } = useToast();
@@ -157,7 +158,7 @@ const PostPickPage = () => {
           {tradeMethod === 'PARCEL' && <Caution />}
         </div>
         <div className={s.SaveButtonContainer}>
-          <Btn mode={submitValidation ? 'main' : 'disabled'} onClick={handleSubmit}>
+          <Btn mode={submitValidation ? 'main' : 'disabled'} onClick={throttle(handleSubmit, 200)}>
             저장하기
           </Btn>
         </div>
