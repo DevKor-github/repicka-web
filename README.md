@@ -2,6 +2,20 @@
 
 에프기210도7분 화이띵 🔥
 
+레플리카를 쉽게 대여/판매할 수 있는 플랫폼
+
+### 사용 스택
+
+![used-stack-logos](https://skills.syvixor.com/api/icons?perline=15&i=reactjs,typescript,vite,reactrouter,tanstack,pandacss)
+
+- Vite + React + TypeScript
+- Tanstack-Query
+- PandaCSS
+- ~~Stackflow from [Daangn](https://github.com/daangn/stackflow)~~
+  - 레퍼런스가 너무 부족... 사용성이 좋지 않음
+  - 여러 스택 간 공유할 수 있는 Layout 기능이 없고, 커스텀 자유도가 너무 낮음
+- React-Router
+
 ### 커밋 컨벤션
 
 - feat: 설명설명
@@ -64,12 +78,3 @@ src/
         └── [아이콘 파일].png
 ```
 
-### 사용 스택
-
-- Vite + React + TypeScript
-- Tanstack-Query
-- PandaCSS
-- ~~Stackflow from [Daangn](https://github.com/daangn/stackflow)~~
-  - 레퍼런스가 너무 부족... 사용성이 좋지 않음
-  - 여러 스택 간 공유할 수 있는 Layout 기능이 없고, 커스텀 자유도가 너무 낮음
-- React-Router
